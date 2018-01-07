@@ -1,6 +1,6 @@
 Create final executable ppu elf
 ```
-ppu-lv2-gcc -o test_ppu.elf cell-ppu.s test_runner.c
+ppu-lv2-gcc -o gpio_values.elf  test_runner.c
 ```
 
 Todo: Syscall, trap and absolute branching is disabled, see cell-ppu.s for enabling and how to test them

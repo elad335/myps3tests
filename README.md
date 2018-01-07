@@ -1,6 +1,9 @@
-# myps3tests
-testcases for rpcs3 and ps3 written by elad ascenazi
+rpcs3elfs
+=========
 
-if you want to add a testcase you're welcome to pull requast 
+Elfs to test out rpcs3 code
 
-if you have any questions hit me on discord eladash#5015
+
+requires psl1ght library/crosstoolchain v2 api to compile.
+
+jakePadTest is just a more 'graphical' representation of a controller, along with some more info like capabilities
