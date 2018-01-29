@@ -14,15 +14,21 @@ int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
     //char scratchBuf[8192] __attribute__((aligned(128))) = {0};
     //const uint32_t* start = (void*)0; 
   volatile char failedBuf[8192] __attribute__((aligned(128))) = {0};
+    *pc = 0x3f00;
 
-    spu_writech(MFC_TagID, 0);
-    spu_writech(MFC_Cmd, 0xcc);
-    spu_writech(MFC_WrTagMask, 3);
-    spu_writech(MFC_WrTagUpdate, 2);  
-    while (spu_readchcnt(MFC_RdTagStat) == 0){}
+    spu_printf("waiting for an error ,else stall\n");
+    spu_writech(SPU_WrDec, 80000000);
+    spu_writech(SPU_WrEventMask, 0x20);
+   spu_ienable();
+    while (1){}
+    spu_printf("done\n"); // never occures!
 
-   spu_printf("%x\n xxx",spu_readch(MFC_RdTagStat));
+    //spu_readch(SPU_RdEventStat);
+
+   
         //__asm__ volatile ("stopd $2, $2, $2");
     sys_spu_thread_exit(0);
 	return 0;
 }
+
+// result - interrupt fired, spe checks after every instruction if an interrupt condition is met and 

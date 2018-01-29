@@ -9,7 +9,14 @@
 #include <cell.h>
 
 //extern int test(int zero, void *scratch, void *failures, double one);
-
+inline void printcell(int cell)
+{
+     switch (cell)
+     {
+         case 0: {printf("cell is OK\n");  break;}
+         default: printf("cell is %x", cell);
+     }
+}
 int main(void)
 {
     char *failedBuf = malloc(65536);
@@ -17,9 +24,8 @@ int main(void)
 
     uint64_t device_id = 0;
 
-    int cell = sys_gpio_set(SYS_GPIO_DIP_SWITCH_DEVICE_ID, 0xf , 1);
-    printf("cell = 0x%x data = 0x%x", cell);
-
+    int cell = sys_gpio_get(SYS_GPIO_DIP_SWITCH_DEVICE_ID, (void*)(-1));
+   printcell(cell);
 
     free(failedBuf);
     return 0;

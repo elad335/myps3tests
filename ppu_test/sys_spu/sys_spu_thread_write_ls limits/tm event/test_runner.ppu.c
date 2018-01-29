@@ -74,8 +74,9 @@ int main(void)
         printf("sys_spu_thread_group_start: %d\n", ret);
         return ret;
     }
-    char* fill = malloc(1 << 12);
-    sys_spu_thread_write_ls(thr_id, 0x1000, fill, 4);
+
+    int cell;
+    if ( cell = sys_spu_thread_write_ls(thr_id, 0x20, 1 , 1)) printf("error %x", cell);
     int cause;
     int status;
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);

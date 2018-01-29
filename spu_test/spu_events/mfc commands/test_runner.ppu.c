@@ -8,7 +8,7 @@
 #include <sys/spu_utility.h>
 #include <sys/spu_image.h>
 #include <sys/spu_initialize.h>
-
+#include <C:\Users\good morning elad\Documents\GitHub\myps3tests\macros\defines.c>
 #include <spu_printf.h>
 
 
@@ -74,8 +74,9 @@ int main(void)
         printf("sys_spu_thread_group_start: %d\n", ret);
         return ret;
     }
-    char* fill = malloc(1 << 12);
-    sys_spu_thread_write_ls(thr_id, 0x1000, fill, 4);
+
+    s8 *mfc_buf = malloc(1u << 15);
+    sys_spu_thread_write_snr(thr_id, 0 , mfc_buf);
     int cause;
     int status;
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);
