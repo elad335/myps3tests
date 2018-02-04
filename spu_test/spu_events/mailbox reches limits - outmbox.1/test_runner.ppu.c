@@ -74,8 +74,12 @@ int main(void)
         printf("sys_spu_thread_group_start: %d\n", ret);
         return ret;
     }
-    char* fill = malloc(1 << 12);
-    sys_spu_thread_write_ls(thr_id, 0x1000, fill, 4);
+    uint32_t i = 0xfff;
+    uint32_t t = 0;
+    uint32_t cell = 0;
+    printf("hmm\n");
+    //while ((cell = sys_spu_thread_get_exit_status(thr_id, &i)) != 0){t++;}
+    //printf("sucess%x , 0x%x\n", i, sys_spu_thread_get_exit_status(thr_id, &i));
     int cause;
     int status;
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);
@@ -84,6 +88,10 @@ int main(void)
         return ret;
     }
 
+    printf("sucess%x\n", sys_spu_thread_get_exit_status(thr_id, &i));
+    printf("%x\n",i);
+    printf("sucess%x\n", sys_spu_thread_get_exit_status(thr_id, &i));
+    printf("%x\n",i);
     spu_printf_detach_group(grp_id);
     spu_printf_finalize();
 
