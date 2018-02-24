@@ -24,7 +24,7 @@ int main(void)
 
     uint64_t device_id = 0;
 
-    int cell = sys_gpio_get(SYS_GPIO_DIP_SWITCH_DEVICE_ID, (void*)(-1));
+    int cell = sys_gpio_get(SYS_GPIO_DIP_SWITCH_DEVICE_ID, &cell);
    printcell(cell);
 
     free(failedBuf);

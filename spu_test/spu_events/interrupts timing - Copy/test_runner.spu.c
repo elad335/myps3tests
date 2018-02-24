@@ -9,6 +9,9 @@ static void intr()
 {
    // pc++;
     __asm__ volatile ("ahi $81, $81 , 1");
+	__asm__ volatile ("sync");
+	__asm__ volatile ("syncc");
+	__asm__ volatile ("dsync");
     __asm__ volatile ("iret");
 }
  int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
@@ -16,7 +19,7 @@ static void intr()
     register int reg __asm__ ("81");
     register int reg2 __asm__ ("82");
     reg = 0;
-       memcpy(0 ,intr, 8);
+       memcpy(0 ,intr, 20);
     (void)arg2;
 	(void)arg4;
 
@@ -25,30 +28,75 @@ static void intr()
 
 
     spu_printf("waiting for an error ,else stall\n");
-    spu_ack_events();
+    //spu_ack_events();
       spu_ienable();
-    spu_writech(SPU_WrDec, 1);
-    spu_writech(SPU_WrEventMask, 0x00);
-     while((int)spu_readch(SPU_RdDec) >= 0/*spu_readchcnt(SPU_RdEventStat) == 0*/){}
+    spu_writech(SPU_WrDec, 0x10000000);
+    spu_writech(SPU_WrEventMask, 0x20);
+     __asm__ ("l1:");
+	 	__asm__ volatile ("rchcnt $92, SPU_RdEventStat");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		//__asm__ volatile ("dsync");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		//__asm__ volatile ("sync");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		//__asm__ volatile ("syncc");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("ahi $125, $125, 12");
+		__asm__ volatile ("sfhi $125, $125, 12");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+		__asm__ volatile ("nop $125");
+		__asm__ volatile ("nop $127");
+	__asm__ volatile ("brz $92, l1");
 
-   //arg1 = spu_readch(SPU_RdEventStat);
-       //spu_writech(SPU_WrEventAck, 0x0);
-        //spu_ienable();
-          spu_writech(SPU_WrEventMask, 0x20);
-          spu_readch(SPU_RdEventStat);
   //  for (int i = 0; i< 30; i++){pc++;}
  //  __asm__ volatile ("il $82, nojump");
 
 // __asm__ volatile ("bi $82");
 // __asm__ volatile ("nojump:");
-   // spu_idisable();
+		__asm__ volatile ("syncc");
+		__asm__ volatile ("sync");
+		__asm__ volatile ("dsync");
+    spu_idisable();
    
    spu_printf("done %x\n", spu_readch(SPU_RdSRR0));
     spu_printf("done %x\n", reg2 );
    // spu_printf("done %x\n", intr);
           spu_printf("%x\n",spu_readchcnt(SPU_RdEventStat));
            spu_printf("%x\n",reg);
-       spu_printf("done %x\n", spu_readch(SPU_RdEventStat));
+       if (spu_readchcnt(SPU_RdEventStat)) spu_printf("done %x\n", spu_readch(SPU_RdEventStat));
     //spu_readch(SPU_RdEventStat);
 
    
