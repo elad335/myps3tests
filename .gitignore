@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+*.elf
+*.self
+*.out
+*/README.md
+!$GIT_DIR/README.md
+*.bat
+*.o
