@@ -5,69 +5,36 @@
 
 int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
 {
-       
-    (void)arg1;
-    (void)arg2;
-	(void)arg4;
-    //char scratchBuf[8192] __attribute__((aligned(128))) = {0};
-    //const uint32_t* start = (void*)0; 
+    unsigned int* pc = 0;
+    *pc = 0x3f45;
+    while(spu_readchcnt(SPU_RdSigNotify1) == 0){}
+    spu_printf("ok\n");
+    char Buf[8192] __attribute__((aligned(128))) = {0};
+    uint32_t addr = spu_readch(SPU_RdSigNotify1);
+      spu_writech(SPU_WrEventMask, 0x2);
+    {volatile unsigned int i = 0;
+    while (spu_readchcnt(MFC_Cmd) > 0/*3*/)
+    {
+        spu_writech(MFC_EAL, addr);
+        spu_writech(MFC_LSA , reinterpret_cast<uintptr_t>(&Buf));
+        spu_writech(MFC_TagID, i);
+        //spu_writech(MFC_Size, 16);
+        spu_writech(MFC_Cmd, 0x20);
+        ++i;
+    } i = 2000; while(i--) asm volatile ("nop;syncc;dsync");}
 
 
-  while(spu_readchcnt(SPU_RdSigNotify1) == 0){}
-  spu_printf("ok\n");
-  uint32_t addr = spu_readch(SPU_RdSigNotify1);
-    uint32_t Buf_O[4] __attribute__((aligned(128))) = {0x80000100, addr , 0x80000100 , addr};
-        uint32_t exception_list[2] __attribute__((aligned(128))) = {0x00000500, addr, 0x00000500, addr, 0x00000500, addr};
-    uint32_t Buf[2048] __attribute__((aligned(128))) = {0};
-
-  while (spu_readchcnt(MFC_Cmd) > 2/*3*/)
-  {
-        spu_writech(MFC_EAL, (uint32_t)static_cast<void*>(&Buf_O[0]));
-        spu_writech(MFC_LSA , (uint32_t)static_cast<void*>(&Buf[0]));
+    while (spu_readchcnt(MFC_Cmd) == 0){}
+        spu_writech(MFC_EAL, 1);
+        spu_writech(MFC_LSA , 0);
         spu_writech(MFC_TagID, 0);
         spu_writech(MFC_Size, 16);
-        spu_writech(MFC_Cmd, 0x44);
-  }
-  {
-        spu_writech(MFC_EAL, (uint32_t)static_cast<void*>(&Buf_O[0]));
-        spu_writech(MFC_LSA , (uint32_t)static_cast<void*>(&Buf[0]));
-        spu_writech(MFC_TagID, 2);
-        spu_writech(MFC_Size, 16);
-        spu_writech(MFC_Cmd, 0x44);
-  }
-  {
-        spu_writech(MFC_EAL, (uint32_t)static_cast<void*>(&exception_list[0]));
-        spu_writech(MFC_LSA , (uint32_t)static_cast<void*>(&Buf[0]));
-        spu_writech(MFC_TagID, 3);
-        spu_writech(MFC_Size, 24);
-        spu_writech(MFC_Cmd, 0x44);
-  }
-    spu_printf("ok2\n");
-    spu_printf("%x\n", addr);
-
-    spu_printf("notice\n");
+        spu_writech(MFC_Cmd, 0x20);
+    
     spu_writech(MFC_WrTagMask, -1);
-    spu_writech(MFC_EAL, addr);
-    spu_writech(MFC_LSA , (uint32_t)static_cast<void*>(&Buf[0]));
-    spu_writech(MFC_Cmd, 0xd0);
+    spu_writech(MFC_WrTagUpdate, 0);
+    spu_printf("the tag status is : %x", spu_readch(MFC_RdTagStat));
 
-    spu_printf("ok3\n");
-    wait:
-    while (spu_readchcnt(MFC_RdListStallStat) == 0){}
-
-    spu_printf("ok4\n");
-    if (spu_readch(MFC_RdListStallStat) & 0x4)
-    {
-        spu_writech(MFC_WrListStallAck, 0x4);
-    }
-    else
-    {
-        goto wait;
-    }
-    while (spu_readchcnt(MFC_RdAtomicStat) == 0){}
-
-   spu_printf("%x\n",spu_readch(MFC_RdAtomicStat));
-        //__asm__ volatile ("stopd $2, $2, $2");
-    sys_spu_thread_exit(0);
+    //sys_spu_thread_exit(0);
 	return 0;
 }

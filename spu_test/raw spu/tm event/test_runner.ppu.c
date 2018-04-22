@@ -44,6 +44,7 @@ int main(void)
         printf("sys_spu_image_import: %x\n", ret);
         return ret;
     }
+	printf("raw spu status is %x\n", sys_raw_spu_mmio_read(thr_id, SPU_Status));
 
 
     ret = spu_printf_initialize(1000, NULL);
@@ -73,14 +74,16 @@ int main(void)
 	while (sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1)
 	{
 		asm volatile ("eieio");
-		if (sys_raw_spu_mmio_read(thr_id, SPU_MBox_Status) & 0xff)
-		{
-			printf("spu decrementer's value is %x:\n written value to channel 69 is 0x7c00\n ",sys_raw_spu_mmio_read(thr_id, SPU_Out_MBox));
-		}
 		if (sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x8)
 		{
-			printf("spu is waiting on a blocked channel, destroying thread.\n current status is %x\n", sys_raw_spu_mmio_read(thr_id, SPU_Status));
-			break;
+			printf("spu is waiting on a blocked channel\n");
+			while (sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x8)
+			{
+				asm volatile ("eieio");
+				sys_raw_spu_mmio_write(thr_id, SPU_In_MBox, 0);
+				asm volatile ("eieio");
+			}
+
 		}
 	} // break when spu has stopped, acts like std::thread.join()
 	/*asm volatile ("eieio");

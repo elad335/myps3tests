@@ -36,15 +36,7 @@ int main(void)
         printf("spu_thread_group_create failed: %d\n", ret);
         return ret;
     }
-    uint32_t buh = 0;
-        register uint64_t cell __asm__("3");
-    while (buh != -1)
-    {
-        system_call_2(253, grp_id, buh);
-        if (cell == 0) break;
-        ++buh;
-    }
-    printf("0x%x in param 1 and 0 in the second param , it returns 0x%x\n", buh , cell);
+
     sys_spu_image_t img;
 
     ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT );
@@ -57,7 +49,6 @@ int main(void)
     sys_spu_thread_attribute_t thr_attr;
     
     sys_spu_thread_attribute_initialize(thr_attr);
-    //thr_attr.option = SYS_SPU_THREAD_OPTION_DEC_SYNC_TB_ENABLE;
     sys_spu_thread_attribute_name(thr_attr, "test spu thread");
     sys_spu_thread_argument_t thr_args;
     ret = sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args);
@@ -83,7 +74,11 @@ int main(void)
         printf("sys_spu_thread_group_start: %d\n", ret);
         return ret;
     }
+    void* fill = malloc(1 << 16);
+    printf("cell is %x\n",sys_spu_thread_write_snr(thr_id, 0 ,(uint32_t)(fill) & ~127)); // align the address manually
 
+    asm volatile ("nop;eieio;sync");
+    printf("%x\n", uint32_t(fill) & ~127);
     int cause;
     int status;
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);

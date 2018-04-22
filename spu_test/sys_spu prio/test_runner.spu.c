@@ -14,12 +14,10 @@ int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
     //char scratchBuf[8192] __attribute__((aligned(128))) = {0};
     //const uint32_t* start = (void*)0; 
   volatile char failedBuf[8192] __attribute__((aligned(128))) = {0};
-    spu_printf("0x%x", spu_readch(SPU_RdDec));
-    /*spu_printf("waiting 5 seconds\n");
+
     spu_writech(SPU_WrDec, 400000000);
     spu_writech(SPU_WrEventMask, 0x20);
     while (spu_readchcnt(SPU_RdEventStat) == 0){}
-    spu_printf("done\n");*/
 
     //spu_readch(SPU_RdEventStat);
 
