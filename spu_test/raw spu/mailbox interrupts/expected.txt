@@ -1,0 +1,10 @@
+INTERRUPT FIRED!!
+raw thread is running
+INTERRUPT FIRED!!
+Test shows Interrupt firing is not related to mailbox's slot availabl
+ity
+INTERRUPT FIRED!!
+Test shows Interrupt firing is not related to mailbox's slot availabl
+ity
+raw thread has stopped
+the spu status register's value is 1020002
