@@ -1,0 +1,9 @@
+cell is 0
+ok
+ok
+ok
+ok
+ok
+
+ {0x0}
+30000000

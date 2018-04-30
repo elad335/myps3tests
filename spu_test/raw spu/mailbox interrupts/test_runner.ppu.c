@@ -43,7 +43,7 @@ void ppu_interrupt(u64 unused)
 {
 	printf("INTERRUPT FIRED!!\n");
 
-	//if ((++g_interrupt_count) >= 2)
+	//if (false)//if ((++g_interrupt_count) >= 2)
 	{
 
 		// Reading the interrupt maiblox only for the second interrupt or more
@@ -64,7 +64,7 @@ void ppu_interrupt(u64 unused)
 	}
 
 	// Not reading the interrupt mailbox intentionally
-	sys_raw_spu_set_int_stat(thr_id, 2, SPU_INT2_STAT_MAILBOX_INT);
+	//sys_raw_spu_set_int_stat(thr_id, 2, SPU_INT2_STAT_MAILBOX_INT);
 
 	sys_interrupt_thread_eoi();
 }

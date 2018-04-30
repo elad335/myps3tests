@@ -8,6 +8,7 @@ int main(void)
 	//spu_printf("Raw memes thread\n");
     spu_writech(SPU_WrOutIntrMbox, spu_readch(SPU_RdDec));
 	si_sync(); si_syncc(); si_dsync();
+    spu_writech(SPU_WrOutIntrMbox, spu_readch(SPU_RdDec));
 	//while(1);
 	//spu_writech(SPU_RdEventStat, 3);
 	//asm ("stop 0x3");
