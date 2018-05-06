@@ -1,0 +1,8 @@
+cell is 0
+30000000
+ok
+ok
+ok
+ok
+ok
+events channel count: {0x0} 
