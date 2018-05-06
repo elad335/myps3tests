@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "gpio.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "ios": "cpp",
+        "xutility": "cpp"
     }
 }
