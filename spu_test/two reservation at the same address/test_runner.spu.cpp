@@ -33,9 +33,15 @@ int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
     spu_readch(MFC_RdAtomicStat);
     asm volatile ("nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync");
 
+    spu_writech(MFC_EAL, addr);
+    spu_writech(MFC_LSA , (uptr)ptr); // same address
+    spu_writech(MFC_TagID, 0);
+    spu_writech(MFC_Size, 0x80);
+    spu_writech(MFC_Cmd, 0xD0);
+    spu_readch(MFC_RdAtomicStat);
+    asm volatile ("nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync;nop;syncc;sync;dsync");
 
-    spu_printf("\n {0x%x} \n", spu_readch(SPU_RdEventStat));
-
+    spu_printf("events channel count: {0x%x} \n", spu_readchcnt(SPU_RdEventStat));
 
     sys_spu_thread_exit(0);
 	return 0;
