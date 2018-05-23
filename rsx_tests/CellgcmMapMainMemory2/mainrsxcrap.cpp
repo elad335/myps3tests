@@ -59,19 +59,27 @@ int main() {
 
 	printf("ret is 0x%x\n", ret);
 
-	ret = cellGcmInit(1 << 18, 1 << 20, ptr_cast(addr1));
+	ret = cellGcmInit(1 << 18, 3 << 20, ptr_cast(addr1));
 
 	printf("ret is 0x%x\n", ret);
 
-	u32 offset;
+	u32 offset = 0;
 
-	ret = cellGcmMapMainMemory(ptr_cast(addr1 + (2u<<20)), 7u << 20, &offset);
+	sys_mmapper_unmap_memory(u64(addr1), &mem_id);
+
+	printf("ret is 0x%x\n", ret);
+
+	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr1);
+
+	printf("ret is 0x%x, addr1=0x%x\n", ret, addr1);
+
+	sys_mmapper_map_memory(u64(addr1), mem_id, SYS_MEMORY_PROT_READ_WRITE);
+
+	printf("ret is 0x%x\n", ret);
+
+	ret = cellGcmMapMainMemory(ptr_cast(addr1), 1u << 20, &offset);
 
 	printf("ret is 0x%x, offset=0x%x\n", ret, offset);
-
-	ret = cellGcmUnmapIoAddress(offset + (1u<<20));
-
-	printf("ret is 0x%x, offset=0x%x\n", ret);
 	
     printf("sample finished.\n");
 
