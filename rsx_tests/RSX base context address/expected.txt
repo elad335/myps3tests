@@ -1,0 +1,9 @@
+allocaddr
+ret is 0x0, addr1=0x40000000
+rsxdevicemap
+ret is 0x0, addr = 0x50000000
+rsx memory alloc
+ret is 0x0, mem_handle=0x5a5a5a5b, mem_addr=0xc0000000
+rsx context alloc
+ret is 0x0, context_id=0x55555554, lpar_dma_control=0x50100000, lpar_driver_info=0x50200000, lpar_reports=0x50300000
+sample finished.
