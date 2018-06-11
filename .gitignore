@@ -36,3 +36,4 @@
 !$GIT_DIR/README.md
 *.bat
 *.o
+*.json
