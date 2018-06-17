@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstdlib>
 
 #include <sys/spu_thread_group.h>
 #include <sys/spu_thread.h>
@@ -10,7 +11,7 @@
 #include <sys/spu_initialize.h>
 
 #include <spu_printf.h>
-
+#include <sys/memory.h>
 
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
@@ -29,11 +30,10 @@ int main(void)
     uint32_t prio = 100;
     sys_spu_thread_group_attribute_t grp_attr;
     
-    sys_spu_thread_group_attribute_initialize(grp_attr);
-    grp_attr.type = 0x18;
-   // grp_attr.nsize = 0x19;
-    //grp_attr.name = ""
-    //grp_attr.ct = 0x0;
+    grp_attr.name = NULL;
+    grp_attr.nsize = 0;
+    grp_attr.type = 0x20;
+    if (sys_memory_container_create(&grp_attr.option.ct, 1ull << 20)) exit(-1);
 
     sys_spu_thread_group_attribute_name(grp_attr, "test spu grp");
     ret = sys_spu_thread_group_create(&grp_id, 1, prio, &grp_attr);
@@ -42,40 +42,6 @@ int main(void)
         //return ret;
     }
 
-    sys_spu_image_t img;
-
-    ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT );
-    if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %d\n", ret);
-        return ret;
-    }
-
-    sys_spu_thread_t thr_id0;
-    sys_spu_thread_attribute_t thr_attr0;
-    
-    sys_spu_thread_attribute_initialize(thr_attr0);
-    sys_spu_thread_attribute_name(thr_attr0, "test spu thread0");
-    sys_spu_thread_argument_t thr_args;
-    ret = sys_spu_thread_initialize(&thr_id0, grp_id, 0, &img, &thr_attr0, &thr_args);
-    if (ret != CELL_OK) {
-        printf("sys_spu_thread_initialize0: %x\n", ret); return ret;
-    }
-
-    ret = sys_spu_thread_group_start(grp_id);    
-    if (ret != CELL_OK) {
-        printf("sys_spu_thread_group_start: %x\n", ret);
-        //return ret;
-    }
-
-    int cause;
-    int status;
-    ret = sys_spu_thread_group_join(grp_id, &cause, &status);
-    if (ret != CELL_OK) {
-        printf("sys_spu_thread_group_join: %x\n", ret);
-        return ret;
-    }
-
-    //while (sys_spu_thread_get_exit_status(thr_id, &ret)){} 
     ret = sys_spu_thread_group_destroy(grp_id);
     if (ret != CELL_OK) {
         printf("sys_spu_thread_group_destroy: %x\n", ret);

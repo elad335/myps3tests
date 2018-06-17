@@ -1,0 +1,4 @@
+cell is 0
+31900000
+cell_ok!
+the mfc didnt stall!

@@ -3,6 +3,8 @@
         "gpio.h": "c",
         "stdint.h": "c",
         "ios": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "istream": "cpp",
+        "streambuf": "cpp"
     }
 }

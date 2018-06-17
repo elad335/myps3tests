@@ -45,11 +45,7 @@ int main(void)
         return ret;
     }
 
-    ret = spu_printf_initialize(1000, NULL);
-    if (ret != CELL_OK) {
-        printf("spu_printf_initialize failed %x\n", ret);
-        exit(-1);
-    }
+	printf("raw thread is is 0x%x\n", thr_id);
 	
 	ret = sys_raw_spu_image_load(thr_id, &img);
 	if (ret != CELL_OK) {
@@ -82,8 +78,6 @@ int main(void)
         printf("sys_raw_spu_destroy: %x\n", ret);
         return ret;
     }
-
-    spu_printf_finalize();
 
 	return 0;
 }
