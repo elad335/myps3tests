@@ -14,6 +14,7 @@
 #include <sys/event.h>
 #include <sys/syscall.h>
 #include <memory>
+#include "sys_rsx.h" // rsx syscalls header
 
 typedef uintptr_t uptr;
 typedef uint64_t u64;
@@ -80,18 +81,8 @@ int main() {
 	}
 
 	{
-		system_call_6(SYS_RSX_CONTEXT_ATTRIBUTE, context_id, 1 /* FIFO pointers, rsx entry point */, 0, 0, 0, 0);
-		printf("sys_rsx_context_attribute: ret is 0x%x\n", ret);
-	}
-
-	{
-		system_call_6(SYS_RSX_CONTEXT_ATTRIBUTE, context_id, 1 /* FIFO pointers, rsx entry point */, 0x300000, 0, 0, 0);
-		printf("sys_rsx_context_attribute: ret is 0x%x\n", ret);
-	}
-
-	{
-		system_call_6(SYS_RSX_CONTEXT_ATTRIBUTE, context_id, 1 /* FIFO pointers, rsx entry point */, 1u << 31, 0, 0, 0);
-		printf("sys_rsx_context_attribute: ret is 0x%x\n", ret);
+		system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, 0x600000, u64(addr1), 0x00200000 /*size = 2mb*/, 0xe000000000000800ull);
+		printf("sys_rsx_context_iomap2: ret is 0x%x\n", ret);
 	}
 
 

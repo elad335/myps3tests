@@ -1,0 +1,6 @@
+cellSysCacheMount: ret=0x0, cache_path=/dev_hdd1
+cellSysCacheMount second:ret=0x1, cache_path=/dev_hdd1
+cellFsOpen: ret=0x0
+cellFsOpen RO after clear: ret=0x80010006
+cellFsOpen with file creation after clear: ret=0x0
+sample finished.
