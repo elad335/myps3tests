@@ -1,0 +1,3 @@
+cell is 0
+30000000
+Waiting for the command to complete
