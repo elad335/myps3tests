@@ -1,9 +1,5 @@
-rpcs3elfs
-=========
+MyPs3Tests
+==========
 
-Elfs to test out rpcs3 code
+Elfs to test out on the DECR or rpcs3.
 
-
-requires psl1ght library/crosstoolchain v2 api to compile.
-
-jakePadTest is just a more 'graphical' representation of a controller, along with some more info like capabilities
