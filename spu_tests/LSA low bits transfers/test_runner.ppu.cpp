@@ -15,6 +15,12 @@
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
 
+typedef uintptr_t uptr;
+typedef uint32_t u32;
+typedef uint64_t u64;
+
+static u64 reserv[16] __attribute__((aligned(256))) = {1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16};
+
 int main(void)
 {
 	int ret;
@@ -51,6 +57,8 @@ int main(void)
     sys_spu_thread_attribute_initialize(thr_attr);
     sys_spu_thread_attribute_name(thr_attr, "test spu thread");
     sys_spu_thread_argument_t thr_args;
+
+    thr_args.arg1 = reinterpret_cast<u64>(reserv);
     ret = sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args);
     if (ret != CELL_OK) {
         printf("sys_spu_thread_initialize: %d\n", ret);
@@ -74,11 +82,7 @@ int main(void)
         printf("sys_spu_thread_group_start: %d\n", ret);
         return ret;
     }
-    void* fill = malloc(1 << 16);
-    printf("cell is %x\n",sys_spu_thread_write_snr(thr_id, 0 ,(uint32_t)(fill) & ~127)); // align the address manually
 
-    asm volatile ("nop;eieio;sync");
-    printf("%x\n", uint32_t(fill) & ~127);
     int cause;
     int status;
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);
