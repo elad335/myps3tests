@@ -13,6 +13,7 @@
 #include <sys/memory.h>
 #include <sys/event.h>
 #include <sys/syscall.h>
+#include <cell/gcm.h>
 #include <memory>
 
 typedef uintptr_t uptr;
@@ -96,128 +97,93 @@ enum
 	NV308A_COLOR = 0x0000A400 >> 2,
 };
 
-struct RsxDmaControl
-{
-	u8 resv[0x40];
-	u32 put;
-	u32 get;
-	u32 ref;
-	u32 unk[2];
-	u32 unk1;
-};
-
-// Table for translation, as we dont have the gcm's
-struct RsxIoAddrTable
-{
-	u16 ea[0x200];
-} RSXMem;
-
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 sys_memory_t mem_id;
-sys_addr_t addr1;
-sys_addr_t addr2;
-sys_event_queue_t queue_id;
+sys_addr_t addr;
 
 int main() {
 
 	register int ret asm ("3");
+
+	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
 	{
-		u64 addr;
-		system_call_3(SYS_RSX_DEVICE_MAP, int_cast(&addr), 0, 8);
-
-		printf("ret is 0x%x, addr = 0x%x\n", ret, addr);
-	}
-
-	u32 mem_handle;
-	u64 mem_addr; 
-	{
-		system_call_7(SYS_RSX_MEMORY_ALLOCATE, int_cast(&mem_handle), int_cast(&mem_addr), 0xf900000, 0x80000, 0x300000, 0xf, 0x8); //size = 0xf900000, 249 mb
-
-		printf("ret is 0x%x, mem_handle=0x%x, mem_addr=0x%x\n", ret, mem_handle, mem_addr);
-	}
-
-	u32 context_id;
-	u64 lpar_dma_control, lpar_driver_info, lpar_reports;
-	{
-		system_call_6(SYS_RSX_CONTEXT_ALLOCATE, int_cast(&context_id), int_cast(&lpar_dma_control), int_cast(&lpar_driver_info), int_cast(&lpar_reports), mem_handle, 0x820);
-
-		printf("ret is 0x%x, context_id=0x%x, lpar_dma_control=0x%x, lpar_driver_info=0x%x, lpar_reports=0x%x\n", ret, context_id, lpar_dma_control, lpar_driver_info, lpar_reports);
+	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 	}
 
 	sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
 
 	printf("ret is 0x%x, mem_id=0x%x\n", ret, mem_id);
 
-	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr1);
+	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr);
 
-	printf("ret is 0x%x, addr1=0x%x\n", ret, addr1);
+	printf("ret is 0x%x, addr=0x%x\n", ret, addr);
 
-	sys_mmapper_map_memory(u64(addr1), mem_id, SYS_MEMORY_PROT_READ_WRITE);
+	sys_mmapper_map_memory(u64(addr), mem_id, SYS_MEMORY_PROT_READ_WRITE);
 
 	printf("ret is 0x%x\n", ret);
 
-	{
-		// Test error code returned while unmapping already unmapped memory
-		system_call_3(SYS_RSX_CONTEXT_IOUNMAP, context_id, 0x000000, 0x00200000 /*size = 2mb*/);
-		printf("sys_rsx_context_iounmap1: ret is 0x%x\n", ret);
-	}
+	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
 
-	// Test if a second map overwrites the previous
+	// Map twice, into different effective addresses
+	cellGcmMapEaIoAddress(ptr_cast(addr), 0x0, 0x100000);
+	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 0x0, 0x100000);
 
-	{
-		system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, 0x000000, u64(addr1), 0x00200000 /*size = 2mb*/, 0xe000000000000800ull);
-		printf("sys_rsx_context_iomap1: ret is 0x%x\n", ret);
-	}
+	CellGcmControl* ctrl = cellGcmGetControlRegister();
 
-	{
-		RSXMem.ea[0] = addr1 >> 20;
-		system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, 0x000000, u64(addr1) + (1<<20), 0x00200000 /*size = 2mb*/, 0xe000000000000800ull);
-		printf("sys_rsx_context_iomap1: ret is 0x%x\n", ret);
-	}
+	// Wait for RSX to complete previous operation
+	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
 
-	{
-		// FIFO? unconfirmed
-		system_call_6(SYS_RSX_CONTEXT_ATTRIBUTE, context_id, 0x1, 0x1000, 0x1000, 0x0, 0x0);
-		printf("fifo: ret is 0x%x\n", ret);
-	}
+	u32* compiler = ptr_caste(addr, u32);
 
-	RsxDmaControl* ctrl = ptr_caste(lpar_dma_control, RsxDmaControl);
-	//ctrl->ref = 0; // Reset ref register
-	//sys_timer_usleep(40);
-
-	u32* compiler = ptr_caste(addr1, u32);
-
-	// (test which command get executed)
-
-	/*compiler[0] = NV406E_SET_REFERENCE | (1 << RSX_METHOD_NON_INCREMENT_COUNT_SHIFT) | RSX_METHOD_NON_INCREMENT_CMD;
-	compiler[1] = 0x123; // Value for ref cmd
-	compiler[2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; // branch to self
-
-	compiler[(0x100000 >> 2) + 0] = NV406E_SET_REFERENCE | (1 << RSX_METHOD_NON_INCREMENT_COUNT_SHIFT) | RSX_METHOD_NON_INCREMENT_CMD;
-	compiler[(0x100000 >> 2) + 1] = 0x234;
-	compiler[(0x100000 >> 2) + 2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; */// branch to self
-
+	sys_timer_usleep(40);
 	{
 		// Place a jump into io address 0
+
 		const u32 get = ctrl->get;
-		sys_timer_usleep(40);
-		printf("get=0x%x", get);
-		*ptr_caste(((u32)RSXMem.ea[get >> 20] << 20) | (get & 0xFFFFF), u32) = 0 | RSX_METHOD_NEW_JUMP_CMD;
+
+		if (get >= (1<<20))
+		{
+			printf("unexpected FIFO get ptr: 0x%x aborting", get);
+			return -1;
+		}
+	
+		compiler[get / 4] = 0 | RSX_METHOD_NEW_JUMP_CMD;
+		compiler[(1<<18) + (get / 4)] = 0 | RSX_METHOD_NEW_JUMP_CMD;
 	}
+	sys_timer_usleep(40);
+
+	// test which command gets executed
+	// REF = 0x12345678: the io offset's EA hasn't changed by the second map
+	// REF = 0x23456789: the io offset's EA got changed by the second map
+
+	compiler[1] = 0x12345678; // Value for ref cmd
+	compiler[2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; // branch to self
+
+	compiler[(1<<18) + 1] = 0x23456789;
+	compiler[(1<<18) + 2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; // branch to self
+	asm volatile ("eieio;sync");
+
+	compiler[0] = 0x00040050; // NV406E_SET_REFERENCE
+	compiler[(1<<18) + 0] = 0x00040050; // NV406E_SET_REFERENCE
 
 	sys_timer_usleep(100);
 	ctrl->put = 0x100000;
 	sys_timer_usleep(100);
 
-	while(!ctrl->ref) sys_timer_usleep(100);
-	sys_timer_usleep(100);
-	printf("ref=0x%x\n", ctrl->ref);
-	
-    printf("sample finished.\n");
+	while(ctrl->ref == -1u) sys_timer_usleep(200);
+
+	printf("REF=0x%x, GET=0x%x\n", ctrl->ref, ctrl->get);
+	asm volatile("eieio;sync");
+
+	// The final test: test how the RSX manages io translation internally
+	// Crash: multiple mapping are not happening, unmapping and mapping overwrites previous maps
+	// No crash: the RSX saves "mapping points", when unmapping it "pops" the firss entry, multiple maps are happening
+	cellGcmUnmapIoAddress(0);
+	while(1) sys_timer_usleep(4000);
 
     return 0;
 }
