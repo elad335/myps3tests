@@ -128,62 +128,49 @@ int main() {
 
 	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
 
-	// Map twice, into different effective addresses
-	cellGcmMapEaIoAddress(ptr_cast(addr), 0x0, 0x100000);
-	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 0x0, 0x100000);
+	// Map io twice, into different addresses
+	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 0x100000, 0x100000);
+	cellGcmMapEaIoAddress(ptr_cast(addr + (2<<20)), 0x100000, 0x100000);
 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 
 	// Wait for RSX to complete previous operation
-	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
+	while (ctrl->get != ctrl->put) sys_timer_usleep(400);
 
-	u32* compiler = ptr_caste(addr, u32);
+	// Place a jump into io address 1mb
+	ptr_caste(addr, u32)[ctrl->get / 4] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;
 
-	sys_timer_usleep(40);
-	{
-		// Place a jump into io address 0
+	u32* cmd = ptr_caste(addr + (1<<20), u32);
 
-		const u32 get = ctrl->get;
+	// Test which command is executed
+	// Ref = 1: the io offset's EA hasn't changed by the second map
+	// Ref = 2: the io offset's EA was updated by the second map
 
-		if (get >= (1<<20))
-		{
-			printf("unexpected FIFO get ptr: 0x%x aborting", get);
-			return -1;
-		}
-	
-		compiler[get / 4] = 0 | RSX_METHOD_NEW_JUMP_CMD;
-		compiler[(1<<18) + (get / 4)] = 0 | RSX_METHOD_NEW_JUMP_CMD;
-	}
-	sys_timer_usleep(40);
+	// NV406E_SET_REFERENCE
+	cmd[0] = 0x40050;
+	cmd[0x100000 / 4] = 0x40050;
 
-	// test which command gets executed
-	// REF = 0x12345678: the io offset's EA hasn't changed by the second map
-	// REF = 0x23456789: the io offset's EA got changed by the second map
+	// Value for ref cmd
+	cmd[1] = 1;
+	cmd[(0x100000 / 4) + 1] = 2;
 
-	compiler[1] = 0x12345678; // Value for ref cmd
-	compiler[2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; // branch to self
+	// Branch to self
+	cmd[2] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD | 0x8;
+	cmd[(0x100000 / 4) + 2] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD | 0x8;
 
-	compiler[(1<<18) + 1] = 0x23456789;
-	compiler[(1<<18) + 2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; // branch to self
 	asm volatile ("eieio;sync");
 
-	compiler[0] = 0x00040050; // NV406E_SET_REFERENCE
-	compiler[(1<<18) + 0] = 0x00040050; // NV406E_SET_REFERENCE
+	ctrl->put = 0x10000C; // Queue: 0x100000...0x10000C
 
-	sys_timer_usleep(100);
-	ctrl->put = 0x100000;
-	sys_timer_usleep(100);
+	while(ctrl->ref == -1u) sys_timer_usleep(400);
 
-	while(ctrl->ref == -1u) sys_timer_usleep(200);
+	printf("Ref=0x%x, Get=0x%x\n", ctrl->ref, ctrl->get);
 
-	printf("REF=0x%x, GET=0x%x\n", ctrl->ref, ctrl->get);
-	asm volatile("eieio;sync");
-
-	// The final test: test how the RSX manages io translation internally
-	// Crash: multiple mapping are not happening, unmapping and mapping overwrites previous maps
-	// No crash: the RSX saves "mapping points", when unmapping it "pops" the firss entry, multiple maps are happening
-	cellGcmUnmapIoAddress(0);
-	while(1) sys_timer_usleep(4000);
+	// test how the RSX manages io translation internally
+	// Crash: unmapping and mapping overwrites previous maps, multiple maps are not possible 
+	// No crash: the RSX remembered the two maps made, and when unmapping one, it didnt crash because of the second
+	cellGcmUnmapIoAddress(1<<20);
+	while(1) sys_timer_sleep(10);
 
     return 0;
 }

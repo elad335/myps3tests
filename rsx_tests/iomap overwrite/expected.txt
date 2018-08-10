@@ -1,10 +1,10 @@
 ret is 0x0, mem_id=0x8000a01
 ret is 0x0, addr=0x40000000
 ret is 0x0
-REF=0x23456789, GET=0x8
-[RSX dump analysis] Trying to read from Main memory(offset = 0x00000280) which is not mapped
-graphics error 512 : 000926e5 00000280
-IOIF Bus Error: 000926e5 Offset: 00000280 Cmd:read Unit:Host
+Ref=0x2, Get=0x100008
+[RSX dump analysis] Trying to read from Main memory(offset = 0x00100008) which is not mapped
+graphics error 512 : 00012501 00100008
+IOIF Bus Error: 00012501 Offset: 00100008 Cmd:read Unit:Host
     [You are trying to access unmapped address on main memory]
     [Check the address you passed to gcm API with location CELL_GCM_LOCATION_MAIN, is mapped by either cellGcmInit or cellGcmMapMainMemory]
 Tile
@@ -226,6 +226,7 @@ Vertex Texture Filter
 [02]   bias:00000000
 [03]   bias:00000000
 IO-EA Table
+    IO:[00000000] EA:[40000000] Size:1MB
 Labels on Local
     [000] 0x00000000 0x00000000 0x00000001 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3
     [008] 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3
@@ -261,17 +262,17 @@ Labels on Local
     [248] 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3
 FIFO Info
     ID      : 00000001
-    DMA Get : 00000008 Put  : 00100000
-    Call    : 000013a0 Jump : 00000008
-    FIFO Get: 00000001 Put  : 00000001 Ref  : 23456789
-    State   : 80000054 Res0 : ffffffff Res1 : 23456789
+    DMA Get : 00100008 Put  : 0010000c
+    Call    : 000013a0 Jump : 00100008
+    FIFO Get: 00000001 Put  : 00000001 Ref  : 00000002
+    State   : 80000054 Res0 : ffffffff Res1 : 00000002
     Channel Control: 00000001
 Trapped
     Address: 0005030c
     Data0:   00000000
     Data1:   00000000
 Fifo:
-P G [000] 00000050:23456789  00000060:66616661  00000000:31337000  00000180:66604200
+P G [000] 00000050:00000002  00000060:66616661  00000000:31337000  00000180:66604200
     [004] 00000184:feed0000  00000188:feed0001  0000018c:feed0000  00000190:00000000
     [008] 00000194:feed0000  00000198:feed0000  0000019c:feed0000  000001a0:feed0001
     [00c] 000001a4:66606660  000001a8:66626660  000001ac:00000000  000001b0:00000000
