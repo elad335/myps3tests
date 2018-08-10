@@ -1,0 +1,8 @@
+ret is 0x0, addr = 0x30000000
+ret is 0x0, mem_handle=0x5a5a5a5b, mem_addr=0xc0000000
+ret is 0x0, context_id=0x55555554, lpar_dma_control=0x30100000, lpar_driver_info=0x30200000, lpar_reports=0x30300000
+ret is 0x0, mem_id=0x8000b01
+ret is 0x0, addr1=0x50000000
+ret is 0x0
+sys_rsx_context_iounmap: ret is 0x0
+sample finished.

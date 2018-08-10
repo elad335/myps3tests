@@ -162,60 +162,10 @@ int main() {
 
 	{
 		// Test error code returned while unmapping already unmapped memory
-		system_call_3(SYS_RSX_CONTEXT_IOUNMAP, context_id, 0x000000, 0x00200000 /*size = 2mb*/);
-		printf("sys_rsx_context_iounmap1: ret is 0x%x\n", ret);
+		system_call_3(SYS_RSX_CONTEXT_IOUNMAP, context_id, 0xF00000, 0x00200000 /*size = 2mb*/);
+
+		printf("sys_rsx_context_iounmap: ret is 0x%x\n", ret);
 	}
-
-	// Test if a second map overwrites the previous
-
-	{
-		system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, 0x000000, u64(addr1), 0x00200000 /*size = 2mb*/, 0xe000000000000800ull);
-		printf("sys_rsx_context_iomap1: ret is 0x%x\n", ret);
-	}
-
-	{
-		RSXMem.ea[0] = addr1 >> 20;
-		system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, 0x000000, u64(addr1) + (1<<20), 0x00200000 /*size = 2mb*/, 0xe000000000000800ull);
-		printf("sys_rsx_context_iomap1: ret is 0x%x\n", ret);
-	}
-
-	{
-		// FIFO? unconfirmed
-		system_call_6(SYS_RSX_CONTEXT_ATTRIBUTE, context_id, 0x1, 0x1000, 0x1000, 0x0, 0x0);
-		printf("fifo: ret is 0x%x\n", ret);
-	}
-
-	RsxDmaControl* ctrl = ptr_caste(lpar_dma_control, RsxDmaControl);
-	//ctrl->ref = 0; // Reset ref register
-	//sys_timer_usleep(40);
-
-	u32* compiler = ptr_caste(addr1, u32);
-
-	// (test which command get executed)
-
-	/*compiler[0] = NV406E_SET_REFERENCE | (1 << RSX_METHOD_NON_INCREMENT_COUNT_SHIFT) | RSX_METHOD_NON_INCREMENT_CMD;
-	compiler[1] = 0x123; // Value for ref cmd
-	compiler[2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; // branch to self
-
-	compiler[(0x100000 >> 2) + 0] = NV406E_SET_REFERENCE | (1 << RSX_METHOD_NON_INCREMENT_COUNT_SHIFT) | RSX_METHOD_NON_INCREMENT_CMD;
-	compiler[(0x100000 >> 2) + 1] = 0x234;
-	compiler[(0x100000 >> 2) + 2] = 0x8 | RSX_METHOD_NEW_JUMP_CMD; */// branch to self
-
-	{
-		// Place a jump into io address 0
-		const u32 get = ctrl->get;
-		sys_timer_usleep(40);
-		printf("get=0x%x", get);
-		*ptr_caste(((u32)RSXMem.ea[get >> 20] << 20) | (get & 0xFFFFF), u32) = 0 | RSX_METHOD_NEW_JUMP_CMD;
-	}
-
-	sys_timer_usleep(100);
-	ctrl->put = 0x100000;
-	sys_timer_usleep(100);
-
-	while(!ctrl->ref) sys_timer_usleep(100);
-	sys_timer_usleep(100);
-	printf("ref=0x%x\n", ctrl->ref);
 	
     printf("sample finished.\n");
 
