@@ -1,6 +1,3 @@
-ret is 0x0, mem_id=0x8000a01
-ret is 0x0, addr=0x40000000
-ret is 0x0
 Ref=0x2, Get=0x100008
 [RSX dump analysis] Trying to read from Main memory(offset = 0x00100008) which is not mapped
 graphics error 512 : 00012501 00100008
@@ -222,11 +219,12 @@ Vertex Texture Control
 [03]   min:00000000 max:00000c00
 Vertex Texture Filter
 [00]   bias:00000000
+np online. Online ID: Clienthax_
 [01]   bias:00000000
 [02]   bias:00000000
 [03]   bias:00000000
 IO-EA Table
-    IO:[00000000] EA:[40000000] Size:1MB
+    IO:[00000000] EA:[30000000] Size:1MB
 Labels on Local
     [000] 0x00000000 0x00000000 0x00000001 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3
     [008] 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3

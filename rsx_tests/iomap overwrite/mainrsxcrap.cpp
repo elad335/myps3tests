@@ -102,8 +102,8 @@ enum
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
-sys_memory_t mem_id;
-sys_addr_t addr;
+static sys_memory_t mem_id;
+static sys_addr_t addr;
 
 int main() {
 
@@ -116,15 +116,15 @@ int main() {
 
 	sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
 
-	printf("ret is 0x%x, mem_id=0x%x\n", ret, mem_id);
+	asm volatile ("twi 0x10, 3, 0");
 
 	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr);
 
-	printf("ret is 0x%x, addr=0x%x\n", ret, addr);
+	asm volatile ("twi 0x10, 3, 0");
 
 	sys_mmapper_map_memory(u64(addr), mem_id, SYS_MEMORY_PROT_READ_WRITE);
 
-	printf("ret is 0x%x\n", ret);
+	asm volatile ("twi 0x10, 3, 0");
 
 	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
 
