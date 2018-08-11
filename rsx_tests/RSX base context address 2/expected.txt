@@ -1,0 +1,2 @@
+addr1=0x30000000, ctx_addr=0x40000000, lpar_dma_control=0x40100000, lpar_driver_info=0x40200000, lpar_reports=0x40300000
+sample finished.
