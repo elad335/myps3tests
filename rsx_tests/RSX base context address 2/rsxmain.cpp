@@ -38,6 +38,7 @@ static u64 mem_addr;
 
 int main() {
 
+	u32 dummy; sys_memory_allocate(0x1000000, 0x000, &dummy); asm volatile ("twi 0x10, 3, 0");
 	sys_mmapper_allocate_address(0x10000000, 0x20f, 0x10000000, &addr1);
 	asm volatile ("twi 0x10, 3, 0"); // Test return value
 
@@ -61,8 +62,8 @@ int main() {
 		asm volatile ("twi 0x10, 3, 0");
 	}
 
-	printf("addr1=0x%x, ctx_addr=0x%x, lpar_dma_control=0x%llx, lpar_driver_info=0x%llx, lpar_reports=0x%llx\n", 
-	addr1, ctx_addr, lpar_dma_control, lpar_driver_info, lpar_reports);
+	printf("addr1=0x%x, ctx_addr=0x%x, lpar_dma_control=0x%llx, lpar_driver_info=0x%llx, lpar_reports=0x%llx, dummy=0x%x\n", 
+	addr1, ctx_addr, lpar_dma_control, lpar_driver_info, lpar_reports, dummy);
     printf("sample finished.\n");
 
     return 0;
