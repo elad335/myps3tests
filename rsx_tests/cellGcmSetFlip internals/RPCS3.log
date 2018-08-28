@@ -1,0 +1,1583 @@
+﻿RPCS3 v0.0.5-7259-251e58db Alpha | fifo
+Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz | 8 Threads | 7.96 GiB RAM | AVX+ | TSX
+·! 0:00:00.000000 RSX: Physical device intialized. GPU=GeForce GTX 980 Ti, driver=1627602944
+·! 0:00:00.259188 Compatibility notice: { Database file not found: C:/Users/elad/Documents/GitHub/rpcs3/bin/GuiConfigs/compat_database.dat }
+·! 0:00:05.115664 LDR: Booting from BootElf...
+·! 0:00:05.118097 LDR: Path: C:/Users/elad/Documents/GitHub/myps3tests/rsx_tests/driver flip 2/mainrsxcrap.self
+·! 0:00:05.118155 LDR: Title: mainrsxcrap.self
+·! 0:00:05.118156 LDR: Serial: 
+·! 0:00:05.118157 LDR: Category: 
+·! 0:00:05.119420 LDR: Cache: C:/Users/elad/Documents/GitHub/rpcs3/bin/data//773629ab2f0effa462239477-mainrsxcrap.self/
+·! 0:00:05.119514 LDR: Vulkan SDK Revision: 82
+·! 0:00:05.120046 LDR: Used configuration:
+Core:
+  PPU Decoder: Interpreter (fast)
+  PPU Threads: 2
+  PPU Debug: false
+  Save LLVM logs: false
+  Use LLVM CPU: ""
+  Max LLVM Compile Threads: 0
+  Enable thread scheduler: true
+  Set DAZ and FTZ: false
+  SPU Decoder: Recompiler (ASMJIT)
+  Lower SPU thread priority: false
+  SPU Debug: false
+  Preferred SPU Threads: 0
+  SPU delay penalty: 3
+  SPU loop detection: true
+  SPU Shared Runtime: true
+  SPU Block Size: Safe
+  Accurate GETLLAR: false
+  Accurate PUTLLUC: false
+  SPU Verification: true
+  SPU Cache: true
+  Enable TSX: Enabled
+  Accurate xfloat: false
+  Lib Loader: Load liblv2.sprx only
+  Hook static functions: false
+  Load libraries:
+    []
+VFS:
+  $(EmulatorDir): ""
+  /dev_hdd0/: $(EmulatorDir)dev_hdd0/
+  /dev_hdd1/: $(EmulatorDir)dev_hdd1/
+  /dev_flash/: ""
+  /dev_usb000/: $(EmulatorDir)dev_usb000/
+  /dev_bdvd/: ""
+  /app_home/: ""
+  Enable /host_root/: false
+Video:
+  Renderer: Vulkan
+  Resolution: 1280x720
+  Aspect ratio: 16:9
+  Frame limit: Off
+  Write Color Buffers: false
+  Write Depth Buffer: false
+  Read Color Buffers: false
+  Read Depth Buffer: false
+  Log shader programs: false
+  VSync: false
+  Debug output: false
+  Debug overlay: false
+  Use Legacy OpenGL Buffers: false
+  Use GPU texture scaling: false
+  Stretch To Display Area: false
+  Force High Precision Z buffer: false
+  Strict Rendering Mode: false
+  Disable ZCull Occlusion Queries: false
+  Disable Vertex Cache: false
+  Disable FIFO Reordering: false
+  Enable Frame Skip: false
+  Force CPU Blit: false
+  Disable On-Disk Shader Cache: false
+  Disable Vulkan Memory Allocator: false
+  Use full RGB output range: true
+  Disable Asynchronous Shader Compiler: false
+  Consecutive Frames To Draw: 1
+  Consecutive Frames To Skip: 1
+  Resolution Scale: 100
+  Anisotropic Filter Override: 0
+  Minimum Scalable Dimension: 16
+  Driver Recovery Timeout: 1000000
+  D3D12:
+    Adapter: ""
+  Vulkan:
+    Adapter: GeForce GTX 980 Ti
+    Force FIFO present mode: false
+    Force primitive restart flag: false
+  Performance Overlay:
+    Enabled: false
+    Detail level: High
+    Metrics update interval (ms): 350
+    Font size (px): 10
+    Position: Top Left
+    Font: n023055ms.ttf
+    Horizontal Margin (px): 50
+    Vertical Margin (px): 50
+    Center Horizontally: false
+    Center Vertically: false
+    Opacity (%): 70
+    Body Color (hex): "#FFE138FF"
+    Body Background (hex): "#002339FF"
+    Title Color (hex): "#F26C24FF"
+    Title Background (hex): "#00000000"
+  Shader Compilation Hint:
+    Position X (px): 20
+    Position Y (px): 690
+Audio:
+  Renderer: XAudio2
+  Dump to file: false
+  Convert to 16 bit: false
+  Downmix to Stereo: true
+  Buffer Count: 32
+  Start Threshold: 1
+Input/Output:
+  Keyboard: "Null"
+  Mouse: Basic
+  Pad: Keyboard
+  Camera: "Null"
+  Camera type: Unknown
+  Move: "Null"
+System:
+  Language: Japanese
+Net:
+  Connection status: Disconnected
+  IP address: 192.168.1.1
+Miscellaneous:
+  Automatically start games after boot: true
+  Exit RPCS3 when process finishes: false
+  Start games in fullscreen mode: false
+  Show FPS counter in window title: true
+  Show trophy popups: true
+  Show shader compilation hint: true
+  Use native user interface: true
+  Port: 2345
+Log:
+  {}
+
+·W 0:00:05.120275 LDR: Debug SELF detected! Removing fake header...
+·! 0:00:05.124749 LDR: Elf path: /host_root/C:/Users/elad/Documents/GitHub/myps3tests/rsx_tests/driver flip 2/mainrsxcrap.self
+·! 0:00:05.124766 LDR: ** Segment: p_type=0x1, p_vaddr=0x10000, p_filesz=0x18f78, p_memsz=0x18f78, flags=0x400005
+·! 0:00:05.125097 LDR: ** Segment: p_type=0x1, p_vaddr=0x30000, p_filesz=0x11a8, p_memsz=0x6050, flags=0x600006
+·! 0:00:05.125159 LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0x0, p_memsz=0x0, flags=0x4
+·! 0:00:05.125160 LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0x0, p_memsz=0x0, flags=0x6
+·! 0:00:05.125162 LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0x0, p_memsz=0x0, flags=0x6600006
+·! 0:00:05.125163 LDR: ** Segment: p_type=0x7, p_vaddr=0x30e60, p_filesz=0x0, p_memsz=0x84, flags=0x4
+·! 0:00:05.125164 LDR: ** Segment: p_type=0x60000001, p_vaddr=0x28f10, p_filesz=0x28, p_memsz=0x28, flags=0x0
+·! 0:00:05.125164 LDR: ** Segment: p_type=0x60000002, p_vaddr=0x28f38, p_filesz=0x40, p_memsz=0x40, flags=0x0
+·! 0:00:05.125165 LDR: ** Section: sh_type=0x0, addr=0x0, size=0x0, flags=0x0
+·! 0:00:05.125166 LDR: ** Section: sh_type=0x1, addr=0x10200, size=0x2c, flags=0x6
+·! 0:00:05.125167 LDR: ** Section: sh_type=0x1, addr=0x1022c, size=0x160f4, flags=0x6
+·! 0:00:05.125167 LDR: ** Section: sh_type=0x1, addr=0x26320, size=0x24, flags=0x6
+·! 0:00:05.125168 LDR: ** Section: sh_type=0x1, addr=0x26344, size=0x300, flags=0x6
+·! 0:00:05.125169 LDR: ** Section: sh_type=0x1, addr=0x26644, size=0xecc, flags=0x2
+·! 0:00:05.125170 LDR: ** Section: sh_type=0x1, addr=0x27510, size=0x168, flags=0x2
+·! 0:00:05.125171 LDR: ** Section: sh_type=0x1, addr=0x27678, size=0x38, flags=0x2
+·! 0:00:05.125171 LDR: ** Section: sh_type=0x1, addr=0x276b0, size=0x60, flags=0x2
+·! 0:00:05.125172 LDR: ** Section: sh_type=0x1, addr=0x27710, size=0x4, flags=0x2
+·! 0:00:05.125173 LDR: ** Section: sh_type=0x1, addr=0x27714, size=0x4, flags=0x2
+·! 0:00:05.125175 LDR: ** Section: sh_type=0x1, addr=0x27718, size=0x4, flags=0x2
+·! 0:00:05.125175 LDR: ** Section: sh_type=0x1, addr=0x2771c, size=0x84, flags=0x2
+·! 0:00:05.125176 LDR: ** Section: sh_type=0x1, addr=0x277a0, size=0x4, flags=0x2
+·! 0:00:05.125176 LDR: ** Section: sh_type=0x1, addr=0x277a8, size=0x1768, flags=0x2
+·! 0:00:05.125178 LDR: ** Section: sh_type=0x1, addr=0x28f10, size=0x28, flags=0x3
+·! 0:00:05.125178 LDR: ** Section: sh_type=0x1, addr=0x28f38, size=0x40, flags=0x2
+·! 0:00:05.125179 LDR: ** Section: sh_type=0x1, addr=0x30000, size=0xc, flags=0x3
+·! 0:00:05.125180 LDR: ** Section: sh_type=0x1, addr=0x3000c, size=0xc, flags=0x3
+·! 0:00:05.125180 LDR: ** Section: sh_type=0x1, addr=0x30018, size=0x4, flags=0x3
+·! 0:00:05.125181 LDR: ** Section: sh_type=0x1, addr=0x30020, size=0x128, flags=0x3
+·! 0:00:05.125182 LDR: ** Section: sh_type=0x1, addr=0x30148, size=0x60, flags=0x3
+·! 0:00:05.125183 LDR: ** Section: sh_type=0x1, addr=0x301a8, size=0xa08, flags=0x3
+·! 0:00:05.125183 LDR: ** Section: sh_type=0x1, addr=0x30bb0, size=0x2b0, flags=0x3
+·! 0:00:05.125186 LDR: ** Section: sh_type=0x8, addr=0x30e60, size=0x84, flags=0x403
+·! 0:00:05.125187 LDR: ** Section: sh_type=0x1, addr=0x30ee8, size=0x2c0, flags=0x3
+·! 0:00:05.125188 LDR: ** Section: sh_type=0x8, addr=0x311b0, size=0x4ea0, flags=0x3
+·! 0:00:05.125188 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x150, flags=0x0
+·! 0:00:05.125189 LDR: ** Section: sh_type=0x1, addr=0x0, size=0xbca, flags=0x0
+·! 0:00:05.125189 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x7f53, flags=0x0
+·! 0:00:05.125190 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x1ec8, flags=0x0
+·! 0:00:05.125190 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x21fe, flags=0x0
+·! 0:00:05.125191 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x1184, flags=0x0
+·! 0:00:05.125191 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x3208, flags=0x0
+·! 0:00:05.125192 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x79a8, flags=0x0
+·! 0:00:05.125193 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x10d0, flags=0x0
+·! 0:00:05.125193 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x1e0, flags=0x0
+·! 0:00:05.125194 LDR: ** Section: sh_type=0x1, addr=0x0, size=0x55f, flags=0x0
+·! 0:00:05.125199 LDR: ** Section: sh_type=0x3, addr=0x0, size=0x1c5, flags=0x0
+·! 0:00:05.125199 LDR: ** Section: sh_type=0x2, addr=0x0, size=0x8718, flags=0x0
+·! 0:00:05.125200 LDR: ** Section: sh_type=0x3, addr=0x0, size=0x5358, flags=0x0
+·! 0:00:05.125204 LDR: PPU executable hash: PPU-f3b1e6eae1765b3b760aad8dd10e884cdb9ff12c (<- 0)
+·! 0:00:05.127121 LDR: *** sdk version: 0x475001
+·! 0:00:05.127123 LDR: *** primary prio: 1000
+·! 0:00:05.127124 LDR: *** primary stacksize: 0x10000
+·! 0:00:05.127125 LDR: *** malloc pagesize: 0x100000
+·! 0:00:05.127125 LDR: *** ppc seg: 0x0
+·! 0:00:05.127126 LDR: * libent_start = *0x27714
+·! 0:00:05.127126 LDR: * libstub_start = *0x2771c
+·! 0:00:05.127127 LDR: * unk0 = 0x475001
+·! 0:00:05.127127 LDR: * unk2 = 0x0
+·! 0:00:05.127137 LDR: ** Imported module 'cellGcmSys' (ver=0x1, attr=0x9, 0x0, 0x0) [0x2771c]
+·! 0:00:05.127161 LDR: **** cellGcmSys import: [cellGcmGetDisplayInfo] -> 0x26344
+·! 0:00:05.127167 LDR: **** cellGcmSys import: [_cellGcmInitBody] -> 0x26364
+·! 0:00:05.127168 LDR: **** cellGcmSys import: [_cellGcmSetFlipCommand] -> 0x26384
+·! 0:00:05.127169 LDR: **** cellGcmSys import: [cellGcmGetOffsetTable] -> 0x263a4
+·! 0:00:05.127171 LDR: **** cellGcmSys import: [_cellGcmFunc15] -> 0x263c4
+·! 0:00:05.127172 LDR: **** cellGcmSys import: [cellGcmMapEaIoAddress] -> 0x263e4
+·! 0:00:05.127173 LDR: **** cellGcmSys import: [cellGcmGetCurrentDisplayBufferId] -> 0x26404
+·! 0:00:05.127174 LDR: **** cellGcmSys import: [cellGcmSetDisplayBuffer] -> 0x26424
+·! 0:00:05.127175 LDR: **** cellGcmSys import: [cellGcmGetControlRegister] -> 0x26444
+·! 0:00:05.127177 LDR: **** cellGcmSys import: [_cellGcmSetFlipCommandWithWaitLabel] -> 0x26464
+·! 0:00:05.127177 LDR: ** Imported module 'cellSysmodule' (ver=0x1, attr=0x9, 0x0, 0x0) [0x27748]
+·! 0:00:05.127179 LDR: **** cellSysmodule import: [cellSysmoduleLoadModule] -> 0x26484
+·! 0:00:05.127180 LDR: **** cellSysmodule import: [cellSysmoduleIsLoaded] -> 0x264a4
+·! 0:00:05.127181 LDR: ** Imported module 'sysPrxForUser' (ver=0x1, attr=0x9, 0x0, 0x0) [0x27774]
+·! 0:00:05.127182 LDR: **** sysPrxForUser import: [sys_lwmutex_lock] -> 0x264c4
+·! 0:00:05.127183 LDR: **** sysPrxForUser import: [sys_lwmutex_unlock] -> 0x264e4
+·! 0:00:05.127184 LDR: **** sysPrxForUser import: [_sys_process_atexitspawn] -> 0x26504
+·! 0:00:05.127185 LDR: **** sysPrxForUser import: [sys_lwmutex_create] -> 0x26524
+·! 0:00:05.127186 LDR: **** sysPrxForUser import: [sys_ppu_thread_get_id] -> 0x26544
+·! 0:00:05.127187 LDR: **** sysPrxForUser import: [sys_prx_register_library] -> 0x26564
+·! 0:00:05.127191 LDR: **** sysPrxForUser import: [sys_initialize_tls] -> 0x26584
+·! 0:00:05.127192 LDR: **** sysPrxForUser import: [sys_time_get_system_time] -> 0x265a4
+·! 0:00:05.127193 LDR: **** sysPrxForUser import: [_sys_process_at_Exitspawn] -> 0x265c4
+·! 0:00:05.127194 LDR: **** sysPrxForUser import: [sys_prx_exitspawn_with_level] -> 0x265e4
+·! 0:00:05.127195 LDR: **** sysPrxForUser import: [sys_lwmutex_destroy] -> 0x26604
+·! 0:00:05.127199 LDR: **** sysPrxForUser import: [sys_process_exit] -> 0x26624
+·! 0:00:05.127803 LDR: SELF: No NPDRM control info found!
+·W 0:00:05.128559 LDR: Loading library: liblv2.sprx
+·! 0:00:05.128568 LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0x13b68, p_memsz=0x13b68, flags=0x400005
+·W 0:00:05.128651 LDR: **** Loaded to 0x60000 (size=0x13b68)
+·! 0:00:05.128824 LDR: ** Segment: p_type=0x1, p_vaddr=0x13b70, p_filesz=0xd94, p_memsz=0x161c, flags=0x600006
+·W 0:00:05.128868 LDR: **** Loaded to 0x80000 (size=0x161c)
+·! 0:00:05.128875 LDR: ** Segment: p_type=0x700000a4, p_vaddr=0x0, p_filesz=0x61b0, p_memsz=0x0, flags=0x0
+·W 0:00:05.128908 LDR: Library liblv2 (rtoc=0x88ab0):
+·! 0:00:05.128913 LDR: ** Special: [module_start] at 0x80068
+·! 0:00:05.128915 LDR: ** Special: [module_stop] at 0x80058
+·! 0:00:05.128919 LDR: ** Special: &[module_info] at 0x7271c
+·! 0:00:05.128920 LDR: ** Exported module 'sysPrxForUser' (0x1c000001, 0x10002, 0x0, 0x0)
+·! 0:00:05.128922 LDR: **** sysPrxForUser export: [__sys_printf_basename] at 0x80788
+·! 0:00:05.128926 LDR: **** sysPrxForUser export: [sys_prx_get_module_id_by_address] at 0x80880
+·! 0:00:05.128927 LDR: **** sysPrxForUser export: [_sys_strncmp] at 0x80708
+·! 0:00:05.128928 LDR: **** sysPrxForUser export: [_sys_strcat] at 0x806d8
+·! 0:00:05.128929 LDR: **** sysPrxForUser export: [sys_mempool_try_allocate_block] at 0x80188
+·! 0:00:05.128930 LDR: **** sysPrxForUser export: [_sys_vsnprintf] at 0x806b8
+·! 0:00:05.128931 LDR: **** sysPrxForUser export: [_sys_snprintf] at 0x806c8
+·! 0:00:05.128936 LDR: **** sysPrxForUser export: [0x094FF0D1] at 0x80aa0
+·! 0:00:05.128937 LDR: **** sysPrxForUser export: [0x0FB028AF] at 0x804a8
+·! 0:00:05.128938 LDR: **** sysPrxForUser export: [0x121E5DA5] at 0x800c8
+·! 0:00:05.128939 LDR: **** sysPrxForUser export: [sys_lwmutex_lock] at 0x80328
+·! 0:00:05.128939 LDR: **** sysPrxForUser export: [_sys_strrchr] at 0x80718
+·! 0:00:05.128940 LDR: **** sysPrxForUser export: [_sys_spu_printf_attach_thread] at 0x80450
+·! 0:00:05.128942 LDR: **** sysPrxForUser export: [sys_lwmutex_unlock] at 0x80308
+·! 0:00:05.128943 LDR: **** sysPrxForUser export: [sys_lwcond_destroy] at 0x80390
+·! 0:00:05.128944 LDR: **** sysPrxForUser export: [_sys_strncasecmp] at 0x80700
+·! 0:00:05.128944 LDR: **** sysPrxForUser export: [sys_spu_elf_get_information] at 0x801b0
+·! 0:00:05.128945 LDR: **** sysPrxForUser export: [sys_ppu_thread_create] at 0x802d8
+·! 0:00:05.128946 LDR: **** sysPrxForUser export: [0x25062C8E] at 0x80150
+·! 0:00:05.128947 LDR: **** sysPrxForUser export: [sys_mempool_get_count] at 0x80178
+·! 0:00:05.128947 LDR: **** sysPrxForUser export: [sys_prx_load_module] at 0x80890
+·! 0:00:05.128948 LDR: **** sysPrxForUser export: [_sys_memmove] at 0x80680
+·! 0:00:05.128949 LDR: **** sysPrxForUser export: [sys_lwcond_wait] at 0x803a0
+·! 0:00:05.128950 LDR: **** sysPrxForUser export: [_sys_process_atexitspawn] at 0x80118
+·! 0:00:05.128950 LDR: **** sysPrxForUser export: [_sys_strlen] at 0x806f8
+·! 0:00:05.128951 LDR: **** sysPrxForUser export: [sys_rsxaudio_import_shared_memory] at 0x80a68
+·! 0:00:05.128952 LDR: **** sysPrxForUser export: [sys_lwmutex_create] at 0x802f0
+·! 0:00:05.128953 LDR: **** sysPrxForUser export: [sys_game_get_temperature] at 0x804e8
+·! 0:00:05.128954 LDR: **** sysPrxForUser export: [_sys_memalign] at 0x80770
+·! 0:00:05.128955 LDR: **** sysPrxForUser export: [sys_ppu_thread_get_id] at 0x802e8
+·! 0:00:05.128956 LDR: **** sysPrxForUser export: [_sys_heap_malloc] at 0x80550
+·! 0:00:05.128957 LDR: **** sysPrxForUser export: [sys_rsxaudio_unimport_shared_memory] at 0x80a70
+·! 0:00:05.128957 LDR: **** sysPrxForUser export: [_sys_memchr] at 0x80670
+·! 0:00:05.128958 LDR: **** sysPrxForUser export: [sys_ppu_thread_register_atexit] at 0x802a8
+·! 0:00:05.128959 LDR: **** sysPrxForUser export: [__sys_look_ctype_table] at 0x80650
+·! 0:00:05.128960 LDR: **** sysPrxForUser export: [sys_mmapper_free_memory] at 0x80468
+·! 0:00:05.128961 LDR: **** sysPrxForUser export: [_sys_panic] at 0x80690
+·! 0:00:05.128961 LDR: **** sysPrxForUser export: [sys_prx_register_library] at 0x80840
+·! 0:00:05.128962 LDR: **** sysPrxForUser export: [_sys_heap_memalign] at 0x80560
+·! 0:00:05.128964 LDR: **** sysPrxForUser export: [_sys_strcmp] at 0x806e8
+·! 0:00:05.128966 LDR: **** sysPrxForUser export: [_sys_spu_printf_initialize] at 0x80430
+·! 0:00:05.128967 LDR: **** sysPrxForUser export: [sys_mmapper_unmap_memory] at 0x80478
+·! 0:00:05.128968 LDR: **** sysPrxForUser export: [sys_interrupt_thread_disestablish] at 0x802c8
+·! 0:00:05.128969 LDR: **** sysPrxForUser export: [_sys_tolower] at 0x80658
+·! 0:00:05.128970 LDR: **** sysPrxForUser export: [_sys_net_eurus_post_command] at 0x80a50
+·! 0:00:05.128970 LDR: **** sysPrxForUser export: [sys_process_is_stack] at 0x80078
+·! 0:00:05.128971 LDR: **** sysPrxForUser export: [sys_spinlock_unlock] at 0x80428
+·! 0:00:05.128972 LDR: **** sysPrxForUser export: [sys_lwcond_signal_to] at 0x803b8
+·! 0:00:05.128973 LDR: **** sysPrxForUser export: [_sys_spu_printf_detach_group] at 0x80448
+·! 0:00:05.128975 LDR: **** sysPrxForUser export: [sys_mempool_free_block] at 0x80190
+·! 0:00:05.128976 LDR: **** sysPrxForUser export: [sys_game_get_system_sw_version] at 0x804c8
+·! 0:00:05.128977 LDR: **** sysPrxForUser export: [_proc_spawn] at 0x800a8
+·! 0:00:05.128978 LDR: **** sysPrxForUser export: [sys_game_process_exitspawn2] at 0x80128
+·! 0:00:05.128978 LDR: **** sysPrxForUser export: [_sys_memset] at 0x80688
+·! 0:00:05.128979 LDR: **** sysPrxForUser export: [_sys_memcpy] at 0x80678
+·! 0:00:05.128980 LDR: **** sysPrxForUser export: [sys_game_watchdog_stop] at 0x804b8
+·! 0:00:05.128981 LDR: **** sysPrxForUser export: [sys_mmapper_allocate_memory_from_container] at 0x804a0
+·! 0:00:05.128982 LDR: **** sysPrxForUser export: [sys_get_random_number] at 0x803e8
+·! 0:00:05.128983 LDR: **** sysPrxForUser export: [sys_spinlock_trylock] at 0x80420
+·! 0:00:05.128984 LDR: **** sysPrxForUser export: [0x728FD7C3] at 0x80168
+·! 0:00:05.128985 LDR: **** sysPrxForUser export: [sys_prx_get_my_module_id] at 0x80858
+·! 0:00:05.128985 LDR: **** sysPrxForUser export: [sys_initialize_tls] at 0x80298
+·! 0:00:05.128986 LDR: **** sysPrxForUser export: [_sys_strchr] at 0x806e0
+·! 0:00:05.128987 LDR: **** sysPrxForUser export: [0x750DD5CD] at 0x80148
+·! 0:00:05.128988 LDR: **** sysPrxForUser export: [_sys_vsprintf] at 0x806c0
+·! 0:00:05.128989 LDR: **** sysPrxForUser export: [sys_rsxaudio_prepare_process] at 0x80a88
+·! 0:00:05.128990 LDR: **** sysPrxForUser export: [0x7DAFF8BB] at 0x80160
+·! 0:00:05.128991 LDR: **** sysPrxForUser export: [sys_prx_stop_module] at 0x80850
+·! 0:00:05.128992 LDR: **** sysPrxForUser export: [sys_time_get_system_time] at 0x80330
+·! 0:00:05.128993 LDR: **** sysPrxForUser export: [sys_prx_get_module_info] at 0x80808
+·! 0:00:05.128994 LDR: **** sysPrxForUser export: [sys_rsxaudio_finalize] at 0x80a60
+·! 0:00:05.128995 LDR: **** sysPrxForUser export: [sys_raw_spu_load] at 0x801c0
+·! 0:00:05.128995 LDR: **** sysPrxForUser export: [_sys_heap_stats] at 0x80520
+·! 0:00:05.128996 LDR: **** sysPrxForUser export: [console_getc] at 0x80340
+·! 0:00:05.128997 LDR: **** sysPrxForUser export: [_sys_heap_free] at 0x80548
+·! 0:00:05.128998 LDR: **** sysPrxForUser export: [sys_game_board_storage_write] at 0x804e0
+·! 0:00:05.128999 LDR: **** sysPrxForUser export: [sys_spinlock_initialize] at 0x80410
+·! 0:00:05.129000 LDR: **** sysPrxForUser export: [__tls_get_addr] at 0x80838
+·! 0:00:05.129001 LDR: **** sysPrxForUser export: [0x92A7EB40] at 0x800a0
+·! 0:00:05.129002 LDR: **** sysPrxForUser export: [_sys_process_at_Exitspawn] at 0x80120
+·! 0:00:05.129002 LDR: **** sysPrxForUser export: [_sys_strncat] at 0x804f0
+·! 0:00:05.129003 LDR: **** sysPrxForUser export: [_sys_strcpy] at 0x806f0
+·! 0:00:05.129004 LDR: **** sysPrxForUser export: [sys_rsxaudio_start_process] at 0x80a90
+·! 0:00:05.129005 LDR: **** sysPrxForUser export: [sys_process_spawn] at 0x800e0
+·! 0:00:05.129006 LDR: **** sysPrxForUser export: [sys_mempool_destroy] at 0x80198
+·! 0:00:05.129006 LDR: **** sysPrxForUser export: [sys_game_watchdog_start] at 0x804b0
+·! 0:00:05.129007 LDR: **** sysPrxForUser export: [_sys_printf] at 0x807f0
+·! 0:00:05.129008 LDR: **** sysPrxForUser export: [sys_prx_start_module] at 0x808b8
+·! 0:00:05.129009 LDR: **** sysPrxForUser export: [sys_game_get_rtc_status] at 0x804d0
+·! 0:00:05.129009 LDR: **** sysPrxForUser export: [0x9FB6228E] at 0x80698
+·! 0:00:05.129010 LDR: **** sysPrxForUser export: [sys_mempool_allocate_block] at 0x80180
+·! 0:00:05.129011 LDR: **** sysPrxForUser export: [_sys_sprintf] at 0x806d0
+·! 0:00:05.129012 LDR: **** sysPrxForUser export: [sys_spinlock_lock] at 0x80418
+·! 0:00:05.129013 LDR: **** sysPrxForUser export: [sys_prx_exitspawn_with_level] at 0x808a0
+·! 0:00:05.129014 LDR: **** sysPrxForUser export: [sys_prx_load_module_on_memcontainer_by_fd] at 0x808d0
+·! 0:00:05.129014 LDR: **** sysPrxForUser export: [sys_ppu_thread_once] at 0x802b0
+·! 0:00:05.129015 LDR: **** sysPrxForUser export: [sys_prx_get_module_list] at 0x80878
+·! 0:00:05.129016 LDR: **** sysPrxForUser export: [sys_rsxaudio_create_connection] at 0x80a78
+·! 0:00:05.129018 LDR: **** sysPrxForUser export: [sys_prx_load_module_on_memcontainer] at 0x808e0
+·! 0:00:05.129019 LDR: **** sysPrxForUser export: [sys_ppu_thread_unregister_atexit] at 0x802a0
+·! 0:00:05.129020 LDR: **** sysPrxForUser export: [sys_game_watchdog_clear] at 0x804c0
+·! 0:00:05.129021 LDR: **** sysPrxForUser export: [sys_lwmutex_trylock] at 0x80300
+·! 0:00:05.129022 LDR: **** sysPrxForUser export: [_sys_heap_delete_heap] at 0x80570
+·! 0:00:05.129023 LDR: **** sysPrxForUser export: [sys_ppu_thread_exit] at 0x802e0
+·! 0:00:05.129024 LDR: **** sysPrxForUser export: [sys_rsxaudio_close_connection] at 0x80a80
+·! 0:00:05.129025 LDR: **** sysPrxForUser export: [sys_mmapper_allocate_memory] at 0x80460
+·! 0:00:05.129025 LDR: **** sysPrxForUser export: [sys_prx_load_module_list] at 0x808c8
+·! 0:00:05.129026 LDR: **** sysPrxForUser export: [_sys_heap_create_heap] at 0x80568
+·! 0:00:05.129027 LDR: **** sysPrxForUser export: [_sys_spu_printf_detach_thread] at 0x80458
+·! 0:00:05.129027 LDR: **** sysPrxForUser export: [0xB5D5F64E] at 0x80380
+·! 0:00:05.129028 LDR: **** sysPrxForUser export: [_sys_heap_get_total_free_size] at 0x80540
+·! 0:00:05.129029 LDR: **** sysPrxForUser export: [sys_raw_spu_image_load] at 0x801b8
+·! 0:00:05.129030 LDR: **** sysPrxForUser export: [_sys_heap_alloc_heap_memory] at 0x80558
+·! 0:00:05.129031 LDR: **** sysPrxForUser export: [_sys_process_wait_for_game_process] at 0x80140
+·! 0:00:05.129032 LDR: **** sysPrxForUser export: [_sys_malloc] at 0x80778
+·! 0:00:05.129032 LDR: **** sysPrxForUser export: [sys_process_spawn_with_memory_budget] at 0x800b8
+·! 0:00:05.129034 LDR: **** sysPrxForUser export: [sys_lwmutex_destroy] at 0x80310
+·! 0:00:05.129034 LDR: **** sysPrxForUser export: [_sys_qsort] at 0x80750
+·! 0:00:05.129035 LDR: **** sysPrxForUser export: [sys_rsxaudio_initialize] at 0x80a58
+·! 0:00:05.129036 LDR: **** sysPrxForUser export: [sys_mempool_create] at 0x80170
+·! 0:00:05.129037 LDR: **** sysPrxForUser export: [sys_prx_unregister_library] at 0x80898
+·! 0:00:05.129037 LDR: **** sysPrxForUser export: [0xD19688BC] at 0x800d0
+·! 0:00:05.129038 LDR: **** sysPrxForUser export: [_sys_heap_get_mallinfo] at 0x80538
+·! 0:00:05.129039 LDR: **** sysPrxForUser export: [_sys_strncpy] at 0x80710
+·! 0:00:05.129040 LDR: **** sysPrxForUser export: [0xD66C2D52] at 0x80490
+·! 0:00:05.129041 LDR: **** sysPrxForUser export: [0xD8A6F882] at 0x80498
+·! 0:00:05.129042 LDR: **** sysPrxForUser export: [sys_lwcond_create] at 0x80398
+·! 0:00:05.129042 LDR: **** sysPrxForUser export: [sys_spu_elf_get_segments] at 0x801a8
+·! 0:00:05.129043 LDR: **** sysPrxForUser export: [sys_mmapper_map_memory] at 0x80470
+·! 0:00:05.129044 LDR: **** sysPrxForUser export: [_sys_spu_printf_attach_group] at 0x80440
+·! 0:00:05.129045 LDR: **** sysPrxForUser export: [_sys_spu_printf_finalize] at 0x80438
+·! 0:00:05.129046 LDR: **** sysPrxForUser export: [0xDE0C682C] at 0x80480
+·! 0:00:05.129047 LDR: **** sysPrxForUser export: [sys_process_atexit] at 0x800e8
+·! 0:00:05.129048 LDR: **** sysPrxForUser export: [sys_prx_get_module_id_by_name] at 0x80810
+·! 0:00:05.129049 LDR: **** sysPrxForUser export: [sys_spu_image_close] at 0x801c8
+·! 0:00:05.129049 LDR: **** sysPrxForUser export: [console_putc] at 0x80378
+·! 0:00:05.129050 LDR: **** sysPrxForUser export: [sys_process_exit] at 0x80110
+·! 0:00:05.129051 LDR: **** sysPrxForUser export: [sys_process_get_paramsfo] at 0x800c0
+·! 0:00:05.129052 LDR: **** sysPrxForUser export: [sys_game_board_storage_read] at 0x804d8
+·! 0:00:05.129053 LDR: **** sysPrxForUser export: [sys_prx_load_module_list_on_memcontainer] at 0x808c0
+·! 0:00:05.129054 LDR: **** sysPrxForUser export: [sys_process_wait_for_game_process] at 0x80158
+·! 0:00:05.129054 LDR: **** sysPrxForUser export: [sys_lwcond_signal_all] at 0x803c8
+·! 0:00:05.129055 LDR: **** sysPrxForUser export: [sys_spu_image_import] at 0x801d0
+·! 0:00:05.129056 LDR: **** sysPrxForUser export: [0xEDEA5F4A] at 0x800d8
+·! 0:00:05.129057 LDR: **** sysPrxForUser export: [_sys_toupper] at 0x80660
+·! 0:00:05.129059 LDR: **** sysPrxForUser export: [sys_prx_load_module_by_fd] at 0x808d8
+·! 0:00:05.129060 LDR: **** sysPrxForUser export: [sys_lwcond_signal] at 0x803a8
+·! 0:00:05.129060 LDR: **** sysPrxForUser export: [sys_prx_unload_module] at 0x808b0
+·! 0:00:05.129061 LDR: **** sysPrxForUser export: [console_write] at 0x80338
+·! 0:00:05.129062 LDR: **** sysPrxForUser export: [_sys_free] at 0x80768
+·! 0:00:05.129063 LDR: **** sysPrxForUser export: [0xF82CF400] at 0x80488
+·! 0:00:05.129063 LDR: **** sysPrxForUser export: [0xF923DADA] at 0x800b0
+·! 0:00:05.129064 LDR: **** sysPrxForUser export: [_sys_vprintf] at 0x807e0
+·! 0:00:05.129065 LDR: **** sysPrxForUser export: [_sys_memcmp] at 0x80668
+·! 0:00:05.129066 LDR: **** sysPrxForUser export: [sys_game_process_exitspawn] at 0x80130
+·! 0:00:05.129066 LDR: **** sysPrxForUser export: [__sys_time] at 0x80798
+·! 0:00:05.129067 LDR: **** sysPrxForUser export: [sys_rsxaudio_stop_process] at 0x80a98
+·! 0:00:05.129069 LDR: **** sysPrxForUser export: &[sys_prx_version] at 0x80008
+·! 0:00:05.129069 LDR: ** Exported module 'sysPs2Disc' (0x1c000001, 0x10001, 0x0, 0x0)
+·! 0:00:05.129071 LDR: **** sysPs2Disc export: [sysPs2Disc_A84FD3C3] at 0x803d8
+·! 0:00:05.129071 LDR: **** sysPs2Disc export: [sysPs2Disc_BB7CD1AE] at 0x803d0
+·! 0:00:05.129072 LDR: ** Exported module 'sysBdMediaId' (0x1c000001, 0x10001, 0x0, 0x0)
+·! 0:00:05.129073 LDR: **** sysBdMediaId export: [sys_get_bd_media_id] at 0x803e0
+·! 0:00:05.129074 LDR: ** Exported module 'sysConsoleId' (0x0, 0x0, 0x0, 0x10101)
+·! 0:00:05.129075 LDR: **** sysConsoleId export: [sys_get_console_id] at 0x803f0
+·W 0:00:05.129446 PPU: [0x60000] Jump table not found! 0x6007c-0x73b68
+·W 0:00:05.129448 PPU: [0x60044] Jump table not found! 0x6007c-0x73b68
+·W 0:00:05.131021 PPU: Function overlap: [0x60000] 0x88 -> 0x44
+·W 0:00:05.131023 PPU: Function overlap: [0x60044] 0x44 -> 0x3c
+·! 0:00:05.132477 PPU: Function analysis: 330 functions (520 enqueued)
+·! 0:00:05.132546 LDR: PRX library hash: PRX-aba8af845072f7dc2664b5a958a9a4f2496f59a8 (<- 0)
+·W 0:00:05.132632 vfs::get(): device not found: /host_root/C:/Users/elad/Documents/GitHub/myps3tests/rsx_tests/driver flip 2/mainrsxcrap.self
+·! 0:00:05.132825 PPU: Reading OPD section at 0x301a8...
+·! 0:00:05.132978 PPU: Reading .eh_frame section at 0x26644...
+·! 0:00:05.133168 PPU: Function [0x194c4]: 'abort'
+·W 0:00:05.135243 PPU: Function gap: [0x1bfac] 0x10 bytes at 0x1bfc0
+·W 0:00:05.135246 PPU: Function gap: [0x1e318] 0x2c bytes at 0x1e348
+·W 0:00:05.135249 PPU: Function gap: [0x1fa0c] 0x1c bytes at 0x1fb20
+·W 0:00:05.135249 PPU: Function gap: [0x1fb68] 0x1c bytes at 0x1fc20
+·W 0:00:05.135251 PPU: Function gap: [0x20000] 0x1c bytes at 0x20058
+·W 0:00:05.135255 PPU: Function gap: [0x25f6c] 0x1c bytes at 0x25fc4
+·W 0:00:05.135256 PPU: Function gap: [0x25fe0] 0x1c bytes at 0x26038
+·W 0:00:05.135257 PPU: Function gap: [0x2627c] 0x18 bytes at 0x262c0
+·W 0:00:05.135258 PPU: Function gap: [0x262d8] 0x18 bytes at 0x26308
+·! 0:00:05.136876 PPU: Function analysis: 345 functions (744 enqueued)
+·! 0:00:05.142233 RSX: Physical device intialized. GPU=GeForce GTX 980 Ti, driver=1627602944
+·! 0:00:05.172751 RSX: Swapchain: present mode 1 in use.
+·S 0:00:05.331197 LDR: Boot successful.
+·S 0:00:05.332852 {PPU[0x1000000] Thread (main_thread)} SPU: SPU Recompiler Runtime (ASMJIT) initialized...
+·W 0:00:05.332984 {PPU[0x1000000] Thread (main_thread) [0x00064490]} sys_mutex: sys_mutex_create(mutex_id=*0x80dc0, attr=*0xd0010c10)
+·W 0:00:05.332998 {PPU[0x1000000] Thread (main_thread) [0x000644dc]} sys_mutex: sys_mutex_create(mutex_id=*0x80db0, attr=*0xd0010c10)
+·W 0:00:05.333009 {PPU[0x1000000] Thread (main_thread) [0x00063ddc]} sys_memory: sys_memory_allocate(size=0x10000, flags=0x200, alloc_addr=*0xd0010b74)
+·W 0:00:05.333112 {PPU[0x1000000] Thread (main_thread) [0x00061e7c]} sys_mutex: sys_mutex_create(mutex_id=*0x20000020, attr=*0xd0010a18)
+·W 0:00:05.333119 {PPU[0x1000000] Thread (main_thread) [0x00061ebc]} sys_cond: sys_cond_create(cond_id=*0x20000024, mutex_id=0x85000300, attr=*0xd0010a00)
+·W 0:00:05.333142 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010ae0, protocol=0x2, control=*0x80e10, arg4=0x80000001, name=0x5f6c7632746c7300, arg6=0x0)
+·W 0:00:05.333169 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010930, protocol=0x2, control=*0x80ed0, arg4=0x80000001, name=0x5f6c763268656100, arg6=0x0)
+·W 0:00:05.333172 {PPU[0x1000000] Thread (main_thread) [0x00067788]} sys_memory: sys_memory_allocate(size=0x80000, flags=0x200, alloc_addr=*0xd0010ad0)
+·W 0:00:05.333230 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010920, protocol=0x2, control=*0x200101c8, arg4=0x80000001, name=0x5f6c763268656100, arg6=0x0)
+·W 0:00:05.333239 {PPU[0x1000000] Thread (main_thread) [0x00064ab4]} sys_mutex: sys_mutex_create(mutex_id=*0x80e68, attr=*0xd0010b50)
+·W 0:00:05.333242 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010ab0, protocol=0x2, control=*0x80e50, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.333265 {PPU[0x1000000] Thread (main_thread) [0x00063c0c]} sys_process: _sys_process_get_paramsfo(buffer=0x20010250)
+·W 0:00:05.333271 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010ad0, protocol=0x2, control=*0x80ee8, arg4=0x80000001, name=0x5f6c763270727800, arg6=0x0)
+·U 0:00:05.333278 {PPU[0x1000000] Thread (main_thread) [0x0006fe64]} sys_prx TODO: _sys_prx_register_module()
+·U 0:00:05.333280 {PPU[0x1000000] Thread (main_thread) [0x000700bc]} sys_prx TODO: _sys_prx_register_library(library=*0x726a0)
+·W 0:00:05.333285 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} sys_prx: _sys_prx_load_module(path=“/dev_flash/sys/external/libsysmodule.sprx”, flags=0x0, pOpt=*0x0)
+·! 0:00:05.333730 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: SELF: No NPDRM control info found!
+·! 0:00:05.334050 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0x8a68, p_memsz=0x8a68, flags=0x400005
+·W 0:00:05.334108 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** Loaded to 0xb0000 (size=0x8a68)
+·! 0:00:05.334189 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Segment: p_type=0x1, p_vaddr=0x8a70, p_filesz=0x14d8, p_memsz=0x150c, flags=0x600006
+·W 0:00:05.334226 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** Loaded to 0xc0000 (size=0x150c)
+·! 0:00:05.334236 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Segment: p_type=0x700000a4, p_vaddr=0x0, p_filesz=0x4968, p_memsz=0x0, flags=0x0
+·W 0:00:05.334253 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: Library cellSysmodule_Library (rtoc=0xc9420):
+·! 0:00:05.334255 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Special: [module_start] at 0xc0e90
+·! 0:00:05.334257 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Special: [module_stop] at 0xc0e98
+·! 0:00:05.334258 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Special: &[module_info] at 0xb6804
+·! 0:00:05.334260 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Special: &[0x6D0F6CAE] at 0xc0204
+·! 0:00:05.334261 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Exported module 'cellSysmodule' (0x0, 0x0, 0x2c000001, 0x90012)
+·! 0:00:05.334264 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0x002CD0BF] at 0xc0e78
+·! 0:00:05.334266 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0x03D90241] at 0xc0e70
+·! 0:00:05.334268 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleUnloadModule] at 0xc0e28
+·! 0:00:05.334270 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmodule_1A267F98] at 0xc0e38
+·! 0:00:05.334271 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleGetImagesize] at 0xc0e88
+·! 0:00:05.334294 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0x205FE2A0] at 0xc0e50
+·! 0:00:05.334295 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleLoadModule] at 0xc0e20
+·! 0:00:05.334299 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleFetchImage] at 0xc0e80
+·! 0:00:05.334301 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0x59521326] at 0xc0eb8
+·! 0:00:05.334302 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleIsLoaded] at 0xc0e30
+·! 0:00:05.334304 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleInitialize] at 0xc0ea0
+·! 0:00:05.334305 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0x70E319B5] at 0xc0e68
+·! 0:00:05.334306 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleFinalize] at 0xc0ea8
+·! 0:00:05.334307 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmoduleSetMemcontainer] at 0xc0eb0
+·! 0:00:05.334308 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmodule_B498BF77] at 0xc0e60
+·! 0:00:05.334309 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0xC93200DE] at 0xc0e48
+·! 0:00:05.334312 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [cellSysmodule_D9B8C0EE] at 0xc0e58
+·! 0:00:05.334313 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** cellSysmodule export: [0xFD0E1CAC] at 0xc0e40
+·! 0:00:05.334315 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: ** Imported module 'sysPrxForUser' (ver=0x1, attr=0x9, 0x0, 0x0) [0xb67d4]
+·! 0:00:05.334317 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [_sys_strncmp] -> 0xb6550
+·! 0:00:05.334319 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [_sys_snprintf] -> 0xb6570
+·! 0:00:05.334321 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_lwmutex_lock] -> 0xb6590
+·! 0:00:05.334322 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_lwmutex_unlock] -> 0xb65b0
+·! 0:00:05.334324 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_load_module] -> 0xb65d0
+·! 0:00:05.334325 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_lwmutex_create] -> 0xb65f0
+·! 0:00:05.334327 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [_sys_memset] -> 0xb6610
+·! 0:00:05.334329 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [_sys_memcpy] -> 0xb6630
+·! 0:00:05.334330 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_stop_module] -> 0xb6650
+·! 0:00:05.334333 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_get_module_info] -> 0xb6670
+·! 0:00:05.334335 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [_sys_strcpy] -> 0xb6690
+·! 0:00:05.334336 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_start_module] -> 0xb66b0
+·! 0:00:05.334337 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [_sys_sprintf] -> 0xb66d0
+·! 0:00:05.334339 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_load_module_on_memcontainer] -> 0xb66f0
+·! 0:00:05.334341 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_load_module_list] -> 0xb6710
+·! 0:00:05.334342 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_lwmutex_destroy] -> 0xb6730
+·! 0:00:05.334344 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_process_get_paramsfo] -> 0xb6750
+·! 0:00:05.334348 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: **** sysPrxForUser import: [sys_prx_unload_module] -> 0xb6770
+·! 0:00:05.335564 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} PPU: Function analysis: 213 functions (268 enqueued)
+·! 0:00:05.335611 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} LDR: PRX library hash: PRX-6bf437f05980eee0257bc1d29d8ec0fec0f166f5 (<- 0)
+·S 0:00:05.335680 {PPU[0x1000000] Thread (main_thread) [0x000709ac]} sys_prx: Loaded module: /dev_flash/sys/external/libsysmodule.sprx
+·W 0:00:05.335690 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23000b00, flags=0x0, pOpt=*0xd0010c20)
+·U 0:00:05.335708 {PPU[0x1000000] Thread (main_thread) [0x000b3d8c]} HLE TODO: Unimplemented syscall sys_ss_access_control_engine -> CELL_OK
+·W 0:00:05.335724 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010800, protocol=0x2, control=*0xc14f0, arg4=0x80000001, name=0x5f736d6f6c776d00, arg6=0x0)
+·W 0:00:05.335730 {PPU[0x1000000] Thread (main_thread) [0x000b4a7c]} sys_process: sys_process_get_sdk_version(pid=0x1, version=*0xd0010908)
+·W 0:00:05.335780 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: _sys_prx_load_module_list(count=7, path_list=**0x20010250, flags=0x0, pOpt=*0x0, id_list=*0xd001090c)
+·W 0:00:05.335796 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Ignored module: /dev_flash/sys/external/libsysutil.sprx
+·! 0:00:05.336260 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: SELF: No NPDRM control info found!
+·! 0:00:05.336673 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0xb730, p_memsz=0xb730, flags=0x400005
+·W 0:00:05.336805 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** Loaded to 0xd0000 (size=0xb730)
+·! 0:00:05.336915 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x1, p_vaddr=0xb730, p_filesz=0x984, p_memsz=0x31c0, flags=0x600006
+·W 0:00:05.336953 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** Loaded to 0xe0000 (size=0x31c0)
+·! 0:00:05.336959 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x700000a4, p_vaddr=0x0, p_filesz=0x43b0, p_memsz=0x0, flags=0x0
+·W 0:00:05.336975 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: Library cellGcm_Library (rtoc=0xe88d0):
+·! 0:00:05.336978 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: [module_start] at 0xe080c
+·! 0:00:05.336979 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: [module_stop] at 0xe0814
+·! 0:00:05.336980 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: [module_exit] at 0xe081c
+·! 0:00:05.336981 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: &[module_info] at 0xdaf30
+·! 0:00:05.336983 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: &[0x6D0F6CAE] at 0xe008c
+·! 0:00:05.336984 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellGcmSys' (0x0, 0x0, 0x2c000001, 0x90001)
+·! 0:00:05.336988 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetTiledPitchSize] at 0xe0214
+·! 0:00:05.336990 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x05A1377A] at 0xe02a4
+·! 0:00:05.336992 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetUserHandler] at 0xe06dc
+·! 0:00:05.336994 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetQueueHandler] at 0xe06e4
+·! 0:00:05.336995 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetPrepareFlip] at 0xe03ec
+·! 0:00:05.336997 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x0E5FE585] at 0xe06f4
+·! 0:00:05.336999 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetDisplayInfo] at 0xe027c
+·! 0:00:05.337006 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmInitCursor] at 0xe0804
+·! 0:00:05.337008 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmInitBody] at 0xe017c
+·! 0:00:05.337010 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetDefaultCommandBufferAndSegmentWordSize] at 0xe04e4
+·! 0:00:05.337012 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetCursorPosition] at 0xe07f4
+·! 0:00:05.337013 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x1A65F1CF] at 0xe0334
+·! 0:00:05.337015 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc3] at 0xe0114
+·! 0:00:05.337017 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmDumpGraphicsError] at 0xe068c
+·! 0:00:05.337018 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmSetFlipCommand] at 0xe0754
+·! 0:00:05.337020 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmAddressToOffset] at 0xe0534
+·! 0:00:05.337022 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetNotifyDataAddress] at 0xe079c
+·! 0:00:05.337023 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetLastSecondVTime] at 0xe02cc
+·! 0:00:05.337025 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSortRemapEaIoAddress] at 0xe05a4
+·! 0:00:05.337026 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetOffsetTable] at 0xe052c
+·! 0:00:05.337028 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmIoOffsetToAddress] at 0xe053c
+·! 0:00:05.337029 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetTimeStampLocation] at 0xe0794
+·! 0:00:05.337030 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x32D3AA9F] at 0xe076c
+·! 0:00:05.337032 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetDisplayBufferByFlipIndex] at 0xe01fc
+·! 0:00:05.337033 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc15] at 0xe014c
+·! 0:00:05.337035 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmUnreserveIoMapSize] at 0xe054c
+·! 0:00:05.337036 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmBindTile] at 0xe0434
+·! 0:00:05.337038 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetFlipMode] at 0xe036c
+·! 0:00:05.337039 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetSecondVFrequency] at 0xe0304
+·! 0:00:05.337042 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetDebugOutputLevel] at 0xe067c
+·! 0:00:05.337044 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmTerminate] at 0xe00ac
+·! 0:00:05.337047 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x55B4350B] at 0xe0364
+·! 0:00:05.337049 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x5868A9F7] at 0xe02e4
+·! 0:00:05.337052 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetTimeStamp] at 0xe047c
+·! 0:00:05.337054 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetDefaultCommandWordSize] at 0xe04a4
+·! 0:00:05.337057 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc1] at 0xe00f4
+·! 0:00:05.337060 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmMapEaIoAddressWithFlags] at 0xe0574
+·! 0:00:05.337063 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetLastFlipTime] at 0xe02ec
+·! 0:00:05.337067 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmMapEaIoAddress] at 0xe057c
+·! 0:00:05.337069 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetTileInfo] at 0xe0404
+·! 0:00:05.337072 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc12] at 0xe00ec
+·! 0:00:05.337074 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc38] at 0xe0124
+·! 0:00:05.337075 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetCursorDisable] at 0xe07c4
+·! 0:00:05.337077 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetVBlankCount] at 0xe02c4
+·! 0:00:05.337079 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetFlipStatus] at 0xe02ac
+·! 0:00:05.337080 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0x7A077DCC] at 0xe038c
+·! 0:00:05.337082 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc4] at 0xe00cc
+·! 0:00:05.337084 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetReportDataAddressLocation] at 0xe0784
+·! 0:00:05.337086 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetUserCommand] at 0xe046c
+·! 0:00:05.337088 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetDefaultSegmentWordSize] at 0xe04ac
+·! 0:00:05.337089 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc2] at 0xe00c4
+·! 0:00:05.337091 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetCurrentDisplayBufferId] at 0xe0284
+·! 0:00:05.337093 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetWaitFlip] at 0xe0204
+·! 0:00:05.337094 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetReport] at 0xe0474
+·! 0:00:05.337096 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetReportDataAddress] at 0xe0484
+·! 0:00:05.337098 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetDefaultFifoSize] at 0xe04dc
+·! 0:00:05.337100 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmBindZcull] at 0xe045c
+·! 0:00:05.337102 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmMapMainMemory] at 0xe059c
+·! 0:00:05.337104 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xA22F34AE] at 0xe0764
+·! 0:00:05.337105 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetFlipHandler] at 0xe06fc
+·! 0:00:05.337107 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetFlipStatus] at 0xe0324
+·! 0:00:05.337109 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xA5151B13] at 0xe031c
+·! 0:00:05.337110 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetDisplayBuffer] at 0xe0374
+·! 0:00:05.337112 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetControlRegister] at 0xe049c
+·! 0:00:05.337114 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetReportDataLocation] at 0xe078c
+·! 0:00:05.337118 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmUnbindZcull] at 0xe0454
+·! 0:00:05.337122 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmReserveIoMapSize] at 0xe0554
+·! 0:00:05.337125 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetVBlankHandler] at 0xe070c
+·! 0:00:05.337129 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xAA076302] at 0xe07a4
+·! 0:00:05.337132 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetFlipImmediate] at 0xe0394
+·! 0:00:05.337134 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xB22FF041] at 0xe0774
+·! 0:00:05.337135 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmResetFlipStatus] at 0xe033c
+·! 0:00:05.337137 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xB70B4AD3] at 0xe0174
+·! 0:00:05.337139 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xB96BFD78] at 0xe0694
+·! 0:00:05.337141 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmFunc13] at 0xe00e4
+·! 0:00:05.337144 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetDefaultCommandBuffer] at 0xe0494
+·! 0:00:05.337146 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [0xBCFECDAE] at 0xe02bc
+·! 0:00:05.337148 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetTileInfo] at 0xe041c
+·! 0:00:05.337150 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmUpdateCursor] at 0xe07ec
+·! 0:00:05.337152 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetInvalidateTile] at 0xe0414
+·! 0:00:05.337154 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetCursorEnable] at 0xe07bc
+·! 0:00:05.337156 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetCurrentField] at 0xe028c
+·! 0:00:05.337158 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmInitDefaultFifoMode] at 0xe04bc
+·! 0:00:05.337160 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetGraphicsHandler] at 0xe0674
+·! 0:00:05.337161 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetTile] at 0xe0424
+·! 0:00:05.337163 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetZcull] at 0xe044c
+·! 0:00:05.337164 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [_cellGcmSetFlipCommandWithWaitLabel] at 0xe075c
+·! 0:00:05.337167 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetZcullInfo] at 0xe043c
+·! 0:00:05.337168 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmUnbindTile] at 0xe042c
+·! 0:00:05.337170 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmUnmapIoAddress] at 0xe0564
+·! 0:00:05.337172 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmMapLocalMemory] at 0xe013c
+·! 0:00:05.337173 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetFlip] at 0xe03e4
+·! 0:00:05.337175 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetSecondVHandler] at 0xe0704
+·! 0:00:05.337177 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetWaitFlipUnsafe] at 0xe020c
+·! 0:00:05.337179 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetConfiguration] at 0xe058c
+·! 0:00:05.337180 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSysGetLastVBlankTime] at 0xe02d4
+·! 0:00:05.337184 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmUnmapEaIoAddress] at 0xe056c
+·! 0:00:05.337187 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetLabelAddress] at 0xe048c
+·! 0:00:05.337188 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetCursorImageOffset] at 0xe07fc
+·! 0:00:05.337193 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmGetMaxIoMapSize] at 0xe0544
+·! 0:00:05.337195 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmInitSystemMode] at 0xe07b4
+·! 0:00:05.337197 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellGcmSys export: [cellGcmSetVBlankFrequency] at 0xe035c
+·! 0:00:05.337200 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Imported module 'cellSysutil' (ver=0x1, attr=0x9, 0x0, 0x0) [0xdaed4]
+·! 0:00:05.337203 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSysutil import: [cellVideoOutGetConfiguration] -> 0xdad2c
+·! 0:00:05.337206 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Imported module 'sysPrxForUser' (ver=0x1, attr=0x9, 0x0, 0x0) [0xdaf00]
+·! 0:00:05.337209 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strncmp] -> 0xdad4c
+·! 0:00:05.337211 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_lock] -> 0xdad6c
+·! 0:00:05.337214 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_unlock] -> 0xdad8c
+·! 0:00:05.337217 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_create] -> 0xdadac
+·! 0:00:05.337219 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_create] -> 0xdadcc
+·! 0:00:05.337221 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_memset] -> 0xdadec
+·! 0:00:05.337224 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_printf] -> 0xdae0c
+·! 0:00:05.337226 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_exit] -> 0xdae2c
+·! 0:00:05.337229 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_destroy] -> 0xdae4c
+·! 0:00:05.337231 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_process_get_paramsfo] -> 0xdae6c
+·! 0:00:05.338781 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} PPU: Function analysis: 273 functions (460 enqueued)
+·! 0:00:05.338824 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: PRX library hash: PRX-f50c4616d91abb2d4c167950dade5df60ddce6ab (<- 0)
+·S 0:00:05.338910 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Loaded module: /dev_flash/sys/external/libgcm_sys.sprx
+·W 0:00:05.338930 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Ignored module: /dev_flash/sys/external/libaudio.sprx
+·W 0:00:05.338939 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Ignored module: /dev_flash/sys/external/libio.sprx
+·! 0:00:05.339377 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: SELF: No NPDRM control info found!
+·! 0:00:05.341219 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0x2e000, p_memsz=0x30000, flags=0x400005
+·W 0:00:05.341353 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** Loaded to 0xf0000 (size=0x30000)
+·! 0:00:05.341767 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x1, p_vaddr=0x2e000, p_filesz=0x3fe0, p_memsz=0x4340, flags=0x600006
+·W 0:00:05.341827 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** Loaded to 0x120000 (size=0x4340)
+·! 0:00:05.341858 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x700000a4, p_vaddr=0x0, p_filesz=0x8610, p_memsz=0x0, flags=0x0
+·W 0:00:05.341884 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: Library cellSre_Library (rtoc=0x12bab0):
+·! 0:00:05.341886 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: &[module_info] at 0x10dc4c
+·! 0:00:05.341890 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: &[0x6D0F6CAE] at 0x120080
+·! 0:00:05.341891 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellSync' (0x1c000002, 0x90012, 0x0, 0x2000000)
+·! 0:00:05.341900 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncBarrierInitialize] at 0x122fac
+·! 0:00:05.341903 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncLFQueueGetEntrySize] at 0x123104
+·! 0:00:05.341906 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncLFQueueSize] at 0x12309c
+·! 0:00:05.341909 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncMutexLock] at 0x122fe4
+·! 0:00:05.341912 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncBarrierTryNotify] at 0x122fbc
+·! 0:00:05.341915 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncLFQueueClear] at 0x123094
+·! 0:00:05.341917 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueCompletePushPointer2] at 0x1230d4
+·! 0:00:05.341920 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncBarrierWait] at 0x122fc4
+·! 0:00:05.341923 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueueInitialize] at 0x122ff4
+·! 0:00:05.341925 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueGetPopPointer2] at 0x1230dc
+·! 0:00:05.341928 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueuePeek] at 0x12302c
+·! 0:00:05.341930 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueueSize] at 0x12301c
+·! 0:00:05.341933 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueuePop] at 0x12300c
+·! 0:00:05.341936 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueCompletePushPointer] at 0x1230b4
+·! 0:00:05.341939 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueAttachLv2EventQueue] at 0x123074
+·! 0:00:05.341942 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueuePush] at 0x122ffc
+·! 0:00:05.341945 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueueTryPeek] at 0x123034
+·! 0:00:05.341947 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueGetPushPointer2] at 0x1230cc
+·! 0:00:05.341948 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncBarrierTryWait] at 0x122fcc
+·! 0:00:05.341950 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueueTryPush] at 0x123004
+·! 0:00:05.341951 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueGetPopPointer] at 0x1230bc
+·! 0:00:05.341952 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueCompletePopPointer2] at 0x1230e4
+·! 0:00:05.341954 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueDetachLv2EventQueue] at 0x12307c
+·! 0:00:05.341956 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncMutexUnlock] at 0x122fec
+·! 0:00:05.341958 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueueClear] at 0x123024
+·! 0:00:05.341961 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncQueueTryPop] at 0x123014
+·! 0:00:05.341962 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncRwmTryRead] at 0x123054
+·! 0:00:05.341963 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncMutexInitialize] at 0x122fd4
+·! 0:00:05.341964 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncLFQueueInitialize] at 0x12308c
+·! 0:00:05.341966 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueGetSignalAddress] at 0x1230f4
+·! 0:00:05.341969 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueuePushBody] at 0x123064
+·! 0:00:05.341971 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncRwmTryWrite] at 0x123044
+·! 0:00:05.341972 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncRwmRead] at 0x12305c
+·! 0:00:05.341974 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncMutexTryLock] at 0x122fdc
+·! 0:00:05.341975 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncLFQueueGetDirection] at 0x1230fc
+·! 0:00:05.341976 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncLFQueueDepth] at 0x1230a4
+·! 0:00:05.341977 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueuePopBody] at 0x12306c
+·! 0:00:05.341978 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueGetPushPointer] at 0x1230ac
+·! 0:00:05.341980 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncRwmWrite] at 0x12304c
+·! 0:00:05.341981 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncBarrierNotify] at 0x122fb4
+·! 0:00:05.341982 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [cellSyncRwmInitialize] at 0x12303c
+·! 0:00:05.341983 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSync export: [_cellSyncLFQueueCompletePopPointer] at 0x1230c4
+·! 0:00:05.341985 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellSheap' (0x1c000002, 0x90004, 0x0, 0x0)
+·! 0:00:05.341987 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapMutexDelete] at 0x1231ac
+·! 0:00:05.341988 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapMutexNew] at 0x1231a4
+·! 0:00:05.341990 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellSheapQueryMax] at 0x123164
+·! 0:00:05.341991 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapBufferNew] at 0x123194
+·! 0:00:05.341993 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellSheapAllocate] at 0x123154
+·! 0:00:05.341994 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellSheapFree] at 0x12315c
+·! 0:00:05.341995 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapSemaphoreNew] at 0x1231b4
+·! 0:00:05.341997 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapSemaphoreDelete] at 0x1231bc
+·! 0:00:05.341998 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapQueueDelete] at 0x1231ec
+·! 0:00:05.341999 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellSheapQueryFree] at 0x12313c
+·! 0:00:05.342001 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapQueueNew] at 0x1231e4
+·! 0:00:05.342002 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapInitialize] at 0x123174
+·! 0:00:05.342004 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellSheapInitialize] at 0x12314c
+·! 0:00:05.342005 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapBufferDelete] at 0x12319c
+·! 0:00:05.342006 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapBarrierNew] at 0x1231c4
+·! 0:00:05.342007 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapRwmDelete] at 0x1231dc
+·! 0:00:05.342009 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapRwmNew] at 0x1231d4
+·! 0:00:05.342034 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSheap export: [cellKeySheapBarrierDelete] at 0x1231cc
+·! 0:00:05.342035 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellOvis' (0x1c000002, 0x90095, 0x0, 0x4000000)
+·! 0:00:05.342037 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellOvis export: [cellOvisInvalidateOverlappedSegments] at 0x1231f4
+·! 0:00:05.342039 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellOvis export: [cellOvisGetOverlayTableSize] at 0x123204
+·! 0:00:05.342040 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellOvis export: [cellOvisInitializeOverlayTable] at 0x12320c
+·! 0:00:05.342042 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellOvis export: [cellOvisFixSpuSegments] at 0x1231fc
+·! 0:00:05.342043 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellSpurs' (0x1c000002, 0x90034, 0x0, 0x2000000)
+·! 0:00:05.342045 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobGuardReset] at 0x123894
+·! 0:00:05.342046 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursLFQueueInitialize] at 0x123844
+·! 0:00:05.342048 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueDetachLv2EventQueue] at 0x1237f4
+·! 0:00:05.342049 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAttributeSetNamePrefix] at 0x123244
+·! 0:00:05.342051 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursQueueInitialize] at 0x1237ec
+·! 0:00:05.342052 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursWorkloadAttributeSetShutdownCompletionEventHook] at 0x1232ec
+·! 0:00:05.342054 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAttributeEnableSpuPrintfIfAvailable] at 0x123234
+·! 0:00:05.342055 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskExitCodeGet] at 0x1236cc
+·! 0:00:05.342057 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainGetError] at 0x12392c
+·! 0:00:05.342058 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursTasksetAttributeInitialize] at 0x123724
+·! 0:00:05.342059 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursLFQueueAttachLv2EventQueue] at 0x12385c
+·! 0:00:05.342061 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAddUrgentCommand] at 0x1238ac
+·! 0:00:05.342062 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursRequestIdleSpu] at 0x12335c
+·! 0:00:05.342063 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSendWorkloadSignal] at 0x12332c
+·! 0:00:05.342065 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskGetLoadableSegmentPattern] at 0x1236fc
+·! 0:00:05.342066 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTaskWithAttribute] at 0x123624
+·! 0:00:05.342068 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursDestroyTaskset2] at 0x12377c
+·! 0:00:05.342069 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetInfo] at 0x1234cc
+·! 0:00:05.342070 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueGetTasksetAddress] at 0x12382c
+·! 0:00:05.342074 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagDetachLv2EventQueue] at 0x1237a4
+·! 0:00:05.342076 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueClear] at 0x123804
+·! 0:00:05.342078 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainAttributeSetJobTypeMemoryCheck] at 0x1238e4
+·! 0:00:05.342081 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursWorkloadFlagReceiver2] at 0x12353c
+·! 0:00:05.342082 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTasksetSetExceptionEventHandler] at 0x12366c
+·! 0:00:05.342083 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateJobChainWithAttribute] at 0x1238f4
+·! 0:00:05.342085 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursInitializeWithAttribute2] at 0x12326c
+·! 0:00:05.342086 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursRemoveSystemWorkloadForUtility] at 0x12356c
+·! 0:00:05.342087 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEnableExceptionEventHandler] at 0x12349c
+·! 0:00:05.342089 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskExitCodeInitialize] at 0x12369c
+·! 0:00:05.342090 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursJobChainAttributeInitialize] at 0x1238cc
+·! 0:00:05.342092 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursLFQueuePopBody] at 0x123854
+·! 0:00:05.342093 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueDepth] at 0x123814
+·! 0:00:05.342094 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueGetEntrySize] at 0x12383c
+·! 0:00:05.342095 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagWait] at 0x1237b4
+·! 0:00:05.342097 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetSpuThreadGroupId] at 0x12329c
+·! 0:00:05.342098 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainGetSpursAddress] at 0x12396c
+·! 0:00:05.342099 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursReadyCountSwap] at 0x123354
+·! 0:00:05.342101 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursWorkloadAttributeSetName] at 0x1232e4
+·! 0:00:05.342102 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTaskset2] at 0x123784
+·! 0:00:05.342104 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagClear] at 0x1237c4
+·! 0:00:05.342105 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursUnsetExceptionEventHandler] at 0x123484
+·! 0:00:05.342106 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursLookUpTasksetAddress] at 0x123684
+·! 0:00:05.342107 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetJobChainInfo] at 0x123964
+·! 0:00:05.342109 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagGetClearMode] at 0x1237dc
+·! 0:00:05.342110 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSetPreemptionVictimHints] at 0x12355c
+·! 0:00:05.342111 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetWorkloadInfo] at 0x1234d4
+·! 0:00:05.342112 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursDetachLv2EventQueue] at 0x12338c
+·! 0:00:05.342114 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainSetExceptionEventHandler] at 0x12394c
+·! 0:00:05.342115 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTaskset] at 0x123764
+·! 0:00:05.342116 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueSize] at 0x12380c
+·! 0:00:05.342118 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSemaphoreGetTasksetAddress] at 0x12388c
+·! 0:00:05.342120 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTraceInitialize] at 0x123424
+·! 0:00:05.342122 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursRemoveWorkload] at 0x123324
+·! 0:00:05.342123 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTasksetGetSpursAddress] at 0x12372c
+·! 0:00:05.342124 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0x5C3A614C] at 0x123224
+·! 0:00:05.342127 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursEventFlagInitialize] at 0x123794
+·! 0:00:05.342129 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursWaitForWorkloadShutdown] at 0x12331c
+·! 0:00:05.342130 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateJobChain] at 0x1238fc
+·! 0:00:05.342131 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTasksetAttributeSetName] at 0x12370c
+·! 0:00:05.342133 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobGuardInitialize] at 0x1238a4
+·! 0:00:05.342134 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAddWorkload] at 0x123304
+·! 0:00:05.342135 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainUnsetExceptionEventHandler] at 0x123954
+·! 0:00:05.342137 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetSpuThreadId] at 0x123294
+·! 0:00:05.342138 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagTryWait] at 0x1237bc
+·! 0:00:05.342140 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetSpuGuid] at 0x12352c
+·! 0:00:05.342141 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0x7025A5EC] at 0x1235a4
+·! 0:00:05.342142 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursShutdownJobChain] at 0x123904
+·! 0:00:05.342143 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursLFQueueDetachLv2EventQueue] at 0x123864
+·! 0:00:05.342145 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSetGlobalExceptionEventHandler] at 0x12347c
+·! 0:00:05.342146 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursReadyCountAdd] at 0x12333c
+·! 0:00:05.342147 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursSemaphoreInitialize] at 0x123884
+·! 0:00:05.342149 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTraceFinalize] at 0x1233f4
+·! 0:00:05.342150 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskGetReadOnlyAreaPattern] at 0x1236f4
+·! 0:00:05.342151 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursWakeUp] at 0x123284
+·! 0:00:05.342153 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursBarrierInitialize] at 0x123874
+·! 0:00:05.342154 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSetPriorities] at 0x1232ac
+·! 0:00:05.342156 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAttributeSetMemoryContainerForSpuThread] at 0x12321c
+·! 0:00:05.342157 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTryJoinTask2] at 0x123604
+·! 0:00:05.342159 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSetMaxContention] at 0x1232bc
+·! 0:00:05.342160 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursUnsetGlobalExceptionEventHandler] at 0x123474
+·! 0:00:05.342164 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetJobChainId] at 0x123924
+·! 0:00:05.342167 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagAttachLv2EventQueue] at 0x12379c
+·! 0:00:05.342168 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagGetDirection] at 0x1237d4
+·! 0:00:05.342170 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursLFQueuePushBody] at 0x12384c
+·! 0:00:05.342171 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursTaskAttribute2Initialize] at 0x1235cc
+·! 0:00:05.342173 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTasksetAttributeSetTasksetSize] at 0x123714
+·! 0:00:05.342174 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAddUrgentCall] at 0x1238b4
+·! 0:00:05.342175 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskGetContextSaveAreaSize] at 0x123704
+·! 0:00:05.342176 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0x90C82BFC] at 0x123264
+·! 0:00:05.342178 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueuePopBody] at 0x123824
+·! 0:00:05.342179 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskGenerateLsPattern] at 0x1236ec
+·! 0:00:05.342180 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueuePushBody] at 0x12381c
+·! 0:00:05.342182 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTasksetUnsetExceptionEventHandler] at 0x123674
+·! 0:00:05.342183 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagGetTasksetAddress] at 0x1237e4
+·! 0:00:05.342185 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursAttributeInitialize] at 0x12324c
+·! 0:00:05.342186 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobHeaderSetJobbin2Param] at 0x123984
+·! 0:00:05.342188 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursShutdownWorkload] at 0x123314
+·! 0:00:05.342189 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursBarrierGetTasksetAddress] at 0x12387c
+·! 0:00:05.342190 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAttributeEnableSystemWorkload] at 0x12354c
+·! 0:00:05.342192 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJoinTaskset] at 0x12378c
+·! 0:00:05.342193 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetTasksetInfo] at 0x123734
+·! 0:00:05.342195 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainAttributeSetName] at 0x1238d4
+·! 0:00:05.342196 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskAttributeSetExitCodeContainer] at 0x1235c4
+·! 0:00:05.342197 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursWorkloadFlagReceiver] at 0x123534
+·! 0:00:05.342198 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursShutdownTaskset] at 0x12374c
+·! 0:00:05.342199 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJoinTask2] at 0x1235f4
+·! 0:00:05.342201 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJoinJobChain] at 0x12390c
+·! 0:00:05.342202 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetWorkloadData] at 0x123334
+·! 0:00:05.342203 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAttributeSetSpuThreadGroupType] at 0x12322c
+·! 0:00:05.342206 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursInitializeWithAttribute] at 0x123274
+·! 0:00:05.342207 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursInitialize] at 0x12327c
+·! 0:00:05.342208 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSetPriority] at 0x1232b4
+·! 0:00:05.342209 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0xB55782F9] at 0x12323c
+·! 0:00:05.342210 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursLFQueueGetTasksetAddress] at 0x12386c
+·! 0:00:05.342212 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursTaskAttributeInitialize] at 0x1235dc
+·! 0:00:05.342213 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAttachLv2EventQueue] at 0x123374
+·! 0:00:05.342214 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0xBAC24478] at 0x12359c
+·! 0:00:05.342215 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobChainAttributeSetHaltOnError] at 0x1238dc
+·! 0:00:05.342216 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0xBDCB78A5] at 0x1239a4
+·! 0:00:05.342218 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTask] at 0x12362c
+·! 0:00:05.342219 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursKickJobChain] at 0x123914
+·! 0:00:05.342220 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursAddWorkloadWithAttribute] at 0x1232fc
+·! 0:00:05.342221 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTasksetWithAttribute] at 0x12375c
+·! 0:00:05.342222 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursTasksetAttribute2Initialize] at 0x12373c
+·! 0:00:05.342224 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetNumSpuThread] at 0x1232a4
+·! 0:00:05.342225 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetWorkloadFlag] at 0x12350c
+·! 0:00:05.342226 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursFinalize] at 0x12328c
+·! 0:00:05.342227 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTraceStart] at 0x123414
+·! 0:00:05.342229 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursSetExceptionEventHandler] at 0x123494
+·! 0:00:05.342230 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobGuardNotify] at 0x12389c
+·! 0:00:05.342231 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetJobPipelineInfo] at 0x123974
+·! 0:00:05.342232 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0xD9A9C592] at 0x12357c
+·! 0:00:05.342233 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTasksetAttributeEnableClearLS] at 0x12371c
+·! 0:00:05.342234 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTraceStop] at 0x123404
+·! 0:00:05.342236 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursSendSignal] at 0x123634
+·! 0:00:05.342237 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTask2] at 0x123614
+·! 0:00:05.342238 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0xE279681F] at 0x123554
+·! 0:00:05.342239 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursCreateTask2WithBinInfo] at 0x12361c
+·! 0:00:05.342241 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueAttachLv2EventQueue] at 0x1237fc
+·! 0:00:05.342243 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursTaskExitCodeTryGet] at 0x1236c4
+·! 0:00:05.342245 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursJobSetMaxGrab] at 0x12397c
+·! 0:00:05.342246 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursGetTasksetId] at 0x123774
+·! 0:00:05.342248 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursQueueGetDirection] at 0x123834
+·! 0:00:05.342250 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [_cellSpursWorkloadAttributeInitialize] at 0x12330c
+·! 0:00:05.342252 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [0xF1BF099F] at 0x1239ac
+·! 0:00:05.342253 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursReadyCountCompareAndSwap] at 0x123344
+·! 0:00:05.342254 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursRunJobChain] at 0x12391c
+·! 0:00:05.342255 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursEventFlagSet] at 0x1237cc
+·! 0:00:05.342257 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpurs export: [cellSpursReadyCountStore] at 0x12334c
+·! 0:00:05.342258 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellDaisy' (0x1c000001, 0x90002, 0x0, 0x0)
+·! 0:00:05.342260 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy17LFQueue2PushCloseEPNS0_8LFQueue2EPFiPvjE] at 0x123a64
+·! 0:00:05.342261 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy21LFQueue2GetPopPointerEPNS0_8LFQueue2EPij] at 0x123a4c
+·! 0:00:05.342263 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock15completeConsumeEj] at 0x123a34
+·! 0:00:05.342265 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy9_snprintfEPcjPKcz] at 0x123a44
+·! 0:00:05.342266 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock7popOpenEv] at 0x123a14
+·! 0:00:05.342268 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy26LFQueue2CompletePopPointerEPNS0_8LFQueue2EiPFiPvjEj] at 0x123a54
+·! 0:00:05.342269 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlock7releaseEv] at 0x1239d4
+·! 0:00:05.342271 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock7popOpenEv] at 0x123a14
+·! 0:00:05.342272 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlockC1EPVNS0_16_AtomicInterlockEjPjjh] at 0x1239e4
+·! 0:00:05.342274 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlockC1EPVNS0_16_AtomicInterlockEjPjjh] at 0x1239e4
+·! 0:00:05.342275 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy9_snprintfEPcjPKcz] at 0x123a44
+·! 0:00:05.342276 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy29LFQueue2HasUnfinishedConsumerEPNS0_8LFQueue2Ej] at 0x123a7c
+·! 0:00:05.342278 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock18getNextHeadPointerEv] at 0x123a24
+·! 0:00:05.342279 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock10initializeEj] at 0x1239fc
+·! 0:00:05.342280 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlockC1EPVNS0_16_AtomicInterlockEjPvPFiS5_jE] at 0x1239bc
+·! 0:00:05.342281 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlockC2EPVNS0_16_AtomicInterlockEjPjjh] at 0x1239dc
+·! 0:00:05.342284 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock15completeProduceEj] at 0x123a3c
+·! 0:00:05.342285 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy16LFQueue2PushOpenEPNS0_8LFQueue2E] at 0x123a5c
+·! 0:00:05.342287 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy16LFQueue2PopCloseEPNS0_8LFQueue2EPFiPvjE] at 0x123a74
+·! 0:00:05.342288 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock8popCloseEv] at 0x123a1c
+·! 0:00:05.342290 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock8popCloseEv] at 0x123a1c
+·! 0:00:05.342291 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlockD2Ev] at 0x1239ec
+·! 0:00:05.342292 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy21LFQueue2GetPopPointerEPNS0_8LFQueue2EPij] at 0x123a4c
+·! 0:00:05.342293 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock18getNextTailPointerEv] at 0x123a2c
+·! 0:00:05.342296 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock8pushOpenEv] at 0x123a04
+·! 0:00:05.342297 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy29LFQueue2HasUnfinishedConsumerEPNS0_8LFQueue2Ej] at 0x123a7c
+·! 0:00:05.342298 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock9pushCloseEv] at 0x123a0c
+·! 0:00:05.342299 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlockD2Ev] at 0x1239ec
+·! 0:00:05.342301 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy15LFQueue2PopOpenEPNS0_8LFQueue2E] at 0x123a6c
+·! 0:00:05.342302 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlockC1EPVNS0_16_AtomicInterlockEjPvPFiS5_jE] at 0x1239bc
+·! 0:00:05.342303 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlockD1Ev] at 0x1239f4
+·! 0:00:05.342305 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock10initializeEj] at 0x1239fc
+·! 0:00:05.342306 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock15completeProduceEj] at 0x123a3c
+·! 0:00:05.342307 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy16LFQueue2PopCloseEPNS0_8LFQueue2EPFiPvjE] at 0x123a74
+·! 0:00:05.342308 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy15LFQueue2PopOpenEPNS0_8LFQueue2E] at 0x123a6c
+·! 0:00:05.342309 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy17LFQueue2PushCloseEPNS0_8LFQueue2EPFiPvjE] at 0x123a64
+·! 0:00:05.342311 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlockC2EPVNS0_16_AtomicInterlockEjPvPFiS5_jE] at 0x1239b4
+·! 0:00:05.342312 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlock21proceedSequenceNumberEv] at 0x1239c4
+·! 0:00:05.342313 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlockC2EPVNS0_16_AtomicInterlockEjPvPFiS5_jE] at 0x1239b4
+·! 0:00:05.342314 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlockC2EPVNS0_16_AtomicInterlockEjPjjh] at 0x1239dc
+·! 0:00:05.342316 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy4Lock15completeConsumeEj] at 0x123a34
+·! 0:00:05.342319 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlock21proceedSequenceNumberEv] at 0x1239c4
+·! 0:00:05.342320 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock18getNextHeadPointerEv] at 0x123a24
+·! 0:00:05.342322 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock9pushCloseEv] at 0x123a0c
+·! 0:00:05.342323 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy26LFQueue2CompletePopPointerEPNS0_8LFQueue2EiPFiPvjEj] at 0x123a54
+·! 0:00:05.342324 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy22ScatterGatherInterlock5probeEj] at 0x1239cc
+·! 0:00:05.342325 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock8pushOpenEv] at 0x123a04
+·! 0:00:05.342326 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlock5probeEj] at 0x1239cc
+·! 0:00:05.342327 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlockD1Ev] at 0x1239f4
+·! 0:00:05.342329 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_ZN4cell5Daisy16LFQueue2PushOpenEPNS0_8LFQueue2E] at 0x123a5c
+·! 0:00:05.342330 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy4Lock18getNextTailPointerEv] at 0x123a2c
+·! 0:00:05.342331 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellDaisy export: [_QN4cell5Daisy22ScatterGatherInterlock7releaseEv] at 0x1239d4
+·! 0:00:05.342332 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'cellSpudll' (0x0, 0x0, 0x2c000001, 0x90002)
+·! 0:00:05.342334 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpudll export: [cellSpudllHandleConfigSetDefaultValues] at 0x123aa4
+·! 0:00:05.342337 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellSpudll export: [cellSpudllGetImageSize] at 0x123a9c
+·! 0:00:05.342339 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Imported module 'cellLibprof' (ver=0x1, attr=0x9, 0x0, 0x0) [0x10dbf0]
+·! 0:00:05.342343 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellLibprof import: [cellUserTraceRegister] -> 0x10d718
+·! 0:00:05.342347 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** cellLibprof import: [cellUserTraceUnregister] -> 0x10d738
+·! 0:00:05.342348 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Imported module 'sysPrxForUser' (ver=0x1, attr=0x9, 0x0, 0x0) [0x10dc1c]
+·! 0:00:05.342350 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strncmp] -> 0x10d758
+·! 0:00:05.342352 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strcat] -> 0x10d778
+·! 0:00:05.342353 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_vsnprintf] -> 0x10d798
+·! 0:00:05.342355 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_snprintf] -> 0x10d7b8
+·! 0:00:05.342356 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_lock] -> 0x10d7d8
+·! 0:00:05.342358 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_unlock] -> 0x10d7f8
+·! 0:00:05.342359 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwcond_destroy] -> 0x10d818
+·! 0:00:05.342361 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_create] -> 0x10d838
+·! 0:00:05.342363 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwcond_wait] -> 0x10d858
+·! 0:00:05.342364 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strlen] -> 0x10d878
+·! 0:00:05.342367 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_create] -> 0x10d898
+·! 0:00:05.342369 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_spu_printf_detach_group] -> 0x10d8b8
+·! 0:00:05.342371 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_memset] -> 0x10d8d8
+·! 0:00:05.342373 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_memcpy] -> 0x10d8f8
+·! 0:00:05.342374 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strncat] -> 0x10d918
+·! 0:00:05.342375 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strcpy] -> 0x10d938
+·! 0:00:05.342377 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_printf] -> 0x10d958
+·! 0:00:05.342378 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [0x9FB6228E] -> 0x10d978
+·! 0:00:05.342380 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_exit] -> 0x10d998
+·! 0:00:05.342381 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_destroy] -> 0x10d9b8
+·! 0:00:05.342383 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strncpy] -> 0x10d9d8
+·! 0:00:05.342384 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwcond_create] -> 0x10d9f8
+·! 0:00:05.342386 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_spu_printf_attach_group] -> 0x10da18
+·! 0:00:05.342387 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_prx_get_module_id_by_name] -> 0x10da38
+·! 0:00:05.342389 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_spu_image_close] -> 0x10da58
+·! 0:00:05.342391 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_process_get_paramsfo] -> 0x10da78
+·! 0:00:05.342392 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_spu_image_import] -> 0x10da98
+·! 0:00:05.342394 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwcond_signal] -> 0x10dab8
+·! 0:00:05.342395 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_vprintf] -> 0x10dad8
+·! 0:00:05.342396 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_memcmp] -> 0x10daf8
+·! 0:00:05.347013 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} PPU: Function analysis: 384 functions (637 enqueued)
+·! 0:00:05.347093 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: PRX library hash: PRX-6adb38132bf8f3050d99b1af8ca3dcdb4eb526f5 (<- 0)
+·S 0:00:05.347323 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Loaded module: /dev_flash/sys/external/libsre.sprx
+·! 0:00:05.347782 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: SELF: No NPDRM control info found!
+·! 0:00:05.348350 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x1, p_vaddr=0x0, p_filesz=0xfef0, p_memsz=0xfef0, flags=0x400005
+·W 0:00:05.348420 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** Loaded to 0x130000 (size=0xfef0)
+·! 0:00:05.348561 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x1, p_vaddr=0xfef0, p_filesz=0x1774, p_memsz=0xa290, flags=0x600006
+·W 0:00:05.348594 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** Loaded to 0x140000 (size=0xa290)
+·! 0:00:05.348606 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Segment: p_type=0x700000a4, p_vaddr=0x0, p_filesz=0x90d8, p_memsz=0x0, flags=0x0
+·W 0:00:05.348631 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: Library sys_fs_Library (rtoc=0x1495d0):
+·! 0:00:05.348633 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: [module_start] at 0x1404d0
+·! 0:00:05.348638 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: [module_stop] at 0x1404d8
+·! 0:00:05.348639 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: &[module_info] at 0x13f990
+·! 0:00:05.348641 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Special: &[0x6D0F6CAE] at 0x14003c
+·! 0:00:05.348642 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'sys_fs' (0x1c000001, 0x90001, 0x0, 0x0)
+·! 0:00:05.348645 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSetDefaultContainer] at 0x140c88
+·! 0:00:05.348647 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAccess] at 0x140b90
+·! 0:00:05.348649 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x0CDA14BA] at 0x140bc0
+·! 0:00:05.348651 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsReadWithOffset] at 0x140cf0
+·! 0:00:05.348653 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFtruncate] at 0x1407e8
+·! 0:00:05.348654 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAllocateFileAreaWithInitialData] at 0x140b70
+·! 0:00:05.348656 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x13BF1286] at 0x141550
+·! 0:00:05.348658 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsMappedAllocate] at 0x140a00
+·! 0:00:05.348659 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsOpen2] at 0x140c28
+·! 0:00:05.348661 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadGetCurrentAddr] at 0x1410f0
+·! 0:00:05.348662 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsGetBlockSize] at 0x140b78
+·! 0:00:05.348665 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLsnGetCDA] at 0x1407b0
+·! 0:00:05.348666 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFGetBlockSize2] at 0x1409f0
+·! 0:00:05.348668 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsArcadeHddSerialNumber] at 0x141038
+·! 0:00:05.348670 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLsnLock] at 0x1407c0
+·! 0:00:05.348671 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLsnUnlock] at 0x1407c8
+·! 0:00:05.348672 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAclRead] at 0x140b58
+·! 0:00:05.348674 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadInit] at 0x141130
+·! 0:00:05.348676 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStRead] at 0x1410f8
+·! 0:00:05.348677 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsRmdir] at 0x140c20
+·! 0:00:05.348678 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsClose] at 0x140718
+·! 0:00:05.348680 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAllocateFileAreaByFdWithoutZeroFill] at 0x1409a0
+·! 0:00:05.348681 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSetIoBuffer] at 0x140ca8
+·! 0:00:05.348683 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAllocateFileAreaByFdWithInitialData] at 0x1407d8
+·! 0:00:05.348684 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x37907F9F] at 0x140bc8
+·! 0:00:05.348685 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsMappedFree] at 0x1409c8
+·! 0:00:05.348687 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsTruncate2] at 0x1407e0
+·! 0:00:05.348688 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLink] at 0x140b60
+·! 0:00:05.348690 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsOpendir] at 0x140720
+·! 0:00:05.348692 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSdataOpenWithVersion] at 0x140fc8
+·! 0:00:05.348693 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsGetBlockSize2] at 0x140be8
+·! 0:00:05.348695 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAioWrite] at 0x141440
+·! 0:00:05.348697 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsRead] at 0x140708
+·! 0:00:05.348698 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x5731DF45] at 0x141068
+·! 0:00:05.348699 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsReaddir] at 0x140728
+·! 0:00:05.348701 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsChangeFileSizeWithoutAllocation] at 0x140c30
+·! 0:00:05.348702 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLsnRead] at 0x1409d0
+·! 0:00:05.348703 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFcntl] at 0x140760
+·! 0:00:05.348704 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLsnGetCDASize] at 0x1407a8
+·! 0:00:05.348706 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSdataOpenByFd] at 0x140d80
+·! 0:00:05.348707 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsOpen] at 0x140c00
+·! 0:00:05.348708 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSetIoBufferFromDefaultContainer] at 0x140cb0
+·! 0:00:05.348710 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAllocateFileAreaWithoutZeroFill] at 0x140c38
+·! 0:00:05.348711 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x7DBB9A4D] at 0x140be0
+·! 0:00:05.348713 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStat] at 0x140b38
+·! 0:00:05.348714 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAioCancel] at 0x141438
+·! 0:00:05.348716 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsUnlink] at 0x140c18
+·! 0:00:05.348717 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadPutCurrentAddr] at 0x1410e8
+·! 0:00:05.348718 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsChown] at 0x140ba0
+·! 0:00:05.348720 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadWaitCallback] at 0x1410d8
+·! 0:00:05.348721 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsWriteWithOffset] at 0x140d10
+·! 0:00:05.348724 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSymbolicLink] at 0x140b88
+·! 0:00:05.348726 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadStart] at 0x141108
+·! 0:00:05.348727 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadWait] at 0x1410e0
+·! 0:00:05.348728 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSetDiscReadRetrySetting] at 0x141070
+·! 0:00:05.348729 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsGetPath] at 0x140860
+·! 0:00:05.348731 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x964DB398] at 0x140af0
+·! 0:00:05.348732 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFsync] at 0x140778
+·! 0:00:05.348733 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsChmod] at 0x140b50
+·! 0:00:05.348735 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsGetDirectoryEntries] at 0x140a40
+·! 0:00:05.348738 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAioFinish] at 0x141458
+·! 0:00:05.348739 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0x9FDBBA89] at 0x141098
+·! 0:00:05.348740 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsRegisterConversionCallback] at 0x140b30
+·! 0:00:05.348741 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLseek] at 0x140768
+·! 0:00:05.348742 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsGetFreeSize] at 0x140b80
+·! 0:00:05.348744 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xADDF33CD] at 0x140bd0
+·! 0:00:05.348745 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xAE4A225E] at 0x140bd8
+·! 0:00:05.348746 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsSdataOpen] at 0x140d38
+·! 0:00:05.348748 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadGetRingBuf] at 0x141120
+·! 0:00:05.348749 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsMkdir] at 0x140bb8
+·! 0:00:05.348750 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadGetRegid] at 0x141110
+·! 0:00:05.348751 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsUtime] at 0x140bb0
+·! 0:00:05.348752 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAioRead] at 0x141448
+·! 0:00:05.348753 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xC85C4DE7] at 0x140b40
+·! 0:00:05.348755 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsTruncate] at 0x140ba8
+·! 0:00:05.348758 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFGetBlockSize] at 0x140780
+·! 0:00:05.348761 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xCBF1758B] at 0x140b68
+·! 0:00:05.348763 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadGetStatus] at 0x141118
+·! 0:00:05.348765 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFdatasync] at 0x140770
+·! 0:00:05.348766 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadFinish] at 0x141128
+·! 0:00:05.348767 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAioInit] at 0x141460
+·! 0:00:05.348769 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsChangeFileSizeByFdWithoutAllocation] at 0x140998
+·! 0:00:05.348770 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xE3D28395] at 0x140c10
+·! 0:00:05.348771 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsAclWrite] at 0x140b98
+·! 0:00:05.348772 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsWrite] at 0x140710
+·! 0:00:05.348773 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsFstat] at 0x140738
+·! 0:00:05.348774 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsLsnRead2] at 0x1409f8
+·! 0:00:05.348775 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsRename] at 0x140bf0
+·! 0:00:05.348777 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xF44C0E1D] at 0x140b48
+·! 0:00:05.348779 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsStReadStop] at 0x141100
+·! 0:00:05.348780 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsUnregisterL10nCallbacks] at 0x140b20
+·! 0:00:05.348782 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [0xFF29F478] at 0x140bf8
+·! 0:00:05.348783 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs export: [cellFsClosedir] at 0x140730
+·! 0:00:05.348785 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Exported module 'sys_fs_ps2disc' (0x0, 0x0, 0x2c000001, 0x9000f)
+·! 0:00:05.348787 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sys_fs_ps2disc export: [0x8160A811] at 0x141048
+·! 0:00:05.348789 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: ** Imported module 'sysPrxForUser' (ver=0x1, attr=0x9, 0x0, 0x0) [0x13f960]
+·! 0:00:05.348791 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strncmp] -> 0x13f71c
+·! 0:00:05.348794 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_lock] -> 0x13f73c
+·! 0:00:05.348796 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_unlock] -> 0x13f75c
+·! 0:00:05.348798 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_create] -> 0x13f77c
+·! 0:00:05.348799 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strlen] -> 0x13f79c
+·! 0:00:05.348801 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_create] -> 0x13f7bc
+·! 0:00:05.348804 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_get_id] -> 0x13f7dc
+·! 0:00:05.348805 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strcmp] -> 0x13f7fc
+·! 0:00:05.348807 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_memset] -> 0x13f81c
+·! 0:00:05.348809 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_memcpy] -> 0x13f83c
+·! 0:00:05.348811 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_strcpy] -> 0x13f85c
+·! 0:00:05.348812 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_ppu_thread_exit] -> 0x13f87c
+·! 0:00:05.348814 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_malloc] -> 0x13f89c
+·! 0:00:05.348816 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [sys_lwmutex_destroy] -> 0x13f8bc
+·! 0:00:05.348817 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: **** sysPrxForUser import: [_sys_free] -> 0x13f8dc
+·! 0:00:05.351193 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} PPU: Function analysis: 450 functions (723 enqueued)
+·! 0:00:05.351265 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} LDR: PRX library hash: PRX-4b754af5b92c5cc0603a0d11b63aa8dad1f3ca27 (<- 0)
+·S 0:00:05.351371 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Loaded module: /dev_flash/sys/external/libfs.sprx
+·W 0:00:05.351387 {PPU[0x1000000] Thread (main_thread) [0x000714d0]} sys_prx: Ignored module: /dev_flash/sys/external/libsysutil_np_trophy.sprx
+·W 0:00:05.351401 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23000d00, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351403 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23000d00, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351406 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23000e00, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351408 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23000e00, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351410 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23000f00, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351411 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23000f00, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351413 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23001000, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351415 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23001000, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351420 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23001100, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351422 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23001100, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351424 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23001200, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351429 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010520, protocol=0x2, control=*0x149990, arg4=0x80000001, name=0x5f66735f70776c00, arg6=0x0)
+·W 0:00:05.351432 {PPU[0x1000000] Thread (main_thread) [0x00131acc]} sys_mutex: sys_mutex_create(mutex_id=*0x1499ac, attr=*0xd00105d8)
+·W 0:00:05.351434 {PPU[0x1000000] Thread (main_thread) [0x00131b18]} sys_cond: sys_cond_create(cond_id=*0x1499b0, mutex_id=0x85001500, attr=*0xd00105c0)
+·W 0:00:05.351437 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x1499c8, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351439 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149a50, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351441 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149ad8, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351443 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149b60, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351444 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149be8, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351447 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149c70, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351449 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149cf8, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351450 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149d80, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351452 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149e08, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351454 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149e90, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351455 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149f18, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351457 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x149fa0, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351460 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x14a028, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351463 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x14a0b0, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351464 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x14a138, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351466 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x14a1c0, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351470 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00104e0, protocol=0x2, control=*0x14a238, arg4=0x80000001, name=0x0, arg6=0x0)
+·W 0:00:05.351472 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010520, protocol=0x2, control=*0x14a278, arg4=0x80000001, name=0x5f66735f61746c00, arg6=0x0)
+·W 0:00:05.351474 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23001200, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351479 {PPU[0x1000000] Thread (main_thread) [0x000711bc]} sys_prx: _sys_prx_start_module(id=0x23001300, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351481 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23001300, flags=0x0, pOpt=*0xd00107a0)
+·W 0:00:05.351483 {PPU[0x1000000] Thread (main_thread) [0x000b460c]} sys_memory: sys_memory_allocate(size=0x10000, flags=0x200, alloc_addr=*0xc14e4)
+·W 0:00:05.351532 {PPU[0x1000000] Thread (main_thread) [0x0007120c]} sys_prx: _sys_prx_start_module(id=0x23000b00, flags=0x0, pOpt=*0xd0010c20)
+·W 0:00:05.351535 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010b40, protocol=0x2, control=*0x80ee8, arg4=0x80000001, name=0x5f6c763270727800, arg6=0x0)
+·U 0:00:05.351538 {PPU[0x1000000] Thread (main_thread) [0x0007061c]} sys_prx TODO: _sys_prx_register_module()
+·W 0:00:05.351542 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00109a0, protocol=0x2, control=*0x31e78, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351555 {PPU[0x1000000] Thread (main_thread) [0x000191bc]} sys_memory: sys_memory_get_user_memory_size(mem_info=*0xd0010a34)
+·W 0:00:05.351558 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a90, protocol=0x2, control=*0x31c78, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351560 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x31408, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351562 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x31430, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351564 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x31458, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351566 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x31340, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351568 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x31368, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351569 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x31390, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351571 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x313b8, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351573 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010a00, protocol=0x2, control=*0x313e0, arg4=0x80000001, name=0x5f6c635f6d747800, arg6=0x0)
+·W 0:00:05.351586 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00107b0, protocol=0x2, control=*0x35f48, arg4=0x80000001, name=0x5f6c67636d747800, arg6=0x0)
+·W 0:00:05.351591 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd0010740, protocol=0x2, control=*0x36010, arg4=0x80000001, name=0x5f6c67636d747800, arg6=0x0)
+·W 0:00:05.351599 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00107f0, protocol=0x2, control=*0x35f08, arg4=0x80000001, name=0x5f6c67636d747800, arg6=0x0)
+·W 0:00:05.351611 {PPU[0x1000000] Thread (main_thread) [0x00026100]} sys_memory: sys_memory_allocate(size=0x800000, flags=0x400, alloc_addr=*0x311e4)
+·W 0:00:05.351731 {PPU[0x1000000] Thread (main_thread) [0x00064f74]} sys_lwmutex: _sys_lwmutex_create(lwmutex_id=*0xd00107d0, protocol=0x2, control=*0xe2d60, arg4=0x80000001, name=0x5f67636d6c776d00, arg6=0x0)
+·W 0:00:05.351741 {PPU[0x1000000] Thread (main_thread) [0x000d06a0]} sys_rsx: sys_rsx_device_map(dev_addr=*0xd0010900, a2=*0xd00108f8, dev_id=0x8)
+·W 0:00:05.351833 {PPU[0x1000000] Thread (main_thread) [0x000d06d8]} sys_process: sys_process_get_sdk_version(pid=0x1, version=*0xd00108f0)
+·W 0:00:05.351836 {PPU[0x1000000] Thread (main_thread) [0x000d0888]} sys_rsx: sys_rsx_memory_allocate(mem_handle=*0xd00108b0, mem_addr=*0xd00108b8, size=0xf900000, flags=0x80000, a5=0x300000, a6=0xf, a7=0x8)
+·W 0:00:05.352255 {PPU[0x1000000] Thread (main_thread) [0x000d0848]} sys_rsx: sys_rsx_context_allocate(context_id=*0xd00108b4, lpar_dma_control=*0xd00108c0, lpar_driver_info=*0xd00108c8, lpar_reports=*0xd00108d0, mem_ctx=0x5a5a5a5b, system_mode=0x820)
+·W 0:00:05.352296 {PPU[0x1000000] Thread (main_thread) [0x000d0848]} sys_event: sys_event_queue_create(equeue_id=*0xd0010838, attr=*0xd0010820, event_queue_key=0x0, size=32)
+·W 0:00:05.352306 {PPU[0x1000000] Thread (main_thread) [0x000d0848]} sys_event: sys_event_port_create(eport_id=*0xd0010838, port_type=1, name=0x0)
+·W 0:00:05.352308 {PPU[0x1000000] Thread (main_thread) [0x000d0848]} sys_event: sys_event_port_connect_local(eport_id=0xe003900, equeue_id=0x8d003800)
+·W 0:00:05.353022 {PPU[0x1000000] Thread (main_thread) [0x00064d60]} sys_ppu_thread: _sys_ppu_thread_create(thread_id=*0xe0048, param=*0xd0010790, arg=0x0, unk=0x0, prio=1, stacksize=0x4000, flags=0x1, threadname=“_gcm_intr_thread”)
+·W 0:00:05.353470 {PPU[0x1000000] Thread (main_thread) [0x000d49f8]} sys_rsx: sys_rsx_context_iomap(context_id=0x55555555, io=0x0, ea=0x30000000, size=0x100000, flags=0xe000000000000800)
+·W 0:00:05.353496 {PPU[0x1000000] Thread (main_thread) [0x000d3898]} sys_rsx: sys_rsx_context_attribute(context_id=0x55555555, package_id=0x1, a3=0x1000, a4=0x1000, a5=0x0, a6=0x0)
+·W 0:00:05.354945 {PPU[0x1000000] Thread (main_thread) [0x000d0c0c]} sys_rsx: sys_rsx_context_attribute(context_id=0x55555555, package_id=0x10a, a3=0x0, a4=0x0, a5=0x80000000, a6=0x0)
+·W 0:00:05.354951 {PPU[0x1000000] Thread (main_thread) [0x000d1b40]} sys_rsx: sys_rsx_context_attribute(context_id=0x55555555, package_id=0x10a, a3=0x1, a4=0x0, a5=0x80000000, a6=0x0)
+·W 0:00:05.354958 {PPU[0x1000000] Thread (main_thread) [0x000d44dc]} sys_rsx: sys_rsx_context_iomap(context_id=0x55555555, io=0x100000, ea=0x30100000, size=0x700000, flags=0xe000000000000800)
+·E 0:00:05.354978 {rsx::thread} RSX: NV3089_IMAGE_IN_SIZE: Invalid blit dimensions passed
+·W 0:00:05.354988 {PPU[0x1000000] Thread (main_thread) [0x00017ab8]} sys_memory: sys_memory_allocate(size=0x100000, flags=0x400, alloc_addr=*0xd00105b0)
+·! 0:00:05.355294 {PPU[0x1000000] Thread (main_thread) [0x00014440]} sys_tty: sys_tty_write(ch=0, buf=*0x30800010, len=22, pwritelen=*0xd0010670)
+·W 0:00:05.355551 {PPU[0x1000000] Thread (main_thread) [0x000d1e88]} sys_rsx: sys_rsx_context_attribute(context_id=0x55555555, package_id=0x104, a3=0x0, a4=0x500000002d0, a5=0x140000200000, a6=0x0)
+·W 0:00:05.355832 {rsx::thread} RSX: c.push(1, DRIVER_QUEUE_1); c.push(0x0)
+·W 0:00:05.362908 {rsx::thread} RSX: c.push(1, NV406E_SET_CONTEXT_DMA_SEMAPHORE); c.push(0x56616661)
+·W 0:00:05.362913 {rsx::thread} RSX: c.push(1, NV406E_SEMAPHORE_OFFSET); c.push(0x30)
+·W 0:00:05.362914 {rsx::thread} RSX: c.push(1, NV406E_SEMAPHORE_RELEASE); c.push(0x0)
+·W 0:00:05.362917 {rsx::thread} RSX: c.push(1, NV406E_SEMAPHORE_OFFSET); c.push(0x30)
+·W 0:00:05.362953 {rsx::thread} RSX: c.push(1, NV406E_SEMAPHORE_ACQUIRE); c.push(0x1)
+·W 0:00:05.362955 {rsx::thread} RSX: c.push(1, 0x0); c.push(0x31337000)
+·W 0:00:05.362956 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_NOTIFIES); c.push(0x66604200)
+·W 0:00:05.362957 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_A); c.push(0xfeed0000)
+·W 0:00:05.362958 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_B); c.push(0xfeed0001)
+·W 0:00:05.362958 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_COLOR_B); c.push(0xfeed0000)
+·W 0:00:05.362960 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_STATE); c.push(0x0)
+·W 0:00:05.362961 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_COLOR_A); c.push(0xfeed0000)
+·W 0:00:05.362962 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_ZETA); c.push(0xfeed0000)
+·W 0:00:05.362963 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_VERTEX_A); c.push(0xfeed0000)
+·W 0:00:05.362963 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_VERTEX_B); c.push(0xfeed0001)
+·W 0:00:05.362964 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_SEMAPHORE); c.push(0x66606660)
+·W 0:00:05.362965 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_REPORT); c.push(0x66626660)
+·W 0:00:05.362966 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_CLIP_ID); c.push(0x0)
+·W 0:00:05.362967 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_CULL_DATA); c.push(0x0)
+·W 0:00:05.362968 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_COLOR_C); c.push(0xfeed0000)
+·W 0:00:05.362968 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTEXT_DMA_COLOR_D); c.push(0xfeed0000)
+·W 0:00:05.362970 {rsx::thread} RSX: c.push(1, NV406E_SET_CONTEXT_DMA_SEMAPHORE); c.push(0x66616661)
+·W 0:00:05.362971 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_CLIP_HORIZONTAL); c.push(0x0)
+·W 0:00:05.362972 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_CLIP_VERTICAL); c.push(0x0)
+·W 0:00:05.362972 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_FORMAT); c.push(0x121)
+·W 0:00:05.362973 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_PITCH_A); c.push(0x40)
+·W 0:00:05.362974 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_COLOR_AOFFSET); c.push(0x0)
+·W 0:00:05.362974 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_ZETA_OFFSET); c.push(0x0)
+·W 0:00:05.362975 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_COLOR_BOFFSET); c.push(0x0)
+·W 0:00:05.362976 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_PITCH_B); c.push(0x40)
+·W 0:00:05.362976 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_COLOR_TARGET); c.push(0x1)
+·W 0:00:05.362977 {rsx::thread} RSX: c.push(1, 0x224); c.push(0x80)
+·W 0:00:05.362978 {rsx::thread} RSX: c.push(1, 0x228); c.push(0x100)
+·W 0:00:05.362979 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_PITCH_Z); c.push(0x40)
+·W 0:00:05.362979 {rsx::thread} RSX: c.push(1, 0x230); c.push(0x0)
+·W 0:00:05.362980 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_PITCH_C); c.push(0x40)
+·W 0:00:05.362981 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_PITCH_D); c.push(0x40)
+·W 0:00:05.362982 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_COLOR_COFFSET); c.push(0x0)
+·W 0:00:05.362983 {rsx::thread} RSX: c.push(1, NV4097_SET_SURFACE_COLOR_DOFFSET); c.push(0x0)
+·W 0:00:05.362985 {rsx::thread} RSX: c.push(1, 0x1d80); c.push(0x3)
+·W 0:00:05.362986 {rsx::thread} RSX: c.push(1, NV4097_SET_WINDOW_OFFSET); c.push(0x0)
+·W 0:00:05.362986 {rsx::thread} RSX: c.push(1, 0x2bc); c.push(0x0)
+·W 0:00:05.362987 {rsx::thread} RSX: c.push(1, 0x2c0); c.push(0xfff0000)
+·W 0:00:05.362988 {rsx::thread} RSX: c.push(1, 0x2c4); c.push(0xfff0000)
+·W 0:00:05.362989 {rsx::thread} RSX: c.push(1, 0x2c8); c.push(0xfff0000)
+·W 0:00:05.362990 {rsx::thread} RSX: c.push(1, 0x2cc); c.push(0xfff0000)
+·W 0:00:05.362991 {rsx::thread} RSX: c.push(1, 0x2d0); c.push(0xfff0000)
+·W 0:00:05.362991 {rsx::thread} RSX: c.push(1, 0x2d4); c.push(0xfff0000)
+·W 0:00:05.362992 {rsx::thread} RSX: c.push(1, 0x2d8); c.push(0xfff0000)
+·W 0:00:05.362992 {rsx::thread} RSX: c.push(1, 0x2dc); c.push(0xfff0000)
+·W 0:00:05.362993 {rsx::thread} RSX: c.push(1, 0x2e0); c.push(0xfff0000)
+·W 0:00:05.362996 {rsx::thread} RSX: c.push(1, 0x2e4); c.push(0xfff0000)
+·W 0:00:05.362996 {rsx::thread} RSX: c.push(1, 0x2e8); c.push(0xfff0000)
+·W 0:00:05.362997 {rsx::thread} RSX: c.push(1, 0x2ec); c.push(0xfff0000)
+·W 0:00:05.362997 {rsx::thread} RSX: c.push(1, 0x2f0); c.push(0xfff0000)
+·W 0:00:05.362998 {rsx::thread} RSX: c.push(1, 0x2f4); c.push(0xfff0000)
+·W 0:00:05.362999 {rsx::thread} RSX: c.push(1, 0x2f8); c.push(0xfff0000)
+·W 0:00:05.362999 {rsx::thread} RSX: c.push(1, 0x2fc); c.push(0xfff0000)
+·W 0:00:05.363000 {rsx::thread} RSX: c.push(1, 0x1d98); c.push(0xfff0000)
+·W 0:00:05.363001 {rsx::thread} RSX: c.push(1, 0x1d9c); c.push(0xfff0000)
+·W 0:00:05.363002 {rsx::thread} RSX: c.push(1, 0x1da4); c.push(0x0)
+·W 0:00:05.363002 {rsx::thread} RSX: c.push(1, NV4097_SET_CONTROL0); c.push(0x100000)
+·W 0:00:05.363003 {rsx::thread} RSX: c.push(1, 0x1454); c.push(0x0)
+·W 0:00:05.363004 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_ATTRIB_OUTPUT_MASK); c.push(0x3fffff)
+·W 0:00:05.363005 {rsx::thread} RSX: c.push(1, NV4097_SET_FREQUENCY_DIVIDER_OPERATION); c.push(0x0)
+·W 0:00:05.363006 {rsx::thread} RSX: c.push(1, NV4097_SET_ATTRIB_COLOR); c.push(0x6144321)
+·W 0:00:05.363007 {rsx::thread} RSX: c.push(1, NV4097_SET_ATTRIB_TEX_COORD); c.push(0xedcba987)
+·W 0:00:05.363007 {rsx::thread} RSX: c.push(1, NV4097_SET_ATTRIB_TEX_COORD_EX); c.push(0x6f)
+·W 0:00:05.363008 {rsx::thread} RSX: c.push(1, NV4097_SET_ATTRIB_UCLIP0); c.push(0x171615)
+·W 0:00:05.363009 {rsx::thread} RSX: c.push(1, NV4097_SET_ATTRIB_UCLIP1); c.push(0x1b1a19)
+·W 0:00:05.363015 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL); c.push(0x0)
+·W 0:00:05.363016 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 4); c.push(0x0)
+·W 0:00:05.363017 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 8); c.push(0x0)
+·W 0:00:05.363017 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 12); c.push(0x0)
+·W 0:00:05.363018 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 16); c.push(0x0)
+·W 0:00:05.363019 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 20); c.push(0x0)
+·W 0:00:05.363019 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 24); c.push(0x0)
+·W 0:00:05.363020 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 28); c.push(0x0)
+·W 0:00:05.363021 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 32); c.push(0x0)
+·W 0:00:05.363021 {rsx::thread} RSX: c.push(1, NV4097_SET_TEX_COORD_CONTROL + 36); c.push(0x0)
+·W 0:00:05.363022 {rsx::thread} RSX: c.push(1, 0xa0c); c.push(0x0)
+·W 0:00:05.363023 {rsx::thread} RSX: c.push(1, 0xa60); c.push(0x0)
+·W 0:00:05.363024 {rsx::thread} RSX: c.push(1, NV4097_SET_POLY_OFFSET_LINE_ENABLE); c.push(0x0)
+·W 0:00:05.363025 {rsx::thread} RSX: c.push(1, NV4097_SET_POLY_OFFSET_FILL_ENABLE); c.push(0x0)
+·W 0:00:05.363026 {rsx::thread} RSX: c.push(1, NV4097_SET_POLYGON_OFFSET_SCALE_FACTOR); c.push(0x0)
+·W 0:00:05.363027 {rsx::thread} RSX: c.push(1, NV4097_SET_POLYGON_OFFSET_BIAS); c.push(0x0)
+·W 0:00:05.363027 {rsx::thread} RSX: c.push(1, 0x1428); c.push(0x1)
+·W 0:00:05.363028 {rsx::thread} RSX: c.push(1, NV4097_SET_SHADER_WINDOW); c.push(0x1000)
+·W 0:00:05.363029 {rsx::thread} RSX: c.push(1, 0x1e94); c.push(0x11)
+·W 0:00:05.363030 {rsx::thread} RSX: c.push(1, 0x1450); c.push(0x80003)
+·W 0:00:05.363030 {rsx::thread} RSX: c.push(1, 0x1d64); c.push(0x2000000)
+·W 0:00:05.363032 {rsx::thread} RSX: c.push(1, 0x145c); c.push(0x1)
+·W 0:00:05.363033 {rsx::thread} RSX: c.push(1, NV4097_SET_REDUCE_DST_COLOR); c.push(0x1)
+·W 0:00:05.363033 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2); c.push(0x2dc8)
+·W 0:00:05.363034 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 4); c.push(0x2dc8)
+·W 0:00:05.363035 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 8); c.push(0x2dc8)
+·W 0:00:05.363036 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 12); c.push(0x2dc8)
+·W 0:00:05.363036 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 16); c.push(0x2dc8)
+·W 0:00:05.363039 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 20); c.push(0x2dc8)
+·W 0:00:05.363041 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 24); c.push(0x2dc8)
+·W 0:00:05.363041 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 28); c.push(0x2dc8)
+·W 0:00:05.363042 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_SCALED4S_M + 40); c.push(0x2dc8)
+·W 0:00:05.363043 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 36); c.push(0x2dc8)
+·W 0:00:05.363043 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 40); c.push(0x2dc8)
+·W 0:00:05.363044 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 44); c.push(0x2dc8)
+·W 0:00:05.363045 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 48); c.push(0x2dc8)
+·W 0:00:05.363045 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 52); c.push(0x2dc8)
+·W 0:00:05.363046 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 56); c.push(0x2dc8)
+·W 0:00:05.363047 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL2 + 60); c.push(0x2dc8)
+·W 0:00:05.363048 {rsx::thread} RSX: c.push(1, NV4097_SET_FOG_MODE); c.push(0x800)
+·W 0:00:05.363049 {rsx::thread} RSX: c.push(1, NV4097_SET_FOG_PARAMS); c.push(0x0)
+·W 0:00:05.363050 {rsx::thread} RSX: c.push(1, NV4097_SET_FOG_PARAMS + 4); c.push(0x0)
+·W 0:00:05.363051 {rsx::thread} RSX: c.push(1, NV4097_SET_FOG_PARAMS + 8); c.push(0x0)
+·W 0:00:05.363051 {rsx::thread} RSX: c.push(1, 0x240); c.push(0xffff)
+·W 0:00:05.363052 {rsx::thread} RSX: c.push(1, 0x244); c.push(0x0)
+·W 0:00:05.363053 {rsx::thread} RSX: c.push(1, 0x248); c.push(0x0)
+·W 0:00:05.363053 {rsx::thread} RSX: c.push(1, 0x24c); c.push(0x0)
+·W 0:00:05.363054 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD); c.push(0x10101)
+·W 0:00:05.363055 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 4); c.push(0x10101)
+·W 0:00:05.363056 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 8); c.push(0x10101)
+·W 0:00:05.363056 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 12); c.push(0x10101)
+·W 0:00:05.363057 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 16); c.push(0x10101)
+·W 0:00:05.363058 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 20); c.push(0x10101)
+·W 0:00:05.363059 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 24); c.push(0x10101)
+·W 0:00:05.363059 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 28); c.push(0x10101)
+·W 0:00:05.363060 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 32); c.push(0x10101)
+·W 0:00:05.363061 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 36); c.push(0x10101)
+·W 0:00:05.363062 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 40); c.push(0x10101)
+·W 0:00:05.363063 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 44); c.push(0x10101)
+·W 0:00:05.363064 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 48); c.push(0x10101)
+·W 0:00:05.363065 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 52); c.push(0x10101)
+·W 0:00:05.363066 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 56); c.push(0x10101)
+·W 0:00:05.363066 {rsx::thread} RSX: c.push(1, NV4097_SET_ANISO_SPREAD + 60); c.push(0x10101)
+·W 0:00:05.363067 {rsx::thread} RSX: c.push(1, 0x400); c.push(0x7421)
+·W 0:00:05.363068 {rsx::thread} RSX: c.push(1, 0x404); c.push(0x7421)
+·W 0:00:05.363068 {rsx::thread} RSX: c.push(1, 0x408); c.push(0x7421)
+·W 0:00:05.363069 {rsx::thread} RSX: c.push(1, 0x40c); c.push(0x7421)
+·W 0:00:05.363070 {rsx::thread} RSX: c.push(1, 0x410); c.push(0x7421)
+·W 0:00:05.363070 {rsx::thread} RSX: c.push(1, 0x414); c.push(0x7421)
+·W 0:00:05.363071 {rsx::thread} RSX: c.push(1, 0x418); c.push(0x7421)
+·W 0:00:05.363072 {rsx::thread} RSX: c.push(1, 0x41c); c.push(0x7421)
+·W 0:00:05.363072 {rsx::thread} RSX: c.push(1, 0x420); c.push(0x7421)
+·W 0:00:05.363073 {rsx::thread} RSX: c.push(1, 0x424); c.push(0x7421)
+·W 0:00:05.363073 {rsx::thread} RSX: c.push(1, 0x428); c.push(0x7421)
+·W 0:00:05.363074 {rsx::thread} RSX: c.push(1, 0x42c); c.push(0x7421)
+·W 0:00:05.363075 {rsx::thread} RSX: c.push(1, 0x430); c.push(0x7421)
+·W 0:00:05.363077 {rsx::thread} RSX: c.push(1, 0x434); c.push(0x7421)
+·W 0:00:05.363077 {rsx::thread} RSX: c.push(1, 0x438); c.push(0x7421)
+·W 0:00:05.363078 {rsx::thread} RSX: c.push(1, 0x43c); c.push(0x7421)
+·W 0:00:05.363078 {rsx::thread} RSX: c.push(1, 0x440); c.push(0x9aabaa98)
+·W 0:00:05.363079 {rsx::thread} RSX: c.push(1, 0x444); c.push(0x66666789)
+·W 0:00:05.363080 {rsx::thread} RSX: c.push(1, 0x448); c.push(0x98766666)
+·W 0:00:05.363081 {rsx::thread} RSX: c.push(1, 0x44c); c.push(0x89aabaa9)
+·W 0:00:05.363082 {rsx::thread} RSX: c.push(1, 0x450); c.push(0x99999999)
+·W 0:00:05.363083 {rsx::thread} RSX: c.push(1, 0x454); c.push(0x88888889)
+·W 0:00:05.363083 {rsx::thread} RSX: c.push(1, 0x458); c.push(0x98888888)
+·W 0:00:05.363084 {rsx::thread} RSX: c.push(1, 0x45c); c.push(0x99999999)
+·W 0:00:05.363085 {rsx::thread} RSX: c.push(1, 0x460); c.push(0x56676654)
+·W 0:00:05.363085 {rsx::thread} RSX: c.push(1, 0x464); c.push(0x33333345)
+·W 0:00:05.363086 {rsx::thread} RSX: c.push(1, 0x468); c.push(0x54333333)
+·W 0:00:05.363087 {rsx::thread} RSX: c.push(1, 0x46c); c.push(0x45667665)
+·W 0:00:05.363088 {rsx::thread} RSX: c.push(1, 0x470); c.push(0xaabbba99)
+·W 0:00:05.363088 {rsx::thread} RSX: c.push(1, 0x474); c.push(0x66667899)
+·W 0:00:05.363089 {rsx::thread} RSX: c.push(1, 0x478); c.push(0x99876666)
+·W 0:00:05.363090 {rsx::thread} RSX: c.push(1, 0x47c); c.push(0x99abbbaa)
+·W 0:00:05.363094 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_BASE_OFFSET); c.push(0x0)
+·W 0:00:05.363095 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_BASE_INDEX); c.push(0x0)
+·W 0:00:05.363097 {rsx::thread} RSX: c.push(1, 0xe000); c.push(0xcafebabe)
+·W 0:00:05.363098 {rsx::thread} RSX: c.push(1, NV4097_SET_ALPHA_FUNC); c.push(0x207)
+·W 0:00:05.363098 {rsx::thread} RSX: c.push(1, NV4097_SET_ALPHA_REF); c.push(0x0)
+·W 0:00:05.363099 {rsx::thread} RSX: c.push(1, NV4097_SET_ALPHA_TEST_ENABLE); c.push(0x0)
+·W 0:00:05.363100 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_FUNC); c.push(0x207)
+·W 0:00:05.363101 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_FUNC_REF); c.push(0x0)
+·W 0:00:05.363102 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_FUNC_MASK); c.push(0xff)
+·W 0:00:05.363102 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_MASK); c.push(0xff)
+·W 0:00:05.363103 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_OP_FAIL); c.push(0x1e00)
+·W 0:00:05.363104 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_OP_ZFAIL); c.push(0x1e00)
+·W 0:00:05.363104 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_STENCIL_OP_ZPASS); c.push(0x1e00)
+·W 0:00:05.363106 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_COLOR); c.push(0x0)
+·W 0:00:05.363106 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_COLOR2); c.push(0x0)
+·W 0:00:05.363107 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_ENABLE); c.push(0x0)
+·W 0:00:05.363108 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_ENABLE_MRT); c.push(0x0)
+·W 0:00:05.363109 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_EQUATION); c.push(0x80068006)
+·W 0:00:05.363109 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_FUNC_SFACTOR); c.push(0x10001)
+·W 0:00:05.363110 {rsx::thread} RSX: c.push(1, NV4097_SET_BLEND_FUNC_DFACTOR); c.push(0x0)
+·W 0:00:05.363111 {rsx::thread} RSX: c.push(1, NV4097_SET_ZSTENCIL_CLEAR_VALUE); c.push(0xffffff00)
+·W 0:00:05.363112 {rsx::thread} RSX: c.push(1, NV4097_CLEAR_SURFACE); c.push(0x0)
+·W 0:00:05.363113 {rsx::thread} RSX: c.push(1, NV4097_NO_OPERATION); c.push(0x0)
+·W 0:00:05.363114 {rsx::thread} RSX: c.push(1, NV4097_SET_COLOR_MASK); c.push(0x1010101)
+·W 0:00:05.363118 {rsx::thread} RSX: c.push(1, NV4097_SET_CULL_FACE_ENABLE); c.push(0x0)
+·W 0:00:05.363120 {rsx::thread} RSX: c.push(1, NV4097_SET_CULL_FACE); c.push(0x405)
+·W 0:00:05.363121 {rsx::thread} RSX: c.push(1, NV4097_SET_DEPTH_BOUNDS_MIN); c.push(0x0)
+·W 0:00:05.363123 {rsx::thread} RSX: c.push(1, NV4097_SET_DEPTH_BOUNDS_MAX); c.push(0x3f800000)
+·W 0:00:05.363123 {rsx::thread} RSX: c.push(1, NV4097_SET_DEPTH_BOUNDS_TEST_ENABLE); c.push(0x0)
+·W 0:00:05.363125 {rsx::thread} RSX: c.push(1, NV4097_SET_DEPTH_FUNC); c.push(0x201)
+·W 0:00:05.363126 {rsx::thread} RSX: c.push(1, NV4097_SET_DEPTH_MASK); c.push(0x1)
+·W 0:00:05.363127 {rsx::thread} RSX: c.push(1, NV4097_SET_DEPTH_TEST_ENABLE); c.push(0x0)
+·W 0:00:05.363128 {rsx::thread} RSX: c.push(1, NV4097_SET_DITHER_ENABLE); c.push(0x1)
+·W 0:00:05.363129 {rsx::thread} RSX: c.push(1, NV4097_SET_SHADER_PACKER); c.push(0x0)
+·W 0:00:05.363129 {rsx::thread} RSX: c.push(1, NV4097_SET_FREQUENCY_DIVIDER_OPERATION); c.push(0x0)
+·W 0:00:05.363130 {rsx::thread} RSX: c.push(1, NV4097_SET_FRONT_FACE); c.push(0x901)
+·W 0:00:05.363131 {rsx::thread} RSX: c.push(1, NV4097_SET_LINE_WIDTH); c.push(0x8)
+·W 0:00:05.363131 {rsx::thread} RSX: c.push(1, NV4097_SET_LOGIC_OP_ENABLE); c.push(0x0)
+·W 0:00:05.363132 {rsx::thread} RSX: c.push(1, NV4097_SET_LOGIC_OP); c.push(0x1503)
+·W 0:00:05.363133 {rsx::thread} RSX: c.push(1, NV4097_SET_POINT_SIZE); c.push(0x3f800000)
+·W 0:00:05.363134 {rsx::thread} RSX: c.push(1, NV4097_SET_POLY_OFFSET_FILL_ENABLE); c.push(0x0)
+·W 0:00:05.363134 {rsx::thread} RSX: c.push(1, NV4097_SET_POLYGON_OFFSET_SCALE_FACTOR); c.push(0x0)
+·W 0:00:05.363135 {rsx::thread} RSX: c.push(1, NV4097_SET_POLYGON_OFFSET_BIAS); c.push(0x0)
+·W 0:00:05.363136 {rsx::thread} RSX: c.push(1, NV4097_SET_RESTART_INDEX_ENABLE); c.push(0x0)
+·W 0:00:05.363136 {rsx::thread} RSX: c.push(1, NV4097_SET_RESTART_INDEX); c.push(0xffffffff)
+·W 0:00:05.363137 {rsx::thread} RSX: c.push(1, NV4097_SET_SCISSOR_HORIZONTAL); c.push(0x10000000)
+·W 0:00:05.363138 {rsx::thread} RSX: c.push(1, NV4097_SET_SCISSOR_VERTICAL); c.push(0x10000000)
+·W 0:00:05.363139 {rsx::thread} RSX: c.push(1, NV4097_SET_SHADE_MODE); c.push(0x1d01)
+·W 0:00:05.363139 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_FUNC); c.push(0x207)
+·W 0:00:05.363140 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_FUNC_REF); c.push(0x0)
+·W 0:00:05.363142 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_FUNC_MASK); c.push(0xff)
+·W 0:00:05.363143 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_MASK); c.push(0xff)
+·W 0:00:05.363143 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_OP_FAIL); c.push(0x1e00)
+·W 0:00:05.363144 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_OP_ZFAIL); c.push(0x1e00)
+·W 0:00:05.363145 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_OP_ZPASS); c.push(0x1e00)
+·W 0:00:05.363147 {rsx::thread} RSX: c.push(1, NV4097_SET_STENCIL_TEST_ENABLE); c.push(0x0)
+·W 0:00:05.363151 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS); c.push(0x30101)
+·W 0:00:05.363152 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR); c.push(0x0)
+·W 0:00:05.363153 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0); c.push(0x60000)
+·W 0:00:05.363154 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER); c.push(0x2052000)
+·W 0:00:05.363154 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x20); c.push(0x30101)
+·W 0:00:05.363155 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x20); c.push(0x0)
+·W 0:00:05.363156 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x20); c.push(0x60000)
+·W 0:00:05.363157 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x20); c.push(0x2052000)
+·W 0:00:05.363157 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x40); c.push(0x30101)
+·W 0:00:05.363158 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x40); c.push(0x0)
+·W 0:00:05.363159 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x40); c.push(0x60000)
+·W 0:00:05.363162 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x40); c.push(0x2052000)
+·W 0:00:05.363163 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x60); c.push(0x30101)
+·W 0:00:05.363164 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x60); c.push(0x0)
+·W 0:00:05.363165 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x60); c.push(0x60000)
+·W 0:00:05.363165 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x60); c.push(0x2052000)
+·W 0:00:05.363166 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x80); c.push(0x30101)
+·W 0:00:05.363168 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x80); c.push(0x0)
+·W 0:00:05.363169 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x80); c.push(0x60000)
+·W 0:00:05.363170 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x80); c.push(0x2052000)
+·W 0:00:05.363170 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0xa0); c.push(0x30101)
+·W 0:00:05.363171 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0xa0); c.push(0x0)
+·W 0:00:05.363172 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0xa0); c.push(0x60000)
+·W 0:00:05.363173 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0xa0); c.push(0x2052000)
+·W 0:00:05.363173 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0xc0); c.push(0x30101)
+·W 0:00:05.363174 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0xc0); c.push(0x0)
+·W 0:00:05.363175 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0xc0); c.push(0x60000)
+·W 0:00:05.363176 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0xc0); c.push(0x2052000)
+·W 0:00:05.363180 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0xe0); c.push(0x30101)
+·W 0:00:05.363181 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0xe0); c.push(0x0)
+·W 0:00:05.363182 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0xe0); c.push(0x60000)
+·W 0:00:05.363182 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0xe0); c.push(0x2052000)
+·W 0:00:05.363183 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x100); c.push(0x30101)
+·W 0:00:05.363184 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x100); c.push(0x0)
+·W 0:00:05.363185 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x100); c.push(0x60000)
+·W 0:00:05.363186 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x100); c.push(0x2052000)
+·W 0:00:05.363186 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x120); c.push(0x30101)
+·W 0:00:05.363187 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x120); c.push(0x0)
+·W 0:00:05.363188 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x120); c.push(0x60000)
+·W 0:00:05.363189 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x120); c.push(0x2052000)
+·W 0:00:05.363190 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x140); c.push(0x30101)
+·W 0:00:05.363194 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x140); c.push(0x0)
+·W 0:00:05.363195 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x140); c.push(0x60000)
+·W 0:00:05.363196 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x140); c.push(0x2052000)
+·W 0:00:05.363196 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x160); c.push(0x30101)
+·W 0:00:05.363199 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x160); c.push(0x0)
+·W 0:00:05.363200 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x160); c.push(0x60000)
+·W 0:00:05.363201 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x160); c.push(0x2052000)
+·W 0:00:05.363201 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x180); c.push(0x30101)
+·W 0:00:05.363202 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x180); c.push(0x0)
+·W 0:00:05.363203 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x180); c.push(0x60000)
+·W 0:00:05.363204 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x180); c.push(0x2052000)
+·W 0:00:05.363205 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x1a0); c.push(0x30101)
+·W 0:00:05.363206 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x1a0); c.push(0x0)
+·W 0:00:05.363206 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x1a0); c.push(0x60000)
+·W 0:00:05.363207 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x1a0); c.push(0x2052000)
+·W 0:00:05.363208 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x1c0); c.push(0x30101)
+·W 0:00:05.363210 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x1c0); c.push(0x0)
+·W 0:00:05.363211 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x1c0); c.push(0x60000)
+·W 0:00:05.363211 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x1c0); c.push(0x2052000)
+·W 0:00:05.363212 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_ADDRESS + 0x1e0); c.push(0x30101)
+·W 0:00:05.363213 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_BORDER_COLOR + 0x1e0); c.push(0x0)
+·W 0:00:05.363215 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_CONTROL0 + 0x1e0); c.push(0x60000)
+·W 0:00:05.363216 {rsx::thread} RSX: c.push(1, NV4097_SET_TEXTURE_FILTER + 0x1e0); c.push(0x2052000)
+·W 0:00:05.363216 {rsx::thread} RSX: c.push(1, NV4097_SET_TWO_SIDED_STENCIL_TEST_ENABLE); c.push(0x0)
+·W 0:00:05.363217 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT); c.push(0x2)
+·W 0:00:05.363218 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET); c.push(0x0)
+·W 0:00:05.363219 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 4); c.push(0x2)
+·W 0:00:05.363219 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 4); c.push(0x0)
+·W 0:00:05.363220 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 8); c.push(0x2)
+·W 0:00:05.363221 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 8); c.push(0x0)
+·W 0:00:05.363222 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 12); c.push(0x2)
+·W 0:00:05.363223 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 12); c.push(0x0)
+·W 0:00:05.363223 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 16); c.push(0x2)
+·W 0:00:05.363224 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 16); c.push(0x0)
+·W 0:00:05.363225 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 20); c.push(0x2)
+·W 0:00:05.363225 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 20); c.push(0x0)
+·W 0:00:05.363226 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 24); c.push(0x2)
+·W 0:00:05.363227 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 24); c.push(0x0)
+·W 0:00:05.363227 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 28); c.push(0x2)
+·W 0:00:05.363228 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 28); c.push(0x0)
+·W 0:00:05.363230 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 32); c.push(0x2)
+·W 0:00:05.363231 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 32); c.push(0x0)
+·W 0:00:05.363232 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 36); c.push(0x2)
+·W 0:00:05.363232 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 36); c.push(0x0)
+·W 0:00:05.363233 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 40); c.push(0x2)
+·W 0:00:05.363234 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 40); c.push(0x0)
+·W 0:00:05.363234 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 44); c.push(0x2)
+·W 0:00:05.363235 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 44); c.push(0x0)
+·W 0:00:05.363236 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 48); c.push(0x2)
+·W 0:00:05.363238 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 48); c.push(0x0)
+·W 0:00:05.363239 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 52); c.push(0x2)
+·W 0:00:05.363240 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 52); c.push(0x0)
+·W 0:00:05.363240 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 56); c.push(0x2)
+·W 0:00:05.363241 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 56); c.push(0x0)
+·W 0:00:05.363242 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_FORMAT + 60); c.push(0x2)
+·W 0:00:05.363242 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_DATA_ARRAY_OFFSET + 60); c.push(0x0)
+·W 0:00:05.363245 {rsx::thread} RSX: c.push(1, NV4097_SET_VIEWPORT_HORIZONTAL); c.push(0x10000000)
+·W 0:00:05.363246 {rsx::thread} RSX: c.push(1, NV4097_SET_VIEWPORT_VERTICAL); c.push(0x10000000)
+·W 0:00:05.363247 {rsx::thread} RSX: c.push(1, NV4097_SET_CLIP_MIN); c.push(0x0)
+·W 0:00:05.363248 {rsx::thread} RSX: c.push(1, NV4097_SET_CLIP_MAX); c.push(0x3f800000)
+·W 0:00:05.363248 {rsx::thread} RSX: c.push(1, NV4097_SET_VIEWPORT_OFFSET); c.push(0x45000000)
+·W 0:00:05.363249 {rsx::thread} RSX: c.push(1, 0xa24); c.push(0x45000000)
+·W 0:00:05.363249 {rsx::thread} RSX: c.push(1, 0xa28); c.push(0x3f000000)
+·W 0:00:05.363250 {rsx::thread} RSX: c.push(1, 0xa2c); c.push(0x0)
+·W 0:00:05.363250 {rsx::thread} RSX: c.push(1, NV4097_SET_VIEWPORT_SCALE); c.push(0x45000000)
+·W 0:00:05.363251 {rsx::thread} RSX: c.push(1, 0xa34); c.push(0x45000000)
+·W 0:00:05.363252 {rsx::thread} RSX: c.push(1, 0xa38); c.push(0x3f000000)
+·W 0:00:05.363252 {rsx::thread} RSX: c.push(1, 0xa3c); c.push(0x0)
+·W 0:00:05.363253 {rsx::thread} RSX: c.push(1, NV4097_SET_VIEWPORT_OFFSET); c.push(0x45000000)
+·W 0:00:05.363253 {rsx::thread} RSX: c.push(1, 0xa24); c.push(0x45000000)
+·W 0:00:05.363254 {rsx::thread} RSX: c.push(1, 0xa28); c.push(0x3f000000)
+·W 0:00:05.363255 {rsx::thread} RSX: c.push(1, 0xa2c); c.push(0x0)
+·W 0:00:05.363256 {rsx::thread} RSX: c.push(1, NV4097_SET_VIEWPORT_SCALE); c.push(0x45000000)
+·W 0:00:05.363257 {rsx::thread} RSX: c.push(1, 0xa34); c.push(0x45000000)
+·W 0:00:05.363257 {rsx::thread} RSX: c.push(1, 0xa38); c.push(0x3f000000)
+·W 0:00:05.363258 {rsx::thread} RSX: c.push(1, 0xa3c); c.push(0x0)
+·W 0:00:05.363259 {rsx::thread} RSX: c.push(1, NV4097_SET_ANTI_ALIASING_CONTROL); c.push(0xffff0000)
+·W 0:00:05.363259 {rsx::thread} RSX: c.push(1, NV4097_SET_BACK_POLYGON_MODE); c.push(0x1b02)
+·W 0:00:05.363260 {rsx::thread} RSX: c.push(1, NV4097_SET_COLOR_CLEAR_VALUE); c.push(0x0)
+·W 0:00:05.363262 {rsx::thread} RSX: c.push(1, NV4097_SET_COLOR_MASK_MRT); c.push(0x0)
+·W 0:00:05.363262 {rsx::thread} RSX: c.push(1, NV4097_SET_FRONT_POLYGON_MODE); c.push(0x1b02)
+·W 0:00:05.363263 {rsx::thread} RSX: c.push(1, NV4097_SET_LINE_SMOOTH_ENABLE); c.push(0x0)
+·W 0:00:05.363264 {rsx::thread} RSX: c.push(1, NV4097_SET_LINE_STIPPLE); c.push(0x0)
+·W 0:00:05.363264 {rsx::thread} RSX: c.push(1, NV4097_SET_POINT_PARAMS_ENABLE); c.push(0x0)
+·W 0:00:05.363265 {rsx::thread} RSX: c.push(1, NV4097_SET_POINT_SPRITE_CONTROL); c.push(0x0)
+·W 0:00:05.363266 {rsx::thread} RSX: c.push(1, NV4097_SET_POLY_SMOOTH_ENABLE); c.push(0x0)
+·W 0:00:05.363267 {rsx::thread} RSX: c.push(1, NV4097_SET_POLYGON_STIPPLE); c.push(0x0)
+·W 0:00:05.363267 {rsx::thread} RSX: c.push(1, NV4097_SET_RENDER_ENABLE); c.push(0x1000000)
+·W 0:00:05.363268 {rsx::thread} RSX: c.push(1, NV4097_SET_USER_CLIP_PLANE_CONTROL); c.push(0x0)
+·W 0:00:05.363269 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_ATTRIB_INPUT_MASK); c.push(0xffff)
+·W 0:00:05.363270 {rsx::thread} RSX: c.push(1, NV4097_SET_ZPASS_PIXEL_COUNT_ENABLE); c.push(0x0)
+·W 0:00:05.363271 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_ADDRESS); c.push(0x101)
+·W 0:00:05.363271 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_BORDER_COLOR); c.push(0x0)
+·W 0:00:05.363272 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_CONTROL0); c.push(0x60000)
+·W 0:00:05.363273 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_FILTER); c.push(0x0)
+·W 0:00:05.363274 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_ADDRESS + 0x20); c.push(0x101)
+·W 0:00:05.363274 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_BORDER_COLOR + 0x20); c.push(0x0)
+·W 0:00:05.363275 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_CONTROL0 + 0x20); c.push(0x60000)
+·W 0:00:05.363276 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_FILTER + 0x20); c.push(0x0)
+·W 0:00:05.363277 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_ADDRESS + 0x40); c.push(0x101)
+·W 0:00:05.363278 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_BORDER_COLOR + 0x40); c.push(0x0)
+·W 0:00:05.363280 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_CONTROL0 + 0x40); c.push(0x60000)
+·W 0:00:05.363281 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_FILTER + 0x40); c.push(0x0)
+·W 0:00:05.363281 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_ADDRESS + 0x60); c.push(0x101)
+·W 0:00:05.363283 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_BORDER_COLOR + 0x60); c.push(0x0)
+·W 0:00:05.363283 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_CONTROL0 + 0x60); c.push(0x60000)
+·W 0:00:05.363284 {rsx::thread} RSX: c.push(1, NV4097_SET_VERTEX_TEXTURE_FILTER + 0x60); c.push(0x0)
+·W 0:00:05.363285 {rsx::thread} RSX: c.push(1, NV4097_SET_CYLINDRICAL_WRAP); c.push(0x0)
+·W 0:00:05.363285 {rsx::thread} RSX: c.push(1, NV4097_SET_ZMIN_MAX_CONTROL); c.push(0x1)
+·W 0:00:05.363286 {rsx::thread} RSX: c.push(1, NV4097_SET_TWO_SIDE_LIGHT_EN); c.push(0x0)
+·W 0:00:05.363287 {rsx::thread} RSX: c.push(1, NV4097_SET_TRANSFORM_BRANCH_BITS); c.push(0x0)
+·W 0:00:05.363289 {rsx::thread} RSX: c.push(1, NV4097_SET_NO_PARANOID_TEXTURE_FETCHES); c.push(0x0)
+·W 0:00:05.363290 {rsx::thread} RSX: c.push(1, 0x2000); c.push(0x31337303)
+·W 0:00:05.363291 {rsx::thread} RSX: c.push(1, 0x2180); c.push(0x66604200)
+·W 0:00:05.363292 {rsx::thread} RSX: c.push(1, 0x2184); c.push(0xfeed0001)
+·W 0:00:05.363292 {rsx::thread} RSX: c.push(1, 0x2188); c.push(0xfeed0000)
+·W 0:00:05.363293 {rsx::thread} RSX: c.push(1, NV3062_SET_OBJECT); c.push(0x313371c3)
+·W 0:00:05.363294 {rsx::thread} RSX: c.push(1, NV3062_SET_CONTEXT_DMA_NOTIFIES); c.push(0x66604200)
+·W 0:00:05.363295 {rsx::thread} RSX: c.push(1, NV3062_SET_CONTEXT_DMA_IMAGE_SOURCE); c.push(0xfeed0000)
+·W 0:00:05.363295 {rsx::thread} RSX: c.push(1, NV3062_SET_CONTEXT_DMA_IMAGE_DESTIN); c.push(0xfeed0000)
+·W 0:00:05.363296 {rsx::thread} RSX: c.push(1, 0xa000); c.push(0x31337808)
+·W 0:00:05.363297 {rsx::thread} RSX: c.push(1, 0xa180); c.push(0x66604200)
+·W 0:00:05.363297 {rsx::thread} RSX: c.push(1, 0xa184); c.push(0x0)
+·W 0:00:05.363298 {rsx::thread} RSX: c.push(1, 0xa188); c.push(0x0)
+·W 0:00:05.363299 {rsx::thread} RSX: c.push(1, 0xa18c); c.push(0x0)
+·W 0:00:05.363299 {rsx::thread} RSX: c.push(1, 0xa190); c.push(0x0)
+·W 0:00:05.363300 {rsx::thread} RSX: c.push(1, 0xa194); c.push(0x0)
+·W 0:00:05.363300 {rsx::thread} RSX: c.push(1, 0xa198); c.push(0x0)
+·W 0:00:05.363301 {rsx::thread} RSX: c.push(1, 0xa19c); c.push(0x313371c3)
+·W 0:00:05.363301 {rsx::thread} RSX: c.push(1, 0xa2fc); c.push(0x3)
+·W 0:00:05.363302 {rsx::thread} RSX: c.push(1, 0xa300); c.push(0x4)
+·W 0:00:05.363303 {rsx::thread} RSX: c.push(1, 0x8000); c.push(0x31337a73)
+·W 0:00:05.363303 {rsx::thread} RSX: c.push(1, 0x8180); c.push(0x66604200)
+·W 0:00:05.363304 {rsx::thread} RSX: c.push(1, 0x8184); c.push(0xfeed0000)
+·W 0:00:05.363305 {rsx::thread} RSX: c.push(1, 0xc000); c.push(0x3137af00)
+·W 0:00:05.363305 {rsx::thread} RSX: c.push(1, 0xc180); c.push(0x66604200)
+·W 0:00:05.363307 {rsx::thread} RSX: c.push(1, NV406E_SEMAPHORE_OFFSET); c.push(0x10)
+·W 0:00:05.363308 {rsx::thread} RSX: c.push(1, NV406E_SEMAPHORE_RELEASE); c.push(0xffffffff)
+·W 0:00:05.363310 {rsx::thread} RSX: c.push(1, FLIP_HEAD_1); c.push(0x8000010f)
+·W 0:00:05.363316 {rsx::thread} RSX: c.push(1, NV406E_SET_REFERENCE); c.push(0x2)
+·U 0:00:06.364858 {PPU[0x1000000] Thread (main_thread) [0x0001119c]} HLE TODO: Unimplemented syscall syscall_988 -> CELL_OK
+·U 0:00:06.364885 {PPU[0x1000000] Thread (main_thread) [0x00070c88]} sys_prx TODO: _sys_prx_get_module_list(flags=2, pInfo=*0xd0010998)
+·U 0:00:06.364897 {PPU[0x1000000] Thread (main_thread) [0x000115c4]} HLE TODO: Unimplemented syscall syscall_988 -> CELL_OK
+·W 0:00:06.364904 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95002c00)
+·! 0:00:06.364911 {PPU[0x1000000] Thread (main_thread) [0x00014440]} sys_tty: sys_tty_write(ch=0, buf=*0x30800010, len=16, pwritelen=*0xd0010710)
+·W 0:00:06.364936 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95002d00)
+·W 0:00:06.364948 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95002e00)
+·W 0:00:06.364950 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95002f00)
+·W 0:00:06.364952 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95003000)
+·W 0:00:06.364954 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95003100)
+·W 0:00:06.364956 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95003200)
+·W 0:00:06.364957 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95003300)
+·W 0:00:06.364959 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95002b00)
+·W 0:00:06.364961 {PPU[0x1000000] Thread (main_thread) [0x00065218]} sys_lwmutex: _sys_lwmutex_destroy(lwmutex_id=0x95002a00)
+·U 0:00:06.364966 {PPU[0x1000000] Thread (main_thread) [0x00070c88]} sys_prx TODO: _sys_prx_get_module_list(flags=2, pInfo=*0xd0010748)
+·W 0:00:06.364979 {PPU[0x1000000] Thread (main_thread) [0x00060e38]} sys_process: _sys_process_exit(status=0, arg2=0x0, arg3=0x0)
+·S 0:00:06.365034 sys_process: Process finished
+·! 0:00:06.365038 Stopping emulator...
+·! 0:00:06.365138 All threads signaled...
+·W 0:00:06.368689 {PPU[0x1000000] Thread (main_thread) [0x00060e38]} PPU: '_sys_process_exit' aborted
+·W 0:00:06.368695 {PPU[0x1000001] Thread (_gcm_intr_thread) [0x000d833c]} PPU: 'sys_event_queue_receive' aborted (0.012779s)
+·! 0:00:06.368722 {PPU[0x1000000] Thread (main_thread)} Thread time: 0.015625s (0.091008Gc); Faults: 0 [rsx:0, spu:0];
+·! 0:00:06.368726 {PPU[0x1000001] Thread (_gcm_intr_thread)} Thread time: 0.000000s (0.004308Gc); Faults: 0 [rsx:0, spu:0];
+·! 0:00:06.370295 {VBlank Thread} Thread time: 0.000000s (0.013060Gc); Faults: 0 [rsx:0, spu:0];
+·! 0:00:06.370295 {RSX Decompiler Thread} Thread time: 0.000000s (0.012210Gc); Faults: 0 [rsx:0, spu:0];
+·! 0:00:06.370329 {rsx::thread} Thread time: 0.984375s (4.016691Gc); Faults: 0 [rsx:0, spu:0];
+·! 0:00:06.370341 {Network Thread} Thread time: 0.000000s (0.013709Gc); Faults: 0 [rsx:0, spu:0];
+·! 0:00:06.380702 All threads stopped...
+·! 0:00:06.431644 Objects cleared...
