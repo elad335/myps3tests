@@ -1,8 +1,3 @@
-/*   SCE CONFIDENTIAL                                       */
-/*   PlayStation(R)3 Programmer Tool Runtime Library 475.001 */
-/*   Copyright (C) 2006 Sony Computer Entertainment Inc.    */
-/*   All Rights Reserved.                                   */
-
 //--------------------------------------------
 // Simple vertex shader
 // transforms the vertex into clip space
@@ -24,24 +19,7 @@ void main (float4                  position : ATTR0,     // Local-space position
 
     float shininess =  17.8954f;   //arbitrary shininess value
 
-//basic diffuse lighting calcution
-    float3 lgtPosLocal = eyePosLocal;  // set light source to camera pos
-
-    float3 lightDirection = normalize (lgtPosLocal - position.xyz);
-    float  diffuseLight = max (dot (normal, lightDirection), 0.f);
-
-// Compute the specular lighting term
-    float3 eyeDirection = normalize (eyePosLocal - position.xyz);
-    float3 halfAngle = normalize (lightDirection + eyeDirection);
-    float  specularLight = pow (max (dot (halfAngle, normal), 0.f), shininess);
-    if (diffuseLight <= 0.f)
-        specularLight = 0.f;
-
-    oPosition = mul (modelViewProj, position);
-    oTexCoord = texCoord;
-    oColor.xyz = diffuseLight;
+    oPosition = position;
+    oColor.xyz = 0.8;
     oColor.w = 1.0f;
-    oSpecular = specularLight;
-  
-//    oSpecular = float4(1,0,0,1); oColor=oSpecular;
 }

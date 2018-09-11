@@ -393,8 +393,8 @@ static u32* OffsetToAddr(u32 offset)
 struct gcmLabel
 {
 	u32 pos;
-	gcmLabel(){};
-	gcmLabel(u32 pos){ this->pos = pos; };
+	gcmLabel(){}
+	gcmLabel(u32 pos){ this->pos = pos; }
 };
 
 // Command queue manager composed from an internal cellGcm compiler
@@ -416,9 +416,19 @@ struct rsxCommandCompiler
 	}
 
 	// Push a jump command, offset is specified by label
-	inline void bindJmp(gcmLabel label)
+	inline void jmp(gcmLabel label)
 	{
-		*(c.current++) = label.pos | RSX_METHOD_OLD_JUMP_CMD;
+		*(c.current++) = label.pos | RSX_METHOD_NEW_JUMP_CMD;
+	}
+
+	inline void call(gcmLabel label)
+	{
+		*(c.current++) = label.pos | RSX_METHOD_CALL_CMD;
+	}
+
+	inline void ret()
+	{
+		*(c.current++) = RSX_METHOD_RETURN_CMD;
 	}
 
 	// generates a jump label by current position
@@ -433,6 +443,10 @@ struct rsxCommandCompiler
 		return AddrToOffset(c.current);
 	}
 
+	inline void debugBreak() 
+	{ 
+		*(c.current++) = 0xFFFFFFFCu | RSX_METHOD_NEW_JUMP_CMD;
+	}
 };
 
 static union
@@ -471,7 +485,7 @@ void* gLocations[static_cast<size_t>(loc::__enum_max)] =
 struct Vertex4D{float i[4];};
 static Vertex4D Varray[1] = 
 {
-	{1., 1., 1., 1.}
+	{.1, .2, .3, .4}
 };
 
 int main() {
@@ -542,15 +556,11 @@ int main() {
 	surface.antialias = CELL_GCM_SURFACE_CENTER_1;
 	surface.colorFormat = CELL_GCM_SURFACE_X8R8G8B8_O8R8G8B8;
 	surface.colorTarget = CELL_GCM_SURFACE_TARGET_0;
-	{
-	u32 pitch = cellGcmGetTiledPitchSize(1280*3);
-	for (u32 i = 0; i < 4; i++)
+	for (u32 i = 0, pitch = cellGcmGetTiledPitchSize(1280*4); i < 4; i++)
 	{
 		surface.colorLocation[i] = CELL_GCM_LOCATION_MAIN;
 		surface.colorOffset[i] = colorOffset;
 		surface.colorPitch[i] = pitch;
-	}
-	printf("Pitch:0x%x\n", pitch);
 	}
 	surface.depthFormat = CELL_GCM_SURFACE_Z16;
 	surface.depthLocation = CELL_GCM_LOCATION_MAIN;
@@ -563,16 +573,16 @@ int main() {
 	cellGcmSetSurface(&Gcm, &surface);
 
 	cellGcmSetVertexProgramLoad(&Gcm, &vpConf, gLocations[loc::vertex]);
-	fpConf.offset = int_cast(gLocations[loc::fragment]) - 0xC0000000;
+	fpConf.offset = 0x00900000;
 	cellGcmSetFragmentProgramLoad(&Gcm, &fpConf);
-	cellGcmSetVertexDataArray(&Gcm, 0, 0, 4 * sizeof(float), 2, CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 0x0A00000);
+	cellGcmSetVertexDataArray(&Gcm, 0, 1, 4 * sizeof(float), 2, CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 0x0A00000);
 
 	cellGcmSetDrawArrays(&Gcm, CELL_GCM_PRIMITIVE_POINTS, 0, 1);
 	cellGcmSetFlip(&Gcm, id);
 
-	// Stop dumping and ack finish
 	//cellGcmSetReferenceCommand(&Gcm, 2);
-	c.bindJmp(start);
+	//c.debugBreak();
+	c.jmp(start);
 	mfence();
 
 	ctrl->put = c.newLabel().pos;
