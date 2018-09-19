@@ -1,0 +1,3 @@
+ret is 0x0, mem_handle=0x5a5a5a5b, mem_addr=0xc0000000
+ret is 0x0, context_id=0x55555554, lpar_dma_control=0x30100000, lpar_driver_info=0x30200000, lpar_reports=0x30300000
+REF=0x0, sample finished.
