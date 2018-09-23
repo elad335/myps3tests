@@ -1,0 +1,7 @@
+cell is 0
+30000000
+didn't stall!; spu events: 0x0
+spu events after GETLLAR: 0x0
+spu events after PUTLLC: 0x0
+spu events after PUTLLUC: 0x0
+sample finished

@@ -589,7 +589,7 @@ int main() {
 	surface.depthFormat = CELL_GCM_SURFACE_Z16;
 	surface.depthLocation = CELL_GCM_LOCATION_MAIN;
 	surface.depthOffset = depthOffset;
-	surface.depthPitch = 64;
+	surface.depthPitch = 1280*2;
 	surface.width = 1280;
 	surface.height = 720;
 	surface.x = 0;
@@ -615,9 +615,9 @@ int main() {
 	tex.location = CELL_GCM_LOCATION_MAIN;
 	tex.format = CELL_GCM_TEXTURE_A8R8G8B8 | CELL_GCM_TEXTURE_NR| CELL_GCM_TEXTURE_LN;
 	tex.dimension = CELL_GCM_TEXTURE_DIMENSION_2;
-	tex.pitch = 1920*4;
-	tex.height = 1020;
-	tex.width = 1920;
+	tex.pitch = 1280*4;
+	tex.height = 720;
+	tex.width = 720;
 	tex.offset = 1<<31;
 	tex.depth = 1;
 	tex.cubemap = CELL_GCM_FALSE;
