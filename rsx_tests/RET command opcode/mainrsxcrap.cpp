@@ -491,7 +491,8 @@ int main() {
 
 	cellGcmSetupContextData(&Gcm, ptr_caste(addr + (1<<20), u32), 0x10000, GcmCallback);
 
-	c.push(RSX_METHOD_RETURN_CMD | (1 << 31));
+	// Test 'dirty' return command opcode
+	c.push(RSX_METHOD_RETURN_CMD | NV406E_SET_REFERENCE);
 	c.push(0);
 
 	cellGcmSetReferenceCommand(&Gcm, 2);

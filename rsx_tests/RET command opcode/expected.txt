@@ -1,5 +1,5 @@
-[RSX dump analysis] RSX tried to fetch beyond the end of the command buffer
-[RSX dump analysis] Jump at 0x00100118 caused this exception. Check if the command is what you expected
+[RSX dump analysis] A Return was executed while not in a Call
+[RSX dump analysis] The last Call executed was at 0x0000139c, and already returned
 graphics error 1 : 00000000 00000000
 fifo parser error
     [Unsupported command is detected.]
@@ -34,13 +34,13 @@ Zcull
     Current Scull Func:ALWAYS   Ref:ff Smask:ff
 Surface
     MRT Enable: DISABLE
-    Color 0: ENABLE  Offset:00400000 Pitch:00001400 X8R8G8B8_O8R8G8B8 Mask[A:1 R:1 G:1 B:1]
-    Color 1: DISABLE Offset:00400000 Pitch:00001400 X8R8G8B8_O8R8G8B8 Mask[A:0 R:0 G:0 B:0]
-    Color 2: DISABLE Offset:00400000 Pitch:00001400 X8R8G8B8_O8R8G8B8 Mask[A:0 R:0 G:0 B:0]
-    Color 3: DISABLE Offset:00400000 Pitch:00001400 X8R8G8B8_O8R8G8B8 Mask[A:0 R:0 G:0 B:0]
-    Depth  :         Offset:00140000 Pitch:00000040 Z16
+    Color 0: ENABLE  Offset:00000000 Pitch:00000040 X1R5G5B5_Z1R5G5B5 Mask[A:1 R:1 G:1 B:1]
+    Color 1: DISABLE Offset:00000000 Pitch:00000040 X1R5G5B5_Z1R5G5B5 Mask[A:0 R:0 G:0 B:0]
+    Color 2: DISABLE Offset:00000000 Pitch:00000040 X1R5G5B5_Z1R5G5B5 Mask[A:0 R:0 G:0 B:0]
+    Color 3: DISABLE Offset:00000000 Pitch:00000040 X1R5G5B5_Z1R5G5B5 Mask[A:0 R:0 G:0 B:0]
+    Depth  :         Offset:00000000 Pitch:00000040 Z16
     Type:PITCH   AA:CENTER_1
-    Clip X:0 Width:1280 Y:0 Height:720
+    Clip X:0 Width:0 Y:0 Height:0
     Scissor X:0 Width:4096 Y:0 Height:4096
     Viewport X:0 Width:4096 Y:0 Height:4096
     Antialias:Disable Mask:0000ffff
@@ -71,14 +71,14 @@ Graphics State
     Cull:FALSE
     Cull Dir:BACK
     Front Face:CCW
-    Render:b0001012
+    Render:30001012
 Vertex Attributes
-    Prim:point ArrayStart:00004000 Count:00000000
+    Prim:quad ArrayStart:00000008 Count:00000008
     Index Array
         Ctx:Local Start:00000000 End:00000000 Size:00000000 Current:00 Mode:16
     Restart Index:Disable Index:ffffffff
-    Attrib Input Mask:0001 DividerOp:0000 Output Mask:00000005
-    [00] E F ArrayOffset:Local 00a00001 Stride:10 : 2 x float
+    Attrib Input Mask:ffff DividerOp:0000 Output Mask:003fffff
+    [00]     ArrayOffset:Local 00000000 Stride:00 : 0 x float
     [01]     ArrayOffset:Local 00000000 Stride:00 : 0 x float
     [02]     ArrayOffset:Local 00000000 Stride:00 : 0 x float
     [03]     ArrayOffset:Local 00000000 Stride:00 : 0 x float
@@ -95,7 +95,7 @@ Vertex Attributes
     [14]     ArrayOffset:Local 00000000 Stride:00 : 0 x float
     [15]     ArrayOffset:Local 00000000 Stride:00 : 0 x float
 Fragment Shader
-    Mode:1 Offset:00000001 zBound:[00000000:3f800000] Reg:2 zReplace:0 Output:R0 Pack:linear Bool:00000000
+    Mode:1 Offset:00000000 zBound:[00000000:3f800000] Reg:2 zReplace:0 Output:H0 Pack:linear Bool:00000000
 Texture Basic
 [00]   Fmt:SZ_NR_R5G6B5                Mips:1 Dim:2 Cube:0 W:0008 H:0008 D:001 P:00008 Offset:Local:00000000
 [01]   Fmt:SZ_NR_R5G6B5                Mips:1 Dim:2 Cube:0 W:0008 H:0008 D:001 P:00008 Offset:Local:00000000
@@ -260,28 +260,28 @@ Labels on Local
     [248] 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3 0x1337c0d3
 FIFO Info
     ID      : 00000001
-    DMA Get : fffffffc Put  : 00100124
-    Call    : 000013a0 Jump : 00100118
-    FIFO Get: 0000002d Put  : 0000002d Ref  : ffffffff
-    State   : c000180c Res0 : 00000000 Res1 : 00000000
+    DMA Get : 00100004 Put  : 00100010
+    Call    : 000013a0 Jump : 00100000
+    FIFO Get: 00000000 Put  : 00000000 Ref  : ffffffff
+    State   : 60000054 Res0 : 00000000 Res1 : ffffffff
     Channel Control: 00000001
 Trapped
-    Address: 00001808
+    Address: 0005030c
     Data0:   00000000
     Data1:   00000000
 Fifo:
-    [000] 00000194:feed0001  0000018c:feed0001  000001b4:feed0001  000001b8:feed0001
-    [004] 00000198:feed0001  00000208:090a0125  0000020c:00001400  00000210:00400000
-    [008] 00000214:00140000  00000218:00400000  0000021c:00001400  0000022c:00000040
-    [00c] 00000280:00001400  00000284:00001400  00000288:00400000  0000028c:00400000
-    [010] 00000220:00000001  000002b8:00000000  00000200:05000000  00000204:02d00000
-    [014] 00001d88:000012d0  00001e9c:00000000  00001ea0:00000000  00000b80:401f9c6c
-    [018] 00000b84:0040000d  00000b88:8106c083  00000b8c:6041ff80  00000b90:401f9c6c
-    [01c] 00000b94:005d3000  00000b98:8186c083  00000b9c:6041ff85  00001ff0:00000001
-    [020] 00001ef8:0020ffff  000008e4:00900001  00001ff4:00000005  00001d60:02000440
-    [024] 00001740:00011022  00001680:00a00001  000008e4:00000002  00001715:00000000
-    [028] 00001715:00000000  00001715:00000000  00001808:00000001  00001814:00000000
-P G [02c] 00001808:00000000  000002d8:0fff0000  000002dc:0fff0000  000002e0:0fff0000
+P G [000] 00000068:00000000  00000060:66616661  00000000:31337000  00000180:66604200
+    [004] 00000184:feed0000  00000188:feed0001  0000018c:feed0000  00000190:00000000
+    [008] 00000194:feed0000  00000198:feed0000  0000019c:feed0000  000001a0:feed0001
+    [00c] 000001a4:66606660  000001a8:66626660  000001ac:00000000  000001b0:00000000
+    [010] 000001b4:feed0000  000001b8:feed0000  00000060:66616661  00000200:00000000
+    [014] 00000204:00000000  00000208:00000121  0000020c:00000040  00000210:00000000
+    [018] 00000214:00000000  00000218:00000000  0000021c:00000040  00000220:00000001
+    [01c] 00000224:00000080  00000228:00000100  0000022c:00000040  00000230:00000000
+    [020] 00000280:00000040  00000284:00000040  00000288:00000000  0000028c:00000000
+    [024] 00001d80:00000003  000002b8:00000000  000002bc:00000000  000002c0:0fff0000
+    [028] 000002c4:0fff0000  000002c8:0fff0000  000002cc:0fff0000  000002d0:0fff0000
+    [02c] 000002d4:0fff0000  000002d8:0fff0000  000002dc:0fff0000  000002e0:0fff0000
     [030] 000002e4:0fff0000  000002e8:0fff0000  000002ec:0fff0000  000002f0:0fff0000
     [034] 000002f4:0fff0000  000002f8:0fff0000  000002fc:0fff0000  00001d98:0fff0000
     [038] 00001d9c:0fff0000  00001da4:00000000  000003b0:00100000  00001454:00000000
@@ -398,3 +398,6 @@ P G [02c] 00001808:00000000  000002d8:0fff0000  000002dc:0fff0000  000002e0:0fff
     [1f4] 00002314:00000000  00002318:00000000  0000231c:00000000  00002320:00000000
     [1f8] 00002324:00000101  00006300:0000000a  00006304:00400040  00006308:00000000
     [1fc] 0000630c:00000000  00008300:0001000a  00008304:00000000  0000c184:feed0000
+lv2(2): xAutoMounter::Mount failled -2147418056
+[system utility]: Mounting BDVD failed, code: 0x80010038.
+lv2(2): [system utility]: Unknown media, code: 0xff71.
