@@ -1,1 +1,0 @@
-spu_inbound_mailbox_ch value: 0x1234

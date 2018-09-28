@@ -1,0 +1,4 @@
+sys_spu_thread_write_spu_mb returned: 0x0
+mailbox count=0x1
+mailbox count after restart=0x0
+sample finished.

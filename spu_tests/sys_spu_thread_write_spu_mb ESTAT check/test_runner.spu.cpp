@@ -23,8 +23,7 @@ int main(uint64_t addr, uint64_t, uint64_t, uint64_t)
     count = spu_readchcnt(SPU_RdInMbox);
     spu_mfcdma32(&count, addr, sizeof(u32), 0, MFC_PUTB_CMD);
     spu_mfcstat(MFC_TAG_UPDATE_ALL);
-    asm volatile("lnop;sync;syncc;dsync");
-    //sys_spu_thread_exit(0);
+    _mm_mfence();
     sys_spu_thread_group_exit(0);
 	return 0;
 }
