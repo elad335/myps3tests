@@ -1,0 +1,3 @@
+main thread:0 stack addr=0xd0010bf0
+intr thread: stack addr=0xd0016f00
+raw thread is running
