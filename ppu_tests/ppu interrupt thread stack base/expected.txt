@@ -1,3 +1,2 @@
-main thread:0 stack addr=0xd0010bf0
-intr thread: stack addr=0xd0016f00
-raw thread is running
+main thread: stack addr=d0001000 current stack offset=0x420
+intr thread: stack addr=d0013000 current stack offset=0x100

@@ -38,15 +38,14 @@ inline void sync() {asm volatile ("db16cyc;eieio;sync");};
 extern char _binary_test_spu_spu_out_start[];
 
 static sys_raw_spu_t thr_id = ~0x0;
-static u32 save_stack[3];
+register u64 stack asm ("1");
 static u32 ret = 0;
 
 void threadEntry(u64)
 {
-	register u64 stack asm ("1");
-	save_stack[1] = stack;
-	printf("intr thread: stack addr=0x%llx\n", save_stack[1]);
-
+	sys_ppu_thread_stack_t sp;
+	sys_ppu_thread_get_stack_information(&sp);
+	printf("intr thread: stack addr=%x current stack offset=0x%x\n", sp.pst_addr, (sp.pst_addr + sp.pst_size) - stack);
 	u32 value; sys_raw_spu_read_puint_mb(thr_id, &value); sync();
 	sys_raw_spu_set_int_stat(thr_id, 2, SPU_INT2_STAT_MAILBOX_INT);
 	sys_interrupt_thread_eoi();
@@ -54,9 +53,9 @@ void threadEntry(u64)
 
 int main(void)
 {
-	register u64 stack asm ("1");
-	save_stack[0] = stack;
-	printf("main thread:0 stack addr=0x%llx\n", save_stack[0]);
+	sys_ppu_thread_stack_t sp;
+	sys_ppu_thread_get_stack_information(&sp);
+	printf("main thread: stack addr=%x current stack offset=0x%x\n", sp.pst_addr, (sp.pst_addr + sp.pst_size) - stack);
 	sys_timer_usleep(3000);
 
 	sys_spu_initialize(6, 1); // 1 raw threads max
@@ -121,8 +120,6 @@ int main(void)
 
 	while ((sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1) == 0)
 		sync(); // waits until the run requast has been completed
-
-	printf("raw thread is running\n");
 
 	while ((sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1))
 	{

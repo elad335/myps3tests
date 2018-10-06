@@ -35,23 +35,26 @@ typedef int32_t s32;
 
 static u32 threads = 0;
 static u32 save_stack[3];
+register u64 stack asm ("1");
 
 void threadEntry(u64 number) {
-	register u64 stack asm ("1");
-	save_stack[number]= stack; 
-	printf("thread:0x%x stack addr=0x%llx\n", number, save_stack[number]);
+	save_stack[number] = stack; 
+	sys_ppu_thread_stack_t sp;
+	sys_ppu_thread_get_stack_information(&sp);
+	printf("thread:0x%x stack addr=%x current stack offset=0x%x\n", number, sp.pst_addr, (sp.pst_addr + sp.pst_size) - save_stack[number]);
 	cellAtomicDecr32(&threads);
 	sys_ppu_thread_exit(0);
 }
 
 int main() {
-	register u64 stack asm ("1");
 	save_stack[0] = stack;
-	printf("thread:0 stack addr=0x%x\n", save_stack[0]);
+	sys_ppu_thread_stack_t sp;
+	sys_ppu_thread_get_stack_information(&sp);
+	printf("thread:0 stack addr=%x current stack offset=0x%x\n", sp.pst_addr, (sp.pst_addr + sp.pst_size) - save_stack[0]);
 	sys_timer_usleep(3000);
 	static sys_ppu_thread_t m_tid1; threads = 2;
-	sys_ppu_thread_create(&m_tid1,threadEntry,1,1002, 0x4000,0,"t");
-	sys_ppu_thread_create(&m_tid1,threadEntry,2,1002, 0x4000,0,"t");
+	sys_ppu_thread_create(&m_tid1,threadEntry,1,1002, 0x10000,0,"t");
+	sys_ppu_thread_create(&m_tid1,threadEntry,2,1002, 0x10000,0,"t");
 
 	while(threads) sys_timer_usleep(40000);
 	
