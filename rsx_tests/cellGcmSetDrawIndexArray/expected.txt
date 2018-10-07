@@ -1,0 +1,3 @@
+A graphics error interrupt occured in system software.
+ No error dump will be generated.
+ Note: This interrupt can also be caused by calling cellGcmDumpGraphicsError().
