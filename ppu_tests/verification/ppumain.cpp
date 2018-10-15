@@ -40,6 +40,7 @@ static sys_lwmutex_t lwmutex[5];
 static sys_lwmutex_attribute_t mutex_attr = { SYS_SYNC_PRIORITY, SYS_SYNC_RECURSIVE, "/0"};
 static sys_lwcond_t lwcond[5];
 static sys_lwcond_attribute_t cond_attr = { "/0" };
+register uint32_t err asm ("3"); 
 
 void threadNotify(u64 number) {
 
@@ -57,10 +58,11 @@ void threadWait(u64 number) {
 
 	while (true)
 	{
-		//sys_lwmutex_lock(&lwmutex[number], 0);
+		sys_lwmutex_lock(&lwmutex[number], 0);
 		//if (sys_lwcond_wait(&lwcond[number], 0) != CELL_OK) printf("NOT CELL_OK");
-		{system_call_3(0x071, *ptr_caste(int_cast(&lwcond[number]) + 4, u32), *ptr_caste(int_cast(&lwmutex[number]) + 16, u32), 0);}
-		//sys_lwmutex_unlock(&lwmutex[number]);
+		{system_call_3(0x071, *ptr_caste(int_cast(&lwcond[number]) + 4, u32), *ptr_caste(int_cast(&lwmutex[number]) + 16, u32), 0);
+		printf("error code=%x", err); }
+		sys_lwmutex_unlock(&lwmutex[number]);
 		sys_timer_usleep(600);
 	}
 	sys_ppu_thread_exit(0);
