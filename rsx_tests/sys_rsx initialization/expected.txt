@@ -1,0 +1,7 @@
+lv2(2): sys_rsx_context_allocate before sys_rsx_memory_allocate returned: 0x80010002
+lv2-rsx: unable to create context
+lv2(2): sys_rsx_memory_allocate second call error code: 0x80010004
+sys_rsx_device_map second call returned: 0x0
+lv2-rsx: rsx memory alloc failure!
+dev_addr=0x40300000, lpar_dma_control=0x40000000, lpar_driver_info=0x40100000, lpar_reports=0x40200000
+sample finished.
