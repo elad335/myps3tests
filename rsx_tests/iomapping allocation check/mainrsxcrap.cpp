@@ -470,23 +470,7 @@ int main() {
 	// Wait for RSX to complete previous operation
 	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
 
-	int ret = cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 2<<20);
-
-	//// Place a jump into io address 2mb
-	//*OffsetToAddr(ctrl->get) = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;
-	//sys_timer_usleep(40);
-//
-	//cellGcmSetupContextData(&Gcm, ptr_caste(addr + (1<<20), u32), 0x10000, GcmCallback);
-//
-	//cellGcmSetReferenceCommand(&Gcm, 2);
-	//mfence();
-//
-	////ctrl->put = c.newLabel().pos;
-	//cellGcmFlush(&Gcm);
-	//sys_timer_usleep(100);
-//
-	//while (ctrl->ref != 2) 
-	sys_timer_usleep(1000);
+	int ret = cellGcmMapEaIoAddress(ptr_cast(0), 0, 1<<20);
 
 	printf("sample finished. ret=0x%x\n", ret);
 
