@@ -1,0 +1,1 @@
+sys_spu_thread_group_join (1) completed

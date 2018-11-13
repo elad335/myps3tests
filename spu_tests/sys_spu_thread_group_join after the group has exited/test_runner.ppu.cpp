@@ -84,7 +84,7 @@ int main(void)
         return ret;
     }
 
-    printf("sys_spu_thread_group_join: %x\n", ret);
+    printf("sys_spu_thread_group_join (1) completed\n");
 
     // Second join
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);
@@ -92,7 +92,7 @@ int main(void)
         printf("sys_spu_thread_group_join (2): %x\n", ret);
         return ret;
     }
-    printf("sys_spu_thread_group_join (2): %x\n", ret);
+    printf("sys_spu_thread_group_join (2) completed\n");
 
     spu_printf_detach_group(grp_id);
     spu_printf_finalize();
