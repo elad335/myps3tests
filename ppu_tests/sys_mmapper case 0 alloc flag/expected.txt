@@ -1,0 +1,4 @@
+sys_mmapper_allocate_address returned error: 0
+sys_mmapper_allocate_memory returned : 0
+sys_mmapper_map_memory returned : 0
+sample finished.
