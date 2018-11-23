@@ -1,0 +1,4 @@
+thread:0 stack addr=d0001000 current stack offset=0x3f0
+thread:0x1 stack addr=d0013000 current stack offset=0x100
+thread:0x2 stack addr=d0025000 current stack offset=0x100
+sample finished.
