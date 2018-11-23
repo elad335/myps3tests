@@ -59,26 +59,34 @@ int main() {
 		exit(-1);
 	}
 
-	cellFsUnlink(fpath); // Ensure file does not exist
-	printf("cellFsOpen1 :0x%x\n", ret = cellFsOpen(fpath,CELL_FS_O_EXCL | CELL_FS_O_RDWR, &fd, NULL, 0));
-	if (ret != CELL_OK)
+	int flags[3] = {CELL_FS_O_EXCL | CELL_FS_O_RDWR, CELL_FS_O_EXCL | CELL_FS_O_TRUNC | CELL_FS_O_RDWR, CELL_FS_O_EXCL | CELL_FS_O_APPEND};
+
+	for (u32 it = 0; it < 3; it++)
 	{
-		ret = cellFsOpen(fpath,CELL_FS_O_EXCL | CELL_FS_O_RDWR | CELL_FS_O_CREAT, &fd, NULL, 0);
+		cellFsUnlink(fpath); // Ensure file does not exist
+		printf("cellFsOpen%d :0x%x\n", (it * 2) + 1, ret = cellFsOpen(fpath,flags[it], &fd, NULL, 0));
 
 		if (ret != CELL_OK)
 		{
-			// Failed to create file
-			printf("Failure!\n");
-			exit(-1);
-		}
+			ret = cellFsOpen(fpath,CELL_FS_O_RDWR | CELL_FS_O_CREAT, &fd, NULL, 0);
 
-		cellFsClose(fd);
-		printf("cellFsOpen2 :0x%x\n", ret = cellFsOpen(fpath,CELL_FS_O_EXCL | CELL_FS_O_RDWR, &fd, NULL, 0));
-		cellFsClose(fd);
-	}
-	else
-	{
-		cellFsClose(fd);
+			if (ret != CELL_OK)
+			{
+				// Failed to create file
+				printf("Failure!\n");
+				exit(-1);
+			}
+
+			cellFsClose(fd);
+
+			printf("cellFsOpen%d :0x%x\n", (it * 2) + 2, ret = cellFsOpen(fpath,flags[it], &fd, NULL, 0));
+			cellFsClose(fd);
+			continue;
+		}
+		else
+		{
+			cellFsClose(fd);
+		}
 	}
 
 	cellFsUnlink(fpath);

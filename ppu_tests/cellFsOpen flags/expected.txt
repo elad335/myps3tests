@@ -1,3 +1,7 @@
 cellFsOpen1 :0x80010006
 cellFsOpen2 :0x0
+cellFsOpen3 :0x80010006
+cellFsOpen4 :0x0
+cellFsOpen5 :0x80010006
+cellFsOpen6 :0x0
 sample finished.
