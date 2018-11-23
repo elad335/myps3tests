@@ -1,4 +1,3 @@
-cellFsMkDir /app_home/testdir :0x0
 cellFsOpen1 :0x80010006
 cellFsOpen2 :0x0
 sample finished.

@@ -50,17 +50,29 @@ int main() {
 	int fd = -1;
 	const char* fpath = "/app_home/testdir/file.h";
 
-	printf("cellFsMkDir /app_home/testdir :0x%x\n", cellFsMkdir("/app_home/testdir/", CELL_FS_DEFAULT_CREATE_MODE_3));
+	ret = cellFsMkdir("/app_home/testdir", CELL_FS_DEFAULT_CREATE_MODE_3);
+
+	if (ret != CELL_OK && ret != EEXIST)
+	{
+		// Failed to create dir
+		printf("Failure!\n");
+		exit(-1);
+	}
+
 	cellFsUnlink(fpath); // Ensure file does not exist
 	printf("cellFsOpen1 :0x%x\n", ret = cellFsOpen(fpath,CELL_FS_O_EXCL | CELL_FS_O_RDWR, &fd, NULL, 0));
 	if (ret != CELL_OK)
 	{
 		ret = cellFsOpen(fpath,CELL_FS_O_EXCL | CELL_FS_O_RDWR | CELL_FS_O_CREAT, &fd, NULL, 0);
+
 		if (ret != CELL_OK)
 		{
+			// Failed to create file
 			printf("Failure!\n");
 			exit(-1);
 		}
+
+		cellFsClose(fd);
 		printf("cellFsOpen2 :0x%x\n", ret = cellFsOpen(fpath,CELL_FS_O_EXCL | CELL_FS_O_RDWR, &fd, NULL, 0));
 		cellFsClose(fd);
 	}
@@ -68,6 +80,9 @@ int main() {
 	{
 		cellFsClose(fd);
 	}
+
+	cellFsUnlink(fpath);
+	cellFsRmdir("/app_home/testdir");
     printf("sample finished.\n");
 
     return 0;
