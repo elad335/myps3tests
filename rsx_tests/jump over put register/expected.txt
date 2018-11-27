@@ -1,2 +1,0 @@
-Ref=0x0, Get=0x100008, Put=0x100008.
-sample finished.

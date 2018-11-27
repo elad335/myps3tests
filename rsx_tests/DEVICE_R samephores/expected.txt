@@ -1,2 +1,0 @@
-Rendering completed; acquire was successful
-sample finished.

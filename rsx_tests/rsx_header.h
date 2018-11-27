@@ -1,25 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <sys/types.h>
-#include <sys/process.h>
-#include <sys/synchronization.h>
-#include <sys/prx.h>
-
-#include <sysutil/sysutil_sysparam.h> 
-#include <sysutil/sysutil_syscache.h>
-#include <cell/sysmodule.h>
-#include <sys/ppu_thread.h>
-#include <sys/timer.h>
-#include <sys/memory.h>
-#include <sys/event.h>
-#include <sys/syscall.h>
+#include <stdint.h>
 #include <cell/gcm.h>
 #include <cell/cgb.h>
+#include <cell/resc.h>
 #include <Cg/NV/cg.h>
-#include <memory>
-#include <stdint.h>
-#include <string.h>
+#include <Cg/cgc.h>
+
+#define int_cast(p) reinterpret_cast<uintptr_t>(p)
+#define ptr_cast(x) reinterpret_cast<void*>(x)
+#define ptr_caste(x, type) reinterpret_cast<type*>(ptr_cast(x))
+#define ref_cast(x) *reinterpret_cast<type*>(ptr_cast(x))
 
 typedef uintptr_t uptr;
 typedef uint64_t u64;
@@ -27,11 +16,11 @@ typedef uint32_t u32;
 typedef uint16_t u16;
 typedef uint8_t u8;
 
-#define int_cast(addr) reinterpret_cast<uintptr_t>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
-#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
-inline void mfence() { asm volatile ("sync;eieio"); };
-inline void __check() { asm volatile ("twi 0x10, 3, 0"); }; 
+typedef intptr_t sptr;
+typedef int64_t s64;
+typedef int32_t s32;
+typedef int16_t s16;
+typedef int8_t s8;
 
 enum
 {
@@ -315,6 +304,39 @@ enum
 	NV4097_SET_VERTEX_ATTRIB_OUTPUT_MASK = 0x00001ff4,
 	NV4097_SET_TRANSFORM_BRANCH_BITS = 0x00001ff8,
 
+	// NV30_SCALED_IMAGE_FROM_MEMORY (NV3089)
+	NV3089_SET_OBJECT = 0x0000C000,
+	NV3089_SET_CONTEXT_DMA_NOTIFIES = 0x0000C180,
+	NV3089_SET_CONTEXT_DMA_IMAGE = 0x0000C184,
+	NV3089_SET_CONTEXT_PATTERN = 0x0000C188,
+	NV3089_SET_CONTEXT_ROP = 0x0000C18C,
+	NV3089_SET_CONTEXT_BETA1 = 0x0000C190,
+	NV3089_SET_CONTEXT_BETA4 = 0x0000C194,
+	NV3089_SET_CONTEXT_SURFACE = 0x0000C198,
+	NV3089_SET_COLOR_CONVERSION = 0x0000C2FC,
+	NV3089_SET_COLOR_FORMAT = 0x0000C300,
+	NV3089_SET_OPERATION = 0x0000C304,
+	NV3089_CLIP_POINT = 0x0000C308,
+	NV3089_CLIP_SIZE = 0x0000C30C,
+	NV3089_IMAGE_OUT_POINT = 0x0000C310,
+	NV3089_IMAGE_OUT_SIZE = 0x0000C314,
+	NV3089_DS_DX = 0x0000C318,
+	NV3089_DT_DY = 0x0000C31C,
+	NV3089_IMAGE_IN_SIZE = 0x0000C400,
+	NV3089_IMAGE_IN_FORMAT = 0x0000C404,
+	NV3089_IMAGE_IN_OFFSET = 0x0000C408,
+	NV3089_IMAGE_IN = 0x0000C40C,
+
+	// NV30_CONTEXT_SURFACES_2D	(NV3062)
+	NV3062_SET_OBJECT = 0x00006000,
+	NV3062_SET_CONTEXT_DMA_NOTIFIES = 0x00006180,
+	NV3062_SET_CONTEXT_DMA_IMAGE_SOURCE = 0x00006184,
+	NV3062_SET_CONTEXT_DMA_IMAGE_DESTIN = 0x00006188,
+	NV3062_SET_COLOR_FORMAT = 0x00006300,
+	NV3062_SET_PITCH = 0x00006304,
+	NV3062_SET_OFFSET_SOURCE = 0x00006308,
+	NV3062_SET_OFFSET_DESTIN = 0x0000630C,
+
 	//lv1 hypervisor commands
 	GCM_SET_DRIVER_OBJECT = 0x0000E000,
 	GCM_FLIP_HEAD = 0x0000E920,          //0xE920:0xE924: Flip head 0 or 1
@@ -324,14 +346,32 @@ enum
 	GCM_FLIP_COMMAND = 0x0000FEAC,
 };
 
-// Set priority and stack size for the primary PPU thread.
-// Priority : 1000
-// Stack    : 64KB
-SYS_PROCESS_PARAM(1000, 0x10000)
+enum
+{
+	//CELL_GCM_CONTEXT_DMA_MEMORY_FRAME_BUFFER = 0xFEED0000, // Local memory
+	//CELL_GCM_CONTEXT_DMA_MEMORY_HOST_BUFFER = 0xFEED0001, // Main memory
+	//CELL_GCM_CONTEXT_DMA_REPORT_LOCATION_LOCAL = 0x66626660,
+	//CELL_GCM_CONTEXT_DMA_REPORT_LOCATION_MAIN = 0xBAD68000,
+	//CELL_GCM_CONTEXT_DMA_NOTIFY_MAIN_0 = 0x6660420F,
 
-sys_memory_t mem_id;
-sys_addr_t addr;
-CellGcmOffsetTable offsetTable;
+	//CELL_GCM_CONTEXT_DMA_TO_MEMORY_GET_NOTIFY0 = 0x66604200,
+	//CELL_GCM_CONTEXT_DMA_SEMAPHORE_RW = 0x66606660,
+	//CELL_GCM_CONTEXT_DMA_SEMAPHORE_R = 0x66616661,
+	//CELL_GCM_CONTEXT_DMA_DEVICE_RW = 0x56616660,
+	//CELL_GCM_CONTEXT_DMA_DEVICE_R = 0x56616661
+};
+
+struct RsxDmaControl
+{
+	u8 resv[0x40];
+	u32 put;
+	u32 get;
+	u32 ref;
+	u32 unk[2];
+	u32 unk1;
+};
+
+static CellGcmOffsetTable offsetTable;
 
 static int AddrToOffset(void* addr)
 {
@@ -347,8 +387,8 @@ static u32* OffsetToAddr(u32 offset)
 struct gcmLabel
 {
 	u32 pos;
-	gcmLabel(){};
-	gcmLabel(u32 pos){ this->pos = pos; };
+	gcmLabel(){}
+	gcmLabel(u32 pos){ this->pos = pos; }
 };
 
 // Command queue manager composed from an internal cellGcm compiler
@@ -369,10 +409,31 @@ struct rsxCommandCompiler
 		*(c.current++) = (count << 18) | command;	
 	}
 
-	// Push a jump command, offset is specified by label
-	inline void bindJmp(gcmLabel label)
+	// Push a command that writes to a single register with value
+	// Optimized for this
+	inline void reg(u32 command, u32 value)
 	{
-		*(c.current++) = label.pos | RSX_METHOD_OLD_JUMP_CMD;
+		u32* ptr = c.current;
+		*(ptr+0) = (1 << 18) | command;
+		*(ptr+1) = value;
+		ptr += 2;
+		c.current = ptr;
+	}
+
+	// Push a jump command, offset is specified by label
+	inline void jmp(gcmLabel label)
+	{
+		*(c.current++) = label.pos | RSX_METHOD_NEW_JUMP_CMD;
+	}
+
+	inline void call(gcmLabel label)
+	{
+		*(c.current++) = label.pos | RSX_METHOD_CALL_CMD;
+	}
+
+	inline void ret()
+	{
+		*(c.current++) = RSX_METHOD_RETURN_CMD;
 	}
 
 	// generates a jump label by current position
@@ -387,73 +448,8 @@ struct rsxCommandCompiler
 		return AddrToOffset(c.current);
 	}
 
-};
-
-static union
-{
-	CellGcmContextData Gcm;
-	rsxCommandCompiler c;
-};
-
-// CellGcmContextCallback
-int GcmCallback(struct CellGcmContextData *, uint32_t){}
-
-// Direct pointer to display buffer
-static const u32* gcmDisplay = ptr_caste(0xC0200000, u32);
-
-inline void* LocalOffsetToPtr(u32 offs) { return ptr_cast(offs + 0xC0000000); };
-
-int main() {
-
-	// They should be at the same address (Traps are not gay)
-	if (int_cast(&Gcm) != int_cast(&c.c)) asm volatile ("tw 4, 1, 1");
-
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
+	inline void debugBreak() 
+	{ 
+		*(c.current++) = 0xFFFFFFFCu | RSX_METHOD_NEW_JUMP_CMD;
 	}
-
-	sys_memory_allocate(0x800000, 0x400, &addr), __check();
-
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
-	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 7<<20);
-
-	u8 id; cellGcmGetCurrentDisplayBufferId(&id);
- 	cellGcmSetDisplayBuffer(id, 2<<20, 1280*4, 1280, 720);
-	cellGcmGetOffsetTable(&offsetTable);
-
-	CellGcmDisplayInfo* info = const_cast<CellGcmDisplayInfo*>(cellGcmGetDisplayInfo());
-	CellGcmControl* ctrl = cellGcmGetControlRegister();
-	// Wait for RSX to complete previous operation
-	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
-
-	// Place a jump into io address 1mb
-	*OffsetToAddr(ctrl->get) = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;
-	sys_timer_usleep(40);
-
-	cellGcmSetupContextData(&Gcm, ptr_caste(addr + (1<<20), u32), 0x10000, GcmCallback);
-
-	c.push(1, NV4097_SET_BEGIN_END);
-	c.push(CELL_GCM_PRIMITIVE_POLYGON); // Start Begin End op
-
-	c.push(1, NV4097_SET_BEGIN_END);
-	c.push(1, 0); // Invalid primitive
-
-	c.push(1, NV4097_SET_BEGIN_END);
-	c.push(1, 0); // Invalid primitive
-
-	c.push((1 << 31) | RSX_METHOD_NEW_JUMP_CMD); // Jump to unmapped area 
-
-	// Stop dumping and ack finish
-	cellGcmSetReferenceCommand(&Gcm, 2);
-	mfence();
-
-	ctrl->put = c.newLabel().pos;
-	sys_timer_usleep(100);
-
-	while (ctrl->ref != 2) sys_timer_usleep(1000);
-
-	printf("sample finished.");
-
-    return 0;
-}
+};
