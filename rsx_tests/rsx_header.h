@@ -8,7 +8,7 @@
 #define int_cast(p) reinterpret_cast<uintptr_t>(p)
 #define ptr_cast(x) reinterpret_cast<void*>(x)
 #define ptr_caste(x, type) reinterpret_cast<type*>(ptr_cast(x))
-#define ref_cast(x) *reinterpret_cast<type*>(ptr_cast(x))
+#define ref_cast(x, type) *reinterpret_cast<type*>(ptr_cast(x))
 
 typedef uintptr_t uptr;
 typedef uint64_t u64;
@@ -342,8 +342,6 @@ enum
 	GCM_FLIP_HEAD = 0x0000E920,          //0xE920:0xE924: Flip head 0 or 1
 	GCM_DRIVER_QUEUE = 0x0000E940,       //0XE940:0xE95C: First two indices prepare display buffers, rest unknown
 	GCM_SET_USER_COMMAND = 0x0000EB00,   //0xEB00:0xEB04: User interrupt
-
-	GCM_FLIP_COMMAND = 0x0000FEAC,
 };
 
 enum
@@ -355,10 +353,10 @@ enum
 	//CELL_GCM_CONTEXT_DMA_NOTIFY_MAIN_0 = 0x6660420F,
 
 	//CELL_GCM_CONTEXT_DMA_TO_MEMORY_GET_NOTIFY0 = 0x66604200,
-	//CELL_GCM_CONTEXT_DMA_SEMAPHORE_RW = 0x66606660,
-	//CELL_GCM_CONTEXT_DMA_SEMAPHORE_R = 0x66616661,
-	//CELL_GCM_CONTEXT_DMA_DEVICE_RW = 0x56616660,
-	//CELL_GCM_CONTEXT_DMA_DEVICE_R = 0x56616661
+	CELL_GCM_CONTEXT_DMA_SEMAPHORE_RW = 0x66606660,
+	CELL_GCM_CONTEXT_DMA_SEMAPHORE_R = 0x66616661,
+	CELL_GCM_CONTEXT_DMA_DEVICE_RW = 0x56616660,
+	CELL_GCM_CONTEXT_DMA_DEVICE_R = 0x56616661
 };
 
 struct RsxDmaControl
@@ -372,6 +370,12 @@ struct RsxDmaControl
 };
 
 static CellGcmOffsetTable offsetTable;
+
+// rsx ops fence
+#define gfxFence(c); \
+	cellGcmSetWriteBackEndLabel(c, 64, -2u); \
+	cellGcmSetWaitLabel(c, 64, -2u); \
+	cellGcmSetWriteBackEndLabel(c, 64, 0); \
 
 static int AddrToOffset(void* addr)
 {
@@ -387,7 +391,6 @@ static u32* OffsetToAddr(u32 offset)
 struct gcmLabel
 {
 	u32 pos;
-	gcmLabel(){}
 	gcmLabel(u32 pos){ this->pos = pos; }
 };
 
@@ -436,16 +439,16 @@ struct rsxCommandCompiler
 		*(c.current++) = RSX_METHOD_RETURN_CMD;
 	}
 
-	// generates a jump label by current position
-	inline gcmLabel newLabel()
-	{
-		return gcmLabel(AddrToOffset(c.current));
-	}
-
 	// Get current position by offset
 	inline u32 pos()
 	{
 		return AddrToOffset(c.current);
+	}
+
+	// generates a jump label by current position
+	inline gcmLabel newLabel()
+	{
+		return gcmLabel(this->pos());
 	}
 
 	inline void debugBreak() 

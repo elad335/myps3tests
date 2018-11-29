@@ -1,0 +1,2 @@
+sys_spu_thread_set_spu_cfg returned: 0x80010002
+sys_spu_thread_get_spu_cfg value after group_start: 0x3
