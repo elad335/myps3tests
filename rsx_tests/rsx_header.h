@@ -417,8 +417,7 @@ struct rsxCommandCompiler
 	inline void reg(u32 command, u32 value)
 	{
 		u32* ptr = c.current;
-		*(ptr+0) = (1 << 18) | command;
-		*(ptr+1) = value;
+		ref_cast(ptr, u64) = (u64((1ull << 18) | command) << 32) | (u64)value;
 		ptr += 2;
 		c.current = ptr;
 	}
