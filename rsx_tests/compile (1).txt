@@ -1,0 +1,9 @@
+ppu-lv2-objcopy -I binary -O elf64-powerpc-celloslv2 -B powerpc --set-section-align .data=7 --set-section-pad .data=128 --rename-section .data=.spu_image.test,readonly,contents,alloc mainfp.fpo mainfp.o
+
+ppu-lv2-objcopy -I binary -O elf64-powerpc-celloslv2 -B powerpc --set-section-align .data=7 --set-section-pad .data=128 --rename-section .data=.spu_image.test,readonly,contents,alloc mainvp.vpo mainvp.o
+
+ppu-lv2-gcc -o mainrsxcrap.elf mainvp.o mainfp.o %SCE_PS3_ROOT%/target/ppu/lib/libgcm_cmd.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_sys_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysmodule_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libresc_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcgb.a %SCE_PS3_ROOT%/target/ppu/lib/libcgc.a mainrsxcrap.cpp
+
+make_fself mainrsxcrap.elf mainrsxcrap.self
+
+pause

@@ -1,0 +1,5 @@
+sce-cgc -p sce_vp_rsx -o mainvp.vpo mainvp.cg --assembly
+sce-cgc -p sce_fp_rsx -o mainfp.fpo mainfp.cg --assembly
+
+
+pause
