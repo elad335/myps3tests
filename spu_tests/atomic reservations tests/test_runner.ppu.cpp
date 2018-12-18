@@ -51,6 +51,7 @@ int main(void)
     sys_spu_thread_attribute_initialize(thr_attr);
     sys_spu_thread_attribute_name(thr_attr, "test spu thread");
     sys_spu_thread_argument_t thr_args;
+    thr_args.arg1 = ((uint32_t)malloc(1 << 16) & ~127);
     ret = sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args);
     if (ret != CELL_OK) {
         printf("sys_spu_thread_initialize: %d\n", ret);
@@ -74,11 +75,7 @@ int main(void)
         printf("sys_spu_thread_group_start: %d\n", ret);
         return ret;
     }
-    void* fill = malloc(1 << 16);
-    printf("cell is %x\n",sys_spu_thread_write_snr(thr_id, 0 ,(uint32_t)(fill) & ~127)); // align the address manually
 
-    asm volatile ("nop;eieio;sync");
-    printf("%x\n", uint32_t(fill) & ~127);
     int cause;
     int status;
     ret = sys_spu_thread_group_join(grp_id, &cause, &status);

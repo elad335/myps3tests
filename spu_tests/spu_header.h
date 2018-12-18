@@ -34,25 +34,29 @@ inline void mfc_fence()
 
 struct lock_line_t
 {
-    u8 rdata[128] __attribute__((aligned(128)));
+	u8 rdata[128] __attribute__((aligned(128)));
 
-    // Access reservation data as array 
-    template<typename Ts>
-    Ts& as(std::size_t index)
-    {
-        return ptr_caste(rdata, Ts)[index];
-    }
+	// Access reservation data as array 
+	template<typename Ts>
+	Ts& as(std::size_t index)
+	{
+	    return ptr_caste(rdata, Ts)[index];
+	}
 
 	u32& operator [](std::size_t index)
 	{
 		return ptr_caste(rdata, u32)[index];
 	}
 
-    // Get address
-    uptr get()
-    {
-        return int_cast(&rdata[0]);
-    }
+	void* data()
+	{
+		return &rdata[0];
+	}
+
+	uptr addr()
+	{
+		return int_cast(&rdata[0]);
+	}
 };
 
 // Runtime(!) channel interaction functions
