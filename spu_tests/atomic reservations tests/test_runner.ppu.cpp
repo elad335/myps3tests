@@ -8,7 +8,7 @@
 #include <sys/spu_utility.h>
 #include <sys/spu_image.h>
 #include <sys/spu_initialize.h>
-
+#include <string>
 #include <spu_printf.h>
 
 
@@ -31,7 +31,7 @@ int main(void)
     
     sys_spu_thread_group_attribute_initialize(grp_attr);
     sys_spu_thread_group_attribute_name(grp_attr, "test spu grp");
-    ret = sys_spu_thread_group_create(&grp_id, 1, prio, &grp_attr);
+    ret = sys_spu_thread_group_create(&grp_id, 2, prio, &grp_attr);
     if (ret != CELL_OK) {
         printf("spu_thread_group_create failed: %d\n", ret);
         return ret;
@@ -51,12 +51,22 @@ int main(void)
     sys_spu_thread_attribute_initialize(thr_attr);
     sys_spu_thread_attribute_name(thr_attr, "test spu thread");
     sys_spu_thread_argument_t thr_args;
-    thr_args.arg1 = ((uint32_t)malloc(1 << 16) & ~127);
+	uint64_t raddr = ((uint32_t)malloc(1 << 16) & ~127);
+	memset((void*)raddr, 0, 512);
+    thr_args.arg1 = raddr;
+    thr_args.arg2 = 0;
     ret = sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args);
     if (ret != CELL_OK) {
         printf("sys_spu_thread_initialize: %d\n", ret);
         return ret;
     }
+
+	thr_args.arg2 = 1;
+	ret = sys_spu_thread_initialize(&thr_id, grp_id, 1, &img, &thr_attr, &thr_args);
+	if (ret != CELL_OK) {
+		printf("sys_spu_thread_initialize: %d\n", ret);
+		return ret;
+	}
 
     ret = spu_printf_initialize(1000, NULL);
     if (ret != CELL_OK) {
@@ -93,5 +103,6 @@ int main(void)
         return ret;
     }
 
+	printf("sample finished");
 	return 0;
 }

@@ -22,17 +22,22 @@ inline void ack_event(u32 bit)
     mfence();
 }
 
-int main(u64 raddr)
+int main(u64 raddr, u64 number)
 {
+	if (number == 1)
+    {
+		goto SKIP_EVENTS_TESTS;
+    }
+
     // Test GETLLAR lr event raising (while raddr is different than EAL)
 
     ack_event(MFC_LLR_LOST_EVENT);
 
-    mfc_getllar(rdata.data(), raddr, 0, 0);
+    mfc_getllar(rdata.data(), raddr + 128, 0, 0);
     spu_readch(MFC_RdAtomicStat);
     mfence();
 
-    mfc_getllar(rdata.data(), raddr + 128, 0, 0);
+    mfc_getllar(rdata.data(), raddr + 256, 0, 0);
     spu_readch(MFC_RdAtomicStat);
     mfence();
 
@@ -42,11 +47,11 @@ int main(u64 raddr)
 
     ack_event(MFC_LLR_LOST_EVENT);
 
-    mfc_getllar(rdata.data(), raddr, 0, 0);
+    mfc_getllar(rdata.data(), raddr + 128, 0, 0);
     spu_readch(MFC_RdAtomicStat);
     mfence();
 
-    mfc_putllc(rdata.data(), raddr + 128, 0, 0);
+    mfc_putllc(rdata.data(), raddr + 256, 0, 0);
     spu_readch(MFC_RdAtomicStat);
     mfence();
 
@@ -56,17 +61,90 @@ int main(u64 raddr)
 
     ack_event(MFC_LLR_LOST_EVENT);
 
-    mfc_getllar(rdata.data(), raddr, 0, 0);
+    mfc_getllar(rdata.data(), raddr + 128, 0, 0);
     spu_readch(MFC_RdAtomicStat);
     mfence();
 
-    mfc_putlluc(rdata.data(), raddr, 0, 0);
+    mfc_putlluc(rdata.data(), raddr + 128, 0, 0);
     spu_readch(MFC_RdAtomicStat);
     mfence();
 
     spu_printf("events after PUTLLUC: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
 
-    spu_printf("sample finished");
-    sys_spu_thread_group_exit(0);
+    SKIP_EVENTS_TESTS:
+    mfc_fence();
+    ack_event(MFC_LLR_LOST_EVENT);
+
+    u32 status;
+
+    // Thread number 1 modifies reservation, Thread 0 waits for change 
+    if (number == 1)
+    {
+        do
+        {
+            do {
+            mfc_getllar(rdata.data(), raddr, 0, 0);
+            spu_readch(MFC_RdAtomicStat);
+            mfence();
+
+            if (rdata.as<u32>(31) == -1u)
+            {
+                break;
+            }
+
+            rdata.as<u32>(0)++;
+            mfence();
+
+            mfc_putllc(rdata.data(), raddr, 0, 0);
+            status = spu_readch(MFC_RdAtomicStat);
+            mfence();
+            } while (status);
+        }
+        while (rdata.as<u32>(31) != -1u);
+    }
+    else
+    {
+        u32 value;
+        mfc_getllar(rdata.data(), raddr, 0, 0);
+        spu_readch(MFC_RdAtomicStat);
+        mfence();
+
+        value = rdata.as<u32>(0);
+
+        while (true)
+        {
+            mfc_getllar(rdata.data(), raddr, 0, 0);
+            spu_readch(MFC_RdAtomicStat);
+            mfence();
+
+            if (value != rdata.as<u32>(0))
+            {
+                // Lose previous reservation
+                mfc_getllar(rdata.data(), raddr + 128, 0, 0);
+                spu_readch(MFC_RdAtomicStat);
+                mfence();
+
+                // Reservation changed earlier, event must be recorded
+                spu_printf("events after GETLLAR loop: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
+                break;
+            }
+        }
+
+        do {
+        mfc_getllar(rdata.data(), raddr, 0, 0);
+        spu_readch(MFC_RdAtomicStat);
+        mfence();
+
+        // Signal second thread to exit
+        rdata.as<u32>(31) = -1u;
+        mfence();
+
+        mfc_putllc(rdata.data(), raddr, 0, 0);
+        status = spu_readch(MFC_RdAtomicStat);
+        mfence();
+        } while (status);
+    }
+
+    sys_spu_thread_exit(0);
 	return 0;
 }

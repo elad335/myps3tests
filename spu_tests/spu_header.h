@@ -17,6 +17,20 @@ typedef int32_t s32;
 typedef int64_t s64;
 typedef intptr_t sptr;
 
+typedef float f32;
+typedef double f64;
+
+typedef vec_ushort8 vec_u8;
+typedef vec_uchar16 vec_u16;
+typedef vec_uint4 vec_u32;
+typedef vec_ullong2 vec_u64;
+typedef vec_short8 vec_s8;
+typedef vec_char16 vec_s16;
+typedef vec_int4 vec_s32;
+typedef vec_llong2 vec_s64;
+typedef vec_float4 vec_f32;
+typedef vec_double2 vec_f64;
+
 #define ptr_cast(x) reinterpret_cast<void*>(x)
 #define ptr_caste(x, T) reinterpret_cast<T*>(ptr_cast(x))
 #define ref_cast(x, T) *reinterpret_cast<T*>(ptr_cast(x))

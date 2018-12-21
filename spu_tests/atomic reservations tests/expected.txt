@@ -1,4 +1,5 @@
 events after GETLLAR: 0x00000000
 events after PUTLLC: 0x00000000
 events after PUTLLUC: 0x00000000
+events after GETLLAR loop: 0x00000400
 sample finished
