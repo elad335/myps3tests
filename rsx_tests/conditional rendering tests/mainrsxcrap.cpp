@@ -92,12 +92,13 @@ int main() {
 	if (int_cast(&Gcm) != int_cast(&c.c)) asm volatile ("tw 4, 1, 1");
 
 	LoadModules();
-	sys_memory_allocate(0x1000000, 0x400, &addr);
+	sys_memory_allocate(0x2000000, 0x400, &addr);
 
 	cellGcmInit(1<<16, 0x100000, ptr_cast(addr)); 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 	while (ctrl->put != ctrl->get) sys_timer_usleep(300);
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 15<<20);
+	cellGcmMapEaIoAddressWithFlags(ptr_cast(addr + (16<<20)), 0xe0<<20, 16<<20, CELL_GCM_IOMAP_FLAG_STRICT_ORDERING); 
 
 	{
 		CellRescInitConfig resConfig;
@@ -176,7 +177,7 @@ int main() {
 		cellGcmSetScissor(&Gcm, x, y, w, h);
 	}
 
-	static const u32 colorOffset = 0x400000;
+	static const u32 colorOffset = 0x200000;
 	static const u32 depthOffset = 0xF00000;
 	static const u32 texOffset = 0x900000;
 
@@ -275,7 +276,7 @@ int main() {
 		for (u32* fill = OffsetToAddr(texOffset); i < 1280 * 720; i++, fill++)
 		{
 			// Grayish color
-			*fill = 0xFF8F8F8Fu;
+			*fill = 0xFF000000u | i;
 		}
 		mfence();
 	}
@@ -284,7 +285,7 @@ int main() {
 		u32 i = 0;
 		for (u32* fill = (u32*)gLocations::video; i < 1280 * 720; i++, fill++)
 		{
-			*fill = -1u;
+			*fill = 0u;
 		}
 		mfence();
 	}
@@ -307,32 +308,38 @@ int main() {
 	cellGcmSetInvalidateTextureCache(&Gcm, CELL_GCM_INVALIDATE_TEXTURE);
 	cellGcmSetInvalidateVertexCache(&Gcm);
 
-	cellGcmSetDrawArrays(&Gcm, CELL_GCM_PRIMITIVE_TRIANGLE_STRIP, 0, 4);
-	c.reg(GCM_DRIVER_QUEUE+4, id);
-	c.reg(NV406E_SET_CONTEXT_DMA_SEMAPHORE, CELL_GCM_CONTEXT_DMA_DEVICE_R);
-	c.reg(NV406E_SEMAPHORE_OFFSET, 0x30);
-	c.reg(NV406E_SEMAPHORE_RELEASE, 0x0);
-	c.reg(NV406E_SEMAPHORE_OFFSET, 0x30);
-	c.reg(NV406E_SEMAPHORE_ACQUIRE, 0x1);
-	c.reg(NV406E_SET_CONTEXT_DMA_SEMAPHORE, CELL_GCM_CONTEXT_DMA_SEMAPHORE_R);
-	c.reg(NV406E_SEMAPHORE_OFFSET, 0x10);
-	c.reg(NV406E_SEMAPHORE_RELEASE, 0xffffffff);
-	c.reg(NV406E_SET_CONTEXT_DMA_SEMAPHORE, 0); // Shit location
-	c.reg(GCM_FLIP_HEAD+4, 0x8000010f);
-	c.reg(NV406E_SEMAPHORE_ACQUIRE, 0);
-	c.reg(NV406E_SET_CONTEXT_DMA_SEMAPHORE, CELL_GCM_CONTEXT_DMA_SEMAPHORE_R); // Restore location
-
-	cellGcmSetReferenceCommand(&Gcm, 2);
+	cellGcmGetReportDataAddressLocation(1, CELL_GCM_LOCATION_LOCAL)->value = 1;
 	mfence();
 
-	ctrl->put = c.newLabel().pos;
+	cellGcmSetReportLocation(&Gcm, CELL_GCM_LOCATION_LOCAL);
+	cellGcmSetRenderEnable(&Gcm, CELL_GCM_CONDITIONAL, 1);
+
+	cellGcmSetReferenceCommand(&Gcm, 2);
+
+	ctrl->put = c.pos();
 	sys_timer_usleep(100);
 
-	while ( ctrl->ref != 2) 
+	while (ctrl->ref != 2) 
 	{
-		sys_timer_usleep(10000); 
-		
-		//cellGcmSetFlipImmediate(id); // TODO: Fix this (jarves :hammer:)
+		sys_timer_usleep(1000); 
+	}
+
+	cellGcmGetReportDataAddressLocation(1, CELL_GCM_LOCATION_LOCAL)->value = 0;
+	mfence();
+
+	cellGcmSetDrawArrays(&Gcm, CELL_GCM_PRIMITIVE_TRIANGLE_STRIP, 0, 4);
+	gfxFence(&Gcm);
+	gcmLabel displaySync = c.newLabel();
+	cellGcmSetFlip(&Gcm, id);
+	cellGcmSetWaitFlip(&Gcm);
+	cellGcmSetReferenceCommand(&Gcm, 3);
+	c.jmp(displaySync);
+	ctrl->put = c.pos();
+	mfence();
+
+	while (true)
+	{
+		sys_timer_usleep(1000); 
 	}
 
 	printf("sample finished.\n");
