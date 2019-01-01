@@ -108,9 +108,9 @@ int main(void)
 	sys_raw_spu_create_interrupt_tag(thr_id, 2, SYS_HW_THREAD_ANY, &tag);
 
 	u64 mask;
-	sys_raw_spu_get_int_stat(thr_id, 2, &mask);
+	sys_raw_spu_get_int_mask(thr_id, 2, &mask);
 	printf("Initial interrupt mask class 2=0x%x\n", mask);
-	sys_raw_spu_get_int_stat(thr_id, 0, &mask);
+	sys_raw_spu_get_int_mask(thr_id, 0, &mask);
 	printf("Initial interrupt mask class 0=0x%x\n", mask);
 
 	ret = sys_raw_spu_set_int_mask(thr_id, 2, SPU_INT2_STAT_MAILBOX_INT);

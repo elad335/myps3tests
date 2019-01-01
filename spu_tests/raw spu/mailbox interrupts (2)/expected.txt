@@ -1,4 +1,4 @@
-Initial interrupt mask class 2=0x10
+Initial interrupt mask class 2=0x0
 Initial interrupt mask class 0=0x0
 raw thread is running
 Interupt fired: intr status=0x13
