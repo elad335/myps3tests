@@ -1,0 +1,2 @@
+addr1=0x30000000, addr2=0x50000000
+sample finished.
