@@ -1,4 +1,4 @@
-ppu-lv2-gcc -o ppumain.elf ppumain.cpp %SCE_PS3_ROOT%/target/ppu/lib/libgcm_cmd.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_sys_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysmodule_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libresc_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcgb.a %SCE_PS3_ROOT%/target/ppu/lib/libcgc.a
+ppu-lv2-gcc -o ppumain.elf ppumain.cpp %SCE_PS3_ROOT%/target/ppu/lib/libgcm_cmd.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_sys_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysmodule_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libresc_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcgb.a %SCE_PS3_ROOT%/target/ppu/lib/libcgc.a %SCE_PS3_ROOT%/target/ppu/lib/libfs_stub.a
 
 make_fself ppumain.elf ppumain.self
 
