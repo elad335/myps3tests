@@ -71,6 +71,20 @@ int main(u64 raddr, u64 number)
 
     spu_printf("events after PUTLLUC: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
 
+    // Test PUT cmd lr event behaviour (while raddr is the same as EAL)
+
+    ack_event(MFC_LLR_LOST_EVENT);
+
+    mfc_getllar(rdata.data(), raddr + 128, 0, 0);
+    spu_readch(MFC_RdAtomicStat);
+    mfence();
+
+    mfc_put(rdata.data(), raddr + 128, 0x80, 0, 0, 0);
+    mfc_fence();
+
+    mfc_putllc(rdata.data(), raddr + 128, 0, 0);
+    spu_printf("status after PUT:%d, events=0x%08x\n", spu_readch(MFC_RdAtomicStat), spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
+
     SKIP_EVENTS_TESTS:
     mfc_fence();
     ack_event(MFC_LLR_LOST_EVENT);

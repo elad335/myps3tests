@@ -1,5 +1,14 @@
+PPU - Performing atomic store on a nieghbor address of load's
+ status:true
+PPU - Performing u64 to u32 atomic op
+ status:true
+PPU - Performing u32 to u64 atomic op
+ status:true
+PPU - Performing atomic store after a self written non-atomic store
+ status:true
 events after GETLLAR: 0x00000000
 events after PUTLLC: 0x00000000
 events after PUTLLUC: 0x00000000
+status after PUT:1, events=0x00000400
 events after GETLLAR loop: 0x00000400
 sample finished

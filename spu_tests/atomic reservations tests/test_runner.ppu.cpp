@@ -9,21 +9,76 @@
 #include <sys/spu_image.h>
 #include <sys/spu_initialize.h>
 #include <string>
+#include <cell/atomic.h>
 #include <spu_printf.h>
+#include <sys/timer.h>
 
 
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
 
+typedef uintptr_t uptr;
+typedef uint64_t u64;
+typedef uint32_t u32;
+typedef uint16_t u16;
+typedef uint8_t u8;
+
+#define int_cast(addr) reinterpret_cast<uptr>(addr)
+#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
+#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
+#define m_fence() asm volatile ("eieio;sync")
+
+static u32 rdata[256] __attribute__((aligned(128))) = {0};
+
+#define BEGIN_SCOPE do{
+#define CLOSE_SCOPE(expr) }while(expr)
+
+static void ppu_reservation_tests()
+{
+    rdata[0] = 0;
+    rdata[1] = 1;
+    m_fence();
+
+    BEGIN_SCOPE;
+    __lwarx(&rdata[0]);
+    bool success = __stwcx(&rdata[1], rdata[1]) != 0;
+    printf("PPU - Performing atomic store on a nieghbor address of load's\n status:%s\n", success ? "true" : "false");
+    CLOSE_SCOPE(0);
+
+    BEGIN_SCOPE;
+    __ldarx(ptr_caste(&rdata[0], u64));
+    bool success = __stwcx(&rdata[0], rdata[0]) != 0;
+    printf("PPU - Performing u64 to u32 atomic op\n status:%s\n", success ? "true" : "false");
+    CLOSE_SCOPE(0);
+
+    BEGIN_SCOPE;
+    __lwarx(&rdata[0]);
+    bool success = __stdcx(ptr_caste(&rdata[0], u64), *ptr_caste(&rdata[0], u64)) != 0;
+    printf("PPU - Performing u32 to u64 atomic op\n status:%s\n", success ? "true" : "false");
+    CLOSE_SCOPE(0);
+
+    BEGIN_SCOPE;
+    const u32 old = __lwarx(&rdata[0]);
+    rdata[0] = old + 1;
+    m_fence();
+    bool success = __stwcx(&rdata[0], rdata[0]) != 0;
+    printf("PPU - Performing atomic store after a self written non-atomic store\n status:%s\n", success ? "true" : "false");
+    rdata[0] = old - 1;
+    m_fence();
+    CLOSE_SCOPE(0);
+
+    rdata[0] = 0;
+    rdata[1] = 0;
+    m_fence();
+    sys_timer_sleep(1);
+} 
+
 int main(void)
 {
+    ppu_reservation_tests();
+
 	int ret;
-    
-	ret = sys_spu_initialize(1, 0);
-	if (ret != CELL_OK) {
-        printf("sys_spu_initialize failed: %d\n", ret);
-        return ret;
-	}
+	sys_spu_initialize(1, 0);
 
     sys_spu_thread_group_t grp_id;
     int prio = 100;
@@ -51,9 +106,7 @@ int main(void)
     sys_spu_thread_attribute_initialize(thr_attr);
     sys_spu_thread_attribute_name(thr_attr, "test spu thread");
     sys_spu_thread_argument_t thr_args;
-	uint64_t raddr = ((uint32_t)malloc(1 << 16) & ~127);
-	memset((void*)raddr, 0, 512);
-    thr_args.arg1 = raddr;
+    thr_args.arg1 = reinterpret_cast<uptr>(&rdata[0]);
     thr_args.arg2 = 0;
     ret = sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args);
     if (ret != CELL_OK) {
@@ -103,6 +156,7 @@ int main(void)
         return ret;
     }
 
+    sys_timer_sleep(1);
 	printf("sample finished");
 	return 0;
 }
