@@ -1,0 +1,4 @@
+sys_ppu_thread_get_join_state(NULL) returned:0x8001000d
+sys_ppu_thread_get_join_state returned: 0x0, join_state=0
+Joining error code = 0x80010002.
+sample finished.
