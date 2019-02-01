@@ -1,0 +1,7 @@
+lwcond_signal(null id, mode 1) returned 0x80010005
+lwcond_signal(main_thread, mode 2) returned 0x80010009
+lwcond_signal(-1 id, mode 2) returned 0x0
+lwcond_signal(main_thread, mode 3) returned 0x80010009
+lwcond_signal(-1 id, mode 3) returned 0x80010006
+lwcond_signal_all(invalid mtx, mode 2) returned 0x0d 0x80010009
+lwcond_signal_all(invalid mtx, mode 2) returned 0x0
