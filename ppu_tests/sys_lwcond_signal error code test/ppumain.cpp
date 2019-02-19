@@ -11,49 +11,11 @@
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
-register u32 g_error asm ("3"); 
-
 sys_lwmutex_t lwmutex, invalid_mutex;
 sys_lwmutex_attribute_t mutex_attr = { SYS_SYNC_PRIORITY, SYS_SYNC_NOT_RECURSIVE, "/0"};
 sys_lwcond_t lwcond, invalid_cond;
 sys_lwcond_attribute_t cond_attr = { "/0" };
 sys_ppu_thread_t threads;
-
-inline u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
-{
-	{system_call_3(0x071, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), timeout);}
-	return g_error;
-}
-
-inline u32 lv2_lwcond_signal(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 ppu_id, u32 mode)
-{
-	{system_call_4(0x073, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), ppu_id, mode);}
-	return g_error;
-}
-
-inline u32 lv2_lwcond_signal_all(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 mode)
-{
-	{system_call_3(0x074, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), mode);}
-	return g_error;
-}
-
-inline u32 lv2_lwmutex_lock(sys_lwmutex_t* mtx, u64 timeout)
-{
-	{system_call_2(0x061, *ptr_caste(int_cast(mtx) + 16, u32), timeout);}
-	return g_error;
-}
-
-inline u32 lv2_lwmutex_trylock(sys_lwmutex_t* mtx)
-{
-	{system_call_1(0x063, *ptr_caste(int_cast(mtx) + 16, u32));}
-	return g_error;
-}
-
-inline u32 lv2_lwmutex_unlock(sys_lwmutex_t* mtx)
-{
-	{system_call_1(0x062, *ptr_caste(int_cast(mtx) + 16, u32));}
-	return g_error;
-}
 
 inline bool test_lock(sys_lwmutex_t* mtx)
 {

@@ -29,14 +29,13 @@ typedef uint8_t u8;
 typedef int32_t s32;
 
 static volatile u32 signal_exit = 0;
-register u32 error asm ("3"); 
 
 static sys_ppu_thread_t main_tid;
 
 inline u32 _sys_ppu_thread_get_join_state(int *isjoinable)
 {
-	{system_call_1(SYS_PPU_THREAD_GET_JOIN_STATE, (uint32_t) isjoinable);}
-	return error;
+	system_call_1(SYS_PPU_THREAD_GET_JOIN_STATE, (uint32_t) isjoinable);
+	return_to_user_prog(u32);
 }
 
 void threadEntry(u64)

@@ -32,18 +32,18 @@ register u32 error_code asm ("3");
 u32 sys_rsx_memory_allocate(u32* mem_handle, u64* mem_addr)
 {
 	system_call_7(SYS_RSX_MEMORY_ALLOCATE, int_cast(mem_handle), int_cast(mem_addr), 0xf900000, 0x80000, 0x300000, 0xf, 0x8);
-	return error_code;
+	return_to_user_prog(u32);
 }
 u32 sys_rsx_context_allocate(u32* context_id, u64* lpar_dma_control, u64* lpar_driver_info, u64* lpar_reports, u32 mem_handle)
 {
 	system_call_6(SYS_RSX_CONTEXT_ALLOCATE, int_cast(context_id), int_cast(lpar_dma_control), int_cast(lpar_driver_info), int_cast(lpar_reports), mem_handle /*0x5a5a5a5b*/, 0x820);
-	return error_code;
+	return_to_user_prog(u32);
 }
 
 u32 sys_rsx_device_map(u64* dev_addr)
 {
 	system_call_3(SYS_RSX_DEVICE_MAP, int_cast(dev_addr), 0, 8);
-	return error_code;
+	return_to_user_prog(u32);
 }
 
 int main() {

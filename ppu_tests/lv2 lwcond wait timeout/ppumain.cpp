@@ -34,7 +34,6 @@ typedef int32_t s32;
 #define mfence() asm volatile ("eieio;sync")
 
 static u32 sig = 0;
-register u32 error asm ("3"); 
 
 #define GROUP_NUM 2
 sys_lwmutex_t lwmutex[GROUP_NUM];
@@ -45,32 +44,32 @@ sys_ppu_thread_t threads[GROUP_NUM];
 
 inline u32 _sys_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
-	{system_call_3(0x071, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), timeout);}
-	return error;
+	system_call_3(0x071, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), timeout);
+	return_to_user_prog(u32);
 }
 
 inline u32 _sys_lwcond_signal_all(sys_lwcond_t* lwc, sys_lwmutex_t* mtx)
 {
-	{system_call_3(0x074, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), 1);}
-	return error;
+	system_call_3(0x074, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), 1);
+	return_to_user_prog(u32);
 }
 
 inline u32 _sys_lwmutex_lock(sys_lwmutex_t* mtx, u64 timeout)
 {
-	{system_call_2(0x061, *ptr_caste(int_cast(mtx) + 16, u32), timeout);}
-	return error;
+	system_call_2(0x061, *ptr_caste(int_cast(mtx) + 16, u32), timeout);
+	return_to_user_prog(u32);
 }
 
 inline u32 _sys_lwmutex_trylock(sys_lwmutex_t* mtx)
 {
-	{system_call_1(0x063, *ptr_caste(int_cast(mtx) + 16, u32));}
-	return error;
+	system_call_1(0x063, *ptr_caste(int_cast(mtx) + 16, u32));
+	return_to_user_prog(u32);
 }
 
 inline u32 _sys_lwmutex_unlock(sys_lwmutex_t* mtx)
 {
-	{system_call_1(0x062, *ptr_caste(int_cast(mtx) + 16, u32));}
-	return error;
+	system_call_1(0x062, *ptr_caste(int_cast(mtx) + 16, u32));
+	return_to_user_prog(u32);
 }
 
 inline bool test_lock(sys_lwmutex_t* mtx)
