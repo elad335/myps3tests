@@ -30,6 +30,8 @@ typedef int8_t s8;
 
 #define mfence() asm volatile ("eieio;sync")
 
+#define ERROR_CHECK_RET(x) if ((x) != CELL_OK) { printf("Failure!"); exit(-1); }
+
 inline u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
 	system_call_3(0x071, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), timeout);

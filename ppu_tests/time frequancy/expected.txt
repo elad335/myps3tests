@@ -1,0 +1,2 @@
+main thread: stack addr=d0001000 current stack offset=0x420
+intr thread: stack addr=d0013000 current stack offset=0x100

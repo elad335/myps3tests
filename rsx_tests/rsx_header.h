@@ -22,6 +22,8 @@ typedef int32_t s32;
 typedef int16_t s16;
 typedef int8_t s8;
 
+#define MB(x) ((x) * (1ull<<20))
+
 enum
 {
 	RSX_METHOD_OLD_JUMP_CMD_MASK = 0xe0000003,
