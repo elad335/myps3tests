@@ -20,6 +20,7 @@
 #include "SPUThread.h"
 #include <stdint.h>
 #include <sys/sys_time.h>
+#include <cell/atomic.h>
 #include <ppu_intrinsics.h>
 
 // Set priority and stack size for the primary PPU thread.
@@ -51,30 +52,18 @@ void threadEntry(u64)
 	before = _mftb();
 	sys_timer_sleep(10);
 	after = _mftb();
-	printf("before=0%llx, 0x%llx\n", before, after);
+	printf("before=0x%llx, after=0x%llx, passed=0%llx\n", after - before);
 }
+
+static volatile u32 spu_dec_status[4] __attribute__((aligned(16))) = {-1, -1, -1, 0}; // First : before, after, passed, signal
 
 int main(void)
 {
-	{
-		u64 freq = sys_time_get_timebase_frequency();
-		printf("frequancy:%d\n", freq);
-	}
-
 	sys_spu_initialize(6, 1); // 1 raw threads max
 
 	int ret;
-	static sys_ppu_thread_t ppuThreadId;
-
-	/*E Create an interrupt PPU thread. */
-	ret = sys_ppu_thread_create(&ppuThreadId,threadEntry,0, 1, 0x4000, 1, "RawSPU Interrupt Thread0");
-	if (ret != CELL_OK) {
-		printf("sys_ppu_thread_create() failed: 0x%08x\n", ret);
-		return -1;
-	}
-
-	// TODO
-    /*** static sys_spu_image_t img;
+    static sys_spu_image_t img;
+	static sys_raw_spu_t thr_id;
 
     ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
     if (ret != CELL_OK) {
@@ -94,48 +83,49 @@ int main(void)
         return ret;
     }
 
-	static sys_interrupt_tag_t tag;
-	sys_raw_spu_create_interrupt_tag(thr_id, 2, SYS_HW_THREAD_ANY, &tag);
-	/**
-	 *E Set the class 2 interrupt mask to handle the SPU Outbound Mailbox
-	 *  interrupts.
-	 */
-	/*ret = sys_raw_spu_set_int_mask(
-				thr_id,
-				2, //SPU_INTR_CLASS_2,
-				SPU_INT2_STAT_MAILBOX_INT);
-	if (ret != CELL_OK) {
-		printf("sys_raw_spu_set_int_mask() failed: 0x%08x\n", ret);
-		return -4;
+	{
+		const u64 freq = sys_time_get_timebase_frequency();
+		printf("frequancy:%d\n", freq);
 	}
 
-	static sys_interrupt_thread_handle_t ih;
-	ret = sys_interrupt_thread_establish(
-				&ih,
-				tag,
-				ppuThreadId,
-				0);
-	if (ret != CELL_OK) {
-		printf("sys_interrupt_thread_establish() failed: 0x%08x\n", ret);
-		return ret;
-	}
+	//static sys_ppu_thread_t ppuThreadId;
 
+	/*E Create an interrupt PPU thread. */
+	//ret = sys_ppu_thread_create(&ppuThreadId,threadEntry,0, 1, 0x4000, 1, "RawSPU Interrupt Thread0");
+	//if (ret != CELL_OK) {
+	//	printf("sys_ppu_thread_create() failed: 0x%08x\n", ret);
+	//	return -1;
+	//}
+
+	sys_raw_spu_mmio_write(thr_id, SPU_In_MBox, int_cast(&spu_dec_status[0]));
+	sync();
 
 	sys_raw_spu_mmio_write(thr_id, SPU_RunCntl, 1); // invoke raw spu thread
 
-	while ((sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1) == 0)
-		sync(); // waits until the run requast has been completed
+	while (spu_dec_status[3] == 0){} // waits until the run requast has been completed
+
+	{
+		u64 before, after;
+		before = _mftb();
+		sys_timer_sleep(10);
+		after = _mftb();
+		cellAtomicStore32((u32*)const_cast<void*>((void* volatile)&spu_dec_status[3]), -1);
+		asm volatile ("sync");
+		printf("PPU: before=0x%llx, after=0x%llx, passed=%lld\n", before, after, after - before);
+	}
 
 	while ((sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1))
 	{
 		sys_timer_usleep(4000);
 	} // break when spu has stopped, acts like std::thread.join()
 
+	printf("SPU: before=0x%x, after=0x%x, passed=%d\n", spu_dec_status[0], spu_dec_status[1], spu_dec_status[2]);
+
     ret = sys_raw_spu_destroy(thr_id);
     if (ret != CELL_OK) {
         printf("sys_raw_spu_destroy: %x\n", ret);
         return ret;
-    }*/
+    }
 
 	return 0;
 }
