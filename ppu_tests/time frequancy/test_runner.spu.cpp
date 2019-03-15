@@ -11,6 +11,17 @@ static volatile u32 time_array[4] __attribute__((aligned(16)));
 int main(void)
 {
 	u32 spu_ptr = spu_readch(SPU_RdInMbox);
+
+	// Workaround for rpcs3: wait for ppu to finnish mmio
+	{
+		lock_line_t dummy;
+		for (u32 i = 0; i < 10; i++)
+		{
+			mfc_getllar(&dummy, spu_ptr, 0, 0);
+			mfc_putllc(&dummy, spu_ptr, 0, 0);
+		}
+	}
+
 	u32 before, after, passed;
 
 	spu_writech(SPU_WrDec, (u32)-1); // Reset Timer
@@ -20,15 +31,11 @@ int main(void)
 
 	before = spu_readch(SPU_RdDec);
 
-	while (true)
+	do
 	{
 		mfc_getb(&_signal, spu_ptr + sizeof(u32) * 3, sizeof(u32), 0, 0, 0); // Signal running;
-
-		if (_signal == -1)
-		{
-			break;
-		}
 	}
+	while (_signal != -1);
 
 	after = spu_readch(SPU_RdDec);
 

@@ -55,7 +55,7 @@ void threadEntry(u64)
 	printf("before=0x%llx, after=0x%llx, passed=0%llx\n", after - before);
 }
 
-static volatile u32 spu_dec_status[4] __attribute__((aligned(16))) = {-1, -1, -1, 0}; // First : before, after, passed, signal
+static volatile u32 spu_dec_status[32] __attribute__((aligned(128))) = {-1, -1, -1, 0}; // First : before, after, passed, signal (rest padding)
 
 int main(void)
 {
@@ -105,11 +105,10 @@ int main(void)
 	while (spu_dec_status[3] == 0){} // waits until the run requast has been completed
 
 	{
-		u64 before, after;
-		before = _mftb();
+		u64 before = _mftb();
 		sys_timer_sleep(10);
-		after = _mftb();
-		cellAtomicStore32((u32*)const_cast<void*>((void* volatile)&spu_dec_status[3]), -1);
+		u64 after = _mftb();
+		cellAtomicStore32(const_cast<u32*>(&spu_dec_status[3]), -1);
 		asm volatile ("sync");
 		printf("PPU: before=0x%llx, after=0x%llx, passed=%lld\n", before, after, after - before);
 	}
@@ -119,7 +118,7 @@ int main(void)
 		sys_timer_usleep(4000);
 	} // break when spu has stopped, acts like std::thread.join()
 
-	printf("SPU: before=0x%x, after=0x%x, passed=%d\n", spu_dec_status[0], spu_dec_status[1], spu_dec_status[2]);
+	printf("SPU: before=0x%x, after=0x%x, passed=%u\n", spu_dec_status[0], spu_dec_status[1], spu_dec_status[2]);
 
     ret = sys_raw_spu_destroy(thr_id);
     if (ret != CELL_OK) {
