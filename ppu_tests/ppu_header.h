@@ -28,9 +28,22 @@ typedef int32_t s32;
 typedef int16_t s16;
 typedef int8_t s8;
 
+#define ALIGN(x) __attribute__((aligned(x)))
 #define mfence() asm volatile ("eieio;sync")
 
 #define ERROR_CHECK_RET(x) if ((x) != CELL_OK) { printf("Failure!"); exit(-1); }
+
+inline u64 _mftb()
+{
+	u64 ret;
+	while (!(ret = __mftb()));
+	return ret;
+}
+
+#define thread_exit(x) sys_ppu_thread_exit(x)
+#define thread_eoi sys_interrupt_thread_eoi
+#define thread_create sys_ppu_thread_create
+#define thread_join sys_ppu_thread_join
 
 inline u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
