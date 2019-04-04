@@ -1,0 +1,2 @@
+addr64=0x100b0000, addr1mb=0x30000000
+sample finished.
