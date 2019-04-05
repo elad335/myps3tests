@@ -1,2 +1,21 @@
-addr64=0x100b0000, addr1mb=0x30000000
-sample finished.
+FuncStat() called! bind=0x0, sizeKB=0x0, newData=1, hddFree=0x149c4ec8
+Using CELL_SAVEDATA_RECREATE_NO_NOBROKEN, setParam is NULL, directory doesnt exists
+
+
+****** sysutil savedata parameter error : 50 ******
+
+ret = 0x8002b404
+FuncStat() called! bind=0x0, sizeKB=0x0, newData=1, hddFree=0x149c4ec8
+Using CELL_SAVEDATA_RECREATE_NO_NOBROKEN, setParam is set, directory doesnt exists
+FuncFile() called!
+ret = 0x0
+FuncStat() called! bind=0x408, sizeKB=0x23, newData=0, hddFree=0x149c4db4
+Using CELL_SAVEDATA_RECREATE_YES, setParam is NULL
+
+
+****** sysutil savedata parameter error : 50 ******
+
+ret = 0x8002b404
+FuncStat() called! bind=0x408, sizeKB=0x23, newData=0, hddFree=0x149c4db4
+Using CELL_SAVEDATA_RECREATE_YES, setParam is set, checking statsFuncFile() called!
+ret = 0x0
