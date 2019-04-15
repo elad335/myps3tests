@@ -1,0 +1,3 @@
+addr1=0x100a0000, addr2=0x190a0000, addr3=0x30000000, err1=0x0, err2,=0x0, err3=0x0.
+Failed to load OVERLAY!, error codes 1=0x80010003, 2=0x80010003, 3=0x80010003
+sample finished.
