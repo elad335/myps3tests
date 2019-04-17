@@ -14,29 +14,59 @@
 #include "ppu_asm_intrinsics.h"
 #include "../ppu_header.h"
 
-static __attribute__((noinline)) u64 test_fps(double a, double b)
+#define static_noinline static __attribute__((noinline))
+
+// Fadd/s
+static_noinline u64 fadds_f64(double a, double b)
 {
     const double res = __fadds(a, b);
     return *reinterpret_cast<const u64*>(&res);
 }
 
-static __attribute__((noinline)) u32 _test_fps(double a, double b)
+static_noinline u32  fadds_f32(double a, double b)
 {
     const float res = (float)__fadds(a, b);
     return *reinterpret_cast<const u32*>(&res);
 }
 
-static __attribute__((noinline)) u64 test_fps_(double a, double b)
+static_noinline u64 fadd_f64(double a, double b)
 {
     const double res = __fadd(a, b);
     return *reinterpret_cast<const u64*>(&res);
 }
 
-static __attribute__((noinline)) u32 _test_fps_(double a, double b)
+static_noinline u32 fadd_f32(double a, double b)
 {
     const float res = (float)__fadd(a, b);
     return *reinterpret_cast<const u32*>(&res);
 }
+
+
+// Fmul/s
+static_noinline u64 fmuls_f64(double a, double b)
+{
+    const double res = __fmuls(a, b);
+    return *reinterpret_cast<const u64*>(&res);
+}
+
+static_noinline u32 fmuls_f32(double a, double b)
+{
+    const float res = (float)__fmuls(a, b);
+    return *reinterpret_cast<const u32*>(&res);
+}
+
+static_noinline u64 fmul_f64(double a, double b)
+{
+    const double res = __fmul(a, b);
+    return *reinterpret_cast<const u64*>(&res);
+}
+
+static_noinline u32 fmul_f32(double a, double b)
+{
+    const float res = (float)__fmul(a, b);
+    return *reinterpret_cast<const u32*>(&res);
+}
+
 //extern int test(int zero, void *scratch, void *failures, double one);
 // Get contents of the CR register
 uint32_t getCR()
@@ -76,28 +106,66 @@ void clearFPSCR()
 
 int main(void)
 {
-    static volatile double a = 1.000045; 
-    static volatile double b = 1.000050;
-    volatile float a_ = (float)a;
-    volatile double bits_a = (double)a_;
-    if (*reinterpret_cast<volatile u64*>(&bits_a) == *reinterpret_cast<volatile u64*>(&a)) printf("Ugh!\n");
+    // Adding contands
+    static volatile double a = 1.00000017; 
+    static volatile double b = 1.00000017;
+    volatile float a_f32 = a;
+    volatile float b_f32 = b;
+
+    // Multiplying constants
+    static volatile double c = 1.00000017; 
+    static volatile double d = 1000000.0;
+    volatile float c_f32 = a;
+    volatile float d_f32 = b;
+
+    // Floats as f64
+    volatile double bits_a = (double)a_f32;
+    volatile double bits_b = (double)b_f32;
+    volatile double bits_c = (double)c_f32;
+    volatile double bits_d = (double)d_f32;
+
+    if (*reinterpret_cast<volatile u64*>(&bits_a) == *reinterpret_cast<volatile u64*>(&a)
+    || *reinterpret_cast<volatile u64*>(&bits_b) == *reinterpret_cast<volatile u64*>(&b)
+    || *reinterpret_cast<volatile u64*>(&bits_c) == *reinterpret_cast<volatile u64*>(&c))
+    //|| *reinterpret_cast<volatile u64*>(&bits_d) == *reinterpret_cast<volatile u64*>(&d))
+    {
+        // A number from our selection is perfectly represtable as float and double 
+        printf("Ugh!\n");
+    }
 
     //printf("before:%llx\n", *reinterpret_cast<volatile u64*>(&a));
     //printf("before:%llx, (f32)=%x\n", *reinterpret_cast<volatile u64*>(&bits_a), *reinterpret_cast<volatile u32*>(&a_));
-    //printf("%llx\n", test_fps(a, 0));
-    //printf("%llx\n", test_fps(a_, 0));
+    //printf("%llx\n", fadds_f64(a, 0));
+    //printf("%llx\n", fadds_f64(a_, 0));
+
+    // Adding
+    /*
     printf("fadds:\n");
-    printf("a+b=%llx\n", test_fps(a, b));
-    volatile float a__ = a;
-    volatile float b__ = b;
-    printf("f32(a)+f32(b)=%llx\n", test_fps(a__, b__));
-    printf("a+b=(f32)%llx\n", _test_fps(a, b));
-    printf("f32(a)+f32(b)=(f32)%llx\n", _test_fps(a__, b__));
-     printf("fadd:\n");
-    printf("a+b=%llx\n", test_fps_(a, b));
-    printf("f32(a)+f32(b)=%llx\n", test_fps_(a__, b__));
-    printf("a+b=(f32)%llx\n", _test_fps_(a, b));
-    printf("f32(a)+f32(b)=(f32)%llx\n", _test_fps_(a__, b__));
+    printf("a+b=%llx\n", fadds_f64(a, b));
+
+    printf("f32(a)+f32(b)=%llx\n", fadds_f64(a_f32, b_f32));
+    printf("a+b=(f32)%llx\n",  fadds_f32(a, b));
+    printf("f32(a)+f32(b)=(f32)%llx\n", fadds_f32(a_f32, b_f32));
+    printf("fadd:\n");
+    printf("a+b=%llx\n", fadd_f64(a, b));
+    printf("f32(a)+f32(b)=%llx\n", fadd_f64(a_f32, b_f32));
+    printf("a+b=(f32)%llx\n", fadd_f32(a, b));
+    printf("f32(a)+f32(b)=(f32)%llx\n", fadd_f32(a_f32, b_f32));
+    */
+
+    // Mulptiplying
+    printf("fmuls:\n");
+    printf("a*b=%llx\n", fmuls_f64(a, b));
+
+    printf("f32(a)*f32(b)=%llx\n", fmuls_f64(a_f32, b_f32));
+    printf("a*b=(f32)%llx\n", fmuls_f32(a, b));
+    printf("f32(a)*f32(b)=(f32)%llx\n",  fmuls_f32(a_f32, b_f32));
+    printf("fmul:\n");
+    printf("a*b=%llx\n", fmul_f64(a, b));
+    printf("f32(a)*f32(b)=%llx\n", fmul_f64(a_f32, b_f32));
+    printf("a*b=(f32)%llx\n", fmul_f32(a, b));
+    printf("f32(a)*f32(b)=(f32)%llx\n", fmul_f32(a_f32, b_f32));
+
     //printf("exception handler didnt invoke\n");
     return 0;
 }
