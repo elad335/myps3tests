@@ -1,0 +1,4 @@
+allocaddr
+allocmem
+mapmem
+main 58 : 80010010
