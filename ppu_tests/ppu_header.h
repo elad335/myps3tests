@@ -29,16 +29,13 @@ typedef int16_t s16;
 typedef int8_t s8;
 
 #define ALIGN(x) __attribute__((aligned(x)))
-#define mfence() asm volatile ("eieio;sync")
 
 #define ERROR_CHECK_RET(x) if ((x) != CELL_OK) { printf("Failure!"); exit(-1); }
 
-inline u64 _mftb()
-{
-	u64 ret;
-	while (!(ret = __mftb()));
-	return ret;
-}
+// Lazy memory barrier (missing basic memory optimizations)
+#ifndef fsync 
+#define fsync() __asm__ volatile ("sync" : : : "memory"); __asm__ volatile ("eieio")
+#endif
 
 #define thread_exit(x) sys_ppu_thread_exit(x)
 #define thread_eoi sys_interrupt_thread_eoi

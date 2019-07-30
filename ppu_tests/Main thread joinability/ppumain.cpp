@@ -15,22 +15,15 @@
 #include <sys/syscall.h>
 #include <functional>
 
+#include "../ppu_header.h"
+
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x100000)
 
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-typedef int32_t s32;
-
-static volatile u32 signal_exit = 0;
-
 static sys_ppu_thread_t main_tid;
+static volatile u32 signal_exit = 0;
 
 inline u32 _sys_ppu_thread_get_join_state(int *isjoinable)
 {
@@ -44,7 +37,7 @@ void threadEntry(u64)
 	const u32 ret = sys_ppu_thread_join(main_tid, &status);
 	printf("Joining error code = 0x%x.\n", ret);
 	signal_exit = 1;
-	asm volatile ("sync");
+	fsync();
 	sys_ppu_thread_exit(0);
 }
 
@@ -57,7 +50,6 @@ int main() {
 	printf("sys_ppu_thread_get_join_state returned: 0x%x, join_state=%d \n", ret, state);
 
 	sys_ppu_thread_get_id(&main_tid);
-	asm volatile ("sync");
 
 	sys_ppu_thread_t m_tid;
 	sys_ppu_thread_create(&m_tid,threadEntry,0,1002, 0x100000,1,"t");

@@ -19,7 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void mfence() { asm volatile ("sync;eieio"); };
 inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
 
  // _binary_{SHADERFILENAME}_f/vpo_start loads the shader
@@ -280,7 +279,7 @@ int main() {
 			// Completely random colors
 			*fill = (0xFF000000 | (powers += i));
 		}
-		mfence();
+		fsync();
 	}
 
 	{
@@ -289,7 +288,7 @@ int main() {
 		{
 			*fill = -1u;
 		}
-		mfence();
+		fsync();
 	}
 
 	cellGcmSetTexture(&Gcm, g_tex_sampler, &tex);
@@ -370,7 +369,7 @@ int main() {
 	cellGcmSetWaitFlip(&Gcm);
 	c.jmp(displaySync);
 	cellGcmSetReferenceCommand(&Gcm, 2);
-	mfence();
+	fsync();
 
 	ctrl->put = c.pos();
 	sys_timer_sleep(10);

@@ -150,7 +150,7 @@ int main() {
 	c.push(1, NV406E_SET_REFERENCE);
 	c.push(1);
 	c.push(c.pos() | RSX_METHOD_OLD_JUMP_CMD);
-	asm volatile ("sync;eieio");
+	fsync();
 
 	ctrl->put = c.pos();
 	sys_timer_usleep(100);

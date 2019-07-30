@@ -19,8 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void mfence() { asm volatile ("sync;eieio"); };
-
  // _binary_{SHADERFILENAME}_f/vpo_start loads the shader
 extern char _binary_mainvp_vpo_start[];
 extern char _binary_mainfp_fpo_start[];
@@ -277,7 +275,7 @@ int main() {
 			// Grayish color
 			*fill = 0xFF8F8F8Fu;
 		}
-		mfence();
+		fsync();
 	}
 
 	{
@@ -286,7 +284,7 @@ int main() {
 		{
 			*fill = -1u;
 		}
-		mfence();
+		fsync();
 	}
 
 	cellGcmSetTexture(&Gcm, g_tex_sampler, &tex);
@@ -317,7 +315,7 @@ int main() {
 	cellGcmSetWaitFlip(&Gcm);
 	cellGcmSetReferenceCommand(&Gcm, 2);
 	c.jmp(displaySync);
-	mfence();
+	fsync();
 
 	ctrl->put = c.newLabel().pos;
 	sys_timer_usleep(100);

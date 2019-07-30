@@ -12,7 +12,7 @@ static lock_line_t s_data;
 
 int main(u64 addr) {
 
-    mfc_fence();
+    mfcsync();
 
     // Fill the first elements with usual transfers
     dma_lists[0][0].size = sizeof(s_data);
@@ -47,7 +47,7 @@ int main(u64 addr) {
     }
 
     spu_printf("sample finished.\n");
-    mfc_fence();
+    mfcsync();
     sys_spu_thread_exit(0);
 	return 0;
 }

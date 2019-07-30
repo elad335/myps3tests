@@ -18,22 +18,12 @@
 #include <sys/vm.h> 
 #include <functional>
 
+#include "../ppu_header.h"
+
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
-
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-typedef int32_t s32;
-
-#define int_cast(addr) reinterpret_cast<uptr>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
-#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
 
 u32 addr = 0;
 

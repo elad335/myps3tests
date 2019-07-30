@@ -14,19 +14,9 @@
 #include <sys/event.h>
 #include <sys/syscall.h>
 #include <cell/gcm.h>
-#include <cell/atomic.h>
 #include <memory>
 
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-#define int_cast(addr) reinterpret_cast<uptr>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
-#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
-#define sync() asm volatile ("eieio;sync")
+#include "../ppu_header.h"
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
@@ -46,11 +36,11 @@ int main() {
 
 	ea = ptr_caste(addr + 1, u32); // Unaligned pointer
 
-	sync(); // Paranoidic memory fence
+	fsync();
 	u32 old = __lwarx(ea);
-	sync();
+	fsync();
 	bool success = __stwcx(ea, 0x04030201) != 0;
-	sync();
+	fsync();
 
 
     printf("old value=0x%x, new value=0x%x, success=%s\nsample finished.\n", old, *ptr_caste(addr, u32), success ? "true" : "false");

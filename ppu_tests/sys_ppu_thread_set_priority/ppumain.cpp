@@ -32,7 +32,7 @@ s32 prio[4] = {2, 2, 2, 2};
 void waiter(u64 index)
 {
 	// Wait until all threads are created
-	while (signal_ == 0);
+	while (signal_ == 0) fsync();
 
 	while (signal_ == 1)
 	{

@@ -379,6 +379,11 @@ static CellGcmOffsetTable offsetTable;
 	cellGcmSetWaitLabel(c, 64, -2u); \
 	cellGcmSetWriteBackEndLabel(c, 64, 0); \
 
+// Lazy memory barrier (missing basic memory optimizations)
+#ifndef fsync 
+#define fsync() __asm__ volatile ("sync" : : : "memory"); __asm__ volatile ("eieio")
+#endif
+
 static int AddrToOffset(void* addr)
 {
 	return (offsetTable.ioAddress[int_cast(addr) >> 20] << 20) | (int_cast(addr) & (0xFFFFF));

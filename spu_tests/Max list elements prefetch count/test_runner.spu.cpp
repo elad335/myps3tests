@@ -11,7 +11,7 @@ static mfc_list_element_t mfcData[16] __attribute__((aligned(128)));
 
 int main(u64 addr) {
 
-    mfc_fence();
+    mfcsync();
 
     // The first elements fetches 128 bytes on list
     mfcData[0].size = 0x80;
@@ -27,7 +27,7 @@ int main(u64 addr) {
     }
 
     mfc_getl(&mfcData[0], 0, &mfcData[0], 0x30, 0, 0,0);
-    mfc_fence();
+    mfcsync();
     sys_spu_thread_exit(0);
 	return 0;
 }

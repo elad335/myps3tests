@@ -36,9 +36,15 @@ typedef vec_double2 vec_f64;
 #define ref_cast(x, T) *reinterpret_cast<T*>(ptr_cast(x))
 #define int_cast(x) reinterpret_cast<uptr>(x)
 
-inline void mfence() { asm volatile ("syncc;sync;dsync"); };
+#ifndef
+#define fsync() \
+__asm__ volatile ("" : : : "memory"); \
+__asm__ volatile ("syncc;sync;dsync"); \
 
-inline void mfc_fence() 
+#define mfence() fsync()
+#endif
+
+inline void mfcsync() 
 {
     spu_writech(MFC_WrTagMask, -1u);
     spu_writech(MFC_WrTagUpdate, 2); 

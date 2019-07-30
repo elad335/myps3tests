@@ -78,7 +78,7 @@ int main() {
 	cmd[2] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD | 0x8;
 	cmd[(0x100000 / 4) + 2] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD | 0x8;
 
-	asm volatile ("eieio;sync");
+	fsync();
 
 	ctrl->put = 0x10000C; // Queue: 0x100000...0x10000C
 

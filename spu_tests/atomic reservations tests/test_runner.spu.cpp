@@ -80,13 +80,13 @@ int main(u64 raddr, u64 number)
     mfence();
 
     mfc_put(rdata.data(), raddr + 128, 0x80, 0, 0, 0);
-    mfc_fence();
+    mfcsync();
 
     mfc_putllc(rdata.data(), raddr + 128, 0, 0);
     spu_printf("status after PUT:%d, events=0x%08x\n", spu_readch(MFC_RdAtomicStat), spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
 
     SKIP_EVENTS_TESTS:
-    mfc_fence();
+    mfcsync();
     ack_event(MFC_LLR_LOST_EVENT);
 
     u32 status;

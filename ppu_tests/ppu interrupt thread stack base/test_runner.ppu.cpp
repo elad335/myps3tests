@@ -18,21 +18,12 @@
 #include <spu_printf.h>
 #include "SPUThread.h"
 
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-typedef int64_t s64;
-typedef int32_t s32;
-typedef int16_t s16;
-typedef int8_t s8;
+#include "../ppu_header.h"
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
-
-inline void sync() {asm volatile ("db16cyc;eieio;sync");};
 
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
@@ -46,7 +37,7 @@ void threadEntry(u64)
 	sys_ppu_thread_stack_t sp;
 	sys_ppu_thread_get_stack_information(&sp);
 	printf("intr thread: stack addr=%x current stack offset=0x%x\n", sp.pst_addr, (sp.pst_addr + sp.pst_size) - stack);
-	u32 value; sys_raw_spu_read_puint_mb(thr_id, &value); sync();
+	u32 value; sys_raw_spu_read_puint_mb(thr_id, &value); fsync();
 	sys_raw_spu_set_int_stat(thr_id, 2, SPU_INT2_STAT_MAILBOX_INT);
 	sys_interrupt_thread_eoi();
 }

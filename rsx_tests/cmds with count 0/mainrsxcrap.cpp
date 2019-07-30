@@ -19,7 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void mfence() { asm volatile ("sync;eieio"); };
 inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
 
 #define SYS_APP_HOME "/app_home"
@@ -87,7 +86,7 @@ int main() {
 	// If the command aint a nop, REF will be zero
 	c.push(0, NV406E_SET_REFERENCE);
 	c.push(0);
-	mfence();
+	fsync();
 
 	ctrl->put = c.pos();
 	sys_timer_sleep(2);

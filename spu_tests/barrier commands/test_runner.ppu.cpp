@@ -77,7 +77,6 @@ int main(void)
     void* fill = malloc(1 << 16);
     printf("cell is %x\n",sys_spu_thread_write_snr(thr_id, 0 ,(uint32_t)(fill) & ~127)); // align the address manually
 
-    asm volatile ("nop;eieio;sync");
     printf("%x\n", uint32_t(fill) & ~127);
     int cause;
     int status;

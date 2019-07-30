@@ -69,7 +69,7 @@ int main() {
 
 	c.push(0x40053); // unaligned NV406E_SET_REFERENCE cmd
 	c.push(0x1234); // Value for ref cmd
-	asm volatile ("sync;eieio");
+	fsync();
 
 	ctrl->put = 0x8;
 	sys_timer_usleep(1000);

@@ -19,8 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void mfence() { asm volatile ("sync;eieio"); };
-
  // _binary_{SHADERFILENAME}_f/vpo_start loads the shader
 extern char _binary_mainvp_vpo_start[];
 extern char _binary_mainfp_fpo_start[];
@@ -278,7 +276,7 @@ int main() {
 			// Grayish color
 			*fill = 0xFF000000u | i;
 		}
-		mfence();
+		fsync();
 	}
 
 	{
@@ -287,7 +285,7 @@ int main() {
 		{
 			*fill = 0u;
 		}
-		mfence();
+		fsync();
 	}
 
 	cellGcmSetTexture(&Gcm, g_tex_sampler, &tex);
@@ -309,7 +307,7 @@ int main() {
 	cellGcmSetInvalidateVertexCache(&Gcm);
 
 	cellGcmGetReportDataAddressLocation(1, CELL_GCM_LOCATION_LOCAL)->value = 1;
-	mfence();
+	fsync();
 
 	cellGcmSetReportLocation(&Gcm, CELL_GCM_LOCATION_LOCAL);
 	cellGcmSetRenderEnable(&Gcm, CELL_GCM_CONDITIONAL, 1);
@@ -325,7 +323,7 @@ int main() {
 	}
 
 	cellGcmGetReportDataAddressLocation(1, CELL_GCM_LOCATION_LOCAL)->value = 0;
-	mfence();
+	fsync();
 
 	cellGcmSetDrawArrays(&Gcm, CELL_GCM_PRIMITIVE_TRIANGLE_STRIP, 0, 4);
 	gfxFence(&Gcm);
@@ -335,7 +333,7 @@ int main() {
 	cellGcmSetReferenceCommand(&Gcm, 3);
 	c.jmp(displaySync);
 	ctrl->put = c.pos();
-	mfence();
+	fsync();
 
 	while (true)
 	{

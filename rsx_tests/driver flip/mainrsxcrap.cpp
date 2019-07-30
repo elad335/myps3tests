@@ -94,7 +94,7 @@ int main() {
 
 	cellGcmSetReferenceCommand(&Gcm, 1);
 
-	asm volatile ("sync;eieio");
+	fsync();
 
 	ctrl->put = c.newLabel().pos;
 	sys_timer_usleep(100);

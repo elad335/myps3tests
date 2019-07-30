@@ -30,28 +30,15 @@ SYS_PROCESS_PARAM(1000, 0x10000)
 
 #include "../ppu_header.h"
 
-inline void sync() {asm volatile ("db16cyc;eieio;sync");};
-
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
-
-static inline u64 _mftb()
-{
-	u64 _ret;
-	do
-	{
-		_ret = __mftb();
-	} while (_ret == 0);
-
-	return _ret;
-}
 
 void threadEntry(u64)
 {
 	u64 before, after;
-	before = _mftb();
+	before = __mftb();
 	sys_timer_sleep(10);
-	after = _mftb();
+	after = __mftb();
 	printf("before=0x%llx, after=0x%llx, passed=0%llx\n", after - before);
 }
 
@@ -98,18 +85,18 @@ int main(void)
 	//}
 
 	sys_raw_spu_mmio_write(thr_id, SPU_In_MBox, int_cast(&spu_dec_status[0]));
-	sync();
+	fsync();
 
 	sys_raw_spu_mmio_write(thr_id, SPU_RunCntl, 1); // invoke raw spu thread
 
 	while (spu_dec_status[3] == 0){} // waits until the run requast has been completed
 
 	{
-		u64 before = _mftb();
+		u64 before = __mftb();
 		sys_timer_sleep(10);
-		u64 after = _mftb();
+		u64 after = __mftb();
 		cellAtomicStore32(const_cast<u32*>(&spu_dec_status[3]), -1);
-		asm volatile ("sync");
+		fsync();
 		printf("PPU: before=0x%llx, after=0x%llx, passed=%lld\n", before, after, after - before);
 	}
 

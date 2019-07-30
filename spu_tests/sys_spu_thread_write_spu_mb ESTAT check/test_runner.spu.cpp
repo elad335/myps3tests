@@ -7,14 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef uint64_t u64;
-typedef uint32_t u32;
-
-#define int_cast(x) reinterpret_cast<uintptr_t>(x)
-#define ptr_cast(x) reinterpret_cast<void*>(x)
-
-inline void _mm_mfence() { asm volatile ("syncc;sync;dsync"); }
-inline void yield() { asm volatile ("stop 0x100"); }
+#include "../spu_header.h"
 
 static u32 count __attribute__((aligned(16)));
 
@@ -23,7 +16,7 @@ int main(uint64_t addr, uint64_t, uint64_t, uint64_t)
     count = spu_readchcnt(SPU_RdInMbox);
     spu_mfcdma32(&count, addr, sizeof(u32), 0, MFC_PUTB_CMD);
     spu_mfcstat(MFC_TAG_UPDATE_ALL);
-    _mm_mfence();
+    mfence();
     sys_spu_thread_group_exit(0);
 	return 0;
 }

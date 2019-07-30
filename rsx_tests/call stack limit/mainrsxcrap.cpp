@@ -66,7 +66,7 @@ int main() {
 	c.call(4); // call-to-next
 	c.call(8); // Call-to-next
 	c.jmp(12); // Branch-to-self
-	asm volatile ("sync;eieio");
+	fsync();
 
 	ctrl->put = 12;
 	sys_timer_usleep(1000);

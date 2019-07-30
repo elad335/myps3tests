@@ -27,7 +27,7 @@ int main(void)
 	spu_writech(SPU_WrDec, (u32)-1); // Reset Timer
 
 	mfc_put(&_signal, spu_ptr + sizeof(u32) * 3, sizeof(u32), 0, 0, 0); // Signal running
-	mfc_fence();
+	mfcsync();
 
 	before = spu_readch(SPU_RdDec);
 
@@ -49,6 +49,6 @@ int main(void)
 	asm volatile ("dsync");
 
 	mfc_put(&time_array[0], spu_ptr, sizeof(u32) * 4, 0, 0, 0); // Send data
-	mfc_fence();
+	mfcsync();
 	return 0;
 }

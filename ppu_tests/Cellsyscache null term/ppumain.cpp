@@ -21,14 +21,7 @@
 #include <list>
 #include <map>
 
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-#define int_cast(addr) reinterpret_cast<uintptr_t>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
+#include "../ppu_header.h"
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000

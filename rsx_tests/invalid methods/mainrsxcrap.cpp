@@ -122,7 +122,7 @@ int main() {
 	c.push(0x4fffc); // Invalid method
 	c.push(0);
 
-	asm volatile ("sync;eieio");
+	fsync();
 
 	gcmLabel flipForever = c.newLabel();
 	cellGcmSetFlip(&Gcm, id);

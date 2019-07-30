@@ -92,14 +92,13 @@ int main() {
 
 	// Stop dumping and ack finish
 	cellGcmSetReferenceCommand(&Gcm, 2);
-	asm volatile ("sync;eieio");
+	fsync();
 
 	ctrl->put = c.newLabel().pos;
 	sys_timer_usleep(100);
 
 	while (ctrl->ref != 2) sys_timer_usleep(1000);
 
-	asm volatile ("sync;eieio");
 	sys_timer_sleep(1);
 
 	printf("sample finished.");

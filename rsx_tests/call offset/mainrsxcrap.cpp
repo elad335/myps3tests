@@ -19,7 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void mfence() { asm volatile ("sync;eieio"); };
 inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
 
  // _binary_{SHADERFILENAME}_f/vpo_start loads the shader
@@ -132,7 +131,7 @@ int main() {
 	gfxFence(&Gcm);
 	cellGcmSetReferenceCommand(&Gcm, 2);
 
-	mfence();
+	fsync();
 
 	ctrl->put = c.pos();
 

@@ -20,16 +20,6 @@
 
 #include "../rsx_header.h"
 
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-#define int_cast(addr) reinterpret_cast<uintptr_t>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
-#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
-inline void mfence() { asm volatile ("sync;eieio"); };
 inline void __check() { asm volatile ("twi 0x10, 3, 0"); }; 
 
 // Set priority and stack size for the primary PPU thread.
@@ -84,7 +74,7 @@ int main() {
 
 	// Stop dumping and ack finish
 	cellGcmSetReferenceCommand(&Gcm, 2);
-	mfence();
+	fsync();
 
 	ctrl->put = c.pos();
 	sys_timer_usleep(100);

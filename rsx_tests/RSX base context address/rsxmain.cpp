@@ -15,16 +15,7 @@
 #include <sys/syscall.h>
 #include <memory>
 
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-#define int_cast(addr) reinterpret_cast<uintptr_t>(addr)
-#define ptr_cast(intnum) static_cast<void*>(intnum)
-
-enum {nullptr = 0};
+#include "../rsx_header.h"
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
@@ -48,7 +39,7 @@ int main() {
 	printf("rsxdevicemap\n");
 	{
 		u64 addr;
-		system_call_3(SYS_RSX_DEVICE_MAP, int_cast(&addr), nullptr, 8);
+		system_call_3(SYS_RSX_DEVICE_MAP, int_cast(&addr), uptr{}, 8);
 
 		printf("ret is 0x%x, addr = 0x%x\n", ret, addr);
 	}

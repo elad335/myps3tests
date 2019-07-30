@@ -15,18 +15,12 @@
 #include <sys/syscall.h>
 #include <functional>
 
+#include "../ppu_header.h"
+
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x100000)
-
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-typedef int32_t s32;
 
 static u32 signal_exit = 0;
 static u32 threads = 0;

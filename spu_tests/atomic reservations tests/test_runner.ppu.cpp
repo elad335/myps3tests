@@ -9,24 +9,13 @@
 #include <sys/spu_image.h>
 #include <sys/spu_initialize.h>
 #include <string>
-#include <cell/atomic.h>
 #include <spu_printf.h>
 #include <sys/timer.h>
 
+#include "../../ppu_tests/ppu_header.h"
 
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
-
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-#define int_cast(addr) reinterpret_cast<uptr>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
-#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
-#define m_fence() asm volatile ("eieio;sync")
 
 static u32 rdata[256] __attribute__((aligned(128))) = {0};
 
@@ -37,7 +26,7 @@ static void ppu_reservation_tests()
 {
     rdata[0] = 0;
     rdata[1] = 1;
-    m_fence();
+    fsync();
 
     BEGIN_SCOPE;
     __lwarx(&rdata[0]);
@@ -60,16 +49,16 @@ static void ppu_reservation_tests()
     BEGIN_SCOPE;
     const u32 old = __lwarx(&rdata[0]);
     rdata[0] = old + 1;
-    m_fence();
+    fsync();
     bool success = __stwcx(&rdata[0], rdata[0]) != 0;
     printf("PPU - Performing atomic store after a self written non-atomic store\n status:%s\n", success ? "true" : "false");
     rdata[0] = old - 1;
-    m_fence();
+    fsync();
     CLOSE_SCOPE(0);
 
     rdata[0] = 0;
     rdata[1] = 0;
-    m_fence();
+    fsync();
     sys_timer_sleep(1);
 } 
 

@@ -8,7 +8,6 @@
 
 #include <sysutil/sysutil_syscache.h>
 #include <cell/sysmodule.h>
-#include <cell/atomic.h>
 #include <sys/ppu_thread.h>
 #include <sys/timer.h>
 #include <sys/memory.h>
@@ -16,22 +15,12 @@
 #include <sys/syscall.h>
 #include <functional>
 
+#include "../ppu_header.h"
+
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
-
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-typedef int32_t s32;
-
-#define int_cast(addr) reinterpret_cast<uptr>(addr)
-#define ptr_cast(intnum) reinterpret_cast<void*>(intnum)
-#define ptr_caste(intnum, type) reinterpret_cast<type*>(ptr_cast(intnum))
-#define mfence() asm volatile ("eieio;sync")
 
 static u32 sig = 0;
 
@@ -111,7 +100,7 @@ int main()
 	{
 		if (sys_lwmutex_create(&lwmutex[i], &mutex_attr) != CELL_OK) exit(-1);
 		if (sys_lwcond_create(&lwcond[i], &lwmutex[i], &cond_attr) != CELL_OK) exit(-1);
-		cellAtomicAdd32(&sig, 1); mfence();
+		cellAtomicAdd32(&sig, 1);
 		sys_ppu_thread_create(&threads[i],threadWait,i,1002, 0x10000,0,"Waiter");
 	}
 

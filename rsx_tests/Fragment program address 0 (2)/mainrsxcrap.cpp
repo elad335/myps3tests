@@ -19,7 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void mfence() { asm volatile ("sync;eieio"); };
 inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
 
 #define SYS_APP_HOME "/app_home"
@@ -218,7 +217,7 @@ int main() {
 	c.debugBreak();
 
 	cellGcmSetReferenceCommand(&Gcm, 2);
-	mfence();
+	fsync();
 
 	ctrl->put = c.newLabel().pos;
 	sys_timer_usleep(100);
