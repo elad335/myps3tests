@@ -36,10 +36,10 @@ typedef vec_double2 vec_f64;
 #define ref_cast(x, T) *reinterpret_cast<T*>(ptr_cast(x))
 #define int_cast(x) reinterpret_cast<uptr>(x)
 
-#ifndef
+#ifndef fsync
 #define fsync() \
 __asm__ volatile ("" : : : "memory"); \
-__asm__ volatile ("syncc;sync;dsync"); \
+__asm__ volatile ("syncc;sync;dsync");
 
 #define mfence() fsync()
 #endif
