@@ -1,1 +1,1 @@
-sample finished.
+sample finished. PUT=0x10003c, PUT1=0x10003d

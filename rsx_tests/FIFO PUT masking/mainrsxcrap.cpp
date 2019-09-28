@@ -86,6 +86,13 @@ namespace gLocations
 	void* color1 = ptr_cast(0xC0D00000); // Color buffer 0
 };
 
+template <typename T>
+volatile T& as_volatile(T& obj)
+{
+	fsync();
+	return const_cast<volatile T&>(obj);
+} 
+
 int main() {
 
 	// They should be at the same address (Traps are not gay)
@@ -131,20 +138,41 @@ int main() {
 	// !Inavlid!
 	c.call(1 << 28);
 
-	fsync();
-
 	// Unaligned
-	ctrl->put = (c.pos() - 4) + 1;
+	const u32 endfifo = (c.pos() - 4) + 1;
+	as_volatile(ctrl->put) = endfifo;
 
-	while (ctrl->ref != 2) 
+	while (as_volatile(ctrl->ref) != 2) 
 	{
 		sys_timer_usleep(4000); 
 	}
 
 	// Possibly wait for a crash (executing invalid call)
-	sys_timer_usleep(1);
+	sys_timer_sleep(1);
 
-	printf("sample finished.\n");
+	const u32 put_old = as_volatile(ctrl->put);
+	u32 put_ugh = 0;
 
+	while (true)
+	{
+		as_volatile(ctrl->put) = endfifo;
+		put_ugh = as_volatile(ctrl->put);
+
+		// Check if PUT is modified by rsx at all
+		if (put_ugh != endfifo && (put_ugh & 3) == 0)
+			break;
+	}
+
+	while (true)
+	{
+		as_volatile(ctrl->put) = endfifo;
+		put_ugh = as_volatile(ctrl->put);
+
+		// Check if PUT is immediatly modified by rsx
+		if (put_ugh == endfifo)
+			break;
+	}
+
+	printf("sample finished. PUT=0x%x, PUT1=0x%x\n", put_old, put_ugh);
     return 0;
 }
