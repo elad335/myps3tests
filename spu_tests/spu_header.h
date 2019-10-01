@@ -36,6 +36,7 @@ typedef vec_double2 vec_f64;
 #define ref_cast(x, T) *reinterpret_cast<T*>(ptr_cast(x))
 #define int_cast(x) reinterpret_cast<uptr>(x)
 
+// Lazy memory barrier
 #ifndef fsync
 #define fsync() \
 __asm__ volatile ("" : : : "memory"); \
@@ -46,9 +47,9 @@ __asm__ volatile ("syncc;sync;dsync");
 
 inline void mfcsync() 
 {
-    spu_writech(MFC_WrTagMask, -1u);
-    spu_writech(MFC_WrTagUpdate, 2); 
-    si_rdch(MFC_RdTagStat);
+    mfc_write_tag_mask(~0u);
+    mfc_write_tag_update(MFC_TAG_UPDATE_ALL); 
+    mfc_read_tag_status();
     mfence();
 };
 
@@ -70,12 +71,12 @@ struct lock_line_t
 
 	void* data()
 	{
-		return &rdata[0];
+		return +rdata;
 	}
 
 	uptr addr()
 	{
-		return int_cast(&rdata[0]);
+		return int_cast(+rdata);
 	}
 };
 
