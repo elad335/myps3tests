@@ -28,7 +28,7 @@ extern char _binary_mainfp_fpo_start[];
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 static sys_memory_t mem_id;
@@ -137,11 +137,11 @@ int main() {
 #define MAXX 1.0f
 #define MAXY 1.0f
 	static VertexData3D vertices[4] __attribute__ ((aligned(16))) = {
-		  // vertex           tex coord
-		{ MINX,MINY,0.f,0,    0.f, 0.f },
-		{ MAXX,MINY,0.f,0,    1.f, 0.f },
-		{ MINX,MAXY,0.f,0,    0.f, 1.f },
-		{ MAXX,MAXY,0.f,0,    1.f, 1.f }
+		  // vertex		   tex coord
+		{ MINX,MINY,0.f,0,	0.f, 0.f },
+		{ MAXX,MINY,0.f,0,	1.f, 0.f },
+		{ MINX,MAXY,0.f,0,	0.f, 1.f },
+		{ MAXX,MAXY,0.f,0,	1.f, 1.f }
 	};
 #undef MINX
 #undef MINY
@@ -299,10 +299,10 @@ int main() {
 	cellGcmSetFragmentProgram(&Gcm, fpFile, 0x0900000);
 
 	cellGcmSetVertexDataArray(&Gcm, g_obj_coord_idx, 0, sizeof(VertexData3D), 3, 
-	                      CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
+						  CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
 						  0x0A00000u ); 
 	cellGcmSetVertexDataArray(&Gcm, g_tex_coord_idx, 0, sizeof(VertexData3D), 2, 
-	                      CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
+						  CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
 						  0x0A00000u + (sizeof(float) * 4) ); 
 
 	cellGcmSetInvalidateTextureCache(&Gcm, CELL_GCM_INVALIDATE_TEXTURE);
@@ -332,5 +332,5 @@ int main() {
 
 	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

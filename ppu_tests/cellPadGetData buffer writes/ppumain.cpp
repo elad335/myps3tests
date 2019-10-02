@@ -174,5 +174,5 @@ int main() {
 	printHwords(ptr_caste(data.button, u16), CELL_PAD_MAX_CODES);
 	printf("\n sample finished.\n");
 
-    return 0;
+	return 0;
 }

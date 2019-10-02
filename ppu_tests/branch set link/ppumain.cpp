@@ -47,7 +47,7 @@ int main()
 	sys_ppu_thread_join(tid, &status);
 
 	sys_timer_usleep(500);
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

@@ -74,5 +74,5 @@ int main()
 	printf("count0=0x%x, count1=0x%x, count2=0x%X, count3=0x%x\n"
 	, m_counts[0], m_counts[1], m_counts[2], m_counts[3]);
 
-    return 0;
+	return 0;
 }

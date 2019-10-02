@@ -56,6 +56,6 @@ int main()
 
 	printf("Values = 0x%x\n", read_buf());
 
-    printf("sample finished.\n");
-    return 0;
+	printf("sample finished.\n");
+	return 0;
 }

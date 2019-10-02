@@ -35,7 +35,7 @@ int main()
 	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr2);
 	printf("addr1=0x%x, addr2=0x%x\n", addr1, addr2);
 
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

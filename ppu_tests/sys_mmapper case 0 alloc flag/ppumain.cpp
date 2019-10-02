@@ -32,15 +32,15 @@ int main() {
 	static sys_memory_t mem_id;
 
 	result = sys_mmapper_allocate_address(0x20000000, SYS_MEMORY_PAGE_SIZE_1M, 0x10000000, &addr1);
-    printf("sys_mmapper_allocate_address returned error: %x\n", result);
+	printf("sys_mmapper_allocate_address returned error: %x\n", result);
 
 	result = sys_mmapper_allocate_memory(0x100000, 0 /* Default flag */, &mem_id);
-    printf("sys_mmapper_allocate_memory returned : %x\n", result);
+	printf("sys_mmapper_allocate_memory returned : %x\n", result);
 
 	result = sys_mmapper_map_memory(addr1, mem_id, SYS_MEMORY_PROT_READ_WRITE);
-    printf("sys_mmapper_map_memory returned : %x\n", result);
+	printf("sys_mmapper_map_memory returned : %x\n", result);
 	
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

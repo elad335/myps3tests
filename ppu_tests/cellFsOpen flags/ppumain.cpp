@@ -84,7 +84,7 @@ int main() {
 
 	cellFsUnlink(fpath);
 	cellFsRmdir("/app_home/testdir");
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

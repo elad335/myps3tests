@@ -22,7 +22,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 /* embedded SPU ELF symbols */
@@ -60,25 +60,25 @@ int main(void)
 		return -1;
 	}
 
-    static sys_spu_image_t img;
+	static sys_spu_image_t img;
 
-    ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
-    if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
-
-    ret = sys_raw_spu_create(&thr_id, NULL);
+	ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
 	if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
+
+	ret = sys_raw_spu_create(&thr_id, NULL);
+	if (ret != CELL_OK) {
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
 	
 	ret = sys_raw_spu_image_load(thr_id, &img);
 	if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
 
 	static sys_interrupt_tag_t tag;
 	sys_raw_spu_create_interrupt_tag(thr_id, 2, SYS_HW_THREAD_ANY, &tag);
@@ -117,11 +117,11 @@ int main(void)
 		sys_timer_usleep(4000);
 	} // break when spu has stopped, acts like std::thread.join()
 
-    ret = sys_raw_spu_destroy(thr_id);
-    if (ret != CELL_OK) {
-        printf("sys_raw_spu_destroy: %x\n", ret);
-        return ret;
-    }
+	ret = sys_raw_spu_destroy(thr_id);
+	if (ret != CELL_OK) {
+		printf("sys_raw_spu_destroy: %x\n", ret);
+		return ret;
+	}
 
 	return 0;
 }

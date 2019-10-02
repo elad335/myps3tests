@@ -48,7 +48,7 @@ int main() {
 
 	while(threads) sys_timer_usleep(40000);
 	
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

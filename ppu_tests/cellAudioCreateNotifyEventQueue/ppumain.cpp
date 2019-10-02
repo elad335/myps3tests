@@ -48,7 +48,7 @@ int main() {
 	trap_syscall();
 
 	// Test error code on invalid queue jey
-    printf("cellAudioSetNotifyEventQueue: ret=0x%x \n", cellAudioSetNotifyEventQueue(0));
+	printf("cellAudioSetNotifyEventQueue: ret=0x%x \n", cellAudioSetNotifyEventQueue(0));
 
 	u32 id;
 	u64 key;
@@ -91,5 +91,5 @@ int main() {
 
 	printf("sample finished. ret=0%x\n", sys_event_queue_destroy(0, 0));
 
-    return 0;
+	return 0;
 }

@@ -45,7 +45,7 @@ int main(int argc, const char* argv[])
 	qsort(arr, n, sizeof(unsigned int), compare);
 	int x;
 	for (x=0; x<n; x++)
-     printf ("%d \n",arr[x]);
+	 printf ("%d \n",arr[x]);
 	
 	return 0;
 }

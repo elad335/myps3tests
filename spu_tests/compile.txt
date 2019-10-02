@@ -1,4 +1,4 @@
-spu-lv2-gcc -o test_spu.spu.out test_runner.spu.cpp
+spu-lv2-gcc -o test_spu.spu.out test_runner.spu.cpp %SCE_PS3_ROOT%/target/spu/lib/libdma.a
 
 ppu-lv2-objcopy -I binary -O elf64-powerpc-celloslv2 -B powerpc --set-section-align .data=7 --set-section-pad .data=128 --rename-section .data=.spu_image.test,readonly,contents,alloc test_spu.spu.out test_spu.o
 

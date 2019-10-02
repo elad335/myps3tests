@@ -72,7 +72,7 @@ int main() {
 	printf("cellFsOpen with file creation after clear: ret=0x%x\n", ret);
 	cellFsClose(fd);
 
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

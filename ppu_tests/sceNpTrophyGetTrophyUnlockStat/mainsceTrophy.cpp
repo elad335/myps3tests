@@ -73,7 +73,7 @@ int main() {
 
 
 	sceNpTrophyTerm();
-    printf("sample finished, ret=0x%x\n", ret);
+	printf("sample finished, ret=0x%x\n", ret);
 
-    return 0;
+	return 0;
 }

@@ -30,8 +30,8 @@ int main() {
 	int prio;
 	sys_ppu_thread_get_priority(main_tid, &prio);
 
-    printf("prio: %d\n",prio);
-    printf("sample finished.\n");
+	printf("prio: %d\n",prio);
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

@@ -28,7 +28,7 @@ inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 static sys_memory_t mem_id;
@@ -174,11 +174,11 @@ int main() {
 #define MAXX  0.9f
 #define MAXY  0.9f
 	VertexData3D vertices[4] = {
-		  // vertex           tex coord
-		{ MINX,MINY,0.f,0,    0.f, 0.f },
-		{ MAXX,MINY,0.f,0,    1.f, 0.f },
-		{ MINX,MAXY,0.f,0,    0.f, 1.f },
-		{ MAXX,MAXY,0.f,0,    1.f, 1.f }
+		  // vertex		   tex coord
+		{ MINX,MINY,0.f,0,	0.f, 0.f },
+		{ MAXX,MINY,0.f,0,	1.f, 0.f },
+		{ MINX,MAXY,0.f,0,	0.f, 1.f },
+		{ MAXX,MAXY,0.f,0,	1.f, 1.f }
 	};
 #undef MINX
 #undef MINY
@@ -263,10 +263,10 @@ int main() {
 	fpConf.offset = 0x00900000;
 	cellGcmSetFragmentProgramLoad(&Gcm, &fpConf);
 	cellGcmSetVertexDataArray(&Gcm, 0 /*??*/, 0, sizeof(VertexData3D), 2, 
-	                      CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
+						  CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
 						  0x0A00000u ); 
 	cellGcmSetVertexDataArray(&Gcm, 1 /*??*/, 0, sizeof(VertexData3D), 2, 
-	                      CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
+						  CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
 						  0x0A00000u + (sizeof(float) * 4) ); 
 
 	cellGcmSetDrawIndexArray(&Gcm, CELL_GCM_PRIMITIVE_TRIANGLE_STRIP, 1,CELL_GCM_DRAW_INDEX_ARRAY_TYPE_32,CELL_GCM_LOCATION_LOCAL,0x01900000);
@@ -284,5 +284,5 @@ int main() {
 
 	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

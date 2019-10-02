@@ -106,7 +106,7 @@ int main()
 
 	while(sig) sys_timer_sleep(10);
 	
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

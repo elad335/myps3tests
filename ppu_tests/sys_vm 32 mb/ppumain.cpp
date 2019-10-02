@@ -32,7 +32,7 @@ int main() {
 	sys_vm_memory_map(0x2000000, 0x100000, -1, 0x400, 1, &addr);
 	sys_vm_memory_map(0x2000000, 0x100000, -1, 0x400, 1, &addr);
 	
-    printf("sample finished. addr=0x%x\n", addr);
+	printf("sample finished. addr=0x%x\n", addr);
 
-    return 0;
+	return 0;
 }

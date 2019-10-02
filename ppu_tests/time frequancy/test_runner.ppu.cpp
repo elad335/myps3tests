@@ -25,7 +25,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 #include "../ppu_header.h"
@@ -49,26 +49,26 @@ int main(void)
 	sys_spu_initialize(6, 1); // 1 raw threads max
 
 	int ret;
-    static sys_spu_image_t img;
+	static sys_spu_image_t img;
 	static sys_raw_spu_t thr_id;
 
-    ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
-    if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
-
-    ret = sys_raw_spu_create(&thr_id, NULL);
+	ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
 	if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
+
+	ret = sys_raw_spu_create(&thr_id, NULL);
+	if (ret != CELL_OK) {
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
 	
 	ret = sys_raw_spu_image_load(thr_id, &img);
 	if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
 
 	{
 		const u64 freq = sys_time_get_timebase_frequency();
@@ -107,11 +107,11 @@ int main(void)
 
 	printf("SPU: before=0x%x, after=0x%x, passed=%u\n", spu_dec_status[0], spu_dec_status[1], spu_dec_status[2]);
 
-    ret = sys_raw_spu_destroy(thr_id);
-    if (ret != CELL_OK) {
-        printf("sys_raw_spu_destroy: %x\n", ret);
-        return ret;
-    }
+	ret = sys_raw_spu_destroy(thr_id);
+	if (ret != CELL_OK) {
+		printf("sys_raw_spu_destroy: %x\n", ret);
+		return ret;
+	}
 
 	return 0;
 }

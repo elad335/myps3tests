@@ -5,7 +5,7 @@
 
 int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
 {
-    spu_printf("spu: hmm\n");
-    sys_spu_thread_exit(0);
+	spu_printf("spu: hmm\n");
+	sys_spu_thread_exit(0);
 	return 0;
 }

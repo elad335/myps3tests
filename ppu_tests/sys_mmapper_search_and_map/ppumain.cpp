@@ -35,25 +35,25 @@ int main() {
 	printf("allocaddr\n");
 	result = sys_mmapper_allocate_address(0x20000000, SYS_MEMORY_PAGE_SIZE_1M, 0x10000000, &addr2);
 	if(result != CELL_OK) {
-        printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
-        exit(result);
-    }
+		printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
+		exit(result);
+	}
 
 	printf("allocmem\n");
 	result = sys_mmapper_allocate_memory(0x100000, SYS_MEMORY_GRANULARITY_64K, &mem_id);
 	if(result != CELL_OK) {
-        printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
-        exit(result);
-    }
+		printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
+		exit(result);
+	}
 
 	printf("mapmem\n");
 	result = sys_mmapper_search_and_map(addr2, mem_id, SYS_MEMORY_PROT_READ_WRITE, &addr1);
 	if(result != CELL_OK) {
-        printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
-        exit(result);
-    }
+		printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
+		exit(result);
+	}
 	
-    printf("sample finished. addr = %08x\n", addr1);
+	printf("sample finished. addr = %08x\n", addr1);
 
-    return 0;
+	return 0;
 }

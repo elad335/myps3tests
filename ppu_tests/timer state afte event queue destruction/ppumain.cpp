@@ -10,7 +10,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 sys_event_queue_t qu = 0;
@@ -80,5 +80,5 @@ int main()
 	ERROR_CHECK_RET(sys_timer_destroy(timer));
 
 	printf("sample finnished\n");
-    return 0;
+	return 0;
 }

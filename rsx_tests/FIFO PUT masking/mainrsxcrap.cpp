@@ -174,5 +174,5 @@ int main() {
 	}
 
 	printf("sample finished. PUT=0x%x, PUT1=0x%x\n", put_old, put_ugh);
-    return 0;
+	return 0;
 }

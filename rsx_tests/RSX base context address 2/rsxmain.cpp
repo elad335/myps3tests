@@ -19,7 +19,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 // use static to avoid allocations, even though its usually goes into the stack
@@ -57,7 +57,7 @@ int main() {
 
 	printf("addr1=0x%x, ctx_addr=0x%x, lpar_dma_control=0x%llx, lpar_driver_info=0x%llx, lpar_reports=0x%llx, dummy=0x%x\n", 
 	addr1, ctx_addr, lpar_dma_control, lpar_driver_info, lpar_reports, dummy);
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

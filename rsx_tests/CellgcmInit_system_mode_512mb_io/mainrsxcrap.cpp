@@ -20,7 +20,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 sys_memory_t mem_id;
@@ -55,7 +55,7 @@ int main() {
 
 	printf("ret is 0x%x\n", ret);
 
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

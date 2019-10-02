@@ -59,6 +59,6 @@ int main() {
 		sys_timer_usleep(300);
 	}
 
-    printf("sample finished.\n");
-    return 0;
+	printf("sample finished.\n");
+	return 0;
 }

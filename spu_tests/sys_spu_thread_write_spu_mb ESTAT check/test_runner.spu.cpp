@@ -13,10 +13,10 @@ static u32 count __attribute__((aligned(16)));
 
 int main(uint64_t addr, uint64_t, uint64_t, uint64_t)
 {
-    count = spu_readchcnt(SPU_RdInMbox);
-    spu_mfcdma32(&count, addr, sizeof(u32), 0, MFC_PUTB_CMD);
-    spu_mfcstat(MFC_TAG_UPDATE_ALL);
-    mfence();
-    sys_spu_thread_group_exit(0);
+	count = spu_readchcnt(SPU_RdInMbox);
+	spu_mfcdma32(&count, addr, sizeof(u32), 0, MFC_PUTB_CMD);
+	spu_mfcstat(MFC_TAG_UPDATE_ALL);
+	mfence();
+	sys_spu_thread_group_exit(0);
 	return 0;
 }

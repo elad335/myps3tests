@@ -57,5 +57,5 @@ int main()
 	ret = lv2_lwcond_signal_all(&lwcond, &invalid_mutex, 2);
 	printf("lwcond_signal_all(invalid mtx, mode 2) returned 0x%x\n", ret);
 
-    return 0;
+	return 0;
 }

@@ -111,5 +111,5 @@ int main() {
 		sys_timer_sleep(1);
 	}
 
-    return 0;
+	return 0;
 }

@@ -12,15 +12,15 @@
 
 int main(void)
 {
-    char *failedBuf = malloc(65536);
+	char *failedBuf = malloc(65536);
 
 
-    uint64_t device_id = 0;
+	uint64_t device_id = 0;
 
-    int cell = sys_gpio_set(SYS_GPIO_DIP_SWITCH_DEVICE_ID, 0xf , 1);
-    printf("cell = 0x%x data = 0x%x", cell);
+	int cell = sys_gpio_set(SYS_GPIO_DIP_SWITCH_DEVICE_ID, 0xf , 1);
+	printf("cell = 0x%x data = 0x%x", cell);
 
 
-    free(failedBuf);
-    return 0;
+	free(failedBuf);
+	return 0;
 }

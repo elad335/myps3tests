@@ -73,5 +73,5 @@ int main()
 	lv2_lwmutex_117(&lwmutex);
 	ERROR_CHECK_RET((sys_ppu_thread_join(waiter_tid, NULL) != EFAULT));
 
-    return 0;
+	return 0;
 }

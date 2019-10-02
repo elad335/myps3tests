@@ -297,10 +297,10 @@ int main() {
 	cellGcmSetFragmentProgram(&Gcm, fpFile, 0x0900000);
 
 	cellGcmSetVertexDataArray(&Gcm, g_obj_coord_idx, 0, sizeof(VertexData3D), 3, 
-	                      CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
+						  CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
 						  0x0A00000u ); 
 	cellGcmSetVertexDataArray(&Gcm, g_tex_coord_idx, 0, sizeof(VertexData3D), 2, 
-	                      CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
+						  CELL_GCM_VERTEX_F, CELL_GCM_LOCATION_LOCAL, 
 						  0x0A00000u + (sizeof(float) * 4) ); 
 
 	cellGcmSetInvalidateTextureCache(&Gcm, CELL_GCM_INVALIDATE_TEXTURE);
@@ -342,5 +342,5 @@ int main() {
 
 	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

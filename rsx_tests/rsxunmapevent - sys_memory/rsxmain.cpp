@@ -19,7 +19,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 sys_memory_t memory_id;
@@ -28,52 +28,52 @@ sys_addr_t addr2;
 
 struct RsxDriverInfo
 {
-	u32 version_driver;     // 0x0
-	u32 version_gpu;        // 0x4
-	u32 memory_size;        // 0x8
+	u32 version_driver;	 // 0x0
+	u32 version_gpu;		// 0x4
+	u32 memory_size;		// 0x8
 	u32 hardware_channel;   // 0xC
 	u32 nvcore_frequency;   // 0x10
 	u32 memory_frequency;   // 0x14
-	u32 unk1[4];            // 0x18 - 0x24
-	u32 unk2;               // 0x28 -- pgraph stuff
+	u32 unk1[4];			// 0x18 - 0x24
+	u32 unk2;			   // 0x28 -- pgraph stuff
 	u32 reportsNotifyOffset;// 0x2C offset to notify memory
-	u32 reportsOffset;      // 0x30 offset to reports memory
+	u32 reportsOffset;	  // 0x30 offset to reports memory
 	u32 reportsReportOffset;// 0x34 offset to reports in reports memory
-	u32 unk3[6];            // 0x38-0x54
-	u32 systemModeFlags;    // 0x54
-	u8 unk4[0x1064];              // 0x10B8
+	u32 unk3[6];			// 0x38-0x54
+	u32 systemModeFlags;	// 0x54
+	u8 unk4[0x1064];			  // 0x10B8
 
 	struct Head
 	{
-		u64 lastFlipTime;    // 0x0 last flip time
-		u32 flipFlags;       // 0x8 flags to handle flip/queue
-		u32 unk1;            // 0xC
-		u32 flipBufferId;    // 0x10
+		u64 lastFlipTime;	// 0x0 last flip time
+		u32 flipFlags;	   // 0x8 flags to handle flip/queue
+		u32 unk1;			// 0xC
+		u32 flipBufferId;	// 0x10
 		u32 queuedBufferId;  // 0x14 todo: this is definately not this variable but its 'unused' so im using it for queueId to pass to flip handler
-		u32 unk3;            // 0x18
-		u32 unk6;            // 0x18 possible low bits of time stamp?  used in getlastVBlankTime
+		u32 unk3;			// 0x18
+		u32 unk6;			// 0x18 possible low bits of time stamp?  used in getlastVBlankTime
 		u64 lastSecondVTime; // 0x20 last time for second vhandler freq
-		u64 unk4;            // 0x28
-		u64 vBlankCount;     // 0x30
-		u32 unk;             // 0x38 possible u32, 'flip field', top/bottom for interlaced
-		u32 unk5;            // 0x3C possible high bits of time stamp? used in getlastVBlankTime
+		u64 unk4;			// 0x28
+		u64 vBlankCount;	 // 0x30
+		u32 unk;			 // 0x38 possible u32, 'flip field', top/bottom for interlaced
+		u32 unk5;			// 0x3C possible high bits of time stamp? used in getlastVBlankTime
 	} head[8]; // size = 0x40, 0x200
 
-	u32 unk7;          // 0x12B8
-	u32 unk8;          // 0x12BC
-	u32 handlers;      // 0x12C0 -- flags showing which handlers are set
-	u32 unk9;          // 0x12C4
-	u32 unk10;         // 0x12C8
+	u32 unk7;		  // 0x12B8
+	u32 unk8;		  // 0x12BC
+	u32 handlers;	  // 0x12C0 -- flags showing which handlers are set
+	u32 unk9;		  // 0x12C4
+	u32 unk10;		 // 0x12C8
 	u32 userCmdParam;  // 0x12CC
 	u32 handler_queue; // 0x12D0
-	u32 unk11;         // 0x12D4
-	u32 unk12;         // 0x12D8
-	u32 unk13;         // 0x12DC
-	u32 unk14;         // 0x12E0
-	u32 unk15;         // 0x12E4
-	u32 unk16;         // 0x12E8
-	u32 unk17;         // 0x12F0
-	u32 lastError;     // 0x12F4 error param for cellGcmSetGraphicsHandler
+	u32 unk11;		 // 0x12D4
+	u32 unk12;		 // 0x12D8
+	u32 unk13;		 // 0x12DC
+	u32 unk14;		 // 0x12E0
+	u32 unk15;		 // 0x12E4
+	u32 unk16;		 // 0x12E8
+	u32 unk17;		 // 0x12F0
+	u32 lastError;	 // 0x12F4 error param for cellGcmSetGraphicsHandler
 							 // todo: theres more to this
 };
 
@@ -92,13 +92,13 @@ void threadEntry(uint64_t queueId) {
 
 int main() {
 
-    {
-        u64 addr;
+	{
+		u64 addr;
 		u64 a2;
-        system_call_3(SYS_RSX_DEVICE_MAP,  (uint64_t)(&addr), (uint64_t)&a2, 8);
+		system_call_3(SYS_RSX_DEVICE_MAP,  (uint64_t)(&addr), (uint64_t)&a2, 8);
 		int ret = (int)(p1);
-        printf("ret is 0x%x, addr = 0x%llx\n", ret, addr);
-    }
+		printf("ret is 0x%x, addr = 0x%llx\n", ret, addr);
+	}
 	u32 mem_handle;
 	{
 		u64 mem_addr;
@@ -135,17 +135,17 @@ int main() {
 			SYS_PPU_THREAD_CREATE_JOINABLE,
 			"test");
 		if(result != CELL_OK) {
-        printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
-        exit(result);
+		printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
+		exit(result);
 		}
 	}
 
 	printf("alloc\n");
 	sys_memory_allocate(1<<20, SYS_MEMORY_PAGE_SIZE_1M, &addr1);
 	if(result != CELL_OK) {
-        printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
-        exit(result);
-    }
+		printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
+		exit(result);
+	}
 
 	printf("iomap\n");
 	{
@@ -160,9 +160,9 @@ int main() {
 	printf("unmapmem\n");
 	result = sys_memory_free(addr1);
 	if(result != CELL_OK) {
-        printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
-        exit(result);
-    }
+		printf("%s %d : %x\n", __FUNCTION__, __LINE__, result);
+		exit(result);
+	}
 	sys_timer_sleep(1);
 	
 	uint64_t exit_status;
@@ -170,7 +170,7 @@ int main() {
 	
 	sys_ppu_thread_join(m_tid1, &exit_status);
 	
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

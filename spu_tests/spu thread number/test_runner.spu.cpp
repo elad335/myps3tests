@@ -21,9 +21,9 @@ static u8 DmaBuffer[0x10] __attribute__((aligned(128)));
 // Receive the targeted thread number from the PPU
 int main(uint64_t spu_num, uint64_t, uint64_t, uint64_t)
 {
-    spu_mfcdma32(&DmaBuffer[0], ls_to_mmio(spu_num, 0), 0x10, 0, MFC_PUTB_CMD); // Send data in MMIO to the thread LS itself
-    spu_mfcstat(MFC_TAG_UPDATE_ALL);
-    sync();
-    spu_printf("sample finished successfully\n");
+	spu_mfcdma32(&DmaBuffer[0], ls_to_mmio(spu_num, 0), 0x10, 0, MFC_PUTB_CMD); // Send data in MMIO to the thread LS itself
+	spu_mfcstat(MFC_TAG_UPDATE_ALL);
+	sync();
+	spu_printf("sample finished successfully\n");
 	return 0;
 }

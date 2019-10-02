@@ -23,35 +23,35 @@ extern char _binary_test_spu_spu_out_start[];
 int main(void)
 {
 	int ret;
-    
+	
 	ret = sys_spu_initialize(6, 2); // 2 raw threads max
 	if (ret != CELL_OK) {
-        printf("sys_spu_initialize failed: %x\n", ret);
-        return ret;
+		printf("sys_spu_initialize failed: %x\n", ret);
+		return ret;
 	}
 
-    sys_spu_image_t img;
+	sys_spu_image_t img;
 
-    ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
-    if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
-
-    sys_raw_spu_t thr_id;
-    ret = sys_raw_spu_create(&thr_id, NULL);
+	ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
 	if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
+
+	sys_raw_spu_t thr_id;
+	ret = sys_raw_spu_create(&thr_id, NULL);
+	if (ret != CELL_OK) {
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
 
 	printf("raw thread is is 0x%x\n", thr_id);
 	
 	ret = sys_raw_spu_image_load(thr_id, &img);
 	if (ret != CELL_OK) {
-        printf("sys_spu_image_import: %x\n", ret);
-        return ret;
-    }
+		printf("sys_spu_image_import: %x\n", ret);
+		return ret;
+	}
 
 	//sys_raw_spu_mmio_write(thr_id, SPU_NPC, 0);
 	//asm volatile("eieio");
@@ -73,11 +73,11 @@ int main(void)
 	printf("raw thread has stopped\n");
 
 	printf("also the spu status register's value is %x\n", sys_raw_spu_mmio_read(thr_id, SPU_Status));
-    ret = sys_raw_spu_destroy(thr_id);
-    if (ret != CELL_OK) {
-        printf("sys_raw_spu_destroy: %x\n", ret);
-        return ret;
-    }
+	ret = sys_raw_spu_destroy(thr_id);
+	if (ret != CELL_OK) {
+		printf("sys_raw_spu_destroy: %x\n", ret);
+		return ret;
+	}
 
 	return 0;
 }

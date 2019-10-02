@@ -20,7 +20,7 @@
 
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
-// Stack    : 64KB
+// Stack	: 64KB
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 static sys_addr_t addr;
@@ -43,7 +43,7 @@ int main() {
 	fsync();
 
 
-    printf("old value=0x%x, new value=0x%x, success=%s\nsample finished.\n", old, *ptr_caste(addr, u32), success ? "true" : "false");
+	printf("old value=0x%x, new value=0x%x, success=%s\nsample finished.\n", old, *ptr_caste(addr, u32), success ? "true" : "false");
 
-    return 0;
+	return 0;
 }

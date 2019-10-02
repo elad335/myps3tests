@@ -93,5 +93,5 @@ int main() {
 
 	printf("Ref=0x%x.\n sample finished.\n", ctrl->ref);
 
-    return 0;
+	return 0;
 }

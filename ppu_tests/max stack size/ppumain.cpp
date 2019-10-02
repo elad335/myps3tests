@@ -43,12 +43,12 @@ int main() {
 		threads++;
 	}	
 
-    printf("threads created:0x%x, error_code=0x%x\n",threads, result);
+	printf("threads created:0x%x, error_code=0x%x\n",threads, result);
 	signal_exit = 1;
 
 	while(threads) sys_timer_usleep(40000);
 	
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

@@ -123,6 +123,6 @@ int main() {
 	}
 
 	printf("OVERLAY error codes: 1=0x%x, 2=0x%x, 3=0x%x\n", err_6[0], err_6[1], err_6[2]);
-    printf("sample finished.\n");
-    return 0;
+	printf("sample finished.\n");
+	return 0;
 }

@@ -40,7 +40,7 @@ int main() {
 
 	printf("addr64=0x%x, addr1mb=0x%x\n", addr64, addr1mb);
 
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }

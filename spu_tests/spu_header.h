@@ -47,10 +47,10 @@ __asm__ volatile ("syncc;sync;dsync");
 
 inline void mfcsync() 
 {
-    mfc_write_tag_mask(~0u);
-    mfc_write_tag_update(MFC_TAG_UPDATE_ALL); 
-    mfc_read_tag_status();
-    mfence();
+	mfc_write_tag_mask(~0u);
+	mfc_write_tag_update(MFC_TAG_UPDATE_ALL); 
+	mfc_read_tag_status();
+	mfence();
 };
 
 struct lock_line_t
@@ -61,7 +61,7 @@ struct lock_line_t
 	template<typename Ts>
 	Ts& as(std::size_t index)
 	{
-	    return ptr_caste(rdata, Ts)[index];
+		return ptr_caste(rdata, Ts)[index];
 	}
 
 	u32& operator [](std::size_t index)
@@ -86,7 +86,7 @@ struct lock_line_t
 static u32 get_channel_count(u32 ch)
 {
 	static u32 f[] __attribute__ ((aligned(16))) =
-    {
+	{
 		0x01E00003, // rchcnt $3, $ch(?)
 		0x35000000, // bi $LR
 		0x4020007F, // lnop
@@ -101,7 +101,7 @@ static u32 get_channel_count(u32 ch)
 static u32 read_channel(u32 ch)
 {
 	static u32 f[] __attribute__ ((aligned(16))) =
-    {
+	{
 		0x01A00003, // rdch $3, $ch(?)
 		0x35000000, // bi $LR
 		0x4020007F, // lnop
@@ -116,9 +116,9 @@ static u32 read_channel(u32 ch)
 void write_channel(u32 ch, u32 value)
 {
 	static u32 f[] __attribute__ ((aligned(16))) =
-    {
+	{
 		0x21A00003, // wrch $ch(?), $3
-        0x00500000, // syncc
+		0x00500000, // syncc
 		0x35000000, // bi $LR
 		0x4020007F, // lnop
 	};

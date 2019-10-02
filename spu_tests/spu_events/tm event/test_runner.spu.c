@@ -5,9 +5,9 @@
 
 int main(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4)
 {
-    volatile uint32_t* pc = (void*)0;
-       
-    (void)arg1;
+	volatile uint32_t* pc = (void*)0;
+	   
+	(void)arg1;
     (void)arg2;
 	(void)arg4;
 

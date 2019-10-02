@@ -38,7 +38,7 @@ int main() {
 
 	printf("ret64=0x%x, ret1m=0x%x, addr1=0x%x, addr2=0x%x\n", ret64, ret1m, addr[0], addr[1]);
 
-    printf("sample finished.\n");
+	printf("sample finished.\n");
 
-    return 0;
+	return 0;
 }
