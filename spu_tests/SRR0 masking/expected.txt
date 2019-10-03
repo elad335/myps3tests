@@ -1,1 +1,2 @@
-Value = 0x3fffc
+SRR0 as read from SPU: 0x3fffc
+SRR0 as read from PPU: 0x3fffc

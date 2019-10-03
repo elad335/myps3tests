@@ -13,9 +13,10 @@ int main(u64 addr) {
 
 	spu_write_srr0(~0u);
 	fsync(); // syncc must be issued here
-	spu_printf("Value = 0x%x", spu_read_srr0());
+	cellDmaPutUint64(spu_read_srr0(), addr, 0, 0, 0);
 
-	cellDmaPutUint32(1, addr, 0, 0, 0);
+	// This is not funny! (puts the thread on STOP state directly)
+	//asm volatile ("stopd");
 
 	while (true)
 	{
