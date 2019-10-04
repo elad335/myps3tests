@@ -1,0 +1,7 @@
+cache path=/dev_hdd1/cache, ret=0x0
+cache path=/dev_hdd1/cache, ret=0x0
+cache path=/dev_hdd1/cache, ret=0x0
+cache path=/dev_hdd1/cache, ret=0x0
+cellFsOpen: ret=0x80010006
+cache path=/dev_hdd1/cache, ret=0x1
+sample finished.
