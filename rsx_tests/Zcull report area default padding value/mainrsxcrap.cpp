@@ -19,8 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
-
  // _binary_{SHADERFILENAME}_f/vpo_start loads the shader
 extern char _binary_mainvp_vpo_start[];
 extern char _binary_mainfp_fpo_start[];
@@ -80,7 +78,7 @@ int GcmCallback(struct CellGcmContextData *, uint32_t){}
 
 namespace gLocations
 {
-	void* video = ptr_cast(0xC0000000); // Video
+	void* video = ptr_cast(0xC0200000); // Video
 	void* fragment = ptr_cast(0xC0900000); // FP shader
 	void* varray = ptr_cast(0xC0A00000); // Vertex array 1
 	void* color1 = ptr_cast(0xC0D00000); // Color buffer 0
@@ -92,12 +90,13 @@ int main() {
 	if (int_cast(&Gcm) != int_cast(&c.c)) asm volatile ("tw 4, 1, 1");
 
 	LoadModules();
-	sys_memory_allocate(0x1000000, 0x400, &addr);
+	sys_memory_allocate(0x2000000, 0x400, &addr);
 
 	cellGcmInit(1<<16, 0x100000, ptr_cast(addr)); 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 	while (ctrl->put != ctrl->get) sys_timer_usleep(300);
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 15<<20);
+	cellGcmMapEaIoAddressWithFlags(ptr_cast(addr + (16<<20)), 0xe0<<20, 16<<20, CELL_GCM_IOMAP_FLAG_STRICT_ORDERING); 
 
 	{
 		CellRescInitConfig resConfig;
@@ -113,59 +112,14 @@ int main() {
 	}
 
 	u8 id; cellGcmGetCurrentDisplayBufferId(&id);
- 	cellGcmSetDisplayBuffer(id, 0<<20, 1280*4, 1280, 720);
+ 	cellGcmSetDisplayBuffer(id, 2<<20, 1280*4, 1280, 720);
 	cellGcmGetOffsetTable(&offsetTable);
 
-	// Place a jump into io address 1mb
-	*OffsetToAddr(ctrl->get) = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;
-	sys_timer_usleep(40);
-
-	cellGcmSetupContextData(&Gcm, ptr_caste(addr + (1<<20), u32), 0x60000, GcmCallback);
-
-	//Call gcm reset
-	c.call(0);
-
-	gfxFence(&Gcm);
-	cellGcmSetReferenceCommand(&Gcm, 2);
-
-	// !Inavlid!
-	c.call(1 << 28);
-
-	// Unaligned
-	const u32 endfifo = (c.pos() - 4) + 1;
-	as_volatile(ctrl->put) = endfifo;
-
-	while (as_volatile(ctrl->ref) != 2) 
+	for (u32 i = 0; i < 64/*2048*/; i++)
 	{
-		sys_timer_usleep(4000); 
+		CellGcmReportData* rep = cellGcmGetReportDataAddressLocation(i, CELL_GCM_LOCATION_LOCAL);
+		printf("Report(%d): value=0x%x, timer=0x%llx, zero=0x%llx\n", i, as_volatile(rep->value), as_volatile(rep->timer), as_volatile(rep->zero));
 	}
 
-	// Possibly wait for a crash (executing invalid call)
-	sys_timer_sleep(1);
-
-	const u32 put_old = as_volatile(ctrl->put);
-	u32 put_ugh = 0;
-
-	while (true)
-	{
-		as_volatile(ctrl->put) = endfifo;
-		put_ugh = as_volatile(ctrl->put);
-
-		// Check if PUT is modified by rsx at all
-		if (put_ugh != endfifo && (put_ugh & 3) == 0)
-			break;
-	}
-
-	while (true)
-	{
-		as_volatile(ctrl->put) = endfifo;
-		put_ugh = as_volatile(ctrl->put);
-
-		// Check if PUT is immediatly modified by rsx
-		if (put_ugh == endfifo)
-			break;
-	}
-
-	printf("sample finished. PUT=0x%x, PUT1=0x%x\n", put_old, put_ugh);
 	return 0;
 }

@@ -382,6 +382,14 @@ static CellGcmOffsetTable offsetTable;
 // Lazy memory barrier (missing basic memory optimizations)
 #ifndef fsync 
 #define fsync() __asm__ volatile ("sync" : : : "memory"); __asm__ volatile ("eieio")
+
+template <typename T>
+volatile T& as_volatile(T& obj)
+{
+	fsync();
+	return const_cast<volatile T&>(obj);
+} 
+
 #endif
 
 static int AddrToOffset(void* addr)
