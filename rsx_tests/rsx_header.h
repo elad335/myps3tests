@@ -4,6 +4,7 @@
 #include <cell/resc.h>
 #include <Cg/NV/cg.h>
 #include <Cg/cgc.h>
+#include <cstring>
 
 #define int_cast(p) reinterpret_cast<uintptr_t>(p)
 #define ptr_cast(x) reinterpret_cast<void*>(x)
@@ -431,10 +432,12 @@ struct rsxCommandCompiler
 	// Optimized for this
 	inline void reg(u32 command, u32 value)
 	{
-		u32* ptr = c.current;
-		ref_cast(ptr, u64) = (u64((1ull << 18) | command) << 32) | (u64)value;
-		ptr += 2;
-		c.current = ptr;
+		u32& ref = *c.current;
+		{
+			const u64 cvalue = (((1ull << 18) | command) << 32) | value;
+			memcpy(&ref, &cvalue, sizeof(u64));
+		}
+		c.current = &ref + 2;
 	}
 
 	// Push a jump command, offset is specified by label

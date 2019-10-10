@@ -42,11 +42,8 @@ static inline void LoadModules()
 	if (ret != CELL_OK && ret != CELL_SYSMODULE_ERROR_DUPLICATED) asm volatile ("tw 4, 1, 1");
 }
 
-static union
-{
-	CellGcmContextData Gcm;
-	rsxCommandCompiler c;
-};
+static rsxCommandCompiler c;
+static CellGcmContextData& Gcm = c.c;
 
 // CellGcmContextCallback
 int GcmCallback(struct CellGcmContextData *, uint32_t){}

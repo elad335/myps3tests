@@ -25,7 +25,7 @@ SYS_PROCESS_PARAM(1000, 0x10000)
 sys_memory_t mem_id;
 sys_addr_t addr;
 
-static rsxCommandCompiler c;
+static static rsxCommandCompiler c;
 
 int main() {
 

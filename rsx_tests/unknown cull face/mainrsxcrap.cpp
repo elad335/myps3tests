@@ -27,11 +27,8 @@ SYS_PROCESS_PARAM(1000, 0x10000)
 sys_memory_t mem_id;
 sys_addr_t addr;
 
-static union
-{
-	rsxCommandCompiler c;
-	CellGcmContextData Gcm;
-};
+static rsxCommandCompiler c;
+static CellGcmContextData& Gcm = c.c;
 
 // CellGcmContextCallback
 int GcmCallback(struct CellGcmContextData *, uint32_t)

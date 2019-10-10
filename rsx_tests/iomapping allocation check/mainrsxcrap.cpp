@@ -61,11 +61,8 @@ u32 readFile(const char *filename, char **buffer)
 	return size;
 }
 
-static union
-{
-	CellGcmContextData Gcm;
-	rsxCommandCompiler c;
-};
+static rsxCommandCompiler c;
+static CellGcmContextData& Gcm = c.c;
 
 // CellGcmContextCallback
 int GcmCallback(struct CellGcmContextData *, uint32_t){}
