@@ -393,6 +393,14 @@ volatile T& as_volatile(T& obj)
 
 #endif
 
+#ifndef cellFunc
+
+// TODO
+s64 g_ec = 0;
+#define cellFunc(name, ...) g_ec = cell##name(__VA_ARGS__); \
+printf("cell" #name "(error=0x%x)\n", (u32)g_ec);
+#endif
+
 static int AddrToOffset(void* addr)
 {
 	return (offsetTable.ioAddress[int_cast(addr) >> 20] << 20) | (int_cast(addr) & (0xFFFFF));

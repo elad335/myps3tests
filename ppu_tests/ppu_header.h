@@ -35,6 +35,22 @@ typedef int8_t s8;
 // Lazy memory barrier (missing basic memory optimizations)
 #ifndef fsync 
 #define fsync() __asm__ volatile ("sync" : : : "memory"); __asm__ volatile ("eieio")
+
+template <typename T>
+volatile T& as_volatile(T& obj)
+{
+	fsync();
+	return const_cast<volatile T&>(obj);
+}
+
+#endif
+
+#ifndef cellFunc
+
+// TODO
+s64 g_ec = 0;
+#define cellFunc(name, ...) g_ec = cell##name(__VA_ARGS__); \
+printf("cell" #name "(error=0x%x)\n", (u32)g_ec);
 #endif
 
 #define thread_exit(x) sys_ppu_thread_exit(x)
