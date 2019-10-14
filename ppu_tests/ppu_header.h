@@ -49,8 +49,8 @@ volatile T& as_volatile(T& obj)
 
 // TODO
 s64 g_ec = 0;
-#define cellFunc(name, ...) g_ec = cell##name(__VA_ARGS__); \
-printf("cell" #name "(error=0x%x)\n", (u32)g_ec);
+#define cellFunc(name, ...) \
+(printf("cell" #name "(error=0x%x)\n", u32(g_ec = cell##name(__VA_ARGS__))), g_ec)
 #endif
 
 #define thread_exit(x) sys_ppu_thread_exit(x)
