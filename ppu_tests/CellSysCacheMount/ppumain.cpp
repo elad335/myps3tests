@@ -57,7 +57,7 @@ int main() {
 
 	{
 		int fd = -1;
-		ERROR_CHECK_RET(cellFsOpen(strtemp.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0));
+		ENSURE_OK(cellFsOpen(strtemp.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0));
 		// As part of the testcase: do not close file handle.
 	}
 
@@ -65,7 +65,7 @@ int main() {
 	//param2.cacheId[0] = '\0';
 
 	CacheMount(param2);
-	//ERROR_CHECK_RET(cellSysCacheClear());
+	//ENSURE_OK(cellSysCacheClear());
 	CacheMount(param);
 	CacheMount(param2);
 

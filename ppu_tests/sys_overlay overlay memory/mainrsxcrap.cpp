@@ -40,10 +40,10 @@ int main() {
 	cellSysmoduleLoadModule(CELL_SYSMODULE_FS);
 
 	sys_addr_t alloc_addr;
-	ERROR_CHECK_RET(sys_mmapper_allocate_address(0x10000000, 0x400, 0, &alloc_addr));
+	ENSURE_OK(sys_mmapper_allocate_address(0x10000000, 0x400, 0, &alloc_addr));
 	sys_memory_t mem_id, dummy;
-	ERROR_CHECK_RET(sys_mmapper_allocate_memory(0x1200000, 0x400, &mem_id));
-	ERROR_CHECK_RET(sys_mmapper_map_memory(alloc_addr, mem_id, 0x40000));
+	ENSURE_OK(sys_mmapper_allocate_memory(0x1200000, 0x400, &mem_id));
+	ENSURE_OK(sys_mmapper_map_memory(alloc_addr, mem_id, 0x40000));
 
 	u32 oid, entry;
 	u32 err_6[6] = {0};
@@ -51,12 +51,12 @@ int main() {
 	// Try to load overlay module in verious memory conditions
 	if ((err_6[0] = sys_overlay_load_module(&oid, MGS_OVERLAY, 0, &entry)))
 	{
-		ERROR_CHECK_RET(sys_mmapper_unmap_memory(alloc_addr, &dummy));
+		ENSURE_OK(sys_mmapper_unmap_memory(alloc_addr, &dummy));
 
 		if ((err_6[1] = sys_overlay_load_module(&oid, MGS_OVERLAY, 0, &entry)))
 		{
-			ERROR_CHECK_RET(sys_mmapper_free_memory(mem_id));
-			ERROR_CHECK_RET(sys_mmapper_free_address(alloc_addr));
+			ENSURE_OK(sys_mmapper_free_memory(mem_id));
+			ENSURE_OK(sys_mmapper_free_address(alloc_addr));
 
 			if ((err_6[2] = sys_overlay_load_module(&oid, MGS_OVERLAY, 0, &entry)))
 			{

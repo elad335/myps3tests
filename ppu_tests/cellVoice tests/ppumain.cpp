@@ -86,8 +86,7 @@ int main()
 		printf("Testing GetVolume() with invalid port id:\n");
 		float volume = 0;
 		cellFunc(VoiceGetVolume, 0xff, &volume);
-		u32 volumeh = 0;
-		memcpy(&volumeh, &volume, 4);
+		u32 volumeh = bit_cast<u32>(volume);
 		printf("volume = %f (in hex = %x)\n", volume, volumeh);
 	}
 
@@ -140,12 +139,12 @@ int main()
 			}
 		}
 
-		ERROR_CHECK_RET(sys_event_queue_destroy(queue_id, 0));
+		ENSURE_OK(sys_event_queue_destroy(queue_id, 0));
 
 		cellFunc(VoiceSetNotifyEventQueue, key, 0);
 
-		ERROR_CHECK_RET(cellVoiceCreateNotifyEventQueue(&queue_id, &key));
-		ERROR_CHECK_RET(cellVoiceSetNotifyEventQueue(key, 1));
+		ENSURE_OK(cellVoiceCreateNotifyEventQueue(&queue_id, &key));
+		ENSURE_OK(cellVoiceSetNotifyEventQueue(key, 1));
 
 		// Try to enqueue the key twice (with different source)
 		cellFunc(VoiceSetNotifyEventQueue, key, 2);
@@ -155,14 +154,14 @@ int main()
 
 		sys_event_t event;
 		memset(&event, 0, sizeof(event));
-		ERROR_CHECK_RET(sys_event_queue_receive(queue_id, &event, 0));
+		ENSURE_OK(sys_event_queue_receive(queue_id, &event, 0));
 		printf("Voice event's source: 0x%llx\n", event.source);
 
 		sys_timer_sleep(1);
 
 		// Recieves two events with different source!
 		memset(&event, 0, sizeof(event));
-		ERROR_CHECK_RET(sys_event_queue_receive(queue_id, &event, 0));
+		ENSURE_OK(sys_event_queue_receive(queue_id, &event, 0));
 		printf("Second Voice event's source: 0x%llx\n", event.source);
 
 		// Test if another event is sent (with timeout)

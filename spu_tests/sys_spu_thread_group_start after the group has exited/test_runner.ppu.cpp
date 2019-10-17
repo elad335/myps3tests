@@ -18,7 +18,7 @@ extern char _binary_test_spu_spu_out_start[];
 
 int main(void)
 {
-	sys_spu_initialize(1, 0);
+	ENSURE_OK(sys_spu_initialize(1, 0));
 
 	sys_spu_thread_group_t grp_id;
 	int prio = 100;
@@ -29,7 +29,7 @@ int main(void)
 	ENSURE_OK(sys_spu_thread_group_create(&grp_id, 1, prio, &grp_attr));
 
 	sys_spu_image_t img;
-	ENSURE_OK(sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT));
+	ENSURE_OK(sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT ));
 
 	sys_spu_thread_t thr_id;
 	sys_spu_thread_attribute_t thr_attr;
@@ -47,7 +47,9 @@ int main(void)
 	int cause;
 	int status;
 	// First join
-	ENSURE_OK(sys_spu_thread_group_join(grp_id, &cause, &status));
+	ENSURE_OK(sys_spu_thread_group_join((1, grp_id), &cause, &status));
+
+	ENSURE_OK(sys_spu_thread_group_start((2, grp_id)));
 
 	// Second join
 	ENSURE_OK(sys_spu_thread_group_join(grp_id, &cause, &status));
@@ -57,6 +59,5 @@ int main(void)
 
 	ENSURE_OK(sys_spu_thread_group_destroy(grp_id));
 
-	print("sample finsihed.\n");
 	return 0;
 }

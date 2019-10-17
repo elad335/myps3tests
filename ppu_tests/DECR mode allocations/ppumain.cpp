@@ -24,13 +24,11 @@
 SYS_PROCESS_PARAM(1000, 0x10000)
 
 static sys_memory_t mem_id; 
-static sys_addr_t addr1, addr2;
+static sys_addr_t addr1, addr2 = 0;
 
 int main() 
 {
-
-	sys_memory_allocate(0x18700000, 0x400, &addr1);
-	asm volatile ("twi 0x10, 3, 0");
+	ENSURE_OK(sys_memory_allocate(0x18700000, 0x400, &addr1));
 
 	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr2);
 	printf("addr1=0x%x, addr2=0x%x\n", addr1, addr2);

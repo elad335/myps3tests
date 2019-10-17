@@ -375,10 +375,10 @@ struct RsxDmaControl
 static CellGcmOffsetTable offsetTable;
 
 // rsx ops fence
-#define gfxFence(c); \
-	cellGcmSetWriteBackEndLabel(c, 64, -2u); \
-	cellGcmSetWaitLabel(c, 64, -2u); \
-	cellGcmSetWriteBackEndLabel(c, 64, 0); \
+#define gfxFence(c) \
+	(cellGcmSetWriteBackEndLabel(c, 64, -2u), \
+	cellGcmSetWaitLabel(c, 64, -2u), \
+	cellGcmSetWriteBackEndLabel(c, 64, 0)) \
 
 // Lazy memory barrier (missing basic memory optimizations)
 #ifndef fsync 
@@ -391,6 +391,13 @@ volatile T& as_volatile(T& obj)
 	return const_cast<volatile T&>(obj);
 } 
 
+template <typename T>
+volatile T& buf_volatile(T* obj)
+{
+	fsync();
+	return const_cast<volatile T&>(*obj);
+}
+
 #endif
 
 #ifndef cellFunc
@@ -400,6 +407,14 @@ s64 g_ec = 0;
 #define cellFunc(name, ...) g_ec = cell##name(__VA_ARGS__); \
 printf("cell" #name "(error=0x%x)\n", (u32)g_ec);
 #endif
+
+template <typename To, typename From>
+static inline To bit_cast(const From& from)
+{
+	To to;
+	std::memcpy(&to, &from, sizeof(From));
+	return to;
+}
 
 static int AddrToOffset(void* addr)
 {
@@ -425,20 +440,20 @@ struct rsxCommandCompiler
 	CellGcmContextData c;
 
 	// Push command
-	inline void push(u32 cmd)
+	void push(u32 cmd)
 	{
 		*(c.current++) = cmd;	
 	}
 
 	// Push command with count
-	inline void push(u32 count, u32 command)
+	void push(u32 count, u32 command)
 	{
 		*(c.current++) = (count << 18) | command;	
 	}
 
 	// Push a command that writes to a single register with value
 	// Optimized for this
-	inline void reg(u32 command, u32 value)
+	void reg(u32 command, u32 value)
 	{
 		u32& ref = *c.current;
 		{
@@ -449,34 +464,34 @@ struct rsxCommandCompiler
 	}
 
 	// Push a jump command, offset is specified by label
-	inline void jmp(gcmLabel label)
+	void jmp(gcmLabel label)
 	{
 		*(c.current++) = label.pos | RSX_METHOD_NEW_JUMP_CMD;
 	}
 
-	inline void call(gcmLabel label)
+	void call(gcmLabel label)
 	{
 		*(c.current++) = label.pos | RSX_METHOD_CALL_CMD;
 	}
 
-	inline void ret()
+	void ret()
 	{
 		*(c.current++) = RSX_METHOD_RETURN_CMD;
 	}
 
 	// Get current position by offset
-	inline u32 pos()
+	u32 pos()
 	{
 		return AddrToOffset(c.current);
 	}
 
 	// generates a jump label by current position
-	inline gcmLabel newLabel()
+	gcmLabel newLabel()
 	{
 		return gcmLabel(this->pos());
 	}
 
-	inline void debugBreak() 
+	void debugBreak() 
 	{ 
 		*(c.current++) = 0xFFFFFFFCu | RSX_METHOD_NEW_JUMP_CMD;
 	}

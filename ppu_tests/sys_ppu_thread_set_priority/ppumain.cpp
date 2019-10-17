@@ -53,10 +53,10 @@ void waiter(u64 index)
 
 int main() 
 {
-	ERROR_CHECK_RET(sys_ppu_thread_create(&tid[0], &waiter, 0, prio[0], 0x100000, 1, "t0"));
-	ERROR_CHECK_RET(sys_ppu_thread_create(&tid[1], &waiter, 1, prio[1], 0x100000, 1, "t1"));
-	ERROR_CHECK_RET(sys_ppu_thread_create(&tid[2], &waiter, 2, prio[2], 0x100000, 1, "t2"));
-	ERROR_CHECK_RET(sys_ppu_thread_create(&tid[3], &waiter, 3, prio[3], 0x100000, 1, "t3"));
+	ENSURE_OK(sys_ppu_thread_create(&tid[0], &waiter, 0, prio[0], 0x100000, 1, "t0"));
+	ENSURE_OK(sys_ppu_thread_create(&tid[1], &waiter, 1, prio[1], 0x100000, 1, "t1"));
+	ENSURE_OK(sys_ppu_thread_create(&tid[2], &waiter, 2, prio[2], 0x100000, 1, "t2"));
+	ENSURE_OK(sys_ppu_thread_create(&tid[3], &waiter, 3, prio[3], 0x100000, 1, "t3"));
 
 	signal_ = 1;
 	sys_timer_sleep(10);
@@ -68,7 +68,7 @@ int main()
 	// Release current thread and join 
 	for (u64 i = 0, ret = 0; i < 4; i++)
 	{
-		ERROR_CHECK_RET(sys_ppu_thread_join(tid[i], &ret));
+		ENSURE_OK(sys_ppu_thread_join(tid[i], &ret));
 	}
 
 	printf("count0=0x%x, count1=0x%x, count2=0x%X, count3=0x%x\n"

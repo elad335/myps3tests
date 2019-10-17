@@ -29,8 +29,7 @@ static u32* ea;
 int main() {
 
 	// Allocate 1mb aligned memory block
-	sys_memory_allocate(0x100000, 0x400, &addr);
-	asm volatile ("twi 0x10, 3, 0");
+	ENSURE_OK(sys_memory_allocate(0x100000, 0x400, &addr));
 
 	*ptr_caste(addr, u32) = 0x01020304; // Store value to check later
 

@@ -10,6 +10,7 @@
 #include <sys/process.h>
 #include <sys/synchronization.h>
 #include <sys/prx.h>
+#include <cstring>
 
 #define int_cast(p) reinterpret_cast<uintptr_t>(p)
 #define ptr_cast(x) reinterpret_cast<void*>(x)
@@ -28,9 +29,17 @@ typedef int32_t s32;
 typedef int16_t s16;
 typedef int8_t s8;
 
+typedef float f32;
+typedef double f64; 
+
 #define ALIGN(x) __attribute__((aligned(x)))
 
-#define ERROR_CHECK_RET(x) if ((x) != CELL_OK) { printf("Failure!"); exit(-1); }
+#ifndef ENSURE_OK
+
+s32 ensure_ok_ret_save_ = 0; // Unique naming
+#define ENSURE_OK(x) if ((ensure_ok_ret_save_ = s32(x)) != CELL_OK) { printf("\"%s\" Failed at line %d! (error=0x%x)", #x, __LINE__, ensure_ok_ret_save_); exit(-1); }
+
+#endif
 
 // Lazy memory barrier (missing basic memory optimizations)
 #ifndef fsync 
@@ -43,6 +52,13 @@ volatile T& as_volatile(T& obj)
 	return const_cast<volatile T&>(obj);
 }
 
+template <typename T>
+volatile T& buf_volatile(T* obj)
+{
+	fsync();
+	return const_cast<volatile T&>(*obj);
+}
+
 #endif
 
 #ifndef cellFunc
@@ -52,6 +68,14 @@ s64 g_ec = 0;
 #define cellFunc(name, ...) \
 (printf("cell" #name "(error=0x%x)\n", u32(g_ec = cell##name(__VA_ARGS__))), g_ec)
 #endif
+
+template <typename To, typename From>
+static inline To bit_cast(const From& from)
+{
+	To to;
+	std::memcpy(&to, &from, sizeof(From));
+	return to;
+}
 
 #define thread_exit(x) sys_ppu_thread_exit(x)
 #define thread_eoi sys_interrupt_thread_eoi

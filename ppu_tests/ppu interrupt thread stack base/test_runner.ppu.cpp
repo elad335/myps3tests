@@ -62,11 +62,7 @@ int main(void)
 
 	static sys_spu_image_t img;
 
-	ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT);
-	if (ret != CELL_OK) {
-		printf("sys_spu_image_import: %x\n", ret);
-		return ret;
-	}
+	ENSURE_OK(sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT));
 
 	ret = sys_raw_spu_create(&thr_id, NULL);
 	if (ret != CELL_OK) {
@@ -86,42 +82,23 @@ int main(void)
 	 *E Set the class 2 interrupt mask to handle the SPU Outbound Mailbox
 	 *  interrupts.
 	 */
-	ret = sys_raw_spu_set_int_mask(
-				thr_id,
-				2, //SPU_INTR_CLASS_2,
-				SPU_INT2_STAT_MAILBOX_INT);
-	if (ret != CELL_OK) {
-		printf("sys_raw_spu_set_int_mask() failed: 0x%08x\n", ret);
-		return -4;
-	}
+	ENSURE_OK(sys_raw_spu_set_int_mask(thr_id, 2, SPU_INT2_STAT_MAILBOX_INT));
 
 	static sys_interrupt_thread_handle_t ih;
-	ret = sys_interrupt_thread_establish(
-				&ih,
-				tag,
-				ppuThreadId,
-				0);
-	if (ret != CELL_OK) {
-		printf("sys_interrupt_thread_establish() failed: 0x%08x\n", ret);
-		return ret;
-	}
+	ENSURE_OK(sys_interrupt_thread_establish(&ih, tag, ppuThreadId, 0));
 
 
 	sys_raw_spu_mmio_write(thr_id, SPU_RunCntl, 1); // invoke raw spu thread
 
 	while ((sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1) == 0)
-		sync(); // waits until the run requast has been completed
+		fsync(); // waits until the run requast has been completed
 
 	while ((sys_raw_spu_mmio_read(thr_id, SPU_Status) & 0x1))
 	{
 		sys_timer_usleep(4000);
 	} // break when spu has stopped, acts like std::thread.join()
 
-	ret = sys_raw_spu_destroy(thr_id);
-	if (ret != CELL_OK) {
-		printf("sys_raw_spu_destroy: %x\n", ret);
-		return ret;
-	}
+	ENSURE_OK(sys_raw_spu_destroy(thr_id));
 
 	return 0;
 }

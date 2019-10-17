@@ -11,19 +11,16 @@
 
 #include <spu_printf.h>
 
+#include "../../ppu_tests/ppu_header.h"
 
 /* embedded SPU ELF symbols */
 extern char _binary_test_spu_spu_out_start[];
-
-typedef uint32_t u32;
 
 // Send SPU count in DMA transfer as we cant use spu printf since it uses the mailbox
 static u32 mailbox_count __attribute__((aligned(16))) = -1;
 
 int main(void)
 {
-	int ret;
-	
 	sys_spu_initialize(1, 0);
 
 	sys_spu_thread_group_t grp_id;
@@ -31,19 +28,11 @@ int main(void)
 	
 	sys_spu_thread_group_attribute_initialize(grp_attr);
 	sys_spu_thread_group_attribute_name(grp_attr, "test spu grp");
-	ret = sys_spu_thread_group_create(&grp_id, 1, 100, &grp_attr);
-	if (ret != CELL_OK) {
-		printf("spu_thread_group_create failed: %d\n", ret);
-		return ret;
-	}
+	ENSURE_OK(sys_spu_thread_group_create(&grp_id, 1, 100, &grp_attr));
 
 	sys_spu_image_t img;
 
-	ret = sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT );
-	if (ret != CELL_OK) {
-		printf("sys_spu_image_import: %d\n", ret);
-		return ret;
-	}
+	ENSURE_OK(sys_spu_image_import(&img, (void*)_binary_test_spu_spu_out_start, SYS_SPU_IMAGE_DIRECT ));
 
 	sys_spu_thread_t thr_id;
 	sys_spu_thread_attribute_t thr_attr;
@@ -54,15 +43,10 @@ int main(void)
 
 	// Set mailbox count var address in args
 	thr_args.arg1 = reinterpret_cast<uintptr_t>(&mailbox_count);
+	ENSURE_OK(sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args));
 
-	ret = sys_spu_thread_initialize(&thr_id, grp_id, 0, &img, &thr_attr, &thr_args);
-	if (ret != CELL_OK) {
-		printf("sys_spu_thread_initialize: %d\n", ret);
-		return ret;
-	}
-
-	spu_printf_initialize(1000, NULL);
-	spu_printf_attach_group(grp_id);
+	ENSURE_OK(spu_printf_initialize(1000, NULL));
+	ENSURE_OK(spu_printf_attach_group(grp_id));
 
 	// Fill the mailbox. right before spu thread starts
 	// This tests the error code returned when group status is INITIALIZED

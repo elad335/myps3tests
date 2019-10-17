@@ -44,22 +44,22 @@ int main()
 	sys_ppu_thread_t main_tid, waiter_tid[2];
 	sys_ppu_thread_get_id(&main_tid);
 
-	ERROR_CHECK_RET(sys_ppu_thread_create(&waiter_tid[0], &_rec, 0, 1001, 0x10000, 1, "T"));
+	ENSURE_OK(sys_ppu_thread_create(&waiter_tid[0], &_rec, 0, 1001, 0x10000, 1, "T"));
 
 	sys_event_queue_attribute_initialize(ev_attr);
-	ERROR_CHECK_RET(sys_event_queue_create(&qu, &ev_attr, 0, 126));
+	ENSURE_OK(sys_event_queue_create(&qu, &ev_attr, 0, 126));
 
 	sys_event_port_t ep;
-	ERROR_CHECK_RET(sys_event_port_create(&ep, 1, SYS_EVENT_PORT_NO_NAME));
+	ENSURE_OK(sys_event_port_create(&ep, 1, SYS_EVENT_PORT_NO_NAME));
 
 	sys_timer_t timer;
-	ERROR_CHECK_RET(sys_timer_create(&timer));
+	ENSURE_OK(sys_timer_create(&timer));
 	u64 next = sys_time_get_system_time() + 2000;
-	ERROR_CHECK_RET(sys_timer_connect_event_queue(timer, qu, 0, 0, 0));
-	ERROR_CHECK_RET(sys_timer_start_periodic(timer, 5000));
+	ENSURE_OK(sys_timer_connect_event_queue(timer, qu, 0, 0, 0));
+	ENSURE_OK(sys_timer_start_periodic(timer, 5000));
 
 	// Destro the event queue
-	ERROR_CHECK_RET(sys_event_queue_destroy(qu, SYS_EVENT_QUEUE_DESTROY_FORCE));
+	ENSURE_OK(sys_event_queue_destroy(qu, SYS_EVENT_QUEUE_DESTROY_FORCE));
 
 	while (true)
 	{
@@ -75,9 +75,9 @@ int main()
 	}
 
 	_exit = 1;
-	ERROR_CHECK_RET((sys_ppu_thread_join(waiter_tid[0], NULL) != EFAULT));
-	ERROR_CHECK_RET(sys_timer_disconnect_event_queue(timer));
-	ERROR_CHECK_RET(sys_timer_destroy(timer));
+	ENSURE_OK((sys_ppu_thread_join(waiter_tid[0], NULL) != EFAULT));
+	ENSURE_OK(sys_timer_disconnect_event_queue(timer));
+	ENSURE_OK(sys_timer_destroy(timer));
 
 	printf("sample finnished\n");
 	return 0;
