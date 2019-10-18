@@ -30,8 +30,8 @@ SYS_PROCESS_PARAM(1000, 0x10000)
 
 void CacheMount(CellSysCacheParam& _cache)
 {
-	int ret = cellSysCacheMount(&_cache);
-	printf("cache path=%s, ret=0x%x\n", +_cache.getCachePath, ret);
+	cellFunc(SysCacheMount, &_cache);
+	printf("cache path=%s, id=%s\n", +_cache.getCachePath, +_cache.cacheId);
 }
 
 void strcpy_trunc(char* dst, const char* src, size_t max_count)
@@ -50,35 +50,64 @@ int main() {
 
 	strcpy_trunc(param.cacheId, cache_id, 15);
 	//param.cacheId[0] = '\0';
+	strcpy_trunc(param2.cacheId, cache_id, 14);
+	//param2.cacheId[0] = '\0';
 
 	CacheMount(param);
+	cellSysCacheClear();
+
 	std::string strtemp(param.getCachePath);
+	strtemp += "/temp.txt";
+
+	//{
+		int first_fd = -1;
+		ENSURE_OK(cellFsOpen(strtemp.c_str(), CELL_FS_O_CREAT, &first_fd, NULL, 0));
+		// As part of the testcase: do not close file handle.
+	//}
+
+	// Mount again the original id
+	CacheMount(param);
+
+	// Invalidate path
+	strtemp = param.getCachePath;
 	strtemp += "/temp.txt";
 
 	{
 		int fd = -1;
-		ENSURE_OK(cellFsOpen(strtemp.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0));
-		// As part of the testcase: do not close file handle.
+		cellFunc(FsOpen, strtemp.c_str(), 0, &fd, NULL, 0);
+
+		if (g_ec == CELL_OK)
+		{
+			ENSURE_OK(cellFsClose(fd));
+		}
 	}
 
-	strcpy_trunc(param2.cacheId, cache_id, 14);
-	//param2.cacheId[0] = '\0';
-
+	// Mount with different id
 	CacheMount(param2);
-	//ENSURE_OK(cellSysCacheClear());
+
+	// Mount with the original id
 	CacheMount(param);
-	CacheMount(param2);
 
-	std::string strtemp2(param.getCachePath);
-	strtemp2 += "/temp.txt";
+	// Invalidate path
+	strtemp = param.getCachePath;
+	strtemp += "/temp.txt";
 
 	{
 		int fd = -1;
-		printf("cellFsOpen: ret=0x%x\n", cellFsOpen(strtemp2.c_str(), 0, &fd, NULL, 0));
+		cellFunc(FsOpen, strtemp.c_str(), 0, &fd, NULL, 0);
+
+		if (g_ec == CELL_OK)
+		{
+			ENSURE_OK(cellFsClose(fd));
+		}
 	}
 
-	// Mount again
-	CacheMount(param2);
+	printf("Reading from the first file handle.\n");
+
+	char buf[1];
+	u64 nread = ~0ull;
+	cellFunc(FsRead, first_fd, buf, 1, &nread);
+
 	printf("sample finished.\n");
 
 	return 0;

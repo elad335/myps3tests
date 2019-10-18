@@ -1,7 +1,13 @@
-cache path=/dev_hdd1/cache, ret=0x0
-cache path=/dev_hdd1/cache, ret=0x0
-cache path=/dev_hdd1/cache, ret=0x0
-cache path=/dev_hdd1/cache, ret=0x0
-cellFsOpen: ret=0x80010006
-cache path=/dev_hdd1/cache, ret=0x1
+cellSysCacheMount(error=0x0)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellSysCacheMount(error=0x1)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellFsOpen(error=0x0)
+cellSysCacheMount(error=0x0)
+cache path=/dev_hdd1, id=16-45-01-83-0
+cellSysCacheMount(error=0x0)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellFsOpen(error=0x80010006)
+Reading from the first file handle.
+cellFsRead(error=0x8001002b)
 sample finished.
