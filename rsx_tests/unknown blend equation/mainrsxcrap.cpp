@@ -41,9 +41,6 @@ static const u32* gcmDisplay = ptr_caste(0xC0200000, u32);
 
 int main() {
 
-	// They should be at the same address (Traps are not gay)
-	if (int_cast(&Gcm) != int_cast(&c.c)) asm volatile ("tw 4, 1, 1");
-
 	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
 	{
 	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );

@@ -46,9 +46,6 @@ enum {
 
 int main() {
 
-	// They should be at the same address (Traps are not gay)
-	if (int_cast(&Gcm) != int_cast(&c.c)) asm volatile ("tw 4, 1, 1");
-
 	register int ret asm ("3");
 
 	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 

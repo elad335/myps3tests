@@ -83,9 +83,6 @@ namespace gLocations
 
 int main() {
 
-	// They should be at the same address (Traps are not gay)
-	if (int_cast(&Gcm) != int_cast(&c.c)) asm volatile ("tw 4, 1, 1");
-
 	LoadModules();
 	sys_memory_allocate(0x2000000, 0x400, &addr);
 
