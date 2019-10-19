@@ -38,38 +38,36 @@ int main() {
 
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );
 
-	register int ret asm ("3");
-
 	CellSysCacheParam param;
 	const char* dir_name = "BLES11VM";
 	memcpy(param.cacheId, dir_name, 9);
 
-	cellSysCacheMount(&param);
+	g_ec = cellSysCacheMount(&param);
 
-	printf("cellSysCacheMount: ret=0x%x, cache_path=%s\n", ret, param.getCachePath);
+	printf("cellSysCacheMount: ret=0x%x, cache_path=%s\n", g_ec, param.getCachePath);
 
-	cellSysCacheMount(&param);
+	g_ec = cellSysCacheMount(&param);
 
-	printf("cellSysCacheMount second:ret=0x%x, cache_path=%s\n", ret, param.getCachePath);
+	printf("cellSysCacheMount second:ret=0x%x, cache_path=%s\n", g_ec, param.getCachePath);
 
 	int fd;
 	std::string fpath(&param.getCachePath[0]);
 	fpath += "/file.txt";
-	cellFsOpen(fpath.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0);
+	g_ec = cellFsOpen(fpath.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0);
 
-	printf("cellFsOpen: ret=0x%x\n", ret);
+	printf("cellFsOpen: ret=0x%x\n", g_ec);
 	cellFsClose(fd);
 
 	cellSysCacheClear();
 
-	cellFsOpen(fpath.c_str(), CELL_FS_O_RDONLY, &fd, NULL, 0);
+	g_ec = cellFsOpen(fpath.c_str(), CELL_FS_O_RDONLY, &fd, NULL, 0);
 
-	printf("cellFsOpen RO after clear: ret=0x%x\n", ret);
+	printf("cellFsOpen RO after clear: ret=0x%x\n", g_ec);
 	cellFsClose(fd);
 
-	cellFsOpen(fpath.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0);
+	g_ec = cellFsOpen(fpath.c_str(), CELL_FS_O_CREAT, &fd, NULL, 0);
 
-	printf("cellFsOpen with file creation after clear: ret=0x%x\n", ret);
+	printf("cellFsOpen with file creation after clear: ret=0x%x\n", g_ec);
 	cellFsClose(fd);
 
 	printf("sample finished.\n");

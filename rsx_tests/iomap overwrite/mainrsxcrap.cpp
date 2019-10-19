@@ -27,26 +27,13 @@ static sys_addr_t addr;
 
 int main() {
 
-	register int ret asm ("3");
+	cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
-	}
+	ENSURE_OK(sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id));
+	ENSURE_OK(sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr));
+	ENSURE_OK(sys_mmapper_map_memory(u64(addr), mem_id, SYS_MEMORY_PROT_READ_WRITE));
 
-	sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
-
-	asm volatile ("twi 0x10, 3, 0");
-
-	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr);
-
-	asm volatile ("twi 0x10, 3, 0");
-
-	sys_mmapper_map_memory(u64(addr), mem_id, SYS_MEMORY_PROT_READ_WRITE);
-
-	asm volatile ("twi 0x10, 3, 0");
-
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 
 	// Map io twice, into different addresses
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 0x100000, 0x100000);

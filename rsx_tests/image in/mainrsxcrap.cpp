@@ -19,8 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
-
  // _binary_{SHADERFILENAME}_f/vpo_start loads the shader
 extern char _binary_mainvp_vpo_start[];
 extern char _binary_mainfp_fpo_start[];
@@ -50,25 +48,6 @@ static inline void LoadModules()
 	cellSysmoduleLoadModule( CELL_SYSMODULE_RESC );
 }
 
-u32 readFile(const char *filename, char **buffer)
-{
-	FILE *file = fopen(filename,"rb");
-	if (!file)
-	{
-		printf("couldn't open file %s\n",filename);
-		return 0;
-	}
-	fseek(file,0,SEEK_END);
-	size_t size = ftell(file);
-	fseek(file,0,SEEK_SET);
-
-	*buffer = new char[size+1];
-	fread(*buffer,size,1,file);
-	fclose(file);
-	
-	return size;
-}
-
 static rsxCommandCompiler c;
 static CellGcmContextData& Gcm = c.c;
 
@@ -88,9 +67,9 @@ int main() {
 	LoadModules();
 	sys_memory_allocate(0x1000000, 0x400, &addr);
 
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr)); 
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr))); 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
-	while (ctrl->put != ctrl->get) sys_timer_usleep(300);
+	wait_for_fifo(ctrl);
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 15<<20);
 
 	{
@@ -208,20 +187,17 @@ int main() {
 		CGparameter objCoord =
 			cellGcmCgGetNamedParameter( vpFile,
 										"a2v.objCoord" );
-		if (objCoord == 0)
-			asm volatile ("tw 4, 1, 1");
+		ENSURE_OK(objCoord == 0);
 
 		CGparameter texCoord =
 			cellGcmCgGetNamedParameter( vpFile,
 										"a2v.texCoord" );
-		if (texCoord == 0)
-			asm volatile ("tw 4, 1, 1");
+		ENSURE_OK(texCoord == 0);
 
 		CGparameter texture =
 			cellGcmCgGetNamedParameter( fpFile,
 										"texture" );
-		if (texture == 0)
-			asm volatile ("tw 4, 1, 1");
+		ENSURE_OK(texture == 0);
 
 		g_obj_coord_idx =
 			( cellGcmCgGetParameterResource( vpFile,

@@ -48,25 +48,6 @@ static inline void LoadModules()
 	cellSysmoduleLoadModule( CELL_SYSMODULE_RESC );
 }
 
-u32 readFile(const char *filename, char **buffer)
-{
-	FILE *file = fopen(filename,"rb");
-	if (!file)
-	{
-		printf("couldn't open file %s\n",filename);
-		return 0;
-	}
-	fseek(file,0,SEEK_END);
-	size_t size = ftell(file);
-	fseek(file,0,SEEK_SET);
-
-	*buffer = new char[size+1];
-	fread(*buffer,size,1,file);
-	fclose(file);
-	
-	return size;
-}
-
 static rsxCommandCompiler c;
 static CellGcmContextData& Gcm = c.c;
 
@@ -86,9 +67,9 @@ int main() {
 	LoadModules();
 	sys_memory_allocate(0x2000000, 0x400, &addr);
 
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr)); 
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr))); 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
-	while (ctrl->put != ctrl->get) sys_timer_usleep(300);
+	wait_for_fifo(ctrl);
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 15<<20);
 	cellGcmMapEaIoAddressWithFlags(ptr_cast(addr + (16<<20)), 0xe0<<20, 16<<20, CELL_GCM_IOMAP_FLAG_STRICT_ORDERING); 
 

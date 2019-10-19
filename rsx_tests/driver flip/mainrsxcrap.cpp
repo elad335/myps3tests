@@ -21,8 +21,6 @@
 
 #include "../rsx_header.h"
 
-#define trap_syscall() asm volatile ("twi 0x10, 3, 0");
-
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
@@ -46,30 +44,23 @@ enum {
 
 int main() {
 
-	register int ret asm ("3");
-
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
-	}
+	cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 
 	sys_memory_allocate(0x800000, 0x400, &addr);
-	trap_syscall();
 
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 7<<20);
 	u8 id;
 	cellGcmGetCurrentDisplayBufferId(&id);
 
- 	cellGcmSetDisplayBuffer(id, 2<<20, 1280*4, 1280, 720);
-	trap_syscall();
+ 	ENSURE_OK(cellGcmSetDisplayBuffer(id, 2<<20, 1280*4, 1280, 720));
 
 	cellGcmGetOffsetTable(&offsetTable);
 
-	CellGcmDisplayInfo* info = const_cast<CellGcmDisplayInfo*>(cellGcmGetDisplayInfo());
+	const CellGcmDisplayInfo* disp_info = cellGcmGetDisplayInfo();
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 	// Wait for RSX to complete previous operation
-	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
+	wait_for_fifo(ctrl);
 
 	// Place a jump into io address 1mb
 	*OffsetToAddr(ctrl->get) = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;

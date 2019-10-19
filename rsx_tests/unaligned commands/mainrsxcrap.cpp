@@ -36,10 +36,7 @@ int main() {
 
 	register int ret asm ("3");
 
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
-	}
+	cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 
 	sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
 
@@ -53,12 +50,12 @@ int main() {
 
 	printf("ret is 0x%x\n", ret);
 
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 
 	// Wait for RSX to complete previous operation
-	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
+	wait_for_fifo(ctrl);
 
 	// Place a jump into io address 0
 	cellGcmSetupContextData(&Gcm, ptr_caste(addr + (0), u32), 0x10000, GcmCallback);

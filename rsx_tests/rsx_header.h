@@ -5,23 +5,9 @@
 #include <Cg/NV/cg.h>
 #include <Cg/cgc.h>
 #include <cstring>
+#include <cstdio>
 
-#define int_cast(p) reinterpret_cast<uintptr_t>(p)
-#define ptr_cast(x) reinterpret_cast<void*>(x)
-#define ptr_caste(x, type) reinterpret_cast<type*>(ptr_cast(x))
-#define ref_cast(x, type) *reinterpret_cast<type*>(ptr_cast(x))
-
-typedef uintptr_t uptr;
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef uint16_t u16;
-typedef uint8_t u8;
-
-typedef intptr_t sptr;
-typedef int64_t s64;
-typedef int32_t s32;
-typedef int16_t s16;
-typedef int8_t s8;
+#include "../ppu_tests/ppu_header.h"
 
 #define MB(x) ((x) * (1ull<<20))
 
@@ -380,40 +366,10 @@ static CellGcmOffsetTable offsetTable;
 	cellGcmSetWaitLabel(c, 64, -2u), \
 	cellGcmSetWriteBackEndLabel(c, 64, 0)) \
 
-// Lazy memory barrier (missing basic memory optimizations)
-#ifndef fsync 
-#define fsync() __asm__ volatile ("sync" : : : "memory"); __asm__ volatile ("eieio")
-
-template <typename T>
-volatile T& as_volatile(T& obj)
+// join fifo
+void wait_for_fifo(CellGcmControl* ctrl)
 {
-	fsync();
-	return const_cast<volatile T&>(obj);
-} 
-
-template <typename T>
-volatile T& buf_volatile(T* obj)
-{
-	fsync();
-	return const_cast<volatile T&>(*obj);
-}
-
-#endif
-
-#ifndef cellFunc
-
-// TODO
-s64 g_ec = 0;
-#define cellFunc(name, ...) g_ec = cell##name(__VA_ARGS__); \
-printf("cell" #name "(error=0x%x)\n", (u32)g_ec);
-#endif
-
-template <typename To, typename From>
-static inline To bit_cast(const From& from)
-{
-	To to;
-	std::memcpy(&to, &from, sizeof(From));
-	return to;
+	while (as_volatile(ctrl->put) != as_volatile(ctrl->get)) sys_timer_usleep(200);
 }
 
 static int AddrToOffset(void* addr)
@@ -432,6 +388,25 @@ struct gcmLabel
 	u32 pos;
 	gcmLabel(u32 pos){ this->pos = pos; }
 };
+
+u32 readFile(const char *filename, char **buffer)
+{
+	FILE *file = fopen(filename,"rb");
+	if (!file)
+	{
+		printf("couldn't open file %s\n",filename);
+		return 0;
+	}
+	fseek(file,0,SEEK_END);
+	size_t size = ftell(file);
+	fseek(file,0,SEEK_SET);
+
+	*buffer = new char[size+1];
+	fread(*buffer,size,1,file);
+	fclose(file);
+	
+	return size;
+}
 
 // Command queue manager composed from an internal cellGcm compiler
 // And helper functions for custom commands generation

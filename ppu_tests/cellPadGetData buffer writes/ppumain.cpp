@@ -25,8 +25,6 @@
 
 #include "../ppu_header.h"
 
-inline void trap_syscall() { asm volatile ("twi 0x10, 3, 0"); }; 
-
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
@@ -51,13 +49,7 @@ int main() {
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );
 	cellSysmoduleLoadModule( CELL_SYSMODULE_IO );
 
-	register int ret asm ("3");
-
-	if (cellPadInit(1) != CELL_OK)
-	{
-		printf("Fatal init error returned\n");
-		return 0;
-	}
+	ENSURE_OK(cellPadInit(1));
 
 	printf("Getting connected controlllers..\n");
 

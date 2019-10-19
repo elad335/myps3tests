@@ -24,8 +24,6 @@
 
 #include "../ppu_header.h"
 
-inline void trap_syscall() { asm volatile ("twi 0x10, 3, 0"); }; 
-
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
@@ -42,21 +40,16 @@ int main() {
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );
 	cellSysmoduleLoadModule( CELL_SYSMODULE_AUDIO );
 
-	register int ret asm ("3");
+	ENSURE_OK(cellAudioInit());
 
-	cellAudioInit();
-	trap_syscall();
-
-	// Test error code on invalid queue jey
-	printf("cellAudioSetNotifyEventQueue: ret=0x%x \n", cellAudioSetNotifyEventQueue(0));
+	// Test error code on invalid queue key
+	cellFunc(AudioSetNotifyEventQueue, 0);
 
 	u32 id;
 	u64 key;
-	cellAudioCreateNotifyEventQueue(&id, &key);
-	trap_syscall();
+	ENSURE_OK(cellAudioCreateNotifyEventQueue(&id, &key));
 
-	cellAudioSetNotifyEventQueue(key);
-	trap_syscall();
+	ENSURE_OK(cellAudioSetNotifyEventQueue(key));
 
 	CellAudioPortParam param = {};
 	param.nChannel = CELL_AUDIO_PORT_8CH;
@@ -67,15 +60,13 @@ int main() {
 
 	CellAudioPortConfig config = {};
 	cellAudioGetPortConfig(port, &config);
-	cellAudioPortStart(port);
-	trap_syscall();
+	ENSURE_OK(cellAudioPortStart(port));
 
 	sys_event_t event = {};
 	sys_event_queue_receive(id, &event, 0);
 
 	u64 tag;
-	cellAudioGetPortBlockTag(port, param.nBlock - 1, &tag);
-	trap_syscall();
+	ENSURE_OK(cellAudioGetPortBlockTag(port, param.nBlock - 1, &tag));
 
 	printf("data0=0x%x, data2=0x%x, data2=0x%x, data3=0x%x\n", event.source, event.data1, event.data2, event.data3);
 

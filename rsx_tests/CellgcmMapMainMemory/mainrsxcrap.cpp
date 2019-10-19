@@ -31,38 +31,23 @@ sys_event_queue_t queue_id;
 
 int main() {
 
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
-	}
+	cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 
-	register int ret asm ("3");
+	ENSURE_OK(sys_memory_allocate(0x1000000, SYS_MEMORY_GRANULARITY_1M, &addr1));
 
-	sys_mmapper_allocate_memory(0x1000000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
+	ENSURE_OK(cellGcmInit(1 << 18, 1 << 20, ptr_cast(addr1)));
 
-	printf("ret is 0x%x, mem_id=0x%x\n", ret, mem_id);
-
-	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr1);
-
-	printf("ret is 0x%x, addr1=0x%x\n", ret, addr1);
-
-	sys_mmapper_map_memory(u64(addr1), mem_id, SYS_MEMORY_PROT_READ_WRITE);
-
-	printf("ret is 0x%x\n", ret);
-
-	ret = cellGcmInit(1 << 18, 1 << 20, ptr_cast(addr1));
-
-	printf("ret is 0x%x\n", ret);
+	printf("ret is 0x%x\n", g_ec);
 
 	u32 offset;
 
-	ret = cellGcmMapMainMemory(ptr_cast(addr1 + (2u<<20)), 7u << 20, &offset);
+	g_ec = cellGcmMapMainMemory(ptr_cast(addr1 + (2u<<20)), 7u << 20, &offset);
 
-	printf("ret is 0x%x, offset=0x%x\n", ret, offset);
+	printf("ret is 0x%x, offset=0x%x\n", g_ec, offset);
 
-	ret = cellGcmUnmapIoAddress(offset + (1u<<20));
+	g_ec = cellGcmUnmapIoAddress(offset + (1u<<20));
 
-	printf("ret is 0x%x, offset=0x%x\n", ret);
+	printf("ret is 0x%x, offset=0x%x\n", g_ec);
 	
 	printf("sample finished.\n");
 

@@ -31,10 +31,7 @@ sys_event_queue_t queue_id;
 
 int main() {
 
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
-	}
+	cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 
 	register int ret asm ("3");
 

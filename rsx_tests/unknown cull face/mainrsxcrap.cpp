@@ -39,24 +39,19 @@ int GcmCallback(struct CellGcmContextData *, uint32_t)
 
 int main() {
 
-	register int ret asm ("3");
+	cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 
-	if (cellSysmoduleIsLoaded(CELL_SYSMODULE_GCM_SYS) == CELL_SYSMODULE_ERROR_UNLOADED) 
-	{
-	   cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
-	}
+	g_ec = sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
 
-	sys_mmapper_allocate_memory(0x800000, SYS_MEMORY_GRANULARITY_1M, &mem_id);
+	printf("ret is 0x%x, mem_id=0x%x\n", g_ec, mem_id);
 
-	printf("ret is 0x%x, mem_id=0x%x\n", ret, mem_id);
+	g_ec = sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr);
 
-	sys_mmapper_allocate_address(0x10000000, 0x40f, 0x10000000, &addr);
+	printf("ret is 0x%x, addr=0x%x\n", g_ec, addr);
 
-	printf("ret is 0x%x, addr=0x%x\n", ret, addr);
+	g_ec = sys_mmapper_map_memory(u64(addr), mem_id, SYS_MEMORY_PROT_READ_WRITE);
 
-	sys_mmapper_map_memory(u64(addr), mem_id, SYS_MEMORY_PROT_READ_WRITE);
-
-	printf("ret is 0x%x\n", ret);
+	printf("ret is 0x%x\n", g_ec);
 
 	CellVideoOutConfiguration resConfig;
 	resConfig.pitch = 4*1280;
@@ -68,22 +63,22 @@ int main() {
 	CellVideoOutOption option;
 	cellVideoOutConfigure(0, &resConfig,&option,1);
 
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 7<<20);
 	u8 id;
 	cellGcmGetCurrentDisplayBufferId(&id);
 
  	cellGcmSetDisplayBuffer(id, 0<<20, 1280*4, 1280, 720);
-	printf("ret is 0x%x\n", ret);
+	printf("ret is 0x%x\n", g_ec);
 
 	cellGcmGetOffsetTable(&offsetTable);
 
-	CellGcmDisplayInfo* info = const_cast<CellGcmDisplayInfo*>(cellGcmGetDisplayInfo());
-	printf("pitch=0x%x", info->pitch);
+	const CellGcmDisplayInfo* disp_info = cellGcmGetDisplayInfo();
+	printf("pitch=0x%x", disp_info->pitch);
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 	//memset(ptr_cast(0xC0000000), 0xf, 1<<18);
 	// Wait for RSX to complete previous operation
-	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
+	wait_for_fifo(ctrl);
 
 	// Place a jump into io address 1mb
 	*OffsetToAddr(ctrl->get) = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;

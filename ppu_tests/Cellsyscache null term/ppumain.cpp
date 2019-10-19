@@ -38,15 +38,13 @@ int main() {
 
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );
 
-	register int ret asm ("3");
-
 	CellSysCacheParam param;
 	const char* dir_name = "BLESSSSSSSSSSSSSSSSSSSLLVMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
 	memcpy(param.cacheId, dir_name, 32);
 
-	cellSysCacheMount(&param);
+	g_ec = cellSysCacheMount(&param);
 
-	printf("cellSysCacheMount: ret=0x%x, OG cahceID = %s, cache_path=%s\n", ret, param.cacheId, param.getCachePath);
+	printf("cellSysCacheMount: ret=0x%x, OG cahceID = %s, cache_path=%s\n", g_ec, param.cacheId, param.getCachePath);
 
     printf("sample finished.\n");
 

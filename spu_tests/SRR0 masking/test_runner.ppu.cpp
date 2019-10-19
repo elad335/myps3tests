@@ -26,13 +26,6 @@ extern char _binary_test_spu_spu_out_start[];
 sys_spu_thread_t thr_id = 0;
 s64 srr0 = -1;
 
-template <typename T>
-volatile T& as_volatile(T& obj)
-{
-	fsync();
-	return const_cast<volatile T&>(obj);
-}
-
 void callback(
     uint64_t,
     sys_ppu_thread_t,

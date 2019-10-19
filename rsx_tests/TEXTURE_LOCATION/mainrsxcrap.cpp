@@ -19,8 +19,6 @@
 
 #include "../rsx_header.h"
 
-inline void __check() { asm volatile ("twi 0x10, 3, 0"); };
-
 #define SYS_APP_HOME "/app_home"
 
 #define VP_PROGRAM SYS_APP_HOME "/mainvp.vpo"
@@ -52,26 +50,7 @@ static inline void LoadModules()
 	int ret = cellSysmoduleLoadModule( CELL_SYSMODULE_GCM_SYS );
 	ret |= cellSysmoduleLoadModule( CELL_SYSMODULE_FS );
 	ret |= cellSysmoduleLoadModule( CELL_SYSMODULE_RESC );
-	if (ret != CELL_OK && ret != CELL_SYSMODULE_ERROR_DUPLICATED) asm volatile ("tw 4, 1, 1");
-}
-
-u32 readFile(const char *filename, char **buffer)
-{
-	FILE *file = fopen(filename,"rb");
-	if (!file)
-	{
-		printf("couldn't open file %s\n",filename);
-		return 0;
-	}
-	fseek(file,0,SEEK_END);
-	size_t size = ftell(file);
-	fseek(file,0,SEEK_SET);
-
-	*buffer = new char[size+1];
-	fread(*buffer,size,1,file);
-	fclose(file);
-	
-	return size;
+	ENSURE_OK(ret != CELL_OK && ret != CELL_SYSMODULE_ERROR_DUPLICATED);
 }
 
 static rsxCommandCompiler c;
@@ -115,18 +94,18 @@ int main() {
 	LoadModules();
 	sys_memory_allocate(0x1000000, 0x400, &addr);
 
-	cellGcmInit(1<<16, 0x100000, ptr_cast(addr));
+	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 7<<20);
 
 	u8 id; cellGcmGetCurrentDisplayBufferId(&id);
  	cellGcmSetDisplayBuffer(id, 2<<20, 1280*4, 1280, 720);
 	cellGcmGetOffsetTable(&offsetTable);
 
-	CellGcmDisplayInfo* info = const_cast<CellGcmDisplayInfo*>(cellGcmGetDisplayInfo());
+	const CellGcmDisplayInfo* disp_info = cellGcmGetDisplayInfo();
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 
 	// Wait for RSX to complete previous operation
-	do sys_timer_usleep(200); while (ctrl->get != ctrl->put);
+	wait_for_fifo(ctrl);
 
 	// Place a jump into io address 1mb
 	*OffsetToAddr(ctrl->get) = (1<<20) | RSX_METHOD_NEW_JUMP_CMD;
@@ -135,9 +114,9 @@ int main() {
 	// Load Shaders binaries and configs
 	{
 		u32 size = readFile(VP_PROGRAM,&vpFile);
-		if (!size) asm volatile ("tw 4, 1, 1");
+		ENSURE_OK(size == 0);
 
-		cellCgbRead(vpFile, size, &vp), __check();
+		ENSURE_OK(cellCgbRead(vpFile, size, &vp));
 
 		//retrieve the vertex hardware configuration
 		cellCgbGetVertexConfiguration(&vp,&vpConf);
@@ -149,9 +128,9 @@ int main() {
 
 	{
 		u32 size = readFile(FP_PROGRAM,&fpFile);
-		if (!size) asm volatile ("tw 4, 1, 1");
+		ENSURE_OK(size == 0);
 
-		cellCgbRead(fpFile, size, &fp), __check();
+		ENSURE_OK(cellCgbRead(fpFile, size, &fp));
 
 		//retrieve the fragment program configuration
 		cellCgbGetFragmentConfiguration(&fp,&fpConf);
