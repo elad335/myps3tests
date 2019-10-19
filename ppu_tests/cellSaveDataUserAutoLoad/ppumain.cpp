@@ -63,7 +63,6 @@ int main() {
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );
 	cellSysmoduleLoadModule(CELL_SYSMODULE_SYSUTIL_SAVEDATA);
 
-	int ret = 0;
 	CellSaveDataSetBuf setBuf = {
 	1, // dirListMax;
 	1, //fileListMax;
@@ -74,19 +73,15 @@ int main() {
 
 	setBuf.buf = malloc(setBuf.bufSize);
 
-	ret = cellSaveDataUserAutoLoad(0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
-	printf("ret = 0x%x\n", ret);
+	cellFunc(SaveDataUserAutoLoad, 0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
 	iteration++;
 	sys_timer_usleep(500);
-	ret = cellSaveDataUserAutoLoad(0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
-	printf("ret = 0x%x\n", ret);
+	cellFunc(SaveDataUserAutoLoad, 0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
 	iteration++;
 	sys_timer_usleep(500);
-	ret = cellSaveDataUserAutoLoad(0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
-	printf("ret = 0x%x\n", ret);
+	cellFunc(SaveDataUserAutoLoad, 0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
 	iteration++;
 	sys_timer_usleep(500);
-	ret = cellSaveDataUserAutoLoad(0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
-	printf("ret = 0x%x\n", ret);
+	cellFunc(SaveDataUserAutoLoad, 0, 0, "BLUS12345", 0, &setBuf, funcStat, funcFile, 0xffffffff, NULL);
  	return 0;
 }

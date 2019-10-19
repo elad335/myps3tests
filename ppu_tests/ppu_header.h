@@ -82,21 +82,22 @@ static inline To bit_cast(const From& from)
 #define thread_create sys_ppu_thread_create
 #define thread_join sys_ppu_thread_join
 
+// Hack: use volatile load to ensure UB won't cause bugged behaviour
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
-	system_call_3(0x071, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), timeout);
+	system_call_3(0x071, buf_volatile(ptr_caste(int_cast(lwc) + 4, u32)), buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)), timeout);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwcond_signal(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 ppu_id, u32 mode)
 {
-	system_call_4(0x073, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), ppu_id, mode);
+	system_call_4(0x073, buf_volatile(ptr_caste(int_cast(lwc) + 4, u32)), buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)), ppu_id, mode);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwcond_signal_all(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 mode)
 {
-	system_call_3(0x074, *ptr_caste(int_cast(lwc) + 4, u32), *ptr_caste(int_cast(mtx) + 16, u32), mode);
+	system_call_3(0x074, buf_volatile(ptr_caste(int_cast(lwc) + 4, u32)), buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)), mode);
 	return_to_user_prog(u32);
 }
 
@@ -108,13 +109,13 @@ static u32 lv2_lwmutex_lock(sys_lwmutex_t* mtx, u64 timeout)
 
 static u32 lv2_lwmutex_trylock(sys_lwmutex_t* mtx)
 {
-	system_call_1(0x063, *ptr_caste(int_cast(mtx) + 16, u32));
+	system_call_1(0x063, buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)));
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwmutex_unlock(sys_lwmutex_t* mtx)
 {
-	system_call_1(0x062, *ptr_caste(int_cast(mtx) + 16, u32));
+	system_call_1(0x062, buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)));
 	return_to_user_prog(u32);
 }
 
