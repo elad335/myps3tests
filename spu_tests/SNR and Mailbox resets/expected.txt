@@ -1,0 +1,7 @@
+Testing SNR registers reset...
+SNR1 channel count after sys_spu_thread_group_start = 0x1
+SNR1 channel count after sys_spu_thread_exit = 0x1
+Testing Mailbox reset...
+Mailbox channel count after sys_spu_thread_group_start = 0x4
+Mailbox channel count after sys_spu_thread_exit = 0x0
+Mailbox channel count after sys_spu_thread_group_terminate = 0x0
