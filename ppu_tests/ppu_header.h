@@ -53,6 +53,14 @@ volatile T& as_volatile(T& obj)
 }
 
 template <typename T>
+const volatile T& as_volatile(const T& obj)
+{
+	fsync();
+	return const_cast<const volatile T&>(obj);
+}
+
+// TODO: Remove
+template <typename T>
 volatile T& buf_volatile(T* obj)
 {
 	fsync();
