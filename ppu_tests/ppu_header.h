@@ -37,7 +37,7 @@ typedef double f64;
 #ifndef ENSURE_OK
 
 s32 ensure_ok_ret_save_ = 0; // Unique naming
-#define ENSURE_OK(x) if ((ensure_ok_ret_save_ = s32(x)) != CELL_OK) { printf("\"%s\" Failed at line %d! (error=0x%x)", #x, __LINE__, ensure_ok_ret_save_); exit(-1); }
+#define ENSURE_OK(x) if ((ensure_ok_ret_save_ = s32(x)) != CELL_OK) { printf("\"%s\" Failed at line %d! (error=0x%x)", #x, __LINE__, ensure_ok_ret_save_); exit(ensure_ok_ret_save_); }
 
 #endif
 
@@ -60,7 +60,12 @@ const volatile T& as_volatile(const T& obj)
 }
 
 template <typename T, T value>
-static const volatile T as_volatile_v = value;
+static const volatile T& as_volatile_v()
+{
+	static const volatile T v = value;
+	return v;
+}
+
 #endif
 
 #ifndef cellFunc
@@ -69,6 +74,8 @@ static const volatile T as_volatile_v = value;
 s64 g_ec = 0;
 #define cellFunc(name, ...) \
 (printf("cell" #name "(error=0x%x)\n", u32(g_ec = cell##name(__VA_ARGS__))), g_ec)
+#define sysCell(name, ...) \
+(printf("sys_" #name "(error=0x%x)\n", u32(g_ec = sys_##name(__VA_ARGS__))), g_ec)
 #endif
 
 template <typename To, typename From>
