@@ -59,14 +59,8 @@ const volatile T& as_volatile(const T& obj)
 	return const_cast<const volatile T&>(obj);
 }
 
-// TODO: Remove
-template <typename T>
-volatile T& buf_volatile(T* obj)
-{
-	fsync();
-	return const_cast<volatile T&>(*obj);
-}
-
+template <typename T, T value>
+static const volatile T as_volatile_v = value;
 #endif
 
 #ifndef cellFunc
@@ -93,19 +87,19 @@ static inline To bit_cast(const From& from)
 // Hack: use volatile load to ensure UB won't cause bugged behaviour
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
-	system_call_3(0x071, buf_volatile(ptr_caste(int_cast(lwc) + 4, u32)), buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)), timeout);
+	system_call_3(0x071, as_volatile(*ptr_caste(int_cast(lwc) + 4, u32)), as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)), timeout);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwcond_signal(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 ppu_id, u32 mode)
 {
-	system_call_4(0x073, buf_volatile(ptr_caste(int_cast(lwc) + 4, u32)), buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)), ppu_id, mode);
+	system_call_4(0x073, as_volatile(*ptr_caste(int_cast(lwc) + 4, u32)), as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)), ppu_id, mode);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwcond_signal_all(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 mode)
 {
-	system_call_3(0x074, buf_volatile(ptr_caste(int_cast(lwc) + 4, u32)), buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)), mode);
+	system_call_3(0x074, as_volatile(*ptr_caste(int_cast(lwc) + 4, u32)), as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)), mode);
 	return_to_user_prog(u32);
 }
 
@@ -117,13 +111,13 @@ static u32 lv2_lwmutex_lock(sys_lwmutex_t* mtx, u64 timeout)
 
 static u32 lv2_lwmutex_trylock(sys_lwmutex_t* mtx)
 {
-	system_call_1(0x063, buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)));
+	system_call_1(0x063, as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)));
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwmutex_unlock(sys_lwmutex_t* mtx)
 {
-	system_call_1(0x062, buf_volatile(ptr_caste(int_cast(mtx) + 16, u32)));
+	system_call_1(0x062, as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)));
 	return_to_user_prog(u32);
 }
 
