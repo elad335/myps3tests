@@ -1,0 +1,18 @@
+SPU Group Id = 0x04000100
+SPU Thread(0) Id = 0x00000100
+SPU Thread(1) Id = 0x01000100
+SPU Thread(2) Id = 0x02000100
+SPU Thread(3) Id = 0x03000100
+SPU Thread(4) Id = 0x04000100
+SPU Thread(5) Id = 0x05000100
+Testing thr_id[4]...
+sys_spu_thread_group_start(error ok)
+sys_spu_thread_group_terminate(error ok)
+SPU Group(0) Id = 0x04010100
+SPU Group(1) Id = 0x04000200
+SPU Thread(group=0, 0) Id = 0x00010100
+SPU Thread(group=0, 1) Id = 0x01010100
+SPU Thread(group=0, 2) Id = 0x02010100
+SPU Thread(group=1, 0) Id = 0x00000200
+SPU Thread(group=1, 1) Id = 0x01000200
+SPU Thread(group=1, 2) Id = 0x02000200

@@ -11,6 +11,7 @@
 #include <sys/synchronization.h>
 #include <sys/prx.h>
 #include <cstring>
+#include <string>
 
 #define int_cast(p) reinterpret_cast<uintptr_t>(p)
 #define ptr_cast(x) reinterpret_cast<void*>(x)
@@ -33,11 +34,86 @@ typedef float f32;
 typedef double f64; 
 
 #define ALIGN(x) __attribute__((aligned(x)))
+#define STR_CASE(...) case __VA_ARGS__: return #__VA_ARGS__
+
+static std::string format_cell_error(u32 error)
+{
+	switch (error)
+	{
+	case CELL_OK: return "ok";
+	STR_CASE(EAGAIN);
+	STR_CASE(EINVAL);
+	STR_CASE(ENOSYS);
+	STR_CASE(ENOMEM);
+	STR_CASE(ESRCH);
+	STR_CASE(ENOENT);
+	STR_CASE(ENOEXEC);
+	STR_CASE(EDEADLK);
+	STR_CASE(EPERM);
+	STR_CASE(EBUSY);
+	STR_CASE(ETIMEDOUT);
+	STR_CASE(EABORT);
+	STR_CASE(EFAULT);
+	//STR_CASE(ENOCHILD);
+	STR_CASE(ESTAT);
+	STR_CASE(EALIGN);
+	STR_CASE(EKRESOURCE);
+	STR_CASE(EISDIR);
+	STR_CASE(ECANCELED);
+	STR_CASE(EEXIST);
+	STR_CASE(EISCONN);
+	STR_CASE(ENOTCONN);
+	STR_CASE(EAUTHFAIL);
+	STR_CASE(ENOTMSELF);
+	STR_CASE(ESYSVER);
+	STR_CASE(EAUTHFATAL);
+	STR_CASE(EDOM);
+	STR_CASE(ERANGE);
+	STR_CASE(EILSEQ);
+	STR_CASE(EFPOS);
+	STR_CASE(EINTR);
+	STR_CASE(EFBIG);
+	STR_CASE(EMLINK);
+	STR_CASE(ENFILE);
+	STR_CASE(ENOSPC);
+	STR_CASE(ENOTTY);
+	STR_CASE(EPIPE);
+	STR_CASE(EROFS);
+	STR_CASE(ESPIPE);
+	STR_CASE(E2BIG);
+	STR_CASE(EACCES);
+	STR_CASE(EBADF);
+	STR_CASE(EIO);
+	STR_CASE(EMFILE);
+	STR_CASE(ENODEV);
+	STR_CASE(ENOTDIR);
+	STR_CASE(ENXIO);
+	STR_CASE(EXDEV);
+	STR_CASE(EBADMSG);
+	STR_CASE(EINPROGRESS);
+	STR_CASE(EMSGSIZE);
+	STR_CASE(ENAMETOOLONG);
+	STR_CASE(ENOLCK);
+	STR_CASE(ENOTEMPTY);
+	STR_CASE(ENOTSUP);
+	STR_CASE(EFSSPECIFIC);
+	STR_CASE(EOVERFLOW);
+	STR_CASE(ENOTMOUNTED);
+	STR_CASE(ENOTSDATA);
+	STR_CASE(ESDKVER);
+	STR_CASE(ENOLICDISC);
+	STR_CASE(ENOLICENT);
+	default: break;
+	}
+	std::string buf("\0\0\0\0\0\0\0\0\0\0", 10);
+	sprintf(&buf[0], "0x%x", (u32)error);
+	return buf;
+}
 
 #ifndef ENSURE_OK
 
 s32 ensure_ok_ret_save_ = 0; // Unique naming
-#define ENSURE_OK(x) if ((ensure_ok_ret_save_ = s32(x)) != CELL_OK) { printf("\"%s\" Failed at line %d! (error=0x%x)", #x, __LINE__, ensure_ok_ret_save_); exit(ensure_ok_ret_save_); }
+#define ENSURE_OK(x) if ((ensure_ok_ret_save_ = s32(x)) != CELL_OK) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); }
 
 #endif
 
@@ -73,9 +149,9 @@ static const volatile T& as_volatile_v()
 // TODO
 s64 g_ec = 0;
 #define cellFunc(name, ...) \
-(printf("cell" #name "(error=0x%x)\n", u32(g_ec = cell##name(__VA_ARGS__))), g_ec)
+(printf("cell" #name "(error %s)\n", format_cell_error(s32(g_ec = cell##name(__VA_ARGS__))).c_str()), g_ec)
 #define sysCell(name, ...) \
-(printf("sys_" #name "(error=0x%x)\n", u32(g_ec = sys_##name(__VA_ARGS__))), g_ec)
+(printf("sys_" #name "(error %s)\n", format_cell_error(s32(g_ec = sys_##name(__VA_ARGS__))).c_str()), g_ec)
 #endif
 
 template <typename To, typename From>
