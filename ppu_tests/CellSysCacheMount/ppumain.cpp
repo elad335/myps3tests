@@ -26,7 +26,7 @@
 // Set priority and stack size for the primary PPU thread.
 // Priority : 1000
 // Stack    : 64KB
-SYS_PROCESS_PARAM(1000, 0x10000)
+//SYS_PROCESS_PARAM(1000, 0x10000)
 
 void CacheMount(CellSysCacheParam& _cache)
 {
@@ -42,9 +42,13 @@ void strcpy_trunc(char* dst, const char* src, size_t max_count)
 
 #define cache_id ( "16-45-01-83-01" )
 
-int main() {
+int main(int argc, const char * const argv[]) {
 
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );
+
+	printf("sdk version:0x%llx\n", sys_process_get_sdk_version());
+
+	cellFunc(SysCacheClear);
 
 	CellSysCacheParam param = {}, param2 = {};
 
@@ -108,7 +112,17 @@ int main() {
 	u64 nread = ~0ull;
 	cellFunc(FsRead, first_fd, buf, 1, &nread);
 
-	printf("sample finished.\n");
+	if (argc == 2 && strcmp(argv[1], "\\") == 0)
+	{
+		printf("sample finished.\n");
+		return 0;
+	}
 
+	printf("process finished -> exitspawn (arg1=\"%s\")\n", argc ? argv[0] : "");
+
+	char arg[2] = "\\", *ptrs[2] = {arg, NULL};
+	exitspawn(argv[0], ptrs, ptrs + 1, 0, 0, 1002, SYS_PROCESS_PRIMARY_STACK_SIZE_512K);
+
+	printf("Unreachable!\n");
 	return 0;
 }

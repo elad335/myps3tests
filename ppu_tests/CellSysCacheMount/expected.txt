@@ -1,13 +1,30 @@
-cellSysCacheMount(error=0x0)
+sdk version:0xffffffff
+cellSysCacheClear(error 0x8002bc04)
+cellSysCacheMount(error 0x1)
 cache path=/dev_hdd1, id=16-45-01-83-01
-cellSysCacheMount(error=0x1)
+lv2(2): cellSysCacheMount(error 0x1)
 cache path=/dev_hdd1, id=16-45-01-83-01
-cellFsOpen(error=0x0)
-cellSysCacheMount(error=0x0)
+cellFsOpen(error ok)
+cellSysCacheMount(error ok)
 cache path=/dev_hdd1, id=16-45-01-83-0
-cellSysCacheMount(error=0x0)
+cellSysCacheMount(error ok)
 cache path=/dev_hdd1, id=16-45-01-83-01
-cellFsOpen(error=0x80010006)
+cellFsOpen(error ENOENT)
 Reading from the first file handle.
-cellFsRead(error=0x8001002b)
+cellFsRead(error EIO)
+process finished -> exitspawn (arg1="/app_home/\\tsclient\C\Users\elad\Documents\GitHub\myps3tests\ppu_tests\CellSysCacheMount\ppumain.self")
+sdk version:0xffffffff
+cellSysCacheClear(error ok)
+cellSysCacheMount(error 0x1)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellSysCacheMount(error 0x1)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellFsOpen(error ok)
+cellSysCacheMount(error ok)
+cache path=/dev_hdd1, id=16-45-01-83-0
+cellSysCacheMount(error ok)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellFsOpen(error ENOENT)
+Reading from the first file handle.
+cellFsRead(error EIO)
 sample finished.
