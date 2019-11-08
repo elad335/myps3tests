@@ -215,3 +215,16 @@ static u32 sys_overlay_unload_module(u32 ovlmid)
 	system_call_1(0x1C3, ovlmid);
 	return_to_user_prog(u32);
 }
+
+static u32 sys_process_get_sdk_version_impl(u32 pid, u32* out)
+{
+	system_call_2(SYS_PROCESS_GET_SDK_VERSION, pid, int_cast(out));
+	return_to_user_prog(s32);
+}
+
+static s64 sys_process_get_sdk_version(u32 pid = sys_process_getpid())
+{
+	u32 sdk_ver = 0;
+	const u32 ret = sys_process_get_sdk_version_impl(pid, &sdk_ver);
+	return s64(ret ? ((0ull - 1) << 32) | ret : sdk_ver);
+}
