@@ -4,6 +4,8 @@
 #include <spu_intrinsics.h>
 #include <spu_internals.h>
 #include <stdint.h>
+#include <cstring>
+#include <string>
 
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -42,8 +44,37 @@ typedef vec_double2 vec_f64;
 __asm__ volatile ("" : : : "memory"); \
 __asm__ volatile ("syncc;sync;dsync");
 
+//template <typename T>
+//volatile T& as_volatile(T& obj)
+//{
+//	fsync();
+//	return const_cast<volatile T&>(obj);
+//}
+
+//template <typename T>
+//const volatile T& as_volatile(const T& obj)
+//{
+//	fsync();
+//	return const_cast<const volatile T&>(obj);
+//}
+
+template <typename T, T value>
+static const volatile T& as_volatile_v()
+{
+	static const volatile T v = value;
+	return v;
+}
+
 #define mfence() fsync()
 #endif
+
+template <typename To, typename From>
+static inline To bit_cast(const From& from)
+{
+	To to;
+	std::memcpy(&to, &from, sizeof(From));
+	return to;
+}
 
 inline void mfcsync() 
 {
@@ -79,6 +110,14 @@ struct lock_line_t
 		return int_cast(+rdata);
 	}
 };
+
+#define spu_op1_f(inst, arg1) si_to_float(si_##inst(si_from_float(arg1)))
+#define spu_op2_f(inst, arg1, arg2) si_to_float(si_##inst(si_from_float(arg1), si_from_float(arg2)))
+#define spu_op3_f(inst, arg1, arg2, arg3) si_to_float(si_##inst(si_from_float(arg_), si_from_float(arg2), si_from_float(arg3)))
+
+#define spu_op1_d(inst, arg1) si_to_double(si_##inst(si_from_double(arg1)))
+#define spu_op2_d(inst, arg1, arg2) si_to_double(si_##inst(si_from_double(arg1), si_from_double(arg2)))
+#define spu_op3_d(inst, arg1, arg2, arg3) si_to_double(si_##inst(si_from_double(arg1), si_from_double(arg2), si_from_double(arg3)))
 
 // Runtime(!) channel interaction functions
 
