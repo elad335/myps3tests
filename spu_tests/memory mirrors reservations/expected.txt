@@ -1,0 +1,3 @@
+PPU atomic operation status: success
+SPU PUTLLC status: success
+sample finished.
