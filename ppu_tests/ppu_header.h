@@ -150,6 +150,8 @@ static const volatile T& as_volatile_v()
 s64 g_ec = 0;
 #define cellFunc(name, ...) \
 (printf("cell" #name "(error %s)\n", format_cell_error(s32(g_ec = cell##name(__VA_ARGS__))).c_str()), g_ec)
+#define sceFunc(name, ...) \
+(printf("sce" #name "(error %s)\n", format_cell_error(s32(g_ec = sce##name(__VA_ARGS__))).c_str()), g_ec)
 #define sysCell(name, ...) \
 (printf("sys_" #name "(error %s)\n", format_cell_error(s32(g_ec = sys_##name(__VA_ARGS__))).c_str()), g_ec)
 #endif
@@ -227,4 +229,29 @@ static s64 sys_process_get_sdk_version(u32 pid = sys_process_getpid())
 	u32 sdk_ver = 0;
 	const u32 ret = sys_process_get_sdk_version_impl(pid, &sdk_ver);
 	return s64(ret ? ((0ull - 1) << 32) | ret : sdk_ver);
+}
+
+static u32 sys_fs_test(u32 arg1, u32 arg2, u32* fd, u32 u32_size, char* out, u32 out_size)
+{
+	system_call_6(0x320, arg1, arg2, int_cast(fd), u32_size, int_cast(out), out_size);
+	return_to_user_prog(u32);
+}
+
+static u32 cellFsGetPath_s(u32 fd, char* out_path)
+{
+	if (!out_path)
+	{
+		return EFAULT;
+	}
+
+	char p[0x420] = {};
+	const u32 res = sys_fs_test(6, 0, &fd, sizeof(u32), p, 0x420);
+
+	if (res)
+	{
+		return res;
+	}
+
+	std::memcpy(out_path, p, std::strlen(p) + 1);
+	return CELL_OK;
 }
