@@ -169,8 +169,8 @@ int main(void)
 	mfc_prxoy_wait();
 
 	printf("RAWSPU MMIO result:\n"
-	"SPU buffer value after PUT = 0x%02x\n"
-	"PPU buffer value after GET = 0x%02x\n"
+	"SPU buffer value after GETB = 0x%02x\n"
+	"PPU buffer value after PUTB = 0x%02x\n"
 	"PPU buffer after reading CMDStatus: = 0x%02x\n"
 	"DMA written after failure status = 0x%x\n"
 	, result.put_val
