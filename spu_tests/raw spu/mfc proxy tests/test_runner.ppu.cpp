@@ -68,7 +68,7 @@ enum
 
 static u8 buf[0x4000];
 
-void mfc_prxoy_wait()
+void mfc_proxy_wait()
 {
 	fsync();
 	while (!(mmio_read_prob_reg(DMA_QStatus) & MFC_PROXY_COMMAND_QUEUE_EMPTY_FLAG))
@@ -112,7 +112,7 @@ void mfc_memset(u32 lsa, int val, u16 size)
 	buf_memset(buf, val, size);
 	mfc_proxy_args(MFC_PUTB_CMD, 0, size);
 	ENSURE_OK(mmio_read_prob_reg(DMA_CMDStatus));
-	mfc_prxoy_wait();
+	mfc_proxy_wait();
 }
 
 u32 mfc_load_byte(u32 lsa)
@@ -137,7 +137,7 @@ int main(void)
 		u8 put_val;
 		u8 get_val;
 		u8 last_val;
-		u8 empty_cmd_res; // TODO
+		u8 after_fail_cmd_res;
 	} result = {};
 
 	// 0x00 vs 0xff
@@ -145,17 +145,17 @@ int main(void)
 	buf_memset(buf, 0xff, 1);
 
 	mfc_proxy_args(MFC_GETB_CMD, 0, 1);
-	mfc_prxoy_wait();
+	mfc_proxy_wait();
 
 	result.put_val = mfc_load_byte(0); 
 	buf_memset(buf, 0x80, 1);
 	mfc_proxy_args(MFC_PUTB_CMD, 0, 1);
-	mfc_prxoy_wait();
+	mfc_proxy_wait();
 	result.get_val = as_volatile(buf[0]); 
 
 	// Read command status
 	ENSURE_OK(mmio_read_prob_reg(DMA_CMDStatus));
-	mfc_prxoy_wait();
+	mfc_proxy_wait();
 
 	// If PUT was executed first value is 0xff
 	// Otherwise 0x0
@@ -165,8 +165,8 @@ int main(void)
 	fsync();
 	/*ENSURE_OK*/(mmio_read_prob_reg(DMA_CMDStatus) == 0); // Must fail (no assertation for it to work on rpcs3)
 	mfc_proxy_args0(0, 1);
-	result.empty_cmd_res = mmio_read_prob_reg(DMA_CMDStatus);
-	mfc_prxoy_wait();
+	result.after_fail_cmd_res = mmio_read_prob_reg(DMA_CMDStatus);
+	mfc_proxy_wait();
 
 	printf("RAWSPU MMIO result:\n"
 	"SPU buffer value after GETB = 0x%02x\n"
@@ -176,7 +176,7 @@ int main(void)
 	, result.put_val
 	, result.get_val
 	, result.last_val
-	, result.empty_cmd_res
+	, result.after_fail_cmd_res
 	);
 
 	return 0;
