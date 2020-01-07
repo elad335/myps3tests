@@ -1,0 +1,5 @@
+RAWSPU MMIO result:
+SPU buffer value after PUT = 0x00
+PPU buffer value after GET = 0x80
+PPU buffer after reading CMDStatus: = 0x00
+DMA written after failure status = 0x0
