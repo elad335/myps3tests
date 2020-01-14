@@ -2,3 +2,5 @@ sys_process_get_id(error ok)
 sys_process_get_id(-1): out_size=0x1
 sys_process_get_id(error ok)
 sys_process_get_id(0): out_size=0x1
+sys_process_get_id(error ok)
+sys_process_get_id(2): out_size=0x2

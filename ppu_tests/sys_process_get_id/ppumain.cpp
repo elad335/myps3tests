@@ -28,6 +28,8 @@ int main(void)
 	printf("sys_process_get_id(-1): out_size=0x%x\n", out_size);
 	sysCell(process_get_id, SYS_MUTEX_OBJECT, ids, 0, &out_size);
 	printf("sys_process_get_id(0): out_size=0x%x\n", out_size);
+	sysCell(process_get_id, SYS_MUTEX_OBJECT, ids, 2, &out_size);
+	printf("sys_process_get_id(2): out_size=0x%x\n", out_size);
 
 	return 0;
 }
