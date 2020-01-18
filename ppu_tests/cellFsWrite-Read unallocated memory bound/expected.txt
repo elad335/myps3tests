@@ -1,0 +1,19 @@
+sdk version:0x36ffff
+cellSysCacheMount(error ok)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellSysCacheMount(error 0x1)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellFsOpen(error ok)
+cellSysCacheMount(error ok)
+cache path=/dev_hdd1, id=16-45-01-83-0
+cellSysCacheMount(error ok)
+cache path=/dev_hdd1, id=16-45-01-83-01
+cellFsOpen(error ENOENT)
+Reading from the first file handle.
+cellFsRead(error EIO)
+cellSysCacheMount(error ok)
+cache path=/dev_hdd1, id=16-45-01-83-01000000000000000000
+process finished -> exitspawn (arg1="/app_home/\\tsclient\C\Users\elad\Documents\GitHub\myps3tests\ppu_tests\CellSysCacheMount\ppumain.self")
+sdk version:0x36ffff
+cellSysCacheClear(error ok)
+sample finished.
