@@ -1,11 +1,31 @@
+cellSysCacheMount(error 0x1)
 cache path=/dev_hdd1, id=16-45-01-83-01
 Allocated 0x10000 bytes at address 0x40000000
+Using address 0x40000000
 cellFsWrite(error ok)
-cellFsWrite(0x20000): written size = 0x10000
+cellFsWrite(nbytes=0x20000): written size = 0x10000
 cellFsWrite(error ok)
-cellFsWrite(UINT64_MAX): written size = 0x10000
+cellFsWrite(nbytes=UINT64_MAX): written size = 0x10000
+cellFsWriteWithOffset(error ok)
+cellFsWriteWithOffset(offset=0, nbytes=UINT64_MAX): written size = 0x10000
 cellFsFStat(): file size = 0x20000
 cellFsRead(error ok)
-cellFsRead(0x20000): read size = 0x10000
+cellFsRead(nbytes=0x20000): read size = 0x10000
 cellFsRead(error ok)
-cellFsRead(UINT64_MAX): read size = 0x10000
+cellFsRead(nbytes=UINT64_MAX): read size = 0x10000
+cellFsReadWithOffset(error ok)
+cellFsReadWithOffset(offs=0, nbytes=UINT64_MAX): read size = 0x10000
+Using address 0x40010000
+cellFsWrite(error EFAULT)
+cellFsWrite(nbytes=0x20000): written size = 0x0
+cellFsWrite(error EFAULT)
+cellFsWrite(nbytes=UINT64_MAX): written size = 0x0
+cellFsWriteWithOffset(error EFAULT)
+cellFsWriteWithOffset(offset=0, nbytes=UINT64_MAX): written size = 0x0
+cellFsFStat(): file size = 0x0
+cellFsRead(error ok)
+cellFsRead(nbytes=0x0): read size = 0x0
+cellFsRead(error ok)
+cellFsRead(nbytes=UINT64_MAX): read size = 0x0
+cellFsReadWithOffset(error ok)
+cellFsReadWithOffset(offs=0, nbytes=UINT64_MAX): read size = 0x0
