@@ -61,16 +61,33 @@ int main(int argc, const char * const argv[]) {
 	std::string strtemp(param.getCachePath);
 	strtemp += "/temp.txt";
 
+	sys_event_queue_t queue_id;
+	sys_event_queue_attribute_t attr;
+	attr.attr_protocol = SYS_SYNC_FIFO;
+	attr.type = SYS_PPU_QUEUE;
+	memset(attr.name, 0, 8);
+	ENSURE_OK(sys_event_queue_create(&queue_id, &attr, 0, 0x40));
+
 	sys_memory_t mem_id;
 	sys_addr_t addr1;
-	ENSURE_OK(sys_mmapper_allocate_address(0x20000000, SYS_MEMORY_PAGE_SIZE_64K, 0x10000000, &addr1));
-	ENSURE_OK(sys_mmapper_allocate_memory(0x10000, SYS_MEMORY_GRANULARITY_64K, &mem_id));
+	ENSURE_OK(sys_mmapper_allocate_address(0x20000000, SYS_MEMORY_PAGE_SIZE_64K | SYS_MEMORY_ACCESS_RIGHT_PPU_THR, 0x10000000, &addr1));
+	//ENSURE_OK(sys_mmapper_enable_page_fault_notification(addr1, queue_id));
+	ENSURE_OK(sys_mmapper_allocate_memory(0x20000, SYS_MEMORY_GRANULARITY_64K, &mem_id));
 	ENSURE_OK(sys_mmapper_map_memory(addr1, mem_id, SYS_MEMORY_PROT_READ_WRITE));
 
-	printf("Allocated 0x10000 bytes at address 0x%x\n", addr1);
+	printf("Allocated 0x20000 bytes at address 0x%x\n", addr1);
+
+	//sys_ppu_thread_get_join_state(ptr_caste(addr1 + 0x40000, s32));
 
 	// First is allocated, second is not
-	void* ptrs[2] = { ptr_cast(addr1), ptr_cast(addr1 + 0x10000) };
+	void* ptrs[5] = 
+	{
+		ptr_cast(addr1), // allocated
+		ptr_cast(addr1 + 0x10000), // allocated
+		ptr_cast(addr1 + 1), // allocated
+		ptr_cast(addr1 + 0x10001), // allocated
+		ptr_cast(addr1 + 0x20000) // not allocated
+	};
 
 	for (int i = 0; i < sizeof(ptrs) / sizeof(ptrs[0]); i++)
 	{
@@ -92,7 +109,7 @@ int main(int argc, const char * const argv[]) {
 		void* const buf = ptrs[i];
 		printf("Using address 0x%x\n", int_cast(buf));
 		u64 nread = 1ull << 63; // Some random high value
-		cellFunc(FsWrite, fd, buf, 0x10000, &nread);
+		cellFunc(FsWrite, fd, buf, 0x20000, &nread);
 		printf("cellFsWrite(nbytes=0x20000): written size = 0x%llx\n", nread);
 		nread = 1ull << 63;
 		cellFunc(FsWrite, fd, buf, ~0ull, &nread);
