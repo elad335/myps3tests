@@ -237,6 +237,76 @@ static u32 sys_fs_test(u32 arg1, u32 arg2, u32* fd, u32 u32_size, char* out, u32
 	return_to_user_prog(u32);
 }
 
+static u64 sys_hid_manager_is_process_permission_root(u32 pid = sys_process_getpid())
+{
+	system_call_1(512,pid);
+	return_to_user_prog(u64);
+}
+
+struct CellFsMountInfo
+{
+	char mount_path[0x20]; // 0x0
+	char filesystem[0x20]; // 0x20
+	char dev_name[0x40];   // 0x40
+	u32 unk1;        // 0x80
+	u32 unk2;        // 0x84
+	u32 unk3;        // 0x88
+	u32 unk4;        // 0x8C
+	u32 unk5;        // 0x90
+};
+
+struct mmapper_unk_entry_struct0
+{
+	u32 a;    // 0x0
+	u32 b;    // 0x4
+	u32 c;    // 0x8
+	u32 d;    // 0xc
+	u64 type; // 0x10
+};
+
+static u32 sys_fs_get_mount_info_size(u64* len)
+{
+	system_call_1(0x349, int_cast(len));
+	return_to_user_prog(u32);
+}
+
+static u32 sys_fs_get_mount_info(CellFsMountInfo* info, u64 len, u64* out_len)
+{
+	system_call_3(0x34A, int_cast(info), len, int_cast(out_len));
+	return_to_user_prog(u32);
+}
+
+#define sys_fs_ftruncate2 sys_fs_truncate2
+static u32 sys_fs_truncate2(s32 fd, u32 size)
+{
+	system_call_2(0x34F, fd + 0u, size);
+	return_to_user_prog(u32);	
+}
+
+static u32 sys_mmapper_allocate_shared_memory(u64 ipc_key, u32 size, u64 flags, u32* mem_id)
+{
+	system_call_4(332, ipc_key, size, flags, int_cast(mem_id));
+	return_to_user_prog(u32);
+}
+
+static u32 sys_mmapper_allocate_shared_memory_from_container(u64 ipc_key, u32 size, u32 cid, u64 flags, u32* mem_id)
+{
+	system_call_5(362, ipc_key, size, cid, flags, int_cast(mem_id));
+	return_to_user_prog(u32);
+}
+
+static u32 sys_mmapper_allocate_shared_memory_ext(u64 ipc_key, u32 size, u32 flags, mmapper_unk_entry_struct0* entries, s32 count, u32* mem_id)
+{
+	system_call_6(339, ipc_key, size, flags, int_cast(entries), count, int_cast(mem_id));
+	return_to_user_prog(u32);
+}
+
+static u32 sys_mmapper_allocate_shared_memory_from_container_ext(u64 ipc_key, u32 size, u64 flags, u32 mc_id, mmapper_unk_entry_struct0* entries, s32 entry_count, u32* mem_id)
+{
+	system_call_7(328, ipc_key, size, flags, mc_id, int_cast(entries), entry_count, int_cast(mem_id));
+	return_to_user_prog(u32);
+}
+
 static u32 cellFsGetPath_s(u32 fd, char* out_path)
 {
 	if (!out_path)
