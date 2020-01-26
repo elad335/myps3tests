@@ -45,27 +45,6 @@ void CacheMount(CellSysCacheParam& _cache)
 
 #define cache_id  "16-45-01-83"
 
-void printBytes(const void* data, size_t size)
-{
-	const u8* bytes = static_cast<const u8*>(data);
-
-	for (u32 i = 0; i < size;)
-	{
-		const u32 read = std::min<u32>(size - i, 4);
-		printf("[%04x]", i);
-
-		switch (size - i)
-		{
-		default: printf(" %02X", bytes[i++]);
-		case 3: printf(" %02X", bytes[i++]);
-		case 2: printf(" %02X", bytes[i++]);
-		case 1: printf(" %02X", bytes[i++]);
-		}
-
-		printf("\n");
-	}	
-}
-
 int main() {
 
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL );

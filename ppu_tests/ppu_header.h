@@ -169,6 +169,28 @@ static inline To bit_cast(const From& from)
 #define thread_create sys_ppu_thread_create
 #define thread_join sys_ppu_thread_join
 
+void printBytes(const volatile void* data, size_t size)
+{
+	fsync();
+
+	const volatile u8* bytes = static_cast<const volatile u8*>(data);
+
+	for (u32 i = 0; i < size;)
+	{
+		printf("[%04x]", i);
+
+		switch (size - i)
+		{
+		default: printf(" %02X", bytes[i++]);
+		case 3: printf(" %02X", bytes[i++]);
+		case 2: printf(" %02X", bytes[i++]);
+		case 1: printf(" %02X", bytes[i++]);
+		}
+
+		printf("\n");
+	}	
+}
+
 // Hack: use volatile load to ensure UB won't cause bugged behaviour
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
