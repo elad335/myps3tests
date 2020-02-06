@@ -1,0 +1,3 @@
+sceNpTrophyGetTrophyUnlockState(error 0x80022904)
+sceNpTrophyGetRequiredDiskSpace(error ok)
+sample finished. (req=0x1fb000, flags=0xffffffffffffffffffffffffffffffff)
