@@ -1,0 +1,4 @@
+cellAudioSetNotifyEventQueueEx(error ok)
+passed=42662991
+cellAudioRemoveNotifyEventQueue(error 0x80310709)
+cellAudioRemoveNotifyEventQueueEx(error ok)
