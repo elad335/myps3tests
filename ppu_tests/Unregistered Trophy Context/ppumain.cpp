@@ -32,10 +32,21 @@
 //#define CELL_SDK_VERSION 0x00210000
 SYS_PROCESS_PARAM(1000, 0x100000)
 
-
 int complexCallback(SceNpTrophyContext context, SceNpTrophyStatus status, int completed, int total, void *arg)
 {
+	u32* var = static_cast<u32*>(arg);
+
+	if (status == SCE_NP_TROPHY_STATUS_PROCESSING_COMPLETE)
+	{
+		*var = 1;
+	}
+	else
+	{
+		*var = 0;
+	}
+
 	// Negative value aborts operation
+	printf("Callback called! (status=0x%x, completed=0x%x, total=0x%x)\n", +status, completed, total);
 	return 0;
 };
 
@@ -95,20 +106,60 @@ int main() {
 	fromHexStr(commSign.data, comms, strlen(comms));
 	memset(&commId, 0, sizeof(commId));
 	strcpy(commId.data, commids);
-	commId.term = '0';
+	commId.term = 0;
 
 	ENSURE_OK(sceNpTrophyCreateContext(&context, &commId, &commSign, 0));
 
 	ENSURE_OK(sceNpTrophyCreateHandle(&handle));
 
 	u32 count = 0;
-
 	SceNpTrophyFlagArray flags;
 	std::memset(flags.flag_bits, 0xff, 16);
 	sceFunc(NpTrophyGetTrophyUnlockState, context, handle, &flags, &count);
 
 	u64 req = 0;
 	sceFunc(NpTrophyGetRequiredDiskSpace, context, handle, &req, 0);
-	printf("sample finished. (req=0x%llx, flags=0x%x%x%x%x)\n", req, flags.flag_bits[0], flags.flag_bits[1], flags.flag_bits[2], flags.flag_bits[3]);
+	printf("Required trophy disk space =0x%llx\n", req);
+
+	for(bool exec = false;;)
+	{
+		u32 var = 0;
+		if (!exec) ENSURE_OK(sceNpTrophyRegisterContext(context, handle, complexCallback, &var, 0));
+		exec = true;
+		cellSysutilCheckCallback();
+		if (var == 1)
+		{
+			printf("success!\n");
+			break;
+		}
+	}
+
+	SceNpTrophyDetails trp_detail; SceNpTrophyData trp_data;
+	memset(&trp_detail, 0xff, sizeof trp_detail);
+	memset(&trp_data, 0xff, sizeof trp_data);
+	sceFunc(NpTrophyGetTrophyInfo, context, handle, 127, &trp_detail, &trp_data);
+
+	printf("trp_data:\n");
+	printBytes(&trp_data, sizeof trp_data);
+
+	printf("trp_detail:\n");
+	printBytes(&trp_detail, sizeof trp_detail);
+
+	memset(&trp_detail, 0, sizeof trp_detail);
+	memset(&trp_data, 0, sizeof trp_data);
+	sceFunc(NpTrophyGetTrophyInfo, context, handle, 1, &trp_detail, &trp_data);
+
+	printf("trp_data:\n");
+	printBytes(&trp_data, sizeof trp_data);
+
+	printf("trp_detail:\n");
+	printBytes(&trp_detail, sizeof trp_detail);
+
+	std::memset(flags.flag_bits, 0xff, 16);
+	sceFunc(NpTrophyGetTrophyUnlockState, context, handle, &flags, &count);
+
+	req = 0;
+	sceFunc(NpTrophyGetRequiredDiskSpace, context, handle, &req, 0);
+	printf("Required trophy disk space =0x%llx\n", req);
 	return 0;
 }
