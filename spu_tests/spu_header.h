@@ -3,6 +3,7 @@
 #include <spu_printf.h>
 #include <spu_intrinsics.h>
 #include <spu_internals.h>
+#include <sys/sys_fixed_addr.h>
 #include <stdint.h>
 #include <cstring>
 #include <string>
@@ -110,6 +111,67 @@ struct lock_line_t
 		return int_cast(+rdata);
 	}
 };
+
+#define RAW_SPU_OFFSET        0x00100000UL
+#define RAW_SPU_LS_OFFSET     0x00000000UL
+#define RAW_SPU_PROB_OFFSET   0x00040000UL
+
+#define MFC_Size_Tag      0x3010U
+#define MFC_Class_CMD     0x3014U
+#define MFC_CMDStatus     0x3014U
+#define MFC_QStatus       0x3104U
+#define Prxy_QueryType    0x3204U
+#define Prxy_QueryMask    0x321CU
+#define Prxy_TagStatus    0x322CU
+#define SPU_Out_MBox      0x4004U
+#define SPU_In_MBox       0x400CU
+#define SPU_MBox_Status   0x4014U
+#define SPU_RunCntl       0x401CU
+#define SPU_Status        0x4024U
+#define SPU_NPC           0x4034U
+#define SPU_Sig_Notify_1  0x1400CU
+#define SPU_Sig_Notify_2  0x1C00CU
+
+/* Macros to calculate base addresses with the given Raw SPU ID */
+#define LS_BASE_ADDR(id) \
+(RAW_SPU_OFFSET * id + RAW_SPU_BASE_ADDR + RAW_SPU_LS_OFFSET)
+#define PROB_BASE_ADDR(id) \
+(RAW_SPU_OFFSET * id + RAW_SPU_BASE_ADDR + RAW_SPU_PROB_OFFSET)
+
+
+#define get_ls_addr(id, offset) \
+(volatile uintptr_t)(LS_BASE_ADDR(id) + offset)
+#define get_reg_addr(id, offset) \
+(volatile uintptr_t)(PROB_BASE_ADDR(id) + offset)
+
+extern inline void
+sys_raw_spu_mmio_write_ls(int id, int offset, uint32_t value);
+
+extern inline void sys_raw_spu_mmio_write_ls(int id, int offset, uint32_t value)
+{
+	*(volatile uint32_t *)get_ls_addr(id, offset) = value;
+}
+
+extern inline uint32_t sys_raw_spu_mmio_read_ls(int id, int offset);
+
+extern inline uint32_t sys_raw_spu_mmio_read_ls(int id, int offset)
+{
+	return *(volatile uint32_t *)get_ls_addr(id, offset);
+}
+
+extern inline void sys_raw_spu_mmio_write(int id, int offset, uint32_t value);
+
+extern inline void sys_raw_spu_mmio_write(int id, int offset, uint32_t value)
+{
+	*(volatile uint32_t *)get_reg_addr(id, offset) = value;
+}
+
+extern inline uint32_t sys_raw_spu_mmio_read(int id, int offset);
+
+extern inline uint32_t sys_raw_spu_mmio_read(int id, int offset)
+{
+	return *(volatile uint32_t *)get_reg_addr(id, offset);
+}
 
 #define spu_op1_f(inst, arg1) si_to_float(si_##inst(si_from_float(arg1)))
 #define spu_op2_f(inst, arg1, arg2) si_to_float(si_##inst(si_from_float(arg1), si_from_float(arg2)))
