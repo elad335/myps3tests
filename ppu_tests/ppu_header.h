@@ -329,6 +329,12 @@ static u32 sys_mmapper_allocate_shared_memory_from_container_ext(u64 ipc_key, u3
 	return_to_user_prog(u32);
 }
 
+static u32 sys_ss_random_number_generator(u64 pkg_id, void* buf, u64 size)
+{
+	system_call_3(0x361, pkg_id, int_cast(buf), size);
+	return_to_user_prog(u32);
+}
+
 static u32 cellFsGetPath_s(u32 fd, char* out_path)
 {
 	if (!out_path)
