@@ -177,19 +177,49 @@ void printBytes(const volatile void* data, size_t size)
 
 	for (u32 i = 0; i < size;)
 	{
-		printf("[%04x]", i);
+		if (size > 0xfff)
+		{
+			printf("[%04x] |", i);
+		}
+		else
+		{
+			printf("[%03x] |", i);
+		}
+		
 
 		switch (size - i)
 		{
 		default: printf(" %02X", bytes[i++]);
+		case 7: printf(" %02X", bytes[i++]);
+		case 6: printf(" %02X", bytes[i++]);
+		case 5: printf(" %02X |", bytes[i++]);
+		case 4: printf(" %02X", bytes[i++]);
 		case 3: printf(" %02X", bytes[i++]);
 		case 2: printf(" %02X", bytes[i++]);
-		case 1: printf(" %02X", bytes[i++]);
+		case 1: printf(" %02X |", bytes[i++]);
 		}
 
 		printf("\n");
 	}	
 }
+
+template <typename T>
+void printType(const volatile T& obj)
+{
+	printBytes(&obj, sizeof(obj));
+}
+
+#define GetGpr(reg) \
+({ \
+	register uint64_t p1 __asm__ (#reg); \
+	p1; \
+})
+
+#define SetGpr(reg, value) \
+({ \
+	register uint64_t p1 __asm__ (#reg) = value; \
+	value; \
+})
 
 // Hack: use volatile load to ensure UB won't cause bugged behaviour
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
