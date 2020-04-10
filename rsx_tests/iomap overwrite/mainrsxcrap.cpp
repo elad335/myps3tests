@@ -36,8 +36,8 @@ int main() {
 	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 
 	// Map io twice, into different addresses
-	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 0x100000, 0x100000);
-	cellGcmMapEaIoAddress(ptr_cast(addr + (2<<20)), 0x100000, 0x100000);
+	GcmMapEaIoAddress(addr + (1<<20), 0x100000, 0x100000);
+	GcmMapEaIoAddress(addr + (2<<20), 0x100000, 0x100000);
 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 

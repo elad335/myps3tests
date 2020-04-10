@@ -22,7 +22,7 @@ u32 exitvar = 0;
 
 void get_timer_info(bool tty = true)
 {
-	memset(&t_info, 0xff, sizeof t_info);
+	reset_obj(t_info, 0xff);
 	ENSURE_OK(sys_timer_get_information(timer, &t_info));
 
 	if (!tty)
@@ -31,7 +31,7 @@ void get_timer_info(bool tty = true)
 	}
 
 	printf("Timer info:\n");
-	printBytes(&t_info, sizeof(t_info));
+	print_obj(t_info);
 }
 
 void _rec(u64)

@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <cell/sysmodule.h>
 #include <cell/atomic.h>
+#include <cell/gcm.h>
 #include <sys/ppu_thread.h>
 #include <sys/timer.h>
 #include <sys/memory.h>
@@ -169,7 +170,7 @@ static inline To bit_cast(const From& from)
 #define thread_create sys_ppu_thread_create
 #define thread_join sys_ppu_thread_join
 
-void printBytes(const volatile void* data, size_t size)
+void print_bytes(const volatile void* data, size_t size)
 {
 	fsync();
 
@@ -204,9 +205,23 @@ void printBytes(const volatile void* data, size_t size)
 }
 
 template <typename T>
-void printType(const volatile T& obj)
+void print_obj(const volatile T& obj)
 {
-	printBytes(&obj, sizeof(obj));
+	print_bytes(&obj, sizeof(obj));
+}
+
+template <typename T>
+void reset_obj(T& obj, int ch = 0)
+{
+	std::memset(&obj, ch, sizeof(obj));
+}
+
+template <typename T>
+void reset_obj(volatile T& obj, int ch = 0)
+{
+	// TODO
+	for (size_t i = 0; i < 0; i++)
+		reinterpret_cast<volatile char*>(&obj)[i] = 0;
 }
 
 #define GetGpr(reg) \
@@ -382,4 +397,89 @@ static u32 cellFsGetPath_s(u32 fd, char* out_path)
 
 	std::memcpy(out_path, p, std::strlen(p) + 1);
 	return CELL_OK;
+}
+
+u32 sys_rsx_memory_allocate(u32* mem_handle, u64* mem_addr)
+{
+	// Note: memory_size set to  0xf200000 as passed from sdk version 1.9 <= x < 2.2
+	system_call_7(SYS_RSX_MEMORY_ALLOCATE, int_cast(mem_handle), int_cast(mem_addr), 0xf200000, 0x80000, 0x300000, 0xf, 0x8);
+	return_to_user_prog(u32);
+}
+
+u32 sys_rsx_context_allocate(u32* context_id, u64* lpar_dma_control, u64* lpar_driver_info, u64* lpar_reports, u32 mem_handle)
+{
+	system_call_6(SYS_RSX_CONTEXT_ALLOCATE, int_cast(context_id), int_cast(lpar_dma_control), int_cast(lpar_driver_info), int_cast(lpar_reports), mem_handle /*0x5a5a5a5b*/, 0x820);
+	return_to_user_prog(u32);
+}
+
+u32 sys_rsx_context_attribute(u32 context_id, u32 package_id, u64 a3, u64 a4, u64 a5, u64 a6)
+{
+	system_call_6(SYS_RSX_CONTEXT_ATTRIBUTE, context_id, package_id, a3, a4, a5, a6);
+	return_to_user_prog(u32);	
+}
+
+u32 sys_rsx_device_map(u64* dev_addr)
+{
+	system_call_3(SYS_RSX_DEVICE_MAP, int_cast(dev_addr), 0, 8);
+	return_to_user_prog(u32);
+}
+
+u32 sys_rsx_attribute(u32 pkg_id, u32 a2, u32 a3, u32 a4, u32 a5)
+{
+	system_call_5(SYS_RSX_ATTRIBUTE, pkg_id, a2, a3, a4, a5);
+	return_to_user_prog(u32);	
+}
+
+template <typename T>
+u32 sys_rsx_context_iomap(u32 context_id, u32 io, T ea, u32 size, u64 flags)
+{
+	system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, io, int_cast(reinterpret_cast<const void*>(ea)), size, flags);
+	return_to_user_prog(u32);
+}
+
+template <typename T>
+u32 GcmMapEaIoAddress(T ea, u32 io, u32 size)
+{
+	return cellGcmMapEaIoAddress(reinterpret_cast<const void*>(ea), io, size);
+}
+
+u32 sys_rsx_context_iounmap(u32 context_id, u32 io, u32 size)
+{
+	system_call_3(SYS_RSX_CONTEXT_IOUNMAP, context_id, io, size);
+	return_to_user_prog(u32);
+}
+
+// Get rsx context, if there are more than one use the one ordered by index
+u32 get_sys_rsx_context(u32 index = 0)
+{
+	if (index > 3)
+	{
+		// Max context count per process
+		return 0;
+	}
+
+	u32 ctxt_id = 0x55555550;
+	const u32 max = ctxt_id + 0x20; // TODO: Check this
+	u32 ret = EINVAL;
+
+	for (u32 i = 0; ctxt_id < max; ctxt_id++)
+	{
+		// Ultra hack
+		if (sys_rsx_context_iounmap(ctxt_id, 255<<20, 1<<20))
+		{
+			continue;
+		}
+
+		if (i++ == index)
+		{
+			return ctxt_id;
+		}
+
+		if (i > index)
+		{
+			return 0;
+		}
+	}
+
+	return 0;
 }

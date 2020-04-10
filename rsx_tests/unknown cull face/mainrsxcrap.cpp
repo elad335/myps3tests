@@ -58,13 +58,13 @@ int main() {
 	resConfig.format = CELL_VIDEO_OUT_BUFFER_COLOR_FORMAT_X8R8G8B8;
 	resConfig.aspect = CELL_VIDEO_OUT_ASPECT_16_9;
 	resConfig.resolutionId = CELL_VIDEO_OUT_RESOLUTION_720;
-	memset(resConfig.reserved, 0, 9);
+	reset_obj(resConfig.reserved);
 
 	CellVideoOutOption option;
 	cellVideoOutConfigure(0, &resConfig,&option,1);
 
 	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
-	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 7<<20);
+	GcmMapEaIoAddress(addr + (1<<20), 1<<20, 7<<20);
 	u8 id;
 	cellGcmGetCurrentDisplayBufferId(&id);
 

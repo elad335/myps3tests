@@ -102,9 +102,9 @@ int main() {
 	SceNpTrophyContext context;
 	SceNpCommunicationId commId;
 	SceNpCommunicationSignature commSign;
-	memset(commSign.data, 0, sizeof (commSign.data));
+	reset_obj(commSign.data);
 	fromHexStr(commSign.data, comms, strlen(comms));
-	memset(&commId, 0, sizeof(commId));
+	reset_obj(commId);
 	strcpy(commId.data, commids);
 	commId.term = 0;
 
@@ -114,7 +114,7 @@ int main() {
 
 	u32 count = 0;
 	SceNpTrophyFlagArray flags;
-	std::memset(flags.flag_bits, 0xff, 16);
+	reset_obj(flags.flag_bits, 0xff);
 	sceFunc(NpTrophyGetTrophyUnlockState, context, handle, &flags, &count);
 
 	u64 req = 0;
@@ -135,27 +135,27 @@ int main() {
 	}
 
 	SceNpTrophyDetails trp_detail; SceNpTrophyData trp_data;
-	memset(&trp_detail, 0xff, sizeof trp_detail);
-	memset(&trp_data, 0xff, sizeof trp_data);
+	reset_obj(trp_detail, 0xff);
+	reset_obj(trp_data, 0xff);
 	sceFunc(NpTrophyGetTrophyInfo, context, handle, 127, &trp_detail, &trp_data);
 
 	printf("trp_data:\n");
-	printBytes(&trp_data, sizeof trp_data);
+	print_obj(trp_data);
 
 	printf("trp_detail:\n");
-	printBytes(&trp_detail, sizeof trp_detail);
+	print_obj(trp_detail);
 
-	memset(&trp_detail, 0, sizeof trp_detail);
-	memset(&trp_data, 0, sizeof trp_data);
+	reset_obj(trp_detail, 0);
+	reset_obj(trp_data, 0);
 	sceFunc(NpTrophyGetTrophyInfo, context, handle, 1, &trp_detail, &trp_data);
 
 	printf("trp_data:\n");
-	printBytes(&trp_data, sizeof trp_data);
+	print_obj(trp_data);
 
 	printf("trp_detail:\n");
-	printBytes(&trp_detail, sizeof trp_detail);
+	print_obj(trp_detail);
 
-	std::memset(flags.flag_bits, 0xff, 16);
+	reset_obj(flags.flag_bits, 0xff);
 	sceFunc(NpTrophyGetTrophyUnlockState, context, handle, &flags, &count);
 
 	req = 0;

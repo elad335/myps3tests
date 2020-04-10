@@ -74,7 +74,7 @@ int main() {
 
 	do
 	{
-		std::memset(&entry, 0xff, sizeof entry);
+		reset_obj(entry, 0xff);
 		ENSURE_OK(cellFsGetDirectoryEntries(fd, entry, sizeof entry, &count));
 		printf("data_count = 0x%x\n", count);
 
@@ -88,7 +88,7 @@ int main() {
 				printf("uid=%lld, gid=%lld\n", entry[i].attribute.st_uid, entry[i].attribute.st_gid);
 			}
 
-			printBytes(entry + i, sizeof(*+entry));
+			print_obj(entry[i]);
 		}
 	}
 	while (count);
@@ -103,10 +103,10 @@ int main() {
 	}
 	while (nread);
 
-	std::memset(&entry[0].entry_name, 0xff, sizeof (entry[0].entry_name));
+	reset_obj(entry[0].entry_name, 0xff);
 	ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
 	printf("nread = 0x%x\n", nread);
-	printBytes(&entry[0].entry_name, sizeof (entry[0].entry_name));	
+	print_obj(entry[0].entry_name);	
 	ENSURE_OK(cellFsClosedir(fd));*/
 
 	return 0;

@@ -85,7 +85,7 @@ int main() {
 
 	do
 	{
-		memset(&data, 0xff, sizeof(data));
+		reset_obj(data, 0xff);
 		cellPadGetData(port, &data);
 	} while(data.len == 0);
 
@@ -106,7 +106,7 @@ int main() {
 
 	do
 	{
-		memset(&data, 0xff, sizeof(data));
+		reset_obj(data, 0xff);
 		cellPadGetData(port, &data);
 	} while(data.len != 0);
 
@@ -120,7 +120,7 @@ int main() {
 
 	do
 	{
-		memset(&data, 0xff, sizeof(data));
+		reset_obj(data, 0xff);
 		cellPadGetData(port, &data);
 	} while(data.len == 0);
 
@@ -140,7 +140,7 @@ int main() {
 
 	do
 	{
-		memset(&data, 0xff, sizeof(data));
+		reset_obj(data, 0xff);
 		cellPadGetData(port, &data);
 	} while(data.len == 0);
 
@@ -156,7 +156,7 @@ int main() {
 
 	do
 	{
-		memset(&data, 0xff, sizeof(data));
+		reset_obj(data, 0xff);
 		cellPadGetData(port, &data);
 	} while(data.len == 0);
 

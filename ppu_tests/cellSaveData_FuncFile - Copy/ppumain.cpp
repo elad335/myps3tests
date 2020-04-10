@@ -47,7 +47,7 @@ void funcStat(CellSaveDataCBResult *cbResult, CellSaveDataStatGet *get, CellSave
 	, get->hddFreeSizeKB, get->fileNum);
 
 	printf("sertBuf:\n");
-	printBytes(setBuf.buf, real_bufsize);
+	print_bytes(setBuf.buf, real_bufsize);
 
 	cbResult->result = 0;
 
@@ -67,7 +67,7 @@ void funcFixed(CellSaveDataCBResult *cbResult, CellSaveDataListGet *get, CellSav
 	printf("FuncFixed() called! (res=%d, num=%d)\n", cbResult->result, get->dirListNum);
 
 	printf("sertBuf:\n");
-	printBytes(setBuf.buf, real_bufsize);
+	print_bytes(setBuf.buf, real_bufsize);
 	std::memset(setBuf.buf, 0xff, real_bufsize);
 	//get->dirListNum = 0; // Hack for testing
 	//setBuf.bufSize = 1;
@@ -81,9 +81,9 @@ void funcList(CellSaveDataCBResult *cbResult, CellSaveDataListGet *get, CellSave
 {
 	printf("FuncList() called!\n");
 	printf("set:\n");
-	printBytes(set, sizeof(*set));
+	print_obj(*set);
 	printf("get:\n");
-	printBytes(get, sizeof(*get));
+	print_obj(*get);
 	cbResult->result = 0;
 	set->fixedListNum = 0;
 	//get->fixed
@@ -95,12 +95,12 @@ void funcFile(CellSaveDataCBResult *cbResult, CellSaveDataFileGet *get, CellSave
 {
 	printf("FuncFile() called!\n");
 	printf("set:\n");
-	printBytes(set, sizeof(*set));
+	print_obj(*set);
 	printf("get:\n");
-	printBytes(get, sizeof(*get));
+	print_obj(*get);
 
 	cbResult->result = 1; return;
-	memset(get->reserved, 0xff, sizeof(get->reserved));
+	reset_obj(get->reserved, 0xff);
 
 	set->fileType = CELL_SAVEDATA_FILETYPE_NORMALFILE;
 

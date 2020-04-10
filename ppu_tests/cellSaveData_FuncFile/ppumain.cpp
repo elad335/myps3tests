@@ -51,11 +51,11 @@ void funcFile(CellSaveDataCBResult *cbResult, CellSaveDataFileGet *get, CellSave
 {
 	printf("FuncFile() called!\n");
 	printf("set:\n");
-	printBytes(set, sizeof(*set));
+	print_obj(*set);
 	printf("get:\n");
-	printBytes(get, sizeof(*get));
+	print_obj(*get);
 
-	memset(get->reserved, 0xff, sizeof(get->reserved));
+	reset_obj(get->reserved, 0xff);
 	set->fileType = CELL_SAVEDATA_FILETYPE_NORMALFILE;
 
 	switch (iteration++)

@@ -62,7 +62,7 @@ int main() {
 	// Wait for RSX to complete previous operation
 	wait_for_fifo(ctrl);
 
-	int ret = cellGcmMapEaIoAddress(ptr_cast(0), 0, 1<<20);
+	int ret = GcmMapEaIoAddress(0, 0, 1<<20);
 
 	printf("sample finished. ret=0x%x\n", ret);
 

@@ -65,7 +65,7 @@ int main(int argc, const char * const argv[]) {
 	sys_event_queue_attribute_t attr;
 	attr.attr_protocol = SYS_SYNC_FIFO;
 	attr.type = SYS_PPU_QUEUE;
-	memset(attr.name, 0, 8);
+	reset_obj(attr.name);
 	ENSURE_OK(sys_event_queue_create(&queue_id, &attr, 0, 0x40));
 
 	sys_memory_t mem_id;

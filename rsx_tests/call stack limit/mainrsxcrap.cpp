@@ -34,7 +34,7 @@ int main() {
 	ENSURE_OK(sys_memory_allocate(0x800000, SYS_MEMORY_GRANULARITY_1M, &addr));
 
 	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
-	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 0x100000, 0x100000);
+	GcmMapEaIoAddress(addr + (1<<20), 0x100000, 0x100000);
 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 

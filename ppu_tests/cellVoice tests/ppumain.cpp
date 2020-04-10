@@ -48,7 +48,7 @@ int main()
 	cellSysmoduleLoadModule( CELL_SYSMODULE_VOICE );
 
     CellVoiceInitParam Params;
-    memset(&Params, 0, sizeof(Params)); 
+    reset_obj(Params); 
     cellFunc(VoiceInit, &Params);
 
     cellFunc(VoiceStart);
@@ -120,7 +120,7 @@ int main()
 		sys_event_queue_attribute_t attr;
 		attr.attr_protocol = SYS_SYNC_FIFO;
 		attr.type = SYS_PPU_QUEUE;
-		memset(attr.name, 0, 8);
+		reset_obj(attr.name);
 
 		// Find an empty queue key, create it and destroy
 		for (;; key--)
@@ -153,14 +153,14 @@ int main()
 		cellFunc(VoiceStart);
 
 		sys_event_t event;
-		memset(&event, 0, sizeof(event));
+		reset_obj(event);
 		ENSURE_OK(sys_event_queue_receive(queue_id, &event, 0));
 		printf("Voice event's source: 0x%llx\n", event.source);
 
 		sys_timer_sleep(1);
 
 		// Recieves two events with different source!
-		memset(&event, 0, sizeof(event));
+		reset_obj(event);
 		ENSURE_OK(sys_event_queue_receive(queue_id, &event, 0));
 		printf("Second Voice event's source: 0x%llx\n", event.source);
 

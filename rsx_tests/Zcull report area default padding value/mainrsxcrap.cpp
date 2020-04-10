@@ -70,7 +70,7 @@ int main() {
 	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr))); 
 	CellGcmControl* ctrl = cellGcmGetControlRegister();
 	wait_for_fifo(ctrl);
-	cellGcmMapEaIoAddress(ptr_cast(addr + (1<<20)), 1<<20, 15<<20);
+	GcmMapEaIoAddress(addr + (1<<20), 1<<20, 15<<20);
 	cellGcmMapEaIoAddressWithFlags(ptr_cast(addr + (16<<20)), 0xe0<<20, 16<<20, CELL_GCM_IOMAP_FLAG_STRICT_ORDERING); 
 
 	{

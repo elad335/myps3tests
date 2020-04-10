@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <cell/gcm.h>
 #include <cell/cgb.h>
 #include <cell/resc.h>
 #include <Cg/NV/cg.h>

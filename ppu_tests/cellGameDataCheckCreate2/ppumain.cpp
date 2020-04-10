@@ -40,7 +40,7 @@ void funcStat(
  CellGameDataStatSet *set)
 {
 	printf("get:\n");
-	printBytes(get, sizeof (*get));
+	print_type(*get);
 	printf("filepget=%p, filpset=%p\n", &get->getParam, set->setParam);
 
 	if (callback_count)
@@ -68,14 +68,14 @@ int main(int argc, char* argv[]) {
 	u32 container = 0;
 	ENSURE_OK(sys_memory_container_create(&container, 6<<20));
 
-	CellDiscGameSystemFileParam getParam[1];
-	memset(getParam, 0, sizeof getParam);
-	cellFunc(DiscGameGetBootDiscInfo, getParam );
-	printBytes(getParam, sizeof getParam);
+	CellDiscGameSystemFileParam getParam;
+	reset_obj(getParam);
+	cellFunc(DiscGameGetBootDiscInfo, &getParam);
+	print_obj(getParam);
 
-	memset(getParam, 0xff, sizeof getParam);
-	cellFunc(DiscGameGetBootDiscInfo, getParam );
-	printBytes(getParam, sizeof getParam);
+	reset_obj(getParam, 0xff);
+	cellFunc(DiscGameGetBootDiscInfo, &getParam);
+	print_obj(getParam);
 
 	int sfo, to_sfo;
 	std::string strpath (argv[0]);
