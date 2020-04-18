@@ -381,6 +381,18 @@ static u32* OffsetToAddr(u32 offset)
 	return ptr_caste(((offsetTable.eaAddress[offset >> 20] << 20) | (offset & 0xFFFFF)), u32);
 }
 
+u32 GcmSetTile(u8 index, u8 location, u32 offset, u32 size, u32 pitch, 
+	u8 comp = CELL_GCM_COMPMODE_DISABLED, u16 base = 0, u32 bank = 0)
+{
+	if (u32 ret = cellGcmSetTileInfo(index, location, offset, size, pitch,
+		comp, base, bank))
+	{
+		return ret;
+	}
+
+	return cellGcmBindTile(index);
+}
+
 // Jump labels for FIFO queue
 struct gcmLabel
 {

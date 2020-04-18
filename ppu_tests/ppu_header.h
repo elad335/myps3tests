@@ -34,6 +34,8 @@ typedef int8_t s8;
 typedef float f32;
 typedef double f64; 
 
+#define thread_local __thread
+
 #define ALIGN(x) __attribute__((aligned(x)))
 #define STR_CASE(...) case __VA_ARGS__: return #__VA_ARGS__
 
@@ -113,8 +115,7 @@ static std::string format_cell_error(u32 error)
 
 #ifndef ENSURE_OK
 
-s32 ensure_ok_ret_save_ = 0; // Unique naming
-#define ENSURE_OK(x) if ((ensure_ok_ret_save_ = s32(x)) != CELL_OK) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); }
+#define ENSURE_OK(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s32>(x)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
 
 #endif
 
@@ -147,14 +148,17 @@ static const volatile T& as_volatile_v()
 
 #ifndef cellFunc
 
-// TODO
-s64 g_ec = 0;
+// Logging utilities macros
+
+static thread_local s64 g_ec = 0; // Global error code
 #define cellFunc(name, ...) \
-(printf("cell" #name "(error %s)\n", format_cell_error(s32(g_ec = cell##name(__VA_ARGS__))).c_str()), g_ec)
+(printf("cell" #name "(error %s, line=%u)\n", format_cell_error(s32(g_ec = cell##name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
 #define sceFunc(name, ...) \
-(printf("sce" #name "(error %s)\n", format_cell_error(s32(g_ec = sce##name(__VA_ARGS__))).c_str()), g_ec)
+(printf("sce" #name "(error %s, line=%u)\n", format_cell_error(s32(g_ec = sce##name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
 #define sysCell(name, ...) \
-(printf("sys_" #name "(error %s)\n", format_cell_error(s32(g_ec = sys_##name(__VA_ARGS__))).c_str()), g_ec)
+(printf("sys_" #name "(error %s, line=%u)\n", format_cell_error(s32(g_ec = sys_##name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
+#define justFunc(name, ...) \
+(printf(#name "(error %s, line=%u)\n", format_cell_error(s32(g_ec = name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
 #endif
 
 template <typename To, typename From>
