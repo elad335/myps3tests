@@ -93,7 +93,7 @@ int main() {
 	for (u32 i = 0; i < 64/*2048*/; i++)
 	{
 		CellGcmReportData* rep = cellGcmGetReportDataAddressLocation(i, CELL_GCM_LOCATION_LOCAL);
-		printf("Report(%d): value=0x%x, timer=0x%llx, zero=0x%llx\n", i, as_volatile(rep->value), as_volatile(rep->timer), as_volatile(rep->zero));
+		printf("Report(%d): value=0x%x, timer=0x%llx, zero=0x%llx\n", i, load_vol(rep->value), load_vol(rep->timer), load_vol(rep->zero));
 	}
 
 	return 0;

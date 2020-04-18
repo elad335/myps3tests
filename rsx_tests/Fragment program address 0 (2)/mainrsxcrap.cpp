@@ -120,7 +120,7 @@ int main() {
 	// Load Shaders binaries and configs
 	{
 		u32 size = readFile(VP_PROGRAM,&vpFile);
-		ENSURE_OK(size == 0);
+		ENSURE_NVAL(size, 0);
 
 		ENSURE_OK(cellCgbRead(vpFile, size, &vp));
 
@@ -134,7 +134,7 @@ int main() {
 
 	{
 		u32 size = readFile(FP_PROGRAM,&fpFile);
-		ENSURE_OK(size == 0);
+		ENSURE_NVAL(size, 0);
 
 		ENSURE_OK(cellCgbRead(fpFile, size, &fp));
 

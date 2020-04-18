@@ -75,7 +75,7 @@ int main()
 	}
 
 	_exit = 1;
-	ENSURE_OK((sys_ppu_thread_join(waiter_tid[0], NULL) != EFAULT));
+	ENSURE_VAL(sys_ppu_thread_join(waiter_tid[0], NULL), EFAULT);
 	ENSURE_OK(sys_timer_disconnect_event_queue(timer));
 	ENSURE_OK(sys_timer_destroy(timer));
 

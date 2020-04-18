@@ -11,6 +11,7 @@
 #include <sys/process.h>
 #include <sys/synchronization.h>
 #include <sys/prx.h>
+#include <ppu_intrinsics.h>
 #include <cstring>
 #include <string>
 
@@ -115,30 +116,76 @@ static std::string format_cell_error(u32 error)
 
 #ifndef ENSURE_OK
 
-#define ENSURE_OK(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s32>(x)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+// Basic asserts, uses c-style casts in some places handle pointers as well
+#define ENSURE_OK(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s64>(x)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_VAL(x, val) ({ s32 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ != s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_NVAL(x, val) ({ s32 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ == s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
 
 #endif
 
 // Lazy memory barrier (missing basic memory optimizations)
 #ifndef fsync 
-#define fsync() __asm__ volatile ("sync" : : : "memory"); __asm__ volatile ("eieio")
+#define fsync() ({ __sync(); __eieio(); })
 
+// Trivial "atomic" type read/write for trivial types
+// atomic, prevents stores/loads reordering, works on all memory area types (cache inhibited etc)
 template <typename T>
-volatile T& as_volatile(T& obj)
+T load_vol(const volatile T& obj)
 {
 	fsync();
-	return const_cast<volatile T&>(obj);
+	const T ret = obj;
+	__lwsync();
+	return ret;
 }
 
 template <typename T>
-const volatile T& as_volatile(const T& obj)
+T store_vol(volatile T& obj, s64 value)
 {
 	fsync();
-	return const_cast<const volatile T&>(obj);
+	obj = static_cast<T>(value);
+	fsync();
+	return value;
 }
 
+template <typename T>
+T* store_vol(T* volatile& obj, T* value)
+{
+	fsync();
+	obj = value;
+	fsync();
+	return value;
+}
+
+template <typename T>
+volatile T* store_vol(volatile T* volatile& obj, volatile T* value)
+{
+	fsync();
+	obj = value;
+	fsync();
+	return value;
+}
+
+template <typename T>
+const T* store_vol(const T* volatile& obj, const T* value)
+{
+	fsync();
+	obj = value;
+	fsync();
+	return value;
+}
+
+template <typename T>
+const volatile T* store_vol(const volatile T* volatile& obj, const volatile T* value)
+{
+	fsync();
+	obj = value;
+	fsync();
+	return value;
+}
+
+// Volatile constant, prevents compiler optimizations
 template <typename T, T value>
-static const volatile T& as_volatile_v()
+static const volatile T& constant_vol()
 {
 	static const volatile T v = value;
 	return v;
@@ -240,40 +287,39 @@ void reset_obj(volatile T& obj, int ch = 0)
 	value; \
 })
 
-// Hack: use volatile load to ensure UB won't cause bugged behaviour
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
-	system_call_3(0x071, as_volatile(*ptr_caste(int_cast(lwc) + 4, u32)), as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)), timeout);
+	system_call_3(0x071, load_vol(lwc->lwcond_queue), load_vol(mtx->sleep_queue), timeout);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwcond_signal(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 ppu_id, u32 mode)
 {
-	system_call_4(0x073, as_volatile(*ptr_caste(int_cast(lwc) + 4, u32)), as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)), ppu_id, mode);
+	system_call_4(0x073, load_vol(lwc->lwcond_queue), load_vol(mtx->sleep_queue), ppu_id, mode);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwcond_signal_all(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u32 mode)
 {
-	system_call_3(0x074, as_volatile(*ptr_caste(int_cast(lwc) + 4, u32)), as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)), mode);
+	system_call_3(0x074, load_vol(lwc->lwcond_queue), load_vol(mtx->sleep_queue), mode);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwmutex_lock(sys_lwmutex_t* mtx, u64 timeout)
 {
-	system_call_2(0x061, *ptr_caste(int_cast(mtx) + 16, u32), timeout);
+	system_call_2(0x061, load_vol(mtx->sleep_queue), timeout);
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwmutex_trylock(sys_lwmutex_t* mtx)
 {
-	system_call_1(0x063, as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)));
+	system_call_1(0x063, load_vol(mtx->sleep_queue));
 	return_to_user_prog(u32);
 }
 
 static u32 lv2_lwmutex_unlock(sys_lwmutex_t* mtx)
 {
-	system_call_1(0x062, as_volatile(*ptr_caste(int_cast(mtx) + 16, u32)));
+	system_call_1(0x062, load_vol(mtx->sleep_queue));
 	return_to_user_prog(u32);
 }
 

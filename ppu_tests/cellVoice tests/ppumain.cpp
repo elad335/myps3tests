@@ -57,7 +57,7 @@ int main()
     PortArgs.bMute                     = false;
     PortArgs.threshold                 = 100;                   
     PortArgs.volume                    = 1.0f;
-	as_volatile(PortArgs.voice.bitrate) = CELLVOICE_BITRATE_3850;
+	store_vol(PortArgs.voice.bitrate, CELLVOICE_BITRATE_3850);
 
 	u32 port = CELLVOICE_INVALID_PORT_ID;
 	printf("Id tests:\n");
@@ -97,7 +97,7 @@ int main()
     	PortArgs.bMute                     = false;
     	PortArgs.threshold                 = 100;                   
     	PortArgs.volume                    = 1.0f;
-		as_volatile(PortArgs.device.playerId) = 0; // Beware of UB
+		reset_obj(PortArgs.device.playerId, 0);
 		port = CELLVOICE_INVALID_PORT_ID;
 
 		cellFunc(VoiceCreatePort, &port, &PortArgs);

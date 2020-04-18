@@ -36,10 +36,10 @@ void get_timer_info(bool tty = true)
 
 void _rec(u64)
 {
-	while (!as_volatile(exitvar))
+	while (!load_vol(exitvar))
 	{
 		sys_event_t evt;
-		u32 error = sys_event_queue_receive(as_volatile(qu), &evt, 8000);
+		u32 error = sys_event_queue_receive(load_vol(qu), &evt, 8000);
 
 		if (error == ESRCH) sys_timer_usleep(300);
 		else if (error == CELL_OK) printf("Received an event\n");
@@ -91,8 +91,8 @@ int main()
 		}
 	}
 
-	as_volatile(exitvar) = 1;
-	ENSURE_OK((sys_ppu_thread_join(waiter_tid[0], NULL) != EFAULT));
+	store_vol(exitvar, 1);
+	ENSURE_VAL(sys_ppu_thread_join(waiter_tid[0], NULL), EFAULT);
 
 	printf("sample finnished\n");
 	return 0;

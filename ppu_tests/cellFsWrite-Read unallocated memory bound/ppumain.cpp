@@ -121,12 +121,12 @@ int main(int argc, const char * const argv[]) {
 		ENSURE_OK(cellFsFstat(fd, &stat));
 		printf("cellFsFStat(): file size = 0x%llx\n", stat.st_size);
 		ENSURE_OK(cellFsLseek(fd, 0, 0, &nread));
-		ENSURE_OK(nread != 0);
+		ENSURE_VAL(nread, 0);
 		nread = 1ull << 63;
 		cellFunc(FsRead, fd, buf, stat.st_size, &nread);
 		printf("cellFsRead(nbytes=0x%llx): read size = 0x%llx\n", stat.st_size, nread);
 		ENSURE_OK(cellFsLseek(fd, 0, 0, &nread));
-		ENSURE_OK(nread != 0);
+		ENSURE_VAL(nread, 0);
 		nread = 1ull << 63;
 		cellFunc(FsRead, fd, buf, ~0ull, &nread);
 		printf("cellFsRead(nbytes=UINT64_MAX): read size = 0x%llx\n", nread);

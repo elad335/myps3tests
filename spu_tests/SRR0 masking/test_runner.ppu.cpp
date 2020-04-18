@@ -40,12 +40,12 @@ void callback(
 			// Unreachable
 			err = -2;
 		}
-	
-		as_volatile(srr0) = err;
+
+		store_vol(srr0, err);
 	}
 	else
 	{
-		as_volatile(srr0) = ctxt_spu.srr0;
+		store_vol(srr0, ctxt_spu.srr0);
 	}
 }
 
@@ -95,13 +95,12 @@ int main(void)
 	while (_srr0 == -1)
 	{
 		sys_timer_usleep(100);
-		_srr0 = as_volatile(srr0);
+		_srr0 = load_vol(srr0);
 	}
 
 	printf("SRR0 as read from SPU: 0x%x\n", (u64)_srr0);
 
-	as_volatile(srr0) = -1;
-	fsync();
+	store_vol(srr0, -1);
 
 	sys_ppu_thread_t thr;
 	thread_create(&thr, &signal_thread, 0, 1000, 1<<20, 0, "SIGNAL_HANDLER");
@@ -110,7 +109,7 @@ int main(void)
 	while (_srr0 == -1)
 	{
 		sys_timer_usleep(100);
-		_srr0 = as_volatile(srr0);
+		_srr0 = load_vol(srr0);
 	}
 
 	printf("SRR0 as read from PPU: 0x%llx\n", (u64)_srr0);

@@ -117,14 +117,12 @@ void mfc_memset(u32 lsa, int val, u16 size)
 
 u32 mfc_load_byte(u32 lsa)
 {
-	const u8 val = as_volatile(*(u8*)get_ls_addr(thr_id, lsa));
-	return val;
+	return load_vol(*(u8*)get_ls_addr(thr_id, lsa));
 }
 
 void mfc_store_byte(u32 lsa, u8 val)
 {
-	as_volatile(*(u8*)get_ls_addr(thr_id, lsa)) = val;
-	fsync();
+	store_vol(*(u8*)get_ls_addr(thr_id, lsa), val);
 }
 
 int main(void)
@@ -151,7 +149,7 @@ int main(void)
 	buf_memset(buf, 0x80, 1);
 	mfc_proxy_args(MFC_PUTB_CMD, 0, 1);
 	mfc_proxy_wait();
-	result.get_val = as_volatile(buf[0]); 
+	result.get_val = load_vol(buf[0]); 
 
 	// Read command status
 	ENSURE_OK(mmio_read_prob_reg(DMA_CMDStatus));
@@ -159,7 +157,7 @@ int main(void)
 
 	// If PUT was executed first value is 0xff
 	// Otherwise 0x0
-	result.last_val = as_volatile(buf[0]);
+	result.last_val = load_vol(buf[0]);
 
 	mmio_write_prob_reg(DMA_Class_CMD, MFC_PUT_CMD);
 	fsync();

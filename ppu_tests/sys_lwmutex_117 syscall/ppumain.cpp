@@ -69,7 +69,7 @@ int main()
 	sys_timer_sleep(5);
 
 	lv2_lwmutex_117(&lwmutex);
-	ENSURE_OK((sys_ppu_thread_join(waiter_tid, NULL) != EFAULT));
+	ENSURE_VAL(sys_ppu_thread_join(waiter_tid, NULL), EFAULT);
 
 	return 0;
 }

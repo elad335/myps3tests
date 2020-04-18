@@ -368,7 +368,7 @@ static CellGcmOffsetTable offsetTable;
 // join fifo
 void wait_for_fifo(CellGcmControl* ctrl)
 {
-	while (as_volatile(ctrl->put) != as_volatile(ctrl->get)) sys_timer_usleep(200);
+	while (load_vol(ctrl->put) != load_vol(ctrl->get)) sys_timer_usleep(200);
 }
 
 static int AddrToOffset(void* addr)

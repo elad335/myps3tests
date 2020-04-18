@@ -185,17 +185,17 @@ int main() {
 		CGparameter objCoord =
 			cellGcmCgGetNamedParameter( vpFile,
 										"a2v.objCoord" );
-		ENSURE_OK(objCoord == 0);
+		ENSURE_NVAL(objCoord, 0);
 
 		CGparameter texCoord =
 			cellGcmCgGetNamedParameter( vpFile,
 										"a2v.texCoord" );
-		ENSURE_OK(texCoord == 0);
+		ENSURE_NVAL(texCoord, 0);
 
 		CGparameter texture =
 			cellGcmCgGetNamedParameter( fpFile,
 										"texture" );
-		ENSURE_OK(texture == 0);
+		ENSURE_NVAL(texture, 0);
 
 		g_obj_coord_idx =
 			( cellGcmCgGetParameterResource( vpFile,

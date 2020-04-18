@@ -106,9 +106,9 @@ int main() {
 
 	// Unaligned
 	const u32 endfifo = (c.pos() - 4) + 1;
-	as_volatile(ctrl->put) = endfifo;
+	store_vol(ctrl->put, endfifo);
 
-	while (as_volatile(ctrl->ref) != 2) 
+	while (load_vol(ctrl->ref) != 2) 
 	{
 		sys_timer_usleep(4000); 
 	}
@@ -116,25 +116,24 @@ int main() {
 	// Possibly wait for a crash (executing invalid call)
 	sys_timer_sleep(1);
 
-	const u32 put_old = as_volatile(ctrl->put);
+	const u32 put_old = load_vol(ctrl->put);
 	u32 put_ugh = 0;
 
-	while (true)
+	for (store_vol(ctrl->put, endfifo);;)
 	{
-		as_volatile(ctrl->put) = endfifo;
-		put_ugh = as_volatile(ctrl->put);
+		put_ugh = load_vol(ctrl->put);
 
 		// Check if PUT is modified by rsx at all
 		if (put_ugh != endfifo && (put_ugh & 3) == 0)
 			break;
 	}
 
-	while (true)
+	for (;;)
 	{
-		as_volatile(ctrl->put) = endfifo;
-		put_ugh = as_volatile(ctrl->put);
+		store_vol(ctrl->put, endfifo);
+		put_ugh = load_vol(ctrl->put);
 
-		// Check if PUT is immediatly modified by rsx
+		// Check if PUT is not immediately (at the time of write) modified by rsx
 		if (put_ugh == endfifo)
 			break;
 	}

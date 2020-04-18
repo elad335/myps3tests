@@ -118,15 +118,13 @@ void mfc_memset(u32 lsa, int val, u16 size)
 template <typename T>
 T mfc_load(u32 lsa)
 {
-	const T val = as_volatile(*(T*)get_ls_addr(thr_id, lsa));
-	return val;
+	return load_vol(*(T*)get_ls_addr(thr_id, lsa));
 }
 
 template <typename T>
 void mfc_store(u32 lsa, T val)
 {
-	as_volatile(*(T*)get_ls_addr(thr_id, lsa)) = val;
-	fsync();
+	store_vol(*(T*)get_ls_addr(thr_id, lsa), val);
 }
 
 int main(void)
