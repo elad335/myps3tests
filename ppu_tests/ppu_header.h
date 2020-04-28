@@ -148,6 +148,15 @@ T store_vol(volatile T& obj, s64 value)
 }
 
 template <typename T>
+T store_vol(volatile T& obj, f64 value)
+{
+	fsync();
+	obj = static_cast<T>(value);
+	fsync();
+	return value;
+}
+
+template <typename T>
 T* store_vol(T* volatile& obj, T* value)
 {
 	fsync();
@@ -217,7 +226,7 @@ static inline To bit_cast(const From& from)
 }
 
 #define thread_exit(x) sys_ppu_thread_exit(x)
-#define thread_eoi sys_interrupt_thread_eoi
+#define thread_eoi() sys_interrupt_thread_eoi()
 #define thread_create sys_ppu_thread_create
 #define thread_join sys_ppu_thread_join
 
@@ -271,7 +280,7 @@ template <typename T>
 void reset_obj(volatile T& obj, int ch = 0)
 {
 	// TODO
-	for (size_t i = 0; i < 0; i++)
+	for (size_t i = 0; i < sizeof(obj); i++)
 		reinterpret_cast<volatile char*>(&obj)[i] = 0;
 }
 
