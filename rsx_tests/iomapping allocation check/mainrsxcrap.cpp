@@ -49,8 +49,7 @@ int GcmCallback(struct CellGcmContextData *, uint32_t){}
 int main() {
 
 	LoadModules();
-	sys_memory_allocate(0x200000, 0x400, &addr);
-	asm volatile ("twi 0x10, 3, 0");
+	ENSURE_OK(sys_memory_allocate(0x200000, 0x400, &addr));
 
 	ENSURE_OK(cellGcmInit(1<<16, 0x100000, ptr_cast(addr)));
 	u8 id; cellGcmGetCurrentDisplayBufferId(&id);

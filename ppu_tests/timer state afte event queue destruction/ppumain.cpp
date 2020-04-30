@@ -18,7 +18,7 @@ sys_event_queue_attribute_t ev_attr;
 
 
 int ret = 0;
-static volatile u32 _exit = 0;
+static u32 _exit = 0;
 
 void _rec(u64)
 {
@@ -30,7 +30,7 @@ void _rec(u64)
 		if (error == ESRCH) sys_timer_usleep(300);
 		else if (error == CELL_OK) printf("Received an event\n");
 
-		if (_exit)
+		if (load_vol(_exit))
 		{
 			break;
 		}
@@ -74,7 +74,7 @@ int main()
 		}
 	}
 
-	_exit = 1;
+	store_vol(_exit, 1);
 	ENSURE_VAL(sys_ppu_thread_join(waiter_tid[0], NULL), EFAULT);
 	ENSURE_OK(sys_timer_disconnect_event_queue(timer));
 	ENSURE_OK(sys_timer_destroy(timer));

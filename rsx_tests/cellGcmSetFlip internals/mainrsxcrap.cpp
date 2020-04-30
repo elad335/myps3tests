@@ -77,12 +77,11 @@ int main() {
 
 	// Stop dumping and ack finish
 	cellGcmSetReferenceCommand(&Gcm, 2);
-	fsync();
 
-	ctrl->put = c.newLabel().pos;
+	c.flush();
 	sys_timer_usleep(100);
 
-	while (ctrl->ref != 2) sys_timer_usleep(1000);
+	while (load_vol(ctrl->ref) != 2) sys_timer_usleep(1000);
 
 	sys_timer_sleep(1);
 

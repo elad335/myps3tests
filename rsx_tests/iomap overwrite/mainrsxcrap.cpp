@@ -65,11 +65,9 @@ int main() {
 	cmd[2] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD | 0x8;
 	cmd[(0x100000 / 4) + 2] = (1<<20) | RSX_METHOD_NEW_JUMP_CMD | 0x8;
 
-	fsync();
+	c.flush(0x10000C); // Queue: 0x100000...0x10000C
 
-	ctrl->put = 0x10000C; // Queue: 0x100000...0x10000C
-
-	while(ctrl->ref == -1u) sys_timer_usleep(400);
+	while(load_vol(ctrl->ref) == -1u) sys_timer_usleep(400);
 
 	printf("Ref=0x%x, Get=0x%x\n", ctrl->ref, ctrl->get);
 

@@ -247,7 +247,6 @@ int main() {
 			// Grayish color
 			*fill = 0xFF8F8F8Fu;
 		}
-		fsync();
 	}
 
 	{
@@ -256,7 +255,6 @@ int main() {
 		{
 			*fill = -1u;
 		}
-		fsync();
 	}
 
 	cellGcmSetTexture(&Gcm, g_tex_sampler, &tex);
@@ -310,10 +308,10 @@ int main() {
 	cellGcmSetReferenceCommand(&Gcm, 2);
 	c.jmp(displaySync);
 
-	store_vol(ctrl->put, c.pos());
+	c.flush();
 	sys_timer_usleep(100);
 
-	while (true || ctrl->ref != 2) 
+	while (true || load_vol(ctrl->ref) != 2) 
 	{
 		sys_timer_usleep(1000);
 	}

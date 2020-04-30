@@ -481,4 +481,11 @@ struct rsxCommandCompiler
 	{ 
 		*(c.current++) = 0xFFFFFFFCu | RSX_METHOD_NEW_JUMP_CMD;
 	}
+
+	void flush(u32 _put = -1)
+	{
+		// Similar to cellGcmFlush, except that it's more strict about memory ordering
+		// And less strict about invalid PUT offsets
+		store_vol(cellGcmGetControlRegister()->put, _put == -1 ? pos() : _put);
+	}
 };

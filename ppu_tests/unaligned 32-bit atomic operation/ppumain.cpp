@@ -31,18 +31,14 @@ int main() {
 	// Allocate 1mb aligned memory block
 	ENSURE_OK(sys_memory_allocate(0x100000, 0x400, &addr));
 
-	*ptr_caste(addr, u32) = 0x01020304; // Store value to check later
+	store_vol(*ptr_caste(addr, u32), 0x01020304); // Store value to check later
 
 	ea = ptr_caste(addr + 1, u32); // Unaligned pointer
 
-	fsync();
 	u32 old = __lwarx(ea);
-	fsync();
 	bool success = __stwcx(ea, 0x04030201) != 0;
-	fsync();
 
-
-	printf("old value=0x%x, new value=0x%x, success=%s\nsample finished.\n", old, *ptr_caste(addr, u32), success ? "true" : "false");
+	printf("old value=0x%x, new value=0x%x, success=%s\nsample finished.\n", old, load_vol(*ptr_caste(addr, u32)), success ? "true" : "false");
 
 	return 0;
 }

@@ -104,11 +104,9 @@ int main() {
 	gfxFence(&Gcm);
 	cellGcmSetReferenceCommand(&Gcm, 2);
 
-	fsync();
+	c.flush();
 
-	ctrl->put = c.pos();
-
-	while (ctrl->ref != 2) 
+	while (load_vol(ctrl->ref) != 2) 
 	{
 		sys_timer_usleep(4000); 
 	}

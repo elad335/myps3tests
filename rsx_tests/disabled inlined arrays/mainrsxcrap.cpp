@@ -256,7 +256,6 @@ int main() {
 			// "Random" colors
 			*fill = 0xFF0000FFu + i;
 		}
-		fsync();
 	}
 
 	{
@@ -265,7 +264,6 @@ int main() {
 		{
 			*fill = -1u;
 		}
-		fsync();
 	}
 
 	cellGcmSetTexture(&Gcm, g_tex_sampler, &tex);
@@ -305,12 +303,11 @@ int main() {
 	cellGcmSetWaitFlip(&Gcm);
 	cellGcmSetReferenceCommand(&Gcm, 2);
 	c.jmp(displaySync);
-	fsync();
 
-	ctrl->put = c.newLabel().pos;
+	c.flush();
 	sys_timer_usleep(100);
 
-	while (true || ctrl->ref != 2) 
+	while (true || load_vol(ctrl->ref) != 2) 
 	{
 		sys_timer_usleep(1000); 
 		

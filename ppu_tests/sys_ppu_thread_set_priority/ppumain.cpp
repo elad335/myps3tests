@@ -17,11 +17,9 @@ SYS_PROCESS_PARAM(1, 0x100000)
 
 // Provide one variable per cache line
 static u32 count[4 * 32] __attribute((aligned(128))) = {0};
-static volatile u64 dst_time;
-static volatile u64 signal_ = 0;
+static u64 dst_time;
+static u64 signal_ = 0;
 int ret = 0;
-
-typedef volatile u32 vu32;
 
 // Thread IDs
 sys_ppu_thread_t tid[4];
@@ -32,9 +30,9 @@ s32 prio[4] = {2, 2, 2, 2};
 void waiter(u64 index)
 {
 	// Wait until all threads are created
-	while (signal_ == 0) fsync();
+	while (load_vol(signal_) == 0);
 
-	while (signal_ == 1)
+	while (load_vol(signal_) == 1)
 	{
 		cellAtomicIncr32(&count[index * 32]);
 
@@ -58,17 +56,23 @@ int main()
 	ENSURE_OK(sys_ppu_thread_create(&tid[2], &waiter, 2, prio[2], 0x100000, 1, "t2"));
 	ENSURE_OK(sys_ppu_thread_create(&tid[3], &waiter, 3, prio[3], 0x100000, 1, "t3"));
 
-	signal_ = 1;
+	store_vol(signal_, 1);
 	sys_timer_sleep(10);
-	signal_ = 2;
+	store_vol(signal_, 2);
 
 	// Save counts
-	const u32 m_counts[4] = { (vu32&)count[0 * 32], (vu32&)count[1 * 32], (vu32&)count[2 * 32], (vu32&)count[3 * 32] };
+	const u32 m_counts[4] = 
+	{
+		load_vol(count[0 * 32]),
+		load_vol(count[1 * 32]),
+		load_vol(count[2 * 32]),
+		load_vol(count[3 * 32])
+	};
 
 	// Release current thread and join 
-	for (u64 i = 0, ret = 0; i < 4; i++)
+	for (u64 i = 0; i < 4; i++)
 	{
-		ENSURE_OK(sys_ppu_thread_join(tid[i], &ret));
+		ENSURE_VAL(sys_ppu_thread_join(tid[i], NULL), EFAULT);
 	}
 
 	printf("count0=0x%x, count1=0x%x, count2=0x%X, count3=0x%x\n"

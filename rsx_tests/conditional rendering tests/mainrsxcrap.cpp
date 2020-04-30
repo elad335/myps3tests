@@ -248,7 +248,6 @@ int main() {
 			// Grayish color
 			*fill = 0xFF000000u | i;
 		}
-		fsync();
 	}
 
 	{
@@ -257,7 +256,6 @@ int main() {
 		{
 			*fill = 0u;
 		}
-		fsync();
 	}
 
 	cellGcmSetTexture(&Gcm, g_tex_sampler, &tex);
@@ -279,23 +277,21 @@ int main() {
 	cellGcmSetInvalidateVertexCache(&Gcm);
 
 	cellGcmGetReportDataAddressLocation(1, CELL_GCM_LOCATION_LOCAL)->value = 1;
-	fsync();
 
 	cellGcmSetReportLocation(&Gcm, CELL_GCM_LOCATION_LOCAL);
 	cellGcmSetRenderEnable(&Gcm, CELL_GCM_CONDITIONAL, 1);
 
 	cellGcmSetReferenceCommand(&Gcm, 2);
 
-	ctrl->put = c.pos();
+	c.flush();
 	sys_timer_usleep(100);
 
-	while (ctrl->ref != 2) 
+	while (load_vol(ctrl->ref) != 2) 
 	{
 		sys_timer_usleep(1000); 
 	}
 
 	cellGcmGetReportDataAddressLocation(1, CELL_GCM_LOCATION_LOCAL)->value = 0;
-	fsync();
 
 	cellGcmSetDrawArrays(&Gcm, CELL_GCM_PRIMITIVE_TRIANGLE_STRIP, 0, 4);
 	gfxFence(&Gcm);
@@ -304,8 +300,7 @@ int main() {
 	cellGcmSetWaitFlip(&Gcm);
 	cellGcmSetReferenceCommand(&Gcm, 3);
 	c.jmp(displaySync);
-	ctrl->put = c.pos();
-	fsync();
+	c.flush();
 
 	while (true)
 	{

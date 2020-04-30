@@ -51,9 +51,8 @@ int main() {
 	c.call(4); // call-to-next
 	c.call(8); // Call-to-next
 	c.jmp(12); // Branch-to-self
-	fsync();
 
-	ctrl->put = 12;
+	c.flush(12);
 	sys_timer_usleep(1000);
 
 	// Wait for complition

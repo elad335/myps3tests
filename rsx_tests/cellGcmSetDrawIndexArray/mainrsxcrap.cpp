@@ -248,12 +248,11 @@ int main() {
 	cellGcmSetFlip(&Gcm, id);
 	cellGcmSetReferenceCommand(&Gcm, 2);
 	c.jmp(start);
-	fsync();
 
-	ctrl->put = c.newLabel().pos;
+	c.flush();
 	sys_timer_usleep(100);
 
-	while (ctrl->ref != 2) sys_timer_usleep(1000);
+	while (load_vol(ctrl->ref) != 2) sys_timer_usleep(1000);
 
 	printf("sample finished.\n");
 

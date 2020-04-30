@@ -147,8 +147,9 @@ T store_vol(volatile T& obj, s64 value)
 	return value;
 }
 
+// Workaround for old compiler limitations (no universal reference)
 template <typename T>
-T store_vol(volatile T& obj, f64 value)
+T store_vol_f(volatile T& obj, f64 value)
 {
 	fsync();
 	obj = static_cast<T>(value);
@@ -261,7 +262,7 @@ void print_bytes(const volatile void* data, size_t size)
 		}
 
 		printf("\n");
-	}	
+	}
 }
 
 template <typename T>
@@ -286,13 +287,13 @@ void reset_obj(volatile T& obj, int ch = 0)
 
 #define GetGpr(reg) \
 ({ \
-	register uint64_t p1 __asm__ (#reg); \
-	p1; \
+	register uint64_t p_##reg_no_variable_name_read __asm__ (#reg); \
+	p_##reg_no_variable_name_read; \
 })
 
 #define SetGpr(reg, value) \
 ({ \
-	register uint64_t p1 __asm__ (#reg) = value; \
+	register uint64_t p_##reg_no_variable_name_write __asm__ (#reg) = value; \
 	value; \
 })
 

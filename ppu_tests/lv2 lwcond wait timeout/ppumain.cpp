@@ -74,7 +74,7 @@ int main()
 		sys_ppu_thread_create(&threads[i],threadWait,i,1002, 0x10000,0,"Waiter");
 	}
 
-	while(sig) sys_timer_sleep(10);
+	while(load_vol(sig)) sys_timer_sleep(10);
 	
 	printf("sample finished.\n");
 

@@ -31,10 +31,8 @@ static u64 mem_addr;
 
 int main() {
 
-	u32 dummy; sys_memory_allocate(0x1000000, 0x000, &dummy); asm volatile ("twi 0x10, 3, 0");
-	sys_mmapper_allocate_address(0x10000000, 0x20f, 0x10000000, &addr1);
-	asm volatile ("twi 0x10, 3, 0"); // Test return value
-
+	u32 dummy; ENSURE_OK(sys_memory_allocate(0x1000000, 0x000, &dummy));;
+	ENSURE_OK(sys_mmapper_allocate_address(0x10000000, 0x20f, 0x10000000, &addr1));
 	{
 		system_call_3(SYS_RSX_DEVICE_MAP, int_cast(&ctx_addr), 0, 8);
 

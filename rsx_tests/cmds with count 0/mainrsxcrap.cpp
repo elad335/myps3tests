@@ -78,9 +78,8 @@ int main() {
 	// If the command aint a nop, REF will be zero
 	c.push(0, NV406E_SET_REFERENCE);
 	c.push(0);
-	fsync();
 
-	ctrl->put = c.pos();
+	c.flush();
 	sys_timer_sleep(2);
 
 	printf("Ref=0x%x.\n sample finished.\n", ctrl->ref);

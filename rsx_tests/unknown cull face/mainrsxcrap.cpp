@@ -142,13 +142,12 @@ int main() {
 	c.push(1, NV406E_SET_REFERENCE);
 	c.push(1);
 	c.push(c.pos() | RSX_METHOD_OLD_JUMP_CMD);
-	fsync();
 
-	ctrl->put = c.pos();
+	c.flush();
 	sys_timer_usleep(100);
 
 	// Wait for complition
-	while(ctrl->ref != 1) sys_timer_usleep(20000);
+	while(load_vol(ctrl->ref) != 1) sys_timer_usleep(20000);
 
 	// Crash intentionally
 	cellGcmUnmapIoAddress(0);

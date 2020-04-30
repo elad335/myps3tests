@@ -19,46 +19,42 @@ extern char _binary_test_spu_spu_out_start[];
 
 static u32 rdata[256] __attribute__((aligned(128))) = {0};
 
-#define BEGIN_SCOPE do{
-#define CLOSE_SCOPE(expr) }while(expr)
+#define BEGIN_SCOPE ({
+#define CLOSE_SCOPE(expr) })
 
 static void ppu_reservation_tests()
 {
-	rdata[0] = 0;
-	rdata[1] = 1;
-	fsync();
+	store_vol(rdata[0], 0);
+	store_vol(rdata[1], 1);
 
 	BEGIN_SCOPE;
 	__lwarx(&rdata[0]);
-	bool success = __stwcx(&rdata[1], rdata[1]) != 0;
+	bool success = __stwcx(&rdata[1], load_vol(rdata[1])) != 0;
 	printf("PPU - Performing atomic store on a nieghbor address of load's\n status:%s\n", success ? "true" : "false");
-	CLOSE_SCOPE(0);
+	CLOSE_SCOPE();
 
 	BEGIN_SCOPE;
 	__ldarx(ptr_caste(&rdata[0], u64));
-	bool success = __stwcx(&rdata[0], rdata[0]) != 0;
+	bool success = __stwcx(&rdata[0], load_vol(rdata[0])) != 0;
 	printf("PPU - Performing u64 to u32 atomic op\n status:%s\n", success ? "true" : "false");
-	CLOSE_SCOPE(0);
+	CLOSE_SCOPE();
 
 	BEGIN_SCOPE;
 	__lwarx(&rdata[0]);
-	bool success = __stdcx(ptr_caste(&rdata[0], u64), *ptr_caste(&rdata[0], u64)) != 0;
+	bool success = __stdcx(ptr_caste(&rdata[0], u64), load_vol(*ptr_caste(&rdata[0], u64))) != 0;
 	printf("PPU - Performing u32 to u64 atomic op\n status:%s\n", success ? "true" : "false");
-	CLOSE_SCOPE(0);
+	CLOSE_SCOPE();
 
 	BEGIN_SCOPE;
 	const u32 old = __lwarx(&rdata[0]);
-	rdata[0] = old + 1;
-	fsync();
-	bool success = __stwcx(&rdata[0], rdata[0]) != 0;
+	store_vol(rdata[0], old + 1);
+	bool success = __stwcx(&rdata[0], load_vol(rdata[0])) != 0;
 	printf("PPU - Performing atomic store after a self written non-atomic store\n status:%s\n", success ? "true" : "false");
-	rdata[0] = old - 1;
-	fsync();
-	CLOSE_SCOPE(0);
+	store_vol(rdata[0], old - 1);
+	CLOSE_SCOPE();
 
-	rdata[0] = 0;
-	rdata[1] = 0;
-	fsync();
+	store_vol(rdata[0], 0);
+	store_vol(rdata[1], 0);
 	sys_timer_sleep(1);
 } 
 

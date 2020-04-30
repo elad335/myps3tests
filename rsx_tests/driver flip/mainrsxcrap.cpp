@@ -79,17 +79,15 @@ int main() {
 
 	cellGcmSetReferenceCommand(&Gcm, 1);
 
-	fsync();
-
-	ctrl->put = c.newLabel().pos;
+	c.flush();
 	sys_timer_usleep(100);
 
-	while (ctrl->ref != 1) sys_timer_usleep(1000);
+	while (load_vol(ctrl->ref) != 1) sys_timer_usleep(1000);
 
 	// Crash intentionally
 	cellGcmUnmapIoAddress(0);
 	cellGcmUnmapIoAddress(1<<20);
-	ctrl->put = 0;
+	c.flush(0);
 
 	while(true)
 	{

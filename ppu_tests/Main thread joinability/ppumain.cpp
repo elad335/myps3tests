@@ -23,7 +23,7 @@
 SYS_PROCESS_PARAM(1000, 0x100000)
 
 static sys_ppu_thread_t main_tid;
-static volatile u32 signal_exit = 0;
+static u32 signal_exit = 0;
 
 inline u32 _sys_ppu_thread_get_join_state(int *isjoinable)
 {
@@ -36,8 +36,7 @@ void threadEntry(u64)
 	u64 status;
 	const u32 ret = sys_ppu_thread_join(main_tid, &status);
 	printf("Joining error code = 0x%x.\n", ret);
-	signal_exit = 1;
-	fsync();
+	store_vol(signal_exit, 1);
 	sys_ppu_thread_exit(0);
 }
 
@@ -54,7 +53,7 @@ int main() {
 	sys_ppu_thread_t m_tid;
 	sys_ppu_thread_create(&m_tid,threadEntry,0,1002, 0x100000,1,"t");
 
-	while (!signal_exit)
+	while (!load_vol(signal_exit))
 	{
 		sys_timer_usleep(300);
 	}
