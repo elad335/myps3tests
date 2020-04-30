@@ -1,0 +1,194 @@
+cellAudioOutGetConfiguration(error ok, line=45)
+[000] | 02 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+cellAudioOutGetConfiguration(error 0x8002b245, line=45)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+cellAudioOutGetConfiguration(error 0x8002b242, line=45)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+cellAudioOutGetNumberOfDevice(error 0x1, line=50)
+cellAudioOutGetNumberOfDevice(error 0x1, line=51)
+cellAudioOutGetNumberOfDevice(error 0x8002b242, line=52)
+device 0
+cellAudioOutGetDeviceInfo(error ok, line=64)
+[000] | 00 03 00 00 | 00 00 00 0D |
+[008] | 00 02 56 07 | 00 00 00 01 |
+[010] | 01 06 04 C0 | 00 01 00 00 |
+[018] | 06 06 04 C0 | 00 01 00 00 |
+[020] | 00 00 00 00 | 00 00 00 00 |
+[028] | 00 00 00 00 | 00 00 00 00 |
+[030] | 00 00 00 00 | 00 00 00 00 |
+[038] | 00 00 00 00 | 00 00 00 00 |
+[040] | 00 00 00 00 | 00 00 00 00 |
+[048] | 00 00 00 00 | 00 00 00 00 |
+[050] | 00 00 00 00 | 00 00 00 00 |
+[058] | 00 00 00 00 | 00 00 00 00 |
+[060] | 00 00 00 00 | 00 00 00 00 |
+[068] | 00 00 00 00 | 00 00 00 00 |
+[070] | 00 00 00 00 | 00 00 00 00 |
+[078] | 00 00 00 00 | 00 00 00 00 |
+[080] | 00 00 00 00 | 00 00 00 00 |
+cellAudioOutGetDeviceInfo(error 0x8002b243, line=64)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[020] | FF FF FF FF | FF FF FF FF |
+[028] | FF FF FF FF | FF FF FF FF |
+[030] | FF FF FF FF | FF FF FF FF |
+[038] | FF FF FF FF | FF FF FF FF |
+[040] | FF FF FF FF | FF FF FF FF |
+[048] | FF FF FF FF | FF FF FF FF |
+[050] | FF FF FF FF | FF FF FF FF |
+[058] | FF FF FF FF | FF FF FF FF |
+[060] | FF FF FF FF | FF FF FF FF |
+[068] | FF FF FF FF | FF FF FF FF |
+[070] | FF FF FF FF | FF FF FF FF |
+[078] | FF FF FF FF | FF FF FF FF |
+[080] | FF FF FF FF | FF FF FF FF |
+cellAudioOutGetDeviceInfo(error 0x8002b243, line=64)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[020] | FF FF FF FF | FF FF FF FF |
+[028] | FF FF FF FF | FF FF FF FF |
+[030] | FF FF FF FF | FF FF FF FF |
+[038] | FF FF FF FF | FF FF FF FF |
+[040] | FF FF FF FF | FF FF FF FF |
+[048] | FF FF FF FF | FF FF FF FF |
+[050] | FF FF FF FF | FF FF FF FF |
+[058] | FF FF FF FF | FF FF FF FF |
+[060] | FF FF FF FF | FF FF FF FF |
+[068] | FF FF FF FF | FF FF FF FF |
+[070] | FF FF FF FF | FF FF FF FF |
+[078] | FF FF FF FF | FF FF FF FF |
+[080] | FF FF FF FF | FF FF FF FF |
+device 1
+cellAudioOutGetDeviceInfo(error ok, line=64)
+[000] | 00 01 00 00 | 00 00 00 0D |
+[008] | 00 02 04 07 | 00 00 00 01 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+[020] | 00 00 00 00 | 00 00 00 00 |
+[028] | 00 00 00 00 | 00 00 00 00 |
+[030] | 00 00 00 00 | 00 00 00 00 |
+[038] | 00 00 00 00 | 00 00 00 00 |
+[040] | 00 00 00 00 | 00 00 00 00 |
+[048] | 00 00 00 00 | 00 00 00 00 |
+[050] | 00 00 00 00 | 00 00 00 00 |
+[058] | 00 00 00 00 | 00 00 00 00 |
+[060] | 00 00 00 00 | 00 00 00 00 |
+[068] | 00 00 00 00 | 00 00 00 00 |
+[070] | 00 00 00 00 | 00 00 00 00 |
+[078] | 00 00 00 00 | 00 00 00 00 |
+[080] | 00 00 00 00 | 00 00 00 00 |
+cellAudioOutGetDeviceInfo(error ok, line=64)
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+[020] | 00 00 00 00 | 00 00 00 00 |
+[028] | 00 00 00 00 | 00 00 00 00 |
+[030] | 00 00 00 00 | 00 00 00 00 |
+[038] | 00 00 00 00 | 00 00 00 00 |
+[040] | 00 00 00 00 | 00 00 00 00 |
+[048] | 00 00 00 00 | 00 00 00 00 |
+[050] | 00 00 00 00 | 00 00 00 00 |
+[058] | 00 00 00 00 | 00 00 00 00 |
+[060] | 00 00 00 00 | 00 00 00 00 |
+[068] | 00 00 00 00 | 00 00 00 00 |
+[070] | 00 00 00 00 | 00 00 00 00 |
+[078] | 00 00 00 00 | 00 00 00 00 |
+[080] | 00 00 00 00 | 00 00 00 00 |
+cellAudioOutGetDeviceInfo(error ok, line=64)
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+[020] | 00 00 00 00 | 00 00 00 00 |
+[028] | 00 00 00 00 | 00 00 00 00 |
+[030] | 00 00 00 00 | 00 00 00 00 |
+[038] | 00 00 00 00 | 00 00 00 00 |
+[040] | 00 00 00 00 | 00 00 00 00 |
+[048] | 00 00 00 00 | 00 00 00 00 |
+[050] | 00 00 00 00 | 00 00 00 00 |
+[058] | 00 00 00 00 | 00 00 00 00 |
+[060] | 00 00 00 00 | 00 00 00 00 |
+[068] | 00 00 00 00 | 00 00 00 00 |
+[070] | 00 00 00 00 | 00 00 00 00 |
+[078] | 00 00 00 00 | 00 00 00 00 |
+[080] | 00 00 00 00 | 00 00 00 00 |
+device 2
+cellAudioOutGetDeviceInfo(error 0x8002b242, line=64)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[020] | FF FF FF FF | FF FF FF FF |
+[028] | FF FF FF FF | FF FF FF FF |
+[030] | FF FF FF FF | FF FF FF FF |
+[038] | FF FF FF FF | FF FF FF FF |
+[040] | FF FF FF FF | FF FF FF FF |
+[048] | FF FF FF FF | FF FF FF FF |
+[050] | FF FF FF FF | FF FF FF FF |
+[058] | FF FF FF FF | FF FF FF FF |
+[060] | FF FF FF FF | FF FF FF FF |
+[068] | FF FF FF FF | FF FF FF FF |
+[070] | FF FF FF FF | FF FF FF FF |
+[078] | FF FF FF FF | FF FF FF FF |
+[080] | FF FF FF FF | FF FF FF FF |
+cellAudioOutGetDeviceInfo(error 0x8002b242, line=64)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[020] | FF FF FF FF | FF FF FF FF |
+[028] | FF FF FF FF | FF FF FF FF |
+[030] | FF FF FF FF | FF FF FF FF |
+[038] | FF FF FF FF | FF FF FF FF |
+[040] | FF FF FF FF | FF FF FF FF |
+[048] | FF FF FF FF | FF FF FF FF |
+[050] | FF FF FF FF | FF FF FF FF |
+[058] | FF FF FF FF | FF FF FF FF |
+[060] | FF FF FF FF | FF FF FF FF |
+[068] | FF FF FF FF | FF FF FF FF |
+[070] | FF FF FF FF | FF FF FF FF |
+[078] | FF FF FF FF | FF FF FF FF |
+[080] | FF FF FF FF | FF FF FF FF |
+device 0
+cellAudioOutGetState(error ok, line=77)
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 02 04 04 |
+[010] | 00 00 00 01 |
+cellAudioOutGetState(error 0x8002b243, line=77)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF |
+cellAudioOutGetState(error 0x8002b243, line=77)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF |
+device 1
+cellAudioOutGetState(error ok, line=77)
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 02 04 04 |
+[010] | 00 00 00 01 |
+cellAudioOutGetState(error ok, line=77)
+[000] | 10 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | D0 0C 16 80 |
+cellAudioOutGetState(error ok, line=77)
+[000] | 10 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | D0 0C 16 80 |
+device 2
+cellAudioOutGetState(error 0x8002b242, line=77)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF |
+cellAudioOutGetState(error 0x8002b242, line=77)
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF |
