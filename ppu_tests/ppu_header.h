@@ -226,6 +226,21 @@ static inline To bit_cast(const From& from)
 	return to;
 }
 
+namespace std
+{
+	template <typename T>
+	u32 size(const T& array)
+	{
+		return sizeof(array) / sizeof(array[0]);
+	}
+
+	template <typename T>
+	u32 size(const volatile T& array)
+	{
+		return sizeof(array) / sizeof(array[0]);
+	}
+}
+
 #define thread_exit(x) sys_ppu_thread_exit(x)
 #define thread_eoi() sys_interrupt_thread_eoi()
 #define thread_create sys_ppu_thread_create
