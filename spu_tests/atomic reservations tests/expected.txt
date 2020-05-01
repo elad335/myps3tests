@@ -1,11 +1,19 @@
-PPU - Performing atomic store on a nieghbor address of load's
- status:true
-PPU - Performing u64 to u32 atomic op
- status:true
-PPU - Performing u32 to u64 atomic op
- status:true
-PPU - Performing atomic store after a self written non-atomic store
- status:true
+PPU tests on self thread:
+LWARX load and STWCX store, success: 1
+LDARX load and STWCX store, success: 1
+LWARX load and STDCX store, success: 1
+LDARX load and STDCX store, success: 1
+Function 'change_addr' executed on reservation, success: 1
+Function 'write_val' executed on reservation, success: 1
+Function 'invalidate_cache' executed on reservation, success: 1
+Function 'atomic_op' executed on reservation, success: 0
+Function 'store_cond' executed on reservation, success: 0
+PPU tests with another thread:
+Function 'change_addr' executed asynchronously on reservation, success: 1
+Function 'write_val' executed asynchronously on reservation, success: 0
+Function 'invalidate_cache' executed asynchronously on reservation, success: 1
+Function 'atomic_op' executed asynchronously on reservation, success: 0
+Function 'store_cond' executed asynchronously on reservation, success: 1
 events after GETLLAR: 0x00000000
 events after PUTLLC: 0x00000000
 events after PUTLLUC: 0x00000000
