@@ -66,8 +66,51 @@ static const volatile T& as_volatile_v()
 	return v;
 }
 
-#define mfence() fsync()
 #endif
+
+void print_bytes(const volatile void* data, size_t size)
+{
+	const volatile u8* bytes = static_cast<const volatile u8*>(data);
+
+	for (u32 i = 0; i < size;)
+	{
+		if (size > 0xfff)
+		{
+			spu_printf("[%04x] |", i);
+		}
+		else
+		{
+			spu_printf("[%03x] |", i);
+		}
+		
+
+		switch (size - i)
+		{
+		default: spu_printf(" %02X", bytes[i++]);
+		case 7: spu_printf(" %02X", bytes[i++]);
+		case 6: spu_printf(" %02X", bytes[i++]);
+		case 5: spu_printf(" %02X |", bytes[i++]);
+		case 4: spu_printf(" %02X", bytes[i++]);
+		case 3: spu_printf(" %02X", bytes[i++]);
+		case 2: spu_printf(" %02X", bytes[i++]);
+		case 1: spu_printf(" %02X |", bytes[i++]);
+		}
+
+		spu_printf("\n");
+	}
+}
+
+template <typename T>
+void print_obj(const volatile T& obj)
+{
+	print_bytes(&obj, sizeof(obj));
+}
+
+template <typename T>
+void reset_obj(T& obj, int ch = 0)
+{
+	std::memset(&obj, ch, sizeof(obj));
+}
 
 template <typename To, typename From>
 static inline To bit_cast(const From& from)
@@ -82,7 +125,7 @@ inline void mfcsync()
 	mfc_write_tag_mask(~0u);
 	mfc_write_tag_update(MFC_TAG_UPDATE_ALL); 
 	mfc_read_tag_status();
-	mfence();
+	fsync();
 };
 
 struct lock_line_t

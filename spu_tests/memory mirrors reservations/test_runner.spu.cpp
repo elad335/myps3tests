@@ -19,7 +19,7 @@ inline void ack_event(u32 bit)
 		spu_readch(SPU_RdEventStat);
 	}
 
-	mfence();
+	fsync();
 }
 
 // Atomic Status Update
@@ -35,11 +35,11 @@ int main(u64 addr1, u64 addr2)
 {
 	mfc_getllar(rdata.data(), addr1, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	mfc_putllc(rdata.data(), addr2, 0, 0);
 	const bool success = spu_readch(MFC_RdAtomicStat) == MFC_PUTLLC_SUCCESS;
-	mfence();
+	fsync();
 
 	spu_printf("SPU PUTLLC status: %s\n", (success) ? "success" : "failure");
 	return 0;

@@ -32,18 +32,18 @@ int main(u64 addr) {
 	dma_lists[1][1].notify = 0;
 
 	mfc_getl(&s_data, 0, &dma_lists[0], 0x10, 0, 0,0);
-	mfence();
+	fsync();
 	mfc_read_list_stall_status(); // Wait until stalled
 	mfc_getl(&s_data, 0, &dma_lists[1], 0x10, 0, 0,0);
-	mfence();
+	fsync();
 
 	mfc_read_list_stall_status(); // Wait until stalled
 	mfc_write_list_stall_ack(0);
-	mfence();
+	fsync();
 
 	while (mfc_stat_cmd_queue() < 16)
 	{
-		mfence();
+		fsync();
 	}
 
 	spu_printf("sample finished.\n");

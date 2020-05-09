@@ -1,0 +1,16 @@
+sys_spu_thread_get_exit_status(error ESTAT, line=68)
+thread status: 0x80000000, group status: 0x1, cause: 0x1
+sys_spu_thread_get_exit_status(error ok, line=68)
+thread status: 0x2, group status: 0x0, cause: 0x2
+sys_spu_thread_get_exit_status(error ok, line=68)
+thread status: 0x2, group status: 0x3, cause: 0x1
+sys_spu_thread_get_exit_status(error ok, line=68)
+thread status: 0x4, group status: 0x0, cause: 0x2
+sys_spu_thread_get_exit_status(error ok, line=68)
+thread status: 0x4, group status: 0x5, cause: 0x1
+sys_spu_thread_get_exit_status(error ok, line=68)
+thread status: 0x6, group status: 0x0, cause: 0x2
+sys_spu_thread_get_exit_status(error ok, line=60)
+thread status: 0x6, group status: 0x6, cause: 0x4
+sys_spu_thread_get_exit_status(error ok, line=60)
+thread status: 0x6, group status: 0x0, cause: 0x2

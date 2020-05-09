@@ -19,7 +19,7 @@ inline void ack_event(u32 bit)
 		spu_readch(SPU_RdEventStat);
 	}
 
-	mfence();
+	fsync();
 }
 
 int main(u64 raddr, u64 number)
@@ -35,11 +35,11 @@ int main(u64 raddr, u64 number)
 
 	mfc_getllar(rdata.data(), raddr + 128, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	mfc_getllar(rdata.data(), raddr + 256, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	spu_printf("events after GETLLAR: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
 
@@ -49,11 +49,11 @@ int main(u64 raddr, u64 number)
 
 	mfc_getllar(rdata.data(), raddr + 128, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	mfc_putllc(rdata.data(), raddr + 256, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	spu_printf("events after PUTLLC: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
 
@@ -63,11 +63,11 @@ int main(u64 raddr, u64 number)
 
 	mfc_getllar(rdata.data(), raddr + 128, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	mfc_putlluc(rdata.data(), raddr + 128, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	spu_printf("events after PUTLLUC: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
 
@@ -77,7 +77,7 @@ int main(u64 raddr, u64 number)
 
 	mfc_getllar(rdata.data(), raddr + 128, 0, 0);
 	spu_readch(MFC_RdAtomicStat);
-	mfence();
+	fsync();
 
 	mfc_put(rdata.data(), raddr + 128, 0x80, 0, 0, 0);
 	mfcsync();
@@ -99,7 +99,7 @@ int main(u64 raddr, u64 number)
 			do {
 			mfc_getllar(rdata.data(), raddr, 0, 0);
 			spu_readch(MFC_RdAtomicStat);
-			mfence();
+			fsync();
 
 			if (rdata.as<u32>(31) == -1u)
 			{
@@ -107,11 +107,11 @@ int main(u64 raddr, u64 number)
 			}
 
 			rdata.as<u32>(0)++;
-			mfence();
+			fsync();
 
 			mfc_putllc(rdata.data(), raddr, 0, 0);
 			status = spu_readch(MFC_RdAtomicStat);
-			mfence();
+			fsync();
 			} while (status);
 		}
 		while (rdata.as<u32>(31) != -1u);
@@ -121,7 +121,7 @@ int main(u64 raddr, u64 number)
 		u32 value;
 		mfc_getllar(rdata.data(), raddr, 0, 0);
 		spu_readch(MFC_RdAtomicStat);
-		mfence();
+		fsync();
 
 		value = rdata.as<u32>(0);
 
@@ -129,14 +129,14 @@ int main(u64 raddr, u64 number)
 		{
 			mfc_getllar(rdata.data(), raddr, 0, 0);
 			spu_readch(MFC_RdAtomicStat);
-			mfence();
+			fsync();
 
 			if (value != rdata.as<u32>(0))
 			{
 				// Lose previous reservation
 				mfc_getllar(rdata.data(), raddr + 128, 0, 0);
 				spu_readch(MFC_RdAtomicStat);
-				mfence();
+				fsync();
 
 				// Reservation changed earlier, event must be recorded
 				spu_printf("events after GETLLAR loop: 0x%08x\n", spu_readchcnt(SPU_RdEventStat) ? spu_readch(SPU_RdEventStat) : 0);
@@ -147,15 +147,15 @@ int main(u64 raddr, u64 number)
 		do {
 		mfc_getllar(rdata.data(), raddr, 0, 0);
 		spu_readch(MFC_RdAtomicStat);
-		mfence();
+		fsync();
 
 		// Signal second thread to exit
 		rdata.as<u32>(31) = -1u;
-		mfence();
+		fsync();
 
 		mfc_putllc(rdata.data(), raddr, 0, 0);
 		status = spu_readch(MFC_RdAtomicStat);
-		mfence();
+		fsync();
 		} while (status);
 	}
 
