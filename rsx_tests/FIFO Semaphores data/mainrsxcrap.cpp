@@ -62,7 +62,7 @@ namespace gLocations
 	void* color1 = ptr_cast(0xC0D00000); // Color buffer 0
 };
 
-/*
+
 #define CELL_GCM_FUNCTION_MACROS
 #include "cell/gcm/gcm_function_macros.h"
 #include "cell/gcm/gcm_methods.h"
@@ -71,13 +71,12 @@ namespace gLocations
 #define CELL_GCM_END CELL_GCM_THIS->end
 #define CELL_GCM_CALLBACK CELL_GCM_THIS->callback
 
-CELL_GCM_DECL void CELL_GCM_FUNC(SetWaitLabel1)(CELL_GCM_ARGS(uint8_t index, uint32_t value))
+CELL_GCM_DECL void CELL_GCM_FUNC(SetWaitLabel1)(CELL_GCM_ARGS(u8 index, u32 value, u32 add))
 {
 	CELL_GCM_ASM_IN();
 	CELL_GCM_ASM_RESERVE_IMM(4, 2);
 
-	uint32_t offset = 0x10 * index //;
-	 + 1;
+	u32 offset = 0x10 * index + add;
 	CELL_GCM_METHOD_CHANNEL_SEMAPHORE_OFFSET(CELL_GCM_CURRENT, offset);
 	CELL_GCM_METHOD_CHANNEL_SEMAPHORE_ACQUIRE(CELL_GCM_CURRENT, value);
 
@@ -86,13 +85,12 @@ CELL_GCM_DECL void CELL_GCM_FUNC(SetWaitLabel1)(CELL_GCM_ARGS(uint8_t index, uin
 }
 
 CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteCommandLabel1)(CELL_GCM_ARGS(
-	uint8_t index, uint32_t value))
+	u8 index, u32 value, u32 add))
 {
 	CELL_GCM_ASM_IN();
 	CELL_GCM_ASM_RESERVE_IMM(4, 2);
 
-	uint32_t offset = 0x10 * index //;
-	 + 1;
+	u32 offset = 0x10 * index + add;
 	CELL_GCM_METHOD_CHANNEL_SEMAPHORE_OFFSET(CELL_GCM_CURRENT, offset);
 	CELL_GCM_METHOD_CHANNEL_SEMAPHORE_RELEASE(CELL_GCM_CURRENT, value);
 
@@ -100,19 +98,18 @@ CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteCommandLabel1)(CELL_GCM_ARGS(
 	CELL_GCM_ASM_OUT();
 }
 
-CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteBackEndLabel1)(CELL_GCM_ARGS(uint8_t index, uint32_t value))
+CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteBackEndLabel1)(CELL_GCM_ARGS(u8 index, u32 value, u32 add))
 {
 	CELL_GCM_ASM_IN();
 	CELL_GCM_ASM_RESERVE_IMM(4, 2);
 
 	// swap byte 0 and 2
-	uint32_t war_value = value;
+	u32 war_value = value;
 	war_value = ( war_value & 0xff00ff00)
 		| ((war_value >> 16) & 0xff)
 		| (((war_value >> 0 ) & 0xff) << 16);
 
-	uint32_t offset = 0x10 * index //;
-	 + 1;
+	u32 offset = 0x10 * index + add;
 	CELL_GCM_METHOD_SET_SEMAPHORE_OFFSET(CELL_GCM_CURRENT, offset);
 	CELL_GCM_METHOD_BACK_END_WRITE_SEMAPHORE_RELEASE(CELL_GCM_CURRENT, war_value);
 
@@ -120,42 +117,20 @@ CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteBackEndLabel1)(CELL_GCM_ARGS(uint8_t in
 	CELL_GCM_ASM_OUT();
 }
 
-CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteTextureLabel1)(CELL_GCM_ARGS(uint8_t index, uint32_t value))
+CELL_GCM_DECL void CELL_GCM_FUNC(SetWriteTextureLabel1)(CELL_GCM_ARGS(u8 index, u32 value, u32 add))
 {
 	CELL_GCM_ASM_IN();
 	CELL_GCM_ASM_RESERVE_IMM(4, 2);
-	uint32_t offset = 0x10 * index // ;
-	 + 1;
-#ifdef __SPU__
-	uint32_t *ptr = CELL_GCM_CURRENT;
-	uint32_t *nptr = CELL_GCM_CURRENT + 4;
-	uint32_t ptroffset = (uint32_t)ptr & 0xf;
-	vec_uint4 *vptr0 = (vec_uint4*)((uintptr_t)ptr);
-	vec_uint4 *vptr1 = (vec_uint4*)((uintptr_t)nptr);
-	vec_uint4 dstVec0 = *vptr0;
-	vec_uint4 dstVec1 = *vptr1;
-	CELL_GCM_CURRENT = nptr; 
-	vec_uint4 src0 = (vec_uint4){CELL_GCM_METHOD(CELL_GCM_NV4097_SET_SEMAPHORE_OFFSET, 1),
-								 (offset),
-								 CELL_GCM_METHOD(CELL_GCM_NV4097_TEXTURE_READ_SEMAPHORE_RELEASE, 1),
-								 (value)};
-	vec_uint4 mask = (vec_uint4)spu_splats(0xffffffff);
-	vec_uint4 mask0 = (vec_uint4)spu_rlmaskqwbyte(mask, -ptroffset);
-	vec_uint4 val0 = spu_rlmaskqwbyte(src0, -ptroffset);
-	vec_uint4 val1 = spu_slqwbyte(src0, 16 - ptroffset);
-	*vptr0 = spu_sel(dstVec0, val0, mask0);
-	*vptr1 = spu_sel(val1, dstVec1, mask0);
-#else
+	u32 offset = 0x10 * index + add;
 	CELL_GCM_METHOD_SET_SEMAPHORE_OFFSET(CELL_GCM_CURRENT, offset);
 	CELL_GCM_METHOD_TEXTURE_READ_SEMAPHORE_RELEASE(CELL_GCM_CURRENT, value);
-#endif
 	CELL_GCM_DEBUG_FINISH(CELL_GCM_THIS);
 	CELL_GCM_ASM_OUT();
 }
 
 #undef CELL_GCM_FUNCTION_MACROS
 #include "cell/gcm/gcm_function_macros.h"
-*/
+
 int main() {
 
 	LoadModules();
@@ -221,19 +196,21 @@ int main() {
 
 	printf("First buf:\n");
 
-	print_bytes(cellGcmGetLabelAddress(64), 16*6);
-	memset(cellGcmGetLabelAddress(64), 0, 16*6);
+	print_bytes(cellGcmGetLabelAddress(64), 16*7);
+	memset(cellGcmGetLabelAddress(64), 0, 16*3);
+	memset(cellGcmGetLabelAddress(67), 0xff, 16*4);
 	fsync();
 
 	cellGcmSetWriteBackEndLabel(&Gcm, 64, 0x12345678);
 	cellGcmSetWriteTextureLabel(&Gcm, 65, 0x12345678 + 1);
 	cellGcmSetWriteCommandLabel(&Gcm, 66, 0x12345678 + 2);
 
-	//cellGcmSetWriteBackEndLabel1(&Gcm, 67, 0x12345678);
-	//cellGcmSetWriteTextureLabel1(&Gcm, 68, 0x12345678 + 1);
-	//cellGcmSetWriteCommandLabel1(&Gcm, 69, 0x12345678 + 2);
-
+	cellGcmSetWriteBackEndLabel1(&Gcm, 67, 0x12345678, 0x0);
+	cellGcmSetWriteTextureLabel1(&Gcm, 68, 0x12345678 + 1, 0x0);
+	cellGcmSetWriteCommandLabel1(&Gcm, 69, 0x12345678 + 2, 0x4);
+	cellGcmSetWriteCommandLabel1(&Gcm, 70, 0x12345678 + 3, 0x1);
 	cellGcmSetWaitForIdle(&Gcm);
+
 	c.flush();
 	sys_timer_usleep(100);
 
@@ -244,10 +221,14 @@ int main() {
 		//cellGcmSetFlipImmediate(id); // TODO: Fix this (jarves :hammer:)
 	}
 
+	sys_timer_usleep(1000);
 	printf("Second buf:\n");
-	print_bytes(cellGcmGetLabelAddress(64), 16*3);
+
+	sys_timer_usleep(1000);
+	print_bytes(cellGcmGetLabelAddress(64), 16*7);
 
 	printf("sample finished.\n");
 
+	sys_timer_sleep(1);
 	return 0;
 }
