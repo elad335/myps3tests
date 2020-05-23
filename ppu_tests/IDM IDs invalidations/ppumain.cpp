@@ -70,7 +70,6 @@ int main()
 
 	sys_spu_thread_group_t GrpId[512];
 
-	// Make Mutex
 	for (u32 i = 0; i < 512; i++)
 	{
 		ENSURE_OK(sys_spu_thread_group_create(&GrpId[i], 1, 100, &grp_attr));
@@ -83,12 +82,28 @@ int main()
 
 	ENSURE_OK(sys_spu_thread_group_destroy(GrpId[0]));
 
+	sys_memory_t MemId[512];
+
+	for (u32 i = 0; i < 512; i++)
+	{
+		ENSURE_OK(sys_mmapper_allocate_memory(0x10000, SYS_MEMORY_GRANULARITY_64K, &MemId[i]));
+
+		if (i != 0)
+		{
+			ENSURE_OK(sys_mmapper_free_memory(MemId[i]));
+		}
+	}
+
+	ENSURE_OK(sys_mmapper_free_memory(MemId[0]));
+
 	printf("Mutex IDs:\n");
 	print_obj(MutexId);
 	printf("PPU IDs:\n");
 	print_obj(PuId);
 	printf("SPU TG IDs:\n");
 	print_obj(GrpId);
+	printf("Memory IDs:\n");
+	print_obj(MemId);
 	printf("sample finished.\n");
 	return 0;
 }
