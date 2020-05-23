@@ -13,6 +13,7 @@
 #include <sys/memory.h>
 #include <sys/event.h>
 #include <sys/syscall.h>
+#include <sys/spu_thread_group.h> 
 #include <functional>
 #include <sysutil/sysutil_sysparam.h>
 
@@ -26,44 +27,68 @@ SYS_PROCESS_PARAM(1, 0x100000)
 sys_ppu_thread_t main_tid;
 u32 signal_exit = 0;
 
-void threadEntry(u64 stay)
+void threadEntry(u64)
 {
-	while (stay)
-	{
-		sys_timer_sleep(1);
-	}
-
 	sys_ppu_thread_exit(0);
 }
 
-int main() {
-
+int main()
+{
 	sys_mutex_attribute_t mtxAttr;
 	sys_mutex_attribute_initialize(mtxAttr);
 	sys_mutex_t MutexId[512];
+
 	// Make Mutex
 	for (u32 i = 0; i < 512; i++)
 	{
 		ENSURE_OK(sys_mutex_create(&MutexId[i], &mtxAttr));
-		ENSURE_OK(sys_mutex_destroy(MutexId[i]));
+
+		if (i != 0)
+		{
+			ENSURE_OK(sys_mutex_destroy(MutexId[i]));
+		}
 	}
 
-	sys_ppu_thread_t m_tid[512];
+	ENSURE_OK(sys_mutex_destroy(MutexId[0]));
+
+	sys_ppu_thread_t PuId[512];
 
 	for (u32 i = 0; i < 512; i++)
 	{
-		ENSURE_OK(sys_ppu_thread_create(&m_tid[i],threadEntry,0,0, 0x100000,1, NULL));
-		ENSURE_VAL(sys_ppu_thread_join(m_tid[i], NULL), EFAULT);
+		ENSURE_OK(sys_ppu_thread_create(&PuId[i],threadEntry,0,0, 0x100000,1, NULL));
+
+		if (i != 0)
+		{
+			ENSURE_VAL(sys_ppu_thread_join(PuId[i], NULL), EFAULT);
+		}
 	}
 
+	ENSURE_VAL(sys_ppu_thread_join(PuId[0], NULL), EFAULT);
+
+	sys_spu_thread_group_attribute_t grp_attr;
+	sys_spu_thread_group_attribute_initialize(grp_attr);
+
+	sys_spu_thread_group_t GrpId[512];
+
+	// Make Mutex
+	for (u32 i = 0; i < 512; i++)
+	{
+		ENSURE_OK(sys_spu_thread_group_create(&GrpId[i], 1, 100, &grp_attr));
+
+		if (i != 0)
+		{
+			ENSURE_OK(sys_spu_thread_group_destroy(GrpId[i]));
+		}
+	}
+
+	ENSURE_OK(sys_spu_thread_group_destroy(GrpId[0]));
 
 	printf("Mutex IDs:\n");
 	print_obj(MutexId);
 	printf("PPU IDs:\n");
-	print_obj(m_tid);
+	print_obj(PuId);
+	printf("SPU TG IDs:\n");
+	print_obj(GrpId);
 	printf("sample finished.\n");
-	ENSURE_OK(sys_ppu_thread_create(&m_tid[0],threadEntry,1,0, 0x100000,1, NULL));
-	sys_timer_usleep(200);
-	sys_ppu_thread_exit(1);
 	return 0;
 }
