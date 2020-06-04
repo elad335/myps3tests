@@ -1,0 +1,20 @@
+event:
+[000] | 01 00 03 00 | 0E 0F 10 0A |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+sys_event_queue_receive(error ETIMEDOUT, line=74)
+event:
+[000] | 80 00 00 00 | 00 89 89 C0 |
+[008] | 80 00 00 00 | 00 4F 24 80 |
+[010] | 80 00 00 00 | 00 34 F9 18 |
+[018] | 80 00 00 00 | 00 89 CB 00 |
+cellAudioRemoveNotifyEventQueue(error 0x80310709, line=77)
+event:
+[000] | 01 00 03 00 | 0E 10 10 0A |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+cellAudioSetNotifyEventQueue(error ok, line=85)
+cellAudioRemoveNotifyEventQueue(error ok, line=87)
+sample finished.
