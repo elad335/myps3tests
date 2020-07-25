@@ -1,3 +1,5 @@
+#ifndef __HEADER_GUARD_ELADPPU_HEADER__
+#define __HEADER_GUARD_ELADPPU_HEADER__
 #include <stdint.h>
 #include <cell/sysmodule.h>
 #include <cell/atomic.h>
@@ -35,6 +37,24 @@ typedef int8_t s8;
 typedef float f32;
 typedef double f64; 
 
+// Some headers in define it this way
+#undef vec_u8;
+#undef vec_s8;
+#undef vec_u16;
+#undef vec_s16;
+#undef vec_u32;
+#undef vec_s32;
+//#undef vec_f32;
+
+typedef vector unsigned char vec_u8;
+typedef vector signed char vec_s8;
+typedef vector unsigned short vec_u16;
+typedef vector signed short vec_s16;
+typedef vector unsigned int vec_u32;
+typedef vector signed int vec_s32;
+typedef vector float vec_f32;
+
+#define decltype __typeof__
 #define thread_local __thread
 
 #define ALIGN(x) __attribute__((aligned(x)))
@@ -455,6 +475,12 @@ static u32 sys_ss_random_number_generator(u64 pkg_id, void* buf, u64 size)
 	return_to_user_prog(u32);
 }
 
+static u32 sys_net_infoctl(u32 cmd, void* buf)
+{
+	system_call_2(722, cmd, int_cast(buf));
+	return_to_user_prog(u32);
+}
+
 static u32 cellFsGetPath_s(u32 fd, char* out_path)
 {
 	if (!out_path)
@@ -558,3 +584,4 @@ u32 get_sys_rsx_context(u32 index = 0)
 
 	return 0;
 }
+#endif
