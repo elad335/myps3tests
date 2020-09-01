@@ -120,12 +120,13 @@ static inline To bit_cast(const From& from)
 	return to;
 }
 
-inline void mfcsync() 
+inline u32 mfcsync(u32 type = MFC_TAG_UPDATE_ALL, u32 mask = ~0u) 
 {
-	mfc_write_tag_mask(~0u);
-	mfc_write_tag_update(MFC_TAG_UPDATE_ALL); 
-	mfc_read_tag_status();
+	mfc_write_tag_mask(mask);
+	mfc_write_tag_update(type);
+	const u32 res = mfc_read_tag_status();
 	fsync();
+	return res;
 };
 
 struct lock_line_t
@@ -144,12 +145,12 @@ struct lock_line_t
 		return ptr_caste(rdata, u32)[index];
 	}
 
-	void* data()
+	void* data(u32 offset = 0)
 	{
-		return +rdata;
+		return rdata + offset;
 	}
 
-	uptr addr()
+	uptr addr() const
 	{
 		return int_cast(+rdata);
 	}

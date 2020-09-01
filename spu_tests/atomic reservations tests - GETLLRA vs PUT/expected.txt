@@ -1,0 +1,2 @@
+All accesses were atomic!
+sample finished
