@@ -41,9 +41,7 @@ typedef vec_double2 vec_f64;
 
 // Lazy memory barrier
 #ifndef fsync
-#define fsync() \
-__asm__ volatile ("" : : : "memory"); \
-__asm__ volatile ("syncc;sync;dsync");
+#define fsync() ({ __asm__ volatile ("syncc;sync;dsync" : : : "memory"); })
 
 //template <typename T>
 //volatile T& as_volatile(T& obj)
