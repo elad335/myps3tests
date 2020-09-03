@@ -120,13 +120,29 @@ static inline To bit_cast(const From& from)
 	return to;
 }
 
-inline u32 mfcsync(u32 type = MFC_TAG_UPDATE_ALL, u32 mask = ~0u) 
+inline u32 mfcsync(u32 mask, u32 type = MFC_TAG_UPDATE_ALL) 
 {
+	if (mfc_stat_tag_status())
+	{
+		mfc_read_tag_status();
+	}
+
 	mfc_write_tag_mask(mask);
 	mfc_write_tag_update(type);
 	const u32 res = mfc_read_tag_status();
 	fsync();
 	return res;
+};
+
+// Dont use tag update requests if we want to wait for all MFC commands
+inline void mfcsync() 
+{
+	while (16 - mfc_stat_cmd_queue())
+	{
+		fsync();
+	}
+
+	fsync();
 };
 
 struct lock_line_t

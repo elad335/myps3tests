@@ -41,6 +41,7 @@ int main(u64 raddr, u64 number)
 
 	// Reset to 1
 	std::memset(rdata1.data(), 0xff, 0x80);
+	fsync();
 
 	for (u64 i = 0; i < 100000000; i++)
 	{
@@ -54,9 +55,8 @@ int main(u64 raddr, u64 number)
 			continue;
 		}
 
-		mfc_getllar(rdata.data(), raddr, 0, 0);
-		spu_readch(MFC_RdAtomicStat);
-		fsync();
+		mfc_getf(rdata.data(), raddr + offs, size, 0, 0, 0);
+		mfcsync();
 
 		bool invalid = true;
 		switch (rdata.as<u8>(offs))
