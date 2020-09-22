@@ -1,0 +1,32 @@
+cellFsStat(error ENOTMOUNTED, line=47)
+GAMEDATA type = 1, dir = GLESS11VM
+cellGameDataCheck(error 0x2, line=62)
+cellGameCreateGameData(error 0x8002cb21, line=72)
+cellGameContentPermit(error ok, line=80)
+
+
+GAMEDATA type = 2, dir = HLESS11VM
+cellGameDataCheck(error 0x2, line=62)
+cellGameCreateGameData(error 0x8002cb21, line=72)
+cellGameContentPermit(error ok, line=80)
+
+
+GAMEDATA type = 3, dir = ILESS11VM
+cellGameDataCheck(error 0x2, line=62)
+cellGameCreateGameData(error ok, line=72)
+cellGameContentPermit(error ok, line=80)
+/dev_hdd0/game/ILESS11VM
+/dev_hdd0/game/ILESS11VM/USRDIR
+Second:
+GAMEDATA type = 2, dir = ILESS11VM
+cellGameDataCheck(error 0x8002cb05, line=98)
+cellGameContentPermit(error 0x8002cb22, line=106)
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GAMEDATA type = 3, dir = ILESS11VM
+cellGameDataCheck(error ok, line=98)
+cellGameContentPermit(error ok, line=106)
+/dev_hdd0/game/ILESS11VM
+/dev_hdd0/game/ILESS11VM/USRDIR
