@@ -41,7 +41,7 @@ typedef vec_double2 vec_f64;
 
 // Lazy memory barrier
 #ifndef fsync
-#define fsync() ({ __asm__ volatile ("syncc;sync;dsync" : : : "memory"); })
+#define fsync() ({ __asm__ volatile ("syncc" : : : "memory"); })
 
 //template <typename T>
 //volatile T& as_volatile(T& obj)
@@ -241,8 +241,7 @@ extern inline uint32_t sys_raw_spu_mmio_read(int id, int offset)
 
 // Runtime(!) channel interaction functions
 
-/*
-static u32 get_channel_count(u32 ch)
+static u32 read_count(u32 ch)
 {
 	static u32 f[] __attribute__ ((aligned(16))) =
 	{
@@ -253,11 +252,11 @@ static u32 get_channel_count(u32 ch)
 
 	f[0] &= ~(0x7F << 7);
 	f[0] |= (ch & 0x7F) << 7;
-	si_sync();
-	return ptr_caste(&f, u32(*)(void))();
+	fsync();
+	return ((u32(*)(void))(uptr)f)();
 }
  
-static u32 read_channel(u32 ch)
+static u32 read_ch(u32 ch)
 {
 	static u32 f[] __attribute__ ((aligned(16))) =
 	{
@@ -268,11 +267,11 @@ static u32 read_channel(u32 ch)
 
 	f[0] &= ~(0x7F << 7);
 	f[0] |= (ch & 0x7F) << 7;
-	si_sync();
-	return ptr_caste(&f, u32(*)(void))();
+	fsync();
+	return ((u32(*)(void))(uptr)f)();
 }
  
-void write_channel(u32 ch, u32 value)
+void write_ch(u32 ch, u32 value)
 {
 	static u32 f[] __attribute__ ((aligned(16))) =
 	{
@@ -284,8 +283,6 @@ void write_channel(u32 ch, u32 value)
 
 	f[0] &= ~(0x7F << 7);
 	f[0] |= (ch & 0x7F) << 7;
-	void(* pf)(u32) = ptr_caste(&f[0], void(*)(u32));
-	si_sync();
-	pf(value);
+	fsync();
+	((void(*)(u32))(uptr)f)(value);
 }
-*/
