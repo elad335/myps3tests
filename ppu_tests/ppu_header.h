@@ -13,7 +13,9 @@
 #include <sys/process.h>
 #include <sys/synchronization.h>
 #include <sys/prx.h>
+#include <cell/cell_fs.h> 
 #include <ppu_intrinsics.h>
+#include <ppu_asm_intrinsics.h>
 #include <cstring>
 #include <string>
 
@@ -138,8 +140,8 @@ static std::string format_cell_error(u32 error)
 
 // Basic asserts, uses c-style casts in some places handle pointers as well
 #define ENSURE_OK(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s64>(x)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
-#define ENSURE_VAL(x, val) ({ s32 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ != s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
-#define ENSURE_NVAL(x, val) ({ s32 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ == s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_VAL(x, val) ({ s64 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ != s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_NVAL(x, val) ({ s64 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ == s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
 
 #endif
 
@@ -318,6 +320,20 @@ void reset_obj(volatile T& obj, int ch = 0)
 	// TODO
 	for (size_t i = 0; i < sizeof(obj); i++)
 		reinterpret_cast<volatile char*>(&obj)[i] = 0;
+}
+
+template <typename T>
+void xor_obj(T& dst, const T& src, const T& src2)
+{
+	// Show bitwise difference
+	for (size_t i = 0; i < sizeof(T); i++)
+		reinterpret_cast<volatile char*>(&dst)[i] = reinterpret_cast<const volatile char*>(&src)[i] ^ reinterpret_cast<const volatile char*>(&src2)[i];
+}
+
+template <typename T>
+void xor_obj(T& dst, const T& applied)
+{
+	xor_obj(dst, dst, applied);
 }
 
 #define GetGpr(reg) \
