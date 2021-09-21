@@ -1,0 +1,77 @@
+cellSysCacheMount(error ok, line=35)
+cache path=/dev_hdd1, id=
+line=50, path=/app_home/data.sdata, flags=64: cellFsOpen(error ok, line=385)
+line=51, path=/dev_hdd1/temp.txt, flags=66: cellFsOpen(error ok, line=385)
+line=59, fd=3, size=0x19fa70: cellFsRead(error ok, line=500)
+line=64, fd=4, size=1702512: cellFsWrite(error ok, line=408)
+line=67, path=/dev_hdd1/temp.txt, flags=0: cellFsOpen(error ok, line=385)
+line=68, path=/dev_hdd1/temp.txt, flags=2: cellFsOpen(error ok, line=385)
+line=69, path=/dev_hdd1/temp.txt, flags=2: cellFsOpen(error ok, line=385)
+line=73, fd=3: cellFsFstat(error ok, line=449)
+[000] | 00 00 81 80 | FF FF FF FF |
+[008] | FF FF FF FF | 00 00 00 00 |
+[010] | 53 AF 57 00 | 00 00 00 00 |
+[018] | 53 B0 33 94 | 00 00 00 00 |
+[020] | 53 B0 33 8D | 00 00 00 00 |
+[028] | 00 19 FA 70 | 00 00 00 00 |
+[030] | 00 00 02 00 |
+line=74, fd=5: cellFsFstat(error ok, line=449)
+[000] | 00 00 81 80 | FF FF FF FF |
+[008] | FF FF FF FF | 00 00 00 00 |
+[010] | 53 AF 57 00 | 00 00 00 00 |
+[018] | 53 B0 33 94 | 00 00 00 00 |
+[020] | 53 B0 33 8D | 00 00 00 00 |
+[028] | 00 19 EC 5A | 00 00 00 00 |
+[030] | 00 00 02 00 |
+diff:
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+[020] | 00 00 00 00 | 00 00 00 00 |
+[028] | 00 00 16 2A | 00 00 00 00 |
+[030] | 00 00 00 00 |
+cellFsSdataOpenByFd(error EINVAL, line=81)
+cellFsSdataOpenByFd(error ok, line=82)
+line=84, fd=6: cellFsFstat(error ok, line=449)
+[000] | 00 00 81 80 | FF FF FF FF |
+[008] | FF FF FF FF | 00 00 00 00 |
+[010] | 53 AF 57 00 | 00 00 00 00 |
+[018] | 53 B0 33 94 | 00 00 00 00 |
+[020] | 53 B0 33 8D | 00 00 00 00 |
+[028] | 00 19 EC 5A | 00 00 00 00 |
+[030] | 00 00 02 00 |
+diff2:
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+[020] | 00 00 00 00 | 00 00 00 00 |
+[028] | 00 00 00 00 | 00 00 00 00 |
+[030] | 00 00 00 00 |
+line=90, fd=-1, size=0: cellFsWrite(error EBADF, line=408)
+Bytes written: 0x8001002a
+line=92, fd=3, size=0: cellFsWrite(error ok, line=408)
+Bytes written: 0x0
+line=93, fd=3, size=1: cellFsWrite(error EBADF, line=408)
+Bytes written: 0x8001002a
+line=94, fd=5, size=0: cellFsWrite(error ok, line=408)
+Bytes written: 0x0
+line=95, fd=5, size=1: cellFsWrite(error ok, line=408)
+Bytes written: 0x1
+line=96, fd=6, size=0: cellFsWrite(error ok, line=408)
+Bytes written: 0x0
+line=97, fd=6, size=1: cellFsWrite(error EBADF, line=408)
+Bytes written: 0x8001002a
+line=99, fd=3, size=0, offset=0x0: cellFsWriteWithOffset(error EBADF, line=428)
+Bytes written: 0x8001002a
+line=100, fd=3, size=1, offset=0x0: cellFsWriteWithOffset(error EBADF, line=428)
+Bytes written: 0x8001002a
+line=101, fd=5, size=0, offset=0x0: cellFsWriteWithOffset(error ok, line=428)
+Bytes written: 0x0
+line=102, fd=5, size=1, offset=0x0: cellFsWriteWithOffset(error ok, line=428)
+Bytes written: 0x1
+line=103, fd=6, size=0, offset=0x0: cellFsWriteWithOffset(error EBADF, line=428)
+Bytes written: 0x8001002a
+line=104, fd=6, size=1, offset=0x0: cellFsWriteWithOffset(error EBADF, line=428)
+Bytes written: 0x8001002a

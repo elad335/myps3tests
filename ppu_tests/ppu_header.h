@@ -323,17 +323,25 @@ void reset_obj(volatile T& obj, int ch = 0)
 }
 
 template <typename T>
-void xor_obj(T& dst, const T& src, const T& src2)
+u64 xor_obj(T& dst, const T& src, const T& src2)
 {
+	u64 changes = 0;
+
 	// Show bitwise difference
 	for (size_t i = 0; i < sizeof(T); i++)
-		reinterpret_cast<volatile char*>(&dst)[i] = reinterpret_cast<const volatile char*>(&src)[i] ^ reinterpret_cast<const volatile char*>(&src2)[i];
+	{
+		const u8 res = reinterpret_cast<const volatile char*>(&src)[i] ^ reinterpret_cast<const volatile char*>(&src2)[i];
+		changes += res != 0;
+		reinterpret_cast<volatile char*>(&dst)[i] = res;
+	}
+
+	return changes;
 }
 
 template <typename T>
-void xor_obj(T& dst, const T& applied)
+u64 xor_obj(T& dst, const T& applied)
 {
-	xor_obj(dst, dst, applied);
+	return xor_obj(dst, dst, applied);
 }
 
 #define GetGpr(reg) \
@@ -347,6 +355,167 @@ void xor_obj(T& dst, const T& applied)
 	register uint64_t p_##reg_no_variable_name_write __asm__ (#reg) = value; \
 	value; \
 })
+
+static s32 open_file_(s32 line, const char *path, int flags, const u64& arg = -1, u64 size_arg = 0)
+{
+	printf("line=%d, path=%s, flags=%u: ", line, path, flags);
+
+	if (arg != -1 && size_arg == 0)
+	{
+		// u64 argument, only known to be used
+		size_arg = 8;
+	}
+
+	// For other arg sizes: *(u64*)(arg_t*)&arg
+
+	int fd = -1;
+	const s32 err = cellFunc(FsOpen, path, flags, &fd, (void*)&arg, size_arg);
+
+	if (err < 0)
+	{
+		// return error code as is
+		return err;
+	}
+
+	// Sync just in case
+	cellFsFsync(fd);
+
+	return fd;
+}
+
+#define open_file(...) open_file_(__LINE__, __VA_ARGS__)
+#define open_sdata(...) open_file(__VA_ARGS__, 0x18000000010ull)
+#define open_edata(...) open_file(__VA_ARGS__, 0x2ull)
+
+static s64 write_file_(s32 line, s32 fd, const void* buf, u64 size)
+{
+	printf("line=%d, fd=%d, size=%u: ", line, fd, size);
+
+	u64 written = 0;
+	const s32 err = cellFunc(FsWrite, fd, buf, size, &written);
+
+	if (err < 0)
+	{
+		// Sign-extend error code
+		return err;
+	}
+
+	cellFsFsync(fd);
+	return written;
+}
+
+#define write_file(...) write_file_(__LINE__, __VA_ARGS__)
+#define write_str_file(fd, str) write_file(fd, str.data(), str.size())
+
+static s64 write_off_file_(s32 line, s32 fd, const void* buf, u64 size, u64 offset)
+{
+	printf("line=%d, fd=%d, size=%u, offset=0x%x: ", line, fd, size, offset);
+
+	u64 written = 0;
+	const s32 err = cellFunc(FsWriteWithOffset, fd, offset, buf, size, &written);
+
+	if (err < 0)
+	{
+		// Sign-extend error code
+		return err;
+	}
+
+	cellFsFsync(fd);
+	return written;
+}
+
+#define write_off_file(...) write_off_file_(__LINE__, __VA_ARGS__)
+#define write_str_off_file(line, fd, str, offset) write_off_file(line, fd, str.data(), str.size(), offset)
+
+static CellFsStat stat_file_(s32 line, s32 fd, bool print_it = false)
+{
+	printf("line=%d, fd=%d: ", line, fd);
+
+	CellFsStat stat;
+
+	const s32 err = cellFunc(FsFstat, fd, &stat);
+
+	if (err < 0)
+	{
+		reset_obj(stat, 0xFF);
+
+		// Write error code to size
+		// It also writes error code to g_ec anyways
+		stat.st_size = err;
+	}
+
+	if (print_it)
+	{
+		print_obj(stat);
+	}
+
+	return stat;
+}
+
+static CellFsStat stat_file_(s32 line, const char* path, bool print_it = false)
+{
+	printf("line=%d, path=%s: ", line, path);
+
+	CellFsStat stat;
+
+	const s32 err = cellFunc(FsStat, path, &stat);
+
+	if (err < 0)
+	{
+		reset_obj(stat, 0xFF);
+
+		// Write error code to size
+		// It also writes error code to g_ec anyways
+		stat.st_size = err;
+	}
+
+	if (print_it)
+	{
+		print_obj(stat);
+	}
+
+	return stat;
+}
+
+#define stat_file(...) stat_file_(__LINE__, __VA_ARGS__)
+
+static s64 read_file_(s32 line, s32 fd, void* buf, u64 size)
+{
+	printf("line=%d, fd=%d, size=0x%x: ", line, fd, size);
+
+	u64 read = 0;
+	const s32 err = cellFunc(FsRead, fd, buf, size, &read);
+
+	if (err < 0)
+	{
+		// Sign-extend error code
+		return err;
+	}
+
+	return read;
+}
+
+#define read_file(...) read_file_(__LINE__, __VA_ARGS__)
+#define read_str_file(fd, str) read_file(fd, (void*)str.data(), str.size())
+
+static s64 read_off_file_(s32 line, s32 fd, void* buf, u64 size, u64 offset)
+{
+	printf("line=%d, fd=%d, size=%u, offset=0x%x: ", line, size, offset);
+
+	u64 read = 0;
+	const s32 err = cellFunc(FsReadWithOffset, fd, offset, buf, size, &read);
+
+	if (err < 0)
+	{
+		// Sign-extend error code
+		return err;
+	}
+
+	return read;
+}
+
+#define read_off_file(...) read_off_file_(__LINE__, __VA_ARGS__)
+#define read_str_off_file(fd, str, offset) read_off_file(fd, (void*)str.data(), str.size(), offset)
 
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
