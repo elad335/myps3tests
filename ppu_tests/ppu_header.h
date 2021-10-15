@@ -149,6 +149,19 @@ static std::string format_cell_error(u32 error)
 #ifndef fsync 
 #define fsync() ({ __sync(); __eieio(); })
 
+#define CELL_FS_FLAG(x) O_##x = CELL_FS_O_##x
+enum
+{
+	CELL_FS_FLAG(RDONLY),
+	CELL_FS_FLAG(RDWR),
+	CELL_FS_FLAG(WRONLY),
+	CELL_FS_FLAG(APPEND),
+	CELL_FS_FLAG(CREAT),
+	CELL_FS_FLAG(TRUNC),
+	CELL_FS_FLAG(EXCL),
+	CELL_FS_FLAG(MSELF),
+};
+
 // Trivial "atomic" type read/write for trivial types
 // atomic, prevents stores/loads reordering, works on all memory area types (cache inhibited etc)
 template <typename T>
@@ -516,6 +529,48 @@ static s64 read_off_file_(s32 line, s32 fd, void* buf, u64 size, u64 offset)
 
 #define read_off_file(...) read_off_file_(__LINE__, __VA_ARGS__)
 #define read_str_off_file(fd, str, offset) read_off_file(fd, (void*)str.data(), str.size(), offset)
+
+static s64 copy_file_(s32 line, const char* og_path, const char* dst_path)
+{
+	printf("line=%d, path=%s, dst=%s: ", line, og_path, dst_path);
+
+	const s32 fd0 = open_file_(line, og_path, 0);
+
+	if (fd0 < 0)
+	{
+		return g_ec;
+	}
+
+	const s32 fd1 = open_file_(line, dst_path, O_CREAT | O_RDWR | O_TRUNC);
+
+	if (!fd1)
+	{
+		cellFsClose(fd0);
+		return g_ec;
+	}
+
+	char* ptr = new char[0x100000];
+
+	for (u64 i = 0;; i += 0x100000)
+	{
+		const s64 read_size = read_file_(line, fd0, ptr, 0x100000);
+
+		if (!read_size)
+		{
+			break;
+		}
+
+		write_file_(line, fd1, ptr, 0x100000);
+	}
+
+	cellFsFsync(fd1);
+	cellFsClose(fd1);
+	cellFsClose(fd0);
+	delete ptr;
+	return 0;
+}
+
+#define copy_file(...) copy_file_(__LINE__, __VA_ARGS__)
 
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
