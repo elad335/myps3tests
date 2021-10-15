@@ -16,6 +16,7 @@
 #include <cell/cell_fs.h> 
 #include <ppu_intrinsics.h>
 #include <ppu_asm_intrinsics.h>
+#include <sysutil/sysutil_gamecontent.h> 
 #include <cstring>
 #include <string>
 
@@ -543,7 +544,7 @@ static s64 copy_file_(s32 line, const char* og_path, const char* dst_path)
 
 	const s32 fd1 = open_file_(line, dst_path, O_CREAT | O_RDWR | O_TRUNC);
 
-	if (!fd1)
+	if (fd1 < 0)
 	{
 		cellFsClose(fd0);
 		return g_ec;
@@ -560,7 +561,7 @@ static s64 copy_file_(s32 line, const char* og_path, const char* dst_path)
 			break;
 		}
 
-		write_file_(line, fd1, ptr, 0x100000);
+		write_file_(line, fd1, ptr, read_size);
 	}
 
 	cellFsFsync(fd1);
@@ -572,6 +573,31 @@ static s64 copy_file_(s32 line, const char* og_path, const char* dst_path)
 
 #define copy_file(...) copy_file_(__LINE__, __VA_ARGS__)
 
+const std::string& create_hdd0_temp_data()
+{
+	static std::string usr;
+
+	if (!usr.empty())
+	{
+		return usr;
+	}
+
+	cellSysmoduleLoadModule(CELL_SYSMODULE_SYSUTIL_GAME);
+	cellGameContentPermit(NULL, NULL);
+	cellGameDeleteGameData("TEMPGD");
+
+	ENSURE_VAL(cellGameDataCheck(CELL_GAME_GAMETYPE_GAMEDATA, "TEMPGD", NULL), CELL_GAME_RET_NONE);
+	CellGameSetInitParams initp = {};
+	memcpy(initp.titleId, "TEMPGD", 6);
+
+	usr.resize(CELL_GAME_PATH_MAX);
+
+	ENSURE_OK(cellGameCreateGameData(&initp, NULL, (char*)usr.data()));
+	usr.resize(usr.find_first_of('\0'));
+	usr += '/';
+	return usr;
+}
+	
 static u32 lv2_lwcond_wait(sys_lwcond_t* lwc, sys_lwmutex_t* mtx, u64 timeout)
 {
 	system_call_3(0x071, load_vol(lwc->lwcond_queue), load_vol(mtx->sleep_queue), timeout);
