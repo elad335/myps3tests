@@ -1,0 +1,46 @@
+sdk version:0x36ffff
+Thread ID: 0x1000088, PRIO: 0x3e8, Stack size: 0x10000, Stack addr: 0xd0001000
+Default memory container info:
+[000] | 0D 50 00 00 | 0D 19 00 00 |
+sys_memory_container_create(error ok, line=67)
+Created memory container which encapsulates 1MB of memory. (ID=0x3f000005)
+Default memory container info:
+[000] | 0D 40 00 00 | 0D 09 00 00 |
+process finished -> exitspawn (arg1="/app_home/\\tsclient\C\Users\elad\Documents\GitHub\myps3tests\
+ppu_tests\Memory state at exitspawn\ppumain2.self")
+sdk version:0x1
+Thread ID: 0x100008a, PRIO: 0x3e8, Stack size: 0x10000, Stack addr: 0xd0001000
+Default memory container info:
+[000] | 0C 80 00 00 | 0C 49 00 00 |
+Found memory container, ID=0x3f000005:
+[000] | 00 10 00 00 | 00 10 00 00 |
+sys_memory_container_create(error ok, line=67)
+Created memory container which encapsulates 1MB of memory. (ID=0x3f000007)
+Default memory container info:
+[000] | 0C 70 00 00 | 0C 39 00 00 |
+process finished -> exitspawn (arg1="/app_home/\\tsclient\C\Users\elad\Documents\GitHub\myps3tests\
+ppu_tests\Memory state at exitspawn\ppumain22.self")
+sdk version:0x1
+Thread ID: 0x100008b, PRIO: 0x3e8, Stack size: 0x10000, Stack addr: 0xd0001000
+Default memory container info:
+[000] | 0C 80 00 00 | 0C 49 00 00 |
+Found memory container, ID=0x3f000007:
+[000] | 00 10 00 00 | 00 10 00 00 |
+sys_memory_container_create(error ok, line=67)
+Created memory container which encapsulates 1MB of memory. (ID=0x3f000009)
+Default memory container info:
+[000] | 0C 70 00 00 | 0C 39 00 00 |
+process finished -> exitspawn (arg1="/app_home/\\tsclient\C\Users\elad\Documents\GitHub\myps3tests\
+ppu_tests\Memory state at exitspawn\ppumain222.self")
+sdk version:0x36ffff
+Thread ID: 0x100008c, PRIO: 0x3e8, Stack size: 0x10000, Stack addr: 0xd0001000
+Default memory container info:
+[000] | 0C 70 00 00 | 0C 39 00 00 |
+Found memory container, ID=0x3f000009:
+[000] | 00 10 00 00 | 00 10 00 00 |
+sys_memory_container_create(error ok, line=67)
+Created memory container which encapsulates 1MB of memory. (ID=0x3f00000a)
+Default memory container info:
+[000] | 0C 60 00 00 | 0C 29 00 00 |
+process finished -> exitspawn (arg1="/app_home/\\tsclient\C\Users\elad\Documents\GitHub\myps3tests\
+ppu_tests\Memory state at exitspawn\ppumain2222.self")

@@ -63,6 +63,8 @@ typedef vector float vec_f32;
 #define ALIGN(x) __attribute__((aligned(x)))
 #define STR_CASE(...) case __VA_ARGS__: return #__VA_ARGS__
 
+#define MB(x) ((x) * (1ull<<20))
+
 static std::string format_cell_error(u32 error)
 {
 	switch (error)

@@ -8,8 +8,6 @@
 
 #include "../ppu_tests/ppu_header.h"
 
-#define MB(x) ((x) * (1ull<<20))
-
 enum
 {
 	RSX_METHOD_OLD_JUMP_CMD_MASK = 0xe0000003,
