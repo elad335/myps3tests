@@ -1,0 +1,337 @@
+cellMusicInitialize2(error ok, line=167)
+System Warning : no callback registered
+System Warning : no callback registered
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_INITIALIZE_RESULT success
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=169)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=171)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=173)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=175)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=177)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=179)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=181)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=183)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand2(error 0x8002c1ff, line=185)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicGetSelectionContext2(error 0x8002c104, line=190)
+cellMusicGetContentsId2(error 0x8002c104, line=191)
+cellMusicFinalize2(error ok, line=192)
+System Warning : no callback registered
+System Warning : no callback registered
+System Warning : no callback registered
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_FINALIZE_RESULT success
+cellMusicInitialize(error ok, line=197)
+System Warning : no callback registered
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_INITIALIZE_RESULT success
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=199)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=201)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=203)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=205)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=207)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=209)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=211)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=213)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicSetPlaybackCommand(error 0x8002c1ff, line=215)
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_SET_PLAYBACK_COMMAND_RESULT CELL_MUSIC2_ERROR_GENERIC
+cellMusicGetSelectionContext(error 0x8002c104, line=220)
+cellMusicGetContentsId(error 0x8002c104, line=221)
+cellMusicFinalize(error ok, line=223)
+System Warning : no callback registered
+System Warning : no callback registered
+System Warning : no callback registered
+CELL_MUSIC2_EVENT_FINALIZE_RESULT success
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[020] | FF FF FF FF | FF FF FF FF |
+[028] | FF FF FF FF | FF FF FF FF |
+[030] | FF FF FF FF | FF FF FF FF |
+[038] | FF FF FF FF | FF FF FF FF |
+[040] | FF FF FF FF | FF FF FF FF |
+[048] | FF FF FF FF | FF FF FF FF |
+[050] | FF FF FF FF | FF FF FF FF |
+[058] | FF FF FF FF | FF FF FF FF |
+[060] | FF FF FF FF | FF FF FF FF |
+[068] | FF FF FF FF | FF FF FF FF |
+[070] | FF FF FF FF | FF FF FF FF |
+[078] | FF FF FF FF | FF FF FF FF |
+[080] | FF FF FF FF | FF FF FF FF |
+[088] | FF FF FF FF | FF FF FF FF |
+[090] | FF FF FF FF | FF FF FF FF |
+[098] | FF FF FF FF | FF FF FF FF |
+[0a0] | FF FF FF FF | FF FF FF FF |
+[0a8] | FF FF FF FF | FF FF FF FF |
+[0b0] | FF FF FF FF | FF FF FF FF |
+[0b8] | FF FF FF FF | FF FF FF FF |
+[0c0] | FF FF FF FF | FF FF FF FF |
+[0c8] | FF FF FF FF | FF FF FF FF |
+[0d0] | FF FF FF FF | FF FF FF FF |
+[0d8] | FF FF FF FF | FF FF FF FF |
+[0e0] | FF FF FF FF | FF FF FF FF |
+[0e8] | FF FF FF FF | FF FF FF FF |
+[0f0] | FF FF FF FF | FF FF FF FF |
+[0f8] | FF FF FF FF | FF FF FF FF |
+[100] | FF FF FF FF | FF FF FF FF |
+[108] | FF FF FF FF | FF FF FF FF |
+[110] | FF FF FF FF | FF FF FF FF |
+[118] | FF FF FF FF | FF FF FF FF |
+[120] | FF FF FF FF | FF FF FF FF |
+[128] | FF FF FF FF | FF FF FF FF |
+[130] | FF FF FF FF | FF FF FF FF |
+[138] | FF FF FF FF | FF FF FF FF |
+[140] | FF FF FF FF | FF FF FF FF |
+[148] | FF FF FF FF | FF FF FF FF |
+[150] | FF FF FF FF | FF FF FF FF |
+[158] | FF FF FF FF | FF FF FF FF |
+[160] | FF FF FF FF | FF FF FF FF |
+[168] | FF FF FF FF | FF FF FF FF |
+[170] | FF FF FF FF | FF FF FF FF |
+[178] | FF FF FF FF | FF FF FF FF |
+[180] | FF FF FF FF | FF FF FF FF |
+[188] | FF FF FF FF | FF FF FF FF |
+[190] | FF FF FF FF | FF FF FF FF |
+[198] | FF FF FF FF | FF FF FF FF |
+[1a0] | FF FF FF FF | FF FF FF FF |
+[1a8] | FF FF FF FF | FF FF FF FF |
+[1b0] | FF FF FF FF | FF FF FF FF |
+[1b8] | FF FF FF FF | FF FF FF FF |
+[1c0] | FF FF FF FF | FF FF FF FF |
+[1c8] | FF FF FF FF | FF FF FF FF |
+[1d0] | FF FF FF FF | FF FF FF FF |
+[1d8] | FF FF FF FF | FF FF FF FF |
+[1e0] | FF FF FF FF | FF FF FF FF |
+[1e8] | FF FF FF FF | FF FF FF FF |
+[1f0] | FF FF FF FF | FF FF FF FF |
+[1f8] | FF FF FF FF | FF FF FF FF |
+[200] | FF FF FF FF | FF FF FF FF |
+[208] | FF FF FF FF | FF FF FF FF |
+[210] | FF FF FF FF | FF FF FF FF |
+[218] | FF FF FF FF | FF FF FF FF |
+[220] | FF FF FF FF | FF FF FF FF |
+[228] | FF FF FF FF | FF FF FF FF |
+[230] | FF FF FF FF | FF FF FF FF |
+[238] | FF FF FF FF | FF FF FF FF |
+[240] | FF FF FF FF | FF FF FF FF |
+[248] | FF FF FF FF | FF FF FF FF |
+[250] | FF FF FF FF | FF FF FF FF |
+[258] | FF FF FF FF | FF FF FF FF |
+[260] | FF FF FF FF | FF FF FF FF |
+[268] | FF FF FF FF | FF FF FF FF |
+[270] | FF FF FF FF | FF FF FF FF |
+[278] | FF FF FF FF | FF FF FF FF |
+[280] | FF FF FF FF | FF FF FF FF |
+[288] | FF FF FF FF | FF FF FF FF |
+[290] | FF FF FF FF | FF FF FF FF |
+[298] | FF FF FF FF | FF FF FF FF |
+[2a0] | FF FF FF FF | FF FF FF FF |
+[2a8] | FF FF FF FF | FF FF FF FF |
+[2b0] | FF FF FF FF | FF FF FF FF |
+[2b8] | FF FF FF FF | FF FF FF FF |
+[2c0] | FF FF FF FF | FF FF FF FF |
+[2c8] | FF FF FF FF | FF FF FF FF |
+[2d0] | FF FF FF FF | FF FF FF FF |
+[2d8] | FF FF FF FF | FF FF FF FF |
+[2e0] | FF FF FF FF | FF FF FF FF |
+[2e8] | FF FF FF FF | FF FF FF FF |
+[2f0] | FF FF FF FF | FF FF FF FF |
+[2f8] | FF FF FF FF | FF FF FF FF |
+[300] | FF FF FF FF | FF FF FF FF |
+[308] | FF FF FF FF | FF FF FF FF |
+[310] | FF FF FF FF | FF FF FF FF |
+[318] | FF FF FF FF | FF FF FF FF |
+[320] | FF FF FF FF | FF FF FF FF |
+[328] | FF FF FF FF | FF FF FF FF |
+[330] | FF FF FF FF | FF FF FF FF |
+[338] | FF FF FF FF | FF FF FF FF |
+[340] | FF FF FF FF | FF FF FF FF |
+[348] | FF FF FF FF | FF FF FF FF |
+[350] | FF FF FF FF | FF FF FF FF |
+[358] | FF FF FF FF | FF FF FF FF |
+[360] | FF FF FF FF | FF FF FF FF |
+[368] | FF FF FF FF | FF FF FF FF |
+[370] | FF FF FF FF | FF FF FF FF |
+[378] | FF FF FF FF | FF FF FF FF |
+[380] | FF FF FF FF | FF FF FF FF |
+[388] | FF FF FF FF | FF FF FF FF |
+[390] | FF FF FF FF | FF FF FF FF |
+[398] | FF FF FF FF | FF FF FF FF |
+[3a0] | FF FF FF FF | FF FF FF FF |
+[3a8] | FF FF FF FF | FF FF FF FF |
+[3b0] | FF FF FF FF | FF FF FF FF |
+[3b8] | FF FF FF FF | FF FF FF FF |
+[3c0] | FF FF FF FF | FF FF FF FF |
+[3c8] | FF FF FF FF | FF FF FF FF |
+[3d0] | FF FF FF FF | FF FF FF FF |
+[3d8] | FF FF FF FF | FF FF FF FF |
+[3e0] | FF FF FF FF | FF FF FF FF |
+[3e8] | FF FF FF FF | FF FF FF FF |
+[3f0] | FF FF FF FF | FF FF FF FF |
+[3f8] | FF FF FF FF | FF FF FF FF |
+[400] | FF FF FF FF | FF FF FF FF |
+[408] | FF FF FF FF | FF FF FF FF |
+[410] | FF FF FF FF | FF FF FF FF |
+[418] | FF FF FF FF | FF FF FF FF |
+[420] | FF FF FF FF | FF FF FF FF |
+[428] | FF FF FF FF | FF FF FF FF |
+[430] | FF FF FF FF | FF FF FF FF |
+[438] | FF FF FF FF | FF FF FF FF |
+[440] | FF FF FF FF | FF FF FF FF |
+[448] | FF FF FF FF | FF FF FF FF |
+[450] | FF FF FF FF | FF FF FF FF |
+[458] | FF FF FF FF | FF FF FF FF |
+[460] | FF FF FF FF | FF FF FF FF |
+[468] | FF FF FF FF | FF FF FF FF |
+[470] | FF FF FF FF | FF FF FF FF |
+[478] | FF FF FF FF | FF FF FF FF |
+[480] | FF FF FF FF | FF FF FF FF |
+[488] | FF FF FF FF | FF FF FF FF |
+[490] | FF FF FF FF | FF FF FF FF |
+[498] | FF FF FF FF | FF FF FF FF |
+[4a0] | FF FF FF FF | FF FF FF FF |
+[4a8] | FF FF FF FF | FF FF FF FF |
+[4b0] | FF FF FF FF | FF FF FF FF |
+[4b8] | FF FF FF FF | FF FF FF FF |
+[4c0] | FF FF FF FF | FF FF FF FF |
+[4c8] | FF FF FF FF | FF FF FF FF |
+[4d0] | FF FF FF FF | FF FF FF FF |
+[4d8] | FF FF FF FF | FF FF FF FF |
+[4e0] | FF FF FF FF | FF FF FF FF |
+[4e8] | FF FF FF FF | FF FF FF FF |
+[4f0] | FF FF FF FF | FF FF FF FF |
+[4f8] | FF FF FF FF | FF FF FF FF |
+[500] | FF FF FF FF | FF FF FF FF |
+[508] | FF FF FF FF | FF FF FF FF |
+[510] | FF FF FF FF | FF FF FF FF |
+[518] | FF FF FF FF | FF FF FF FF |
+[520] | FF FF FF FF | FF FF FF FF |
+[528] | FF FF FF FF | FF FF FF FF |
+[530] | FF FF FF FF | FF FF FF FF |
+[538] | FF FF FF FF | FF FF FF FF |
+[540] | FF FF FF FF | FF FF FF FF |
+[548] | FF FF FF FF | FF FF FF FF |
+[550] | FF FF FF FF | FF FF FF FF |
+[558] | FF FF FF FF | FF FF FF FF |
+[560] | FF FF FF FF | FF FF FF FF |
+[568] | FF FF FF FF | FF FF FF FF |
+[570] | FF FF FF FF | FF FF FF FF |
+[578] | FF FF FF FF | FF FF FF FF |
+[580] | FF FF FF FF | FF FF FF FF |
+[588] | FF FF FF FF | FF FF FF FF |
+[590] | FF FF FF FF | FF FF FF FF |
+[598] | FF FF FF FF | FF FF FF FF |
+[5a0] | FF FF FF FF | FF FF FF FF |
+[5a8] | FF FF FF FF | FF FF FF FF |
+[5b0] | FF FF FF FF | FF FF FF FF |
+[5b8] | FF FF FF FF | FF FF FF FF |
+[5c0] | FF FF FF FF | FF FF FF FF |
+[5c8] | FF FF FF FF | FF FF FF FF |
+[5d0] | FF FF FF FF | FF FF FF FF |
+[5d8] | FF FF FF FF | FF FF FF FF |
+[5e0] | FF FF FF FF | FF FF FF FF |
+[5e8] | FF FF FF FF | FF FF FF FF |
+[5f0] | FF FF FF FF | FF FF FF FF |
+[5f8] | FF FF FF FF | FF FF FF FF |
+[600] | FF FF FF FF | FF FF FF FF |
+[608] | FF FF FF FF | FF FF FF FF |
+[610] | FF FF FF FF | FF FF FF FF |
+[618] | FF FF FF FF | FF FF FF FF |
+[620] | FF FF FF FF | FF FF FF FF |
+[628] | FF FF FF FF | FF FF FF FF |
+[630] | FF FF FF FF | FF FF FF FF |
+[638] | FF FF FF FF | FF FF FF FF |
+[640] | FF FF FF FF | FF FF FF FF |
+[648] | FF FF FF FF | FF FF FF FF |
+[650] | FF FF FF FF | FF FF FF FF |
+[658] | FF FF FF FF | FF FF FF FF |
+[660] | FF FF FF FF | FF FF FF FF |
+[668] | FF FF FF FF | FF FF FF FF |
+[670] | FF FF FF FF | FF FF FF FF |
+[678] | FF FF FF FF | FF FF FF FF |
+[680] | FF FF FF FF | FF FF FF FF |
+[688] | FF FF FF FF | FF FF FF FF |
+[690] | FF FF FF FF | FF FF FF FF |
+[698] | FF FF FF FF | FF FF FF FF |
+[6a0] | FF FF FF FF | FF FF FF FF |
+[6a8] | FF FF FF FF | FF FF FF FF |
+[6b0] | FF FF FF FF | FF FF FF FF |
+[6b8] | FF FF FF FF | FF FF FF FF |
+[6c0] | FF FF FF FF | FF FF FF FF |
+[6c8] | FF FF FF FF | FF FF FF FF |
+[6d0] | FF FF FF FF | FF FF FF FF |
+[6d8] | FF FF FF FF | FF FF FF FF |
+[6e0] | FF FF FF FF | FF FF FF FF |
+[6e8] | FF FF FF FF | FF FF FF FF |
+[6f0] | FF FF FF FF | FF FF FF FF |
+[6f8] | FF FF FF FF | FF FF FF FF |
+[700] | FF FF FF FF | FF FF FF FF |
+[708] | FF FF FF FF | FF FF FF FF |
+[710] | FF FF FF FF | FF FF FF FF |
+[718] | FF FF FF FF | FF FF FF FF |
+[720] | FF FF FF FF | FF FF FF FF |
+[728] | FF FF FF FF | FF FF FF FF |
+[730] | FF FF FF FF | FF FF FF FF |
+[738] | FF FF FF FF | FF FF FF FF |
+[740] | FF FF FF FF | FF FF FF FF |
+[748] | FF FF FF FF | FF FF FF FF |
+[750] | FF FF FF FF | FF FF FF FF |
+[758] | FF FF FF FF | FF FF FF FF |
+[760] | FF FF FF FF | FF FF FF FF |
+[768] | FF FF FF FF | FF FF FF FF |
+[770] | FF FF FF FF | FF FF FF FF |
+[778] | FF FF FF FF | FF FF FF FF |
+[780] | FF FF FF FF | FF FF FF FF |
+[788] | FF FF FF FF | FF FF FF FF |
+[790] | FF FF FF FF | FF FF FF FF |
+[798] | FF FF FF FF | FF FF FF FF |
+[7a0] | FF FF FF FF | FF FF FF FF |
+[7a8] | FF FF FF FF | FF FF FF FF |
+[7b0] | FF FF FF FF | FF FF FF FF |
+[7b8] | FF FF FF FF | FF FF FF FF |
+[7c0] | FF FF FF FF | FF FF FF FF |
+[7c8] | FF FF FF FF | FF FF FF FF |
+[7d0] | FF FF FF FF | FF FF FF FF |
+[7d8] | FF FF FF FF | FF FF FF FF |
+[7e0] | FF FF FF FF | FF FF FF FF |
+[7e8] | FF FF FF FF | FF FF FF FF |
+[7f0] | FF FF FF FF | FF FF FF FF |
+[7f8] | FF FF FF FF | FF FF FF FF |
+System Warning : no callback registered
+System Warning : no callback registered
+System Warning : no callback registered
