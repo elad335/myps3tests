@@ -55,8 +55,7 @@ extern "C" unsigned long long prx_function_elad();
 
 void validate(int& result)
 {
-	result = prx_function_elad();
-	printf("%d\n", result);
+	store_vol(result, prx_function_elad());
 	result = 0;
 }
 
@@ -64,7 +63,7 @@ const char* prx_name = "/app_home/used_prx.sprx";
 
 int allocate_prx_memory_untracked()
 {
-	sysCell(prx_load_module, prx_name, 0, NULL);
+	ENSURE_OK(sys_prx_load_module(prx_name, 0, NULL) <= 0);
 	return 0;
 }
 
@@ -79,27 +78,11 @@ int main() {
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL_LICENSEAREA );
 	cellSysmoduleLoadModule( CELL_SYSMODULE_SYSUTIL_NP2 );
 
-	static const u64 key[2] = { 0xdca01b0ffd4a2affull , 0x292accffdd5bf861ull };
-
-	u8* buffer = new u8[128 * 1024 * 1024];
-	sceFunc(Np2Init, 128 * 1024 * 1024, buffer);
-
-	//ceFunc(NpDrmIsAvailable, (const SceNpDrmKey*)key, "/app_home/UnityNpToolkit.sprx");
-
-	sys_memory_container_t container = 0;
-	ENSURE_OK(sys_memory_container_create(&container, CELL_MUSIC_PLAYBACK_MEMORY_CONTAINER_SIZE));
-
-
-	//sysCell(prx_load_module, "/app_home/UnityNpToolkit.sprx", 0, NULL);
-	//sysCell(prx_load_module, "/app_home/././././UnityNpToolkit.sprx", 0, NULL);
-	//sysCell(prx_load_module, "/app_home/./UnityNpToolkit.sprx", 0, NULL);
-	//sysCell(prx_load_module, "/app_home/UnityNpToolkit.sprx", 0, NULL);
-
 	u32 prx_ids[2]  = {};
 
 	int result = 0;	
 
-	printf("Phase 1:\n\n");
+	printf("\nPhase 1: Testing simple pair of non-interleaved start/stop\n\n");
 
 	for (u32 i = 0; i < 2; i++, allocate_prx_memory_untracked())
 	{
@@ -110,7 +93,7 @@ int main() {
 		sysCell(prx_unload_module, prx_ids[i], 0, NULL);
 	}
 
-	printf("Phase 2:\n\n");
+	printf("\nPhase 2: Testing pair of non-interleaved start/stop but with no unload in between\n\n");
 
 	for (u32 i = 0; i < 2; i++, allocate_prx_memory_untracked())
 	{
@@ -126,7 +109,7 @@ int main() {
 		sysCell(prx_unload_module, prx_ids[i], 0, NULL);
 	}
 
-	printf("Phase 3:\n\n");
+	printf("\nPhase 3: Testing pair of interleaved start/stop\n\n");
 
 	for (u32 i = 0; i < 2; i++, allocate_prx_memory_untracked())
 	{
@@ -146,13 +129,7 @@ int main() {
 		sysCell(prx_unload_module, prx_ids[i], 0, NULL);
 	}
 
-	if (constant_vol<bool, false>())
-	{
-		// Import
-		cellFiberPpuYield();
-		result = prx_function_elad();
-	}
-
+	// Unreachable, crashed
 	printf("finished");
 	return 0;
 }

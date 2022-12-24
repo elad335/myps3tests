@@ -1,58 +1,46 @@
-checking hard disk: done. (# of partition = 2)
-mounting HDD in the mount point "/dev_hdd0" : OK
-Fake Hdd Access Speed = 0
+Phase 1: Testing simple pair of non-interleaved start/stop
 
-*** network ready. myaddr: 192.168.1.8 ***
-===== Start agent =====
-Debug Agent Version 4.8.4 (62) (Built - Jan 24 2019 16:40:19)
-sceNp2Init(error ok, line=85)
-Phase 1:
+sys_prx_load_module(error 0x23001b01, line=89)
+PRX entry start! buffer:0500A200
+sys_prx_start_module(error ok, line=90)
+PRX function library! buffer:0500A200
+PRX entry stop! buffer:0500A200
+sys_prx_stop_module(error ok, line=92)
+sys_prx_unload_module(error ok, line=93)
+sys_prx_load_module(error 0x23001c01, line=89)
+PRX entry start! buffer:0500C200
+sys_prx_start_module(error ok, line=90)
+PRX function library! buffer:0500C200
+PRX entry stop! buffer:0500C200
+sys_prx_stop_module(error ok, line=92)
+sys_prx_unload_module(error ok, line=93)
 
-sys_prx_load_module(error 0x23002801, line=106)
-PRX entry start!: 0400A200sys_prx_start_module(error ok, line=107)
-0400A200
-2752576
-PRX entry stop!
-sys_prx_stop_module(error ok, line=109)
-sys_prx_unload_module(error ok, line=110)
-sys_prx_load_module(error 0x23012801, line=67)
-sys_prx_load_module(error 0x23002901, line=106)
-PRX entry start!: 0400C200sys_prx_start_module(error ok, line=107)
-0400C200
-2883648
-PRX entry stop!
-sys_prx_stop_module(error ok, line=109)
-sys_prx_unload_module(error ok, line=110)
-sys_prx_load_module(error 0x23012901, line=67)
-Phase 2:
+Phase 2: Testing pair of non-interleaved start/stop but with no unload in between
 
-sys_prx_load_module(error 0x23002a01, line=117)
-PRX entry start!: 0400D200sys_prx_start_module(error ok, line=118)
-0400D200
-3014720
-PRX entry stop!
-sys_prx_stop_module(error ok, line=120)
-sys_prx_load_module(error 0x23002b01, line=67)
-sys_prx_load_module(error 0x23002c01, line=117)
-PRX entry start!: 04002300sys_prx_start_module(error ok, line=118)
-04002300
-3276864
-PRX entry stop!
-sys_prx_stop_module(error ok, line=120)
-sys_prx_load_module(error 0x23002d01, line=67)
-sys_prx_unload_module(error ok, line=126)
-sys_prx_unload_module(error ok, line=126)
-Phase 3:
+sys_prx_load_module(error 0x23001d01, line=100)
+PRX entry start! buffer:0500D200
+sys_prx_start_module(error ok, line=101)
+PRX function library! buffer:0500D200
+PRX entry stop! buffer:0500D200
+sys_prx_stop_module(error ok, line=103)
+sys_prx_load_module(error 0x23001f01, line=100)
+PRX entry start! buffer:05002300
+sys_prx_start_module(error ok, line=101)
+PRX function library! buffer:05002300
+PRX entry stop! buffer:05002300
+sys_prx_stop_module(error ok, line=103)
+sys_prx_unload_module(error ok, line=109)
+sys_prx_unload_module(error ok, line=109)
 
-sys_prx_load_module(error 0x23012a01, line=133)
-PRX entry start!: 0400D200sys_prx_start_module(error ok, line=134)
-0400D200
-3014720
-sys_prx_load_module(error 0x23012c01, line=67)
-sys_prx_load_module(error 0x23002e01, line=133)
-PRX entry start!: 04006300sys_prx_start_module(error ok, line=134)
-0400D200
-3014720
-sys_prx_load_module(error 0x23002f01, line=67)
-PRX entry stop!
-sys_prx_stop_module(error ok, line=140)
+Phase 3: Testing pair of interleaved start/stop
+
+sys_prx_load_module(error 0x23011d01, line=116)
+PRX entry start! buffer:0500D200
+sys_prx_start_module(error ok, line=117)
+PRX function library! buffer:0500D200
+sys_prx_load_module(error 0x23002101, line=116)
+PRX entry start! buffer:05006300
+sys_prx_start_module(error ok, line=117)
+PRX function library! buffer:0500D200
+PRX entry stop! buffer:0500D200
+sys_prx_stop_module(error ok, line=123)

@@ -25,11 +25,10 @@ void write_tty(const char* p)
     unsigned int out = 0;
     sys_tty_write(SYS_TTYP_PPU_STDOUT, p, strlen(p), &out);
 }
+
 extern "C" int prx_entry(unsigned int args, void* argp)
 {
-    char p[] = "PRX entry start!: \n";
-    unsigned int out = 0;
-    sys_tty_write(SYS_TTYP_PPU_STDOUT,   p, sizeof("PRX entry start!\n"), &out);
+    write_tty("PRX entry start! buffer:");
 
     char text[32/4] = {};
 
@@ -39,27 +38,16 @@ extern "C" int prx_entry(unsigned int args, void* argp)
     }
 
     write_tty(text);
+    write_tty("\n");
     
     return SYS_PRX_RESIDENT;
 }
 
 extern "C" int prx_stop()
 {
-    const char* p = "PRX entry stop!\n";
-    unsigned int out = 0;
-    sys_tty_write(SYS_TTYP_PPU_STDOUT,   p, sizeof("PRX entry stop!\n"), &out);
-    return 0;
-}
+    write_tty("PRX entry stop! buffer:");
 
-
-extern "C" unsigned long long prx_function_elad()
-{
-    const char* p = "PRX entry stop!\n";
-    unsigned int out = 0;
-    //printf("PRX function at %p", +s_buffer);
-    //sys_prx_get_my_module_id();
-    char text[32/4 + 1] = {};
-    text[32/4] = '\n';
+    char text[32/4] = {};
 
     for (int i = 28; i >= 0; i-=4)
     {
@@ -67,7 +55,24 @@ extern "C" unsigned long long prx_function_elad()
     }
 
     write_tty(text);
-    
+    write_tty("\n");
+    return 0;
+}
+
+extern "C" unsigned long long prx_function_elad()
+{   
+    write_tty("PRX function library! buffer:");
+
+    char text[32/4] = {};
+
+    for (int i = 28; i >= 0; i-=4)
+    {
+        text[i / 4] = "0123456789ABCEDF"[(((unsigned int)(+s_buffer)) >> i) % 16];
+    }
+
+    write_tty(text);
+    write_tty("\n");
+
     return (unsigned int)(+s_buffer);
 }
 
