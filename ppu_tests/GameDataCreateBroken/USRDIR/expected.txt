@@ -1,0 +1,63 @@
+get:
+
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+BLES-0015
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+BLES00159
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+BLES00159
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+bles00159
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+bles
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+Bles
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+BLES_11
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+BLES 11
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+BLES..
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+..
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+./
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+.
+filepget=d000ff08, filpset=0
+cellGameDataCheckCreate2(error ok, line=119)
+get:
+Title
+filepget=d000ff08, filpset=0
+Poisoning title
+cellGameDataCheckCreate2(error ok, line=119)
+cellGameDataCheckCreate2(error 0x8002b606, line=119)
+cellGameDataCheckCreate2(error 0x8002b606, line=119) ...infinite

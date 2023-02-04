@@ -453,6 +453,11 @@ struct rsxCommandCompiler
 		*(c.current++) = label.pos | RSX_METHOD_NEW_JUMP_CMD;
 	}
 
+	static u32 make_jmp(gcmLabel label)
+	{
+		return label.pos | RSX_METHOD_NEW_JUMP_CMD;
+	}
+
 	void call(gcmLabel label)
 	{
 		*(c.current++) = label.pos | RSX_METHOD_CALL_CMD;

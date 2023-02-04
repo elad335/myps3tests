@@ -254,6 +254,8 @@ static thread_local s64 g_ec = 0; // Global error code
 (printf("sys_" #name "(error %s, line=%u)\n", format_cell_error(s32(g_ec = sys_##name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
 #define justFunc(name, ...) \
 (printf(#name "(error %s, line=%u)\n", format_cell_error(s32(g_ec = name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
+#define print1Func(name, ...) \
+(printf(#name "(%s, line=%u)\n", format_cell_error(s32(g_ec = name(__VA_ARGS__))).c_str(), __LINE__), g_ec)
 #endif
 
 template <typename To, typename From>
@@ -319,10 +321,18 @@ void print_bytes(const volatile void* data, size_t size)
 }
 
 template <typename T>
-void print_obj(const volatile T& obj)
+void print_obj(const volatile T& obj, const char* name = NULL)
 {
+	if (name)
+	{
+		printf(name);
+		printf(": ");
+	}
+
 	print_bytes(&obj, sizeof(obj));
 }
+
+#define PRINT_OBJ(x) print_obj(x, #x)
 
 template <typename T>
 void reset_obj(T& obj, int ch = 0)
@@ -403,12 +413,12 @@ static s32 open_file_(s32 line, const char *path, int flags, const u64& arg = -1
 #define open_sdata(...) open_file(__VA_ARGS__, 0x18000000010ull)
 #define open_edata(...) open_file(__VA_ARGS__, 0x2ull)
 
-static s64 write_file_(s32 line, s32 fd, const void* buf, u64 size)
+static s64 write_file_(s32 line, s32 fd, const void* buf, u64 size, bool is_verbose = true)
 {
-	printf("line=%d, fd=%d, size=%u: ", line, fd, size);
+	if (is_verbose) printf("line=%d, fd=%d, size=%u: ", line, fd, size);
 
 	u64 written = 0;
-	const s32 err = cellFunc(FsWrite, fd, buf, size, &written);
+	const s32 err = (is_verbose ? cellFunc(FsWrite, fd, buf, size, &written) : cellFsWrite(fd, buf, size, &written));
 
 	if (err < 0)
 	{

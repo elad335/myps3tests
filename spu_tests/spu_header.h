@@ -170,6 +170,9 @@ struct lock_line_t
 	}
 };
 
+// Workaround for broken X86 MULPD instruction (INFINITY isn't formed well for 0*INIFNITY expression to work) 
+static const f32 const_nan = bit_cast<f32>(0x7fc00000);
+
 #define RAW_SPU_OFFSET        0x00100000UL
 #define RAW_SPU_LS_OFFSET     0x00000000UL
 #define RAW_SPU_PROB_OFFSET   0x00040000UL
