@@ -326,7 +326,7 @@ void print_obj(const volatile T& obj, const char* name = NULL)
 	if (name)
 	{
 		printf(name);
-		printf(": ");
+		printf(": \n");
 	}
 
 	print_bytes(&obj, sizeof(obj));

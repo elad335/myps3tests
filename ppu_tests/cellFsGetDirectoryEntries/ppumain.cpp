@@ -78,7 +78,7 @@ int main() {
 		ENSURE_OK(cellFsGetDirectoryEntries(fd, entry, sizeof entry, &count));
 		printf("data_count = 0x%x\n", count);
 
-		for (u32 i = 0; i < 2; i++)
+		for (u32 i = 0; i < count; i++)
 		{
 			printf("entry[%d]:\n", i);
 
@@ -95,19 +95,57 @@ int main() {
 
 	ENSURE_OK(cellFsClosedir(fd));
 
-	/*ENSURE_OK(cellFsOpendir(strtemp.c_str(), &fd));
-
-	do 
+	for (u32 i = 0; i < 3; i++)
 	{
-		ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
-	}
-	while (nread);
+		ENSURE_OK(cellFsOpendir(strtemp.c_str(), &fd));
 
-	reset_obj(entry[0].entry_name, 0xff);
-	ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
-	printf("nread = 0x%x\n", nread);
-	print_obj(entry[0].entry_name);	
-	ENSURE_OK(cellFsClosedir(fd));*/
+		nread = 0;
+
+		while (true)
+		{
+			reset_obj(entry[0].entry_name, 0xff - i);
+			ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
+			printf("Count(%i): nread = 0x%x\n", i, nread);
+			print_obj(entry[0].entry_name, "entry");
+
+			if (nread == 0)
+			{
+				reset_obj(entry[0].entry_name, 0xff - i);
+				ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
+				printf("Count(%i): nread = 0x%x\n", i, nread);
+				print_obj(entry[0].entry_name, "entry");
+				break;
+			}
+		}
+
+		ENSURE_OK(cellFsClosedir(fd));
+	}
+
+	for (u32 i = 0; i < 3; i++)
+	{
+		ENSURE_OK(cellFsOpendir("/dev_hdd0/game/", &fd));
+
+		nread = 0;
+
+		while (true)
+		{
+			reset_obj(entry[0].entry_name, 0xff - i);
+			ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
+			printf("Count(%i): nread = 0x%x\n", i, nread);
+			print_obj(entry[0].entry_name, "entry");
+
+			if (nread == 0)
+			{
+				reset_obj(entry[0].entry_name, 0xff - i);
+				ENSURE_OK(cellFsReaddir(fd, &entry[0].entry_name, &nread));
+				printf("Count(%i): nread = 0x%x\n", i, nread);
+				print_obj(entry[0].entry_name, "entry");
+				break;
+			}
+		}
+
+		ENSURE_OK(cellFsClosedir(fd));
+	}
 
 	return 0;
 }
