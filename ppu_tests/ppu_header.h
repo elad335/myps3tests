@@ -142,9 +142,10 @@ static std::string format_cell_error(u32 error)
 #ifndef ENSURE_OK
 
 // Basic asserts, uses c-style casts in some places handle pointers as well
-#define ENSURE_OK(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s64>(x)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
-#define ENSURE_VAL(x, val) ({ s64 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ != s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
-#define ENSURE_NVAL(x, val) ({ s64 ensure_ok_ret_save_ = s64(x); if (ensure_ok_ret_save_ == s64(val)) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_OK(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s64>((x))) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_TRUE(x) ({ if (s32 ensure_ok_ret_save_ = static_cast<s64>((x))) {} else { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_VAL(x, val) ({ s64 ensure_ok_ret_save_ = s64((x)); if (ensure_ok_ret_save_ != s64((val))) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
+#define ENSURE_NVAL(x, val) ({ s64 ensure_ok_ret_save_ = s64((x)); if (ensure_ok_ret_save_ == s64((val))) { printf("\"%s\" Failed at line %d! (error=%s)", #x, __LINE__, format_cell_error(ensure_ok_ret_save_).c_str()); exit(ensure_ok_ret_save_); } 0; })
 
 #endif
 
@@ -302,7 +303,6 @@ void print_bytes(const volatile void* data, size_t size)
 		{
 			printf("[%03x] |", i);
 		}
-		
 
 		switch (size - i)
 		{
