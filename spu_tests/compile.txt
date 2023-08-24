@@ -2,7 +2,7 @@ spu-lv2-gcc -o test_spu.spu.out test_runner.spu.cpp %SCE_PS3_ROOT%/target/spu/li
 
 ppu-lv2-objcopy -I binary -O elf64-powerpc-celloslv2 -B powerpc --set-section-align .data=7 --set-section-pad .data=128 --rename-section .data=.spu_image.test,readonly,contents,alloc test_spu.spu.out test_spu.o
 
-ppu-lv2-gcc -o test_spu.ppu.elf test_spu.o %SCE_PS3_ROOT%/target/ppu/lib/libgcm_cmd.a test_runner.ppu.cpp
+ppu-lv2-gcc -o test_spu.ppu.elf test_spu.o test_runner.ppu.cpp %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_game_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libio_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libaudio_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcamera_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libvoice_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libspurs_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libgem_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_cmd.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_sys_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysmodule_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libresc_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcgb.a %SCE_PS3_ROOT%/target/ppu/lib/libcgc.a %SCE_PS3_ROOT%/target/ppu/lib/libfs_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libgem_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_np_stub.a
 
 make_fself test_spu.ppu.elf test_spu.ppu.self 
 

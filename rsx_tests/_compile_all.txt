@@ -1,3 +1,6 @@
+sce-cgc -p sce_vp_rsx -o mainvp.vpo mainvp.cg --assembly
+sce-cgc -p sce_fp_rsx -o mainfp.fpo mainfp.cg --assembly
+
 ppu-lv2-objcopy -I binary -O elf64-powerpc-celloslv2 -B powerpc --set-section-align .data=7 --set-section-pad .data=128 --rename-section .data=.spu_image.test,readonly,contents,alloc mainfp.fpo mainfp.o
 
 ppu-lv2-objcopy -I binary -O elf64-powerpc-celloslv2 -B powerpc --set-section-align .data=7 --set-section-pad .data=128 --rename-section .data=.spu_image.test,readonly,contents,alloc mainvp.vpo mainvp.o

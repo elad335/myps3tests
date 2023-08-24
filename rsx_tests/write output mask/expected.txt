@@ -1,0 +1,1190 @@
+fifo 0x20000, video 0x120000, fp 0x4a4000, color1 0x4a4800, color2 0x828800, texture 0xbac800
+[0] Used mask = 0x01010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[1] Used mask = 0x01010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[2] Used mask = 0x01010103
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[3] Used mask = 0x01010105
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[4] Used mask = 0x01010109
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[5] Used mask = 0x01010111
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[6] Used mask = 0x01010121
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[7] Used mask = 0x01010141
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[8] Used mask = 0x01010181
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[9] Used mask = 0x01010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[10] Used mask = 0x01010301
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[11] Used mask = 0x01010501
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[12] Used mask = 0x01010901
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[13] Used mask = 0x01011101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[14] Used mask = 0x01012101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[15] Used mask = 0x01014101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[16] Used mask = 0x01018101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[17] Used mask = 0x01010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[18] Used mask = 0x01030101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[19] Used mask = 0x01050101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[20] Used mask = 0x01090101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[21] Used mask = 0x01110101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[22] Used mask = 0x01210101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[23] Used mask = 0x01410101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[24] Used mask = 0x01810101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[25] Used mask = 0x01010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[26] Used mask = 0x03010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[27] Used mask = 0x05010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[28] Used mask = 0x09010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[29] Used mask = 0x11010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[30] Used mask = 0x21010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[31] Used mask = 0x41010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[32] Used mask = 0x81010101
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[33] Used mask = 0x00000000
+ Output Sample:
+[000] | 00 00 00 00 | 00 00 00 00 |
+[008] | 00 00 00 00 | 00 00 00 00 |
+[010] | 00 00 00 00 | 00 00 00 00 |
+[018] | 00 00 00 00 | 00 00 00 00 |
+[34] Used mask = 0x00000001
+ Output Sample:
+[000] | 00 00 00 FF | 00 00 00 FF |
+[008] | 00 00 00 FF | 00 00 00 FF |
+[010] | 00 00 00 FF | 00 00 00 FF |
+[018] | 00 00 00 FF | 00 00 00 FF |
+[35] Used mask = 0x00000002
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[36] Used mask = 0x00000004
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[37] Used mask = 0x00000008
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[38] Used mask = 0x00000010
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[39] Used mask = 0x00000020
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[40] Used mask = 0x00000040
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[41] Used mask = 0x00000080
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[42] Used mask = 0x00000100
+ Output Sample:
+[000] | 00 00 FF 00 | 00 00 FF 00 |
+[008] | 00 00 FF 00 | 00 00 FF 00 |
+[010] | 00 00 FF 00 | 00 00 FF 00 |
+[018] | 00 00 FF 00 | 00 00 FF 00 |
+[43] Used mask = 0x00000200
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[44] Used mask = 0x00000400
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[45] Used mask = 0x00000800
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[46] Used mask = 0x00001000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[47] Used mask = 0x00002000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[48] Used mask = 0x00004000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[49] Used mask = 0x00008000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[50] Used mask = 0x00010000
+ Output Sample:
+[000] | 00 FF 00 00 | 00 FF 00 00 |
+[008] | 00 FF 00 00 | 00 FF 00 00 |
+[010] | 00 FF 00 00 | 00 FF 00 00 |
+[018] | 00 FF 00 00 | 00 FF 00 00 |
+[51] Used mask = 0x00020000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[52] Used mask = 0x00040000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[53] Used mask = 0x00080000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[54] Used mask = 0x00100000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[55] Used mask = 0x00200000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[56] Used mask = 0x00400000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[57] Used mask = 0x00800000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[58] Used mask = 0x01000000
+ Output Sample:
+[000] | FF 00 00 00 | FF 00 00 00 |
+[008] | FF 00 00 00 | FF 00 00 00 |
+[010] | FF 00 00 00 | FF 00 00 00 |
+[018] | FF 00 00 00 | FF 00 00 00 |
+[59] Used mask = 0x02000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[60] Used mask = 0x04000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[61] Used mask = 0x08000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[62] Used mask = 0x10000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[63] Used mask = 0x20000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[64] Used mask = 0x40000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[65] Used mask = 0x80000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[66] Used mask = 0x00010000
+ Output Sample:
+[000] | 00 FF 00 00 | 00 FF 00 00 |
+[008] | 00 FF 00 00 | 00 FF 00 00 |
+[010] | 00 FF 00 00 | 00 FF 00 00 |
+[018] | 00 FF 00 00 | 00 FF 00 00 |
+[67] Used mask = 0x00010001
+ Output Sample:
+[000] | 00 FF 00 FF | 00 FF 00 FF |
+[008] | 00 FF 00 FF | 00 FF 00 FF |
+[010] | 00 FF 00 FF | 00 FF 00 FF |
+[018] | 00 FF 00 FF | 00 FF 00 FF |
+[68] Used mask = 0x00010002
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[69] Used mask = 0x00010004
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[70] Used mask = 0x00010008
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[71] Used mask = 0x00010010
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[72] Used mask = 0x00010020
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[73] Used mask = 0x00010040
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[74] Used mask = 0x00010080
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[75] Used mask = 0x00010100
+ Output Sample:
+[000] | 00 FF FF 00 | 00 FF FF 00 |
+[008] | 00 FF FF 00 | 00 FF FF 00 |
+[010] | 00 FF FF 00 | 00 FF FF 00 |
+[018] | 00 FF FF 00 | 00 FF FF 00 |
+[76] Used mask = 0x00010200
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[77] Used mask = 0x00010400
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[78] Used mask = 0x00010800
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[79] Used mask = 0x00011000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[80] Used mask = 0x00012000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[81] Used mask = 0x00014000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[82] Used mask = 0x00018000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[83] Used mask = 0x00010000
+ Output Sample:
+[000] | 00 FF 00 00 | 00 FF 00 00 |
+[008] | 00 FF 00 00 | 00 FF 00 00 |
+[010] | 00 FF 00 00 | 00 FF 00 00 |
+[018] | 00 FF 00 00 | 00 FF 00 00 |
+[84] Used mask = 0x00030000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[85] Used mask = 0x00050000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[86] Used mask = 0x00090000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[87] Used mask = 0x00110000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[88] Used mask = 0x00210000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[89] Used mask = 0x00410000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[90] Used mask = 0x00810000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[91] Used mask = 0x01010000
+ Output Sample:
+[000] | FF FF 00 00 | FF FF 00 00 |
+[008] | FF FF 00 00 | FF FF 00 00 |
+[010] | FF FF 00 00 | FF FF 00 00 |
+[018] | FF FF 00 00 | FF FF 00 00 |
+[92] Used mask = 0x02010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[93] Used mask = 0x04010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[94] Used mask = 0x08010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[95] Used mask = 0x10010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[96] Used mask = 0x20010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[97] Used mask = 0x40010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[98] Used mask = 0x80010000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[99] Used mask = 0x00000100
+ Output Sample:
+[000] | 00 00 FF 00 | 00 00 FF 00 |
+[008] | 00 00 FF 00 | 00 00 FF 00 |
+[010] | 00 00 FF 00 | 00 00 FF 00 |
+[018] | 00 00 FF 00 | 00 00 FF 00 |
+[100] Used mask = 0x00000101
+ Output Sample:
+[000] | 00 00 FF FF | 00 00 FF FF |
+[008] | 00 00 FF FF | 00 00 FF FF |
+[010] | 00 00 FF FF | 00 00 FF FF |
+[018] | 00 00 FF FF | 00 00 FF FF |
+[101] Used mask = 0x00000102
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[102] Used mask = 0x00000104
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[103] Used mask = 0x00000108
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[104] Used mask = 0x00000110
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[105] Used mask = 0x00000120
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[106] Used mask = 0x00000140
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[107] Used mask = 0x00000180
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[108] Used mask = 0x00000100
+ Output Sample:
+[000] | 00 00 FF 00 | 00 00 FF 00 |
+[008] | 00 00 FF 00 | 00 00 FF 00 |
+[010] | 00 00 FF 00 | 00 00 FF 00 |
+[018] | 00 00 FF 00 | 00 00 FF 00 |
+[109] Used mask = 0x00000300
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[110] Used mask = 0x00000500
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[111] Used mask = 0x00000900
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[112] Used mask = 0x00001100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[113] Used mask = 0x00002100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[114] Used mask = 0x00004100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[115] Used mask = 0x00008100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[116] Used mask = 0x00010100
+ Output Sample:
+[000] | 00 FF FF 00 | 00 FF FF 00 |
+[008] | 00 FF FF 00 | 00 FF FF 00 |
+[010] | 00 FF FF 00 | 00 FF FF 00 |
+[018] | 00 FF FF 00 | 00 FF FF 00 |
+[117] Used mask = 0x00020100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[118] Used mask = 0x00040100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[119] Used mask = 0x00080100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[120] Used mask = 0x00100100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[121] Used mask = 0x00200100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[122] Used mask = 0x00400100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[123] Used mask = 0x00800100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[124] Used mask = 0x01000100
+ Output Sample:
+[000] | FF 00 FF 00 | FF 00 FF 00 |
+[008] | FF 00 FF 00 | FF 00 FF 00 |
+[010] | FF 00 FF 00 | FF 00 FF 00 |
+[018] | FF 00 FF 00 | FF 00 FF 00 |
+[125] Used mask = 0x02000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[126] Used mask = 0x04000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[127] Used mask = 0x08000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[128] Used mask = 0x10000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[129] Used mask = 0x20000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[130] Used mask = 0x40000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[131] Used mask = 0x80000100
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[132] Used mask = 0x00000001
+ Output Sample:
+[000] | 00 00 00 FF | 00 00 00 FF |
+[008] | 00 00 00 FF | 00 00 00 FF |
+[010] | 00 00 00 FF | 00 00 00 FF |
+[018] | 00 00 00 FF | 00 00 00 FF |
+[133] Used mask = 0x00000001
+ Output Sample:
+[000] | 00 00 00 FF | 00 00 00 FF |
+[008] | 00 00 00 FF | 00 00 00 FF |
+[010] | 00 00 00 FF | 00 00 00 FF |
+[018] | 00 00 00 FF | 00 00 00 FF |
+[134] Used mask = 0x00000003
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[135] Used mask = 0x00000005
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[136] Used mask = 0x00000009
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[137] Used mask = 0x00000011
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[138] Used mask = 0x00000021
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[139] Used mask = 0x00000041
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[140] Used mask = 0x00000081
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[141] Used mask = 0x00000101
+ Output Sample:
+[000] | 00 00 FF FF | 00 00 FF FF |
+[008] | 00 00 FF FF | 00 00 FF FF |
+[010] | 00 00 FF FF | 00 00 FF FF |
+[018] | 00 00 FF FF | 00 00 FF FF |
+[142] Used mask = 0x00000201
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[143] Used mask = 0x00000401
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[144] Used mask = 0x00000801
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[145] Used mask = 0x00001001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[146] Used mask = 0x00002001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[147] Used mask = 0x00004001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[148] Used mask = 0x00008001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[149] Used mask = 0x00010001
+ Output Sample:
+[000] | 00 FF 00 FF | 00 FF 00 FF |
+[008] | 00 FF 00 FF | 00 FF 00 FF |
+[010] | 00 FF 00 FF | 00 FF 00 FF |
+[018] | 00 FF 00 FF | 00 FF 00 FF |
+[150] Used mask = 0x00020001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[151] Used mask = 0x00040001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[152] Used mask = 0x00080001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[153] Used mask = 0x00100001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[154] Used mask = 0x00200001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[155] Used mask = 0x00400001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[156] Used mask = 0x00800001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[157] Used mask = 0x01000001
+ Output Sample:
+[000] | FF 00 00 FF | FF 00 00 FF |
+[008] | FF 00 00 FF | FF 00 00 FF |
+[010] | FF 00 00 FF | FF 00 00 FF |
+[018] | FF 00 00 FF | FF 00 00 FF |
+[158] Used mask = 0x02000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[159] Used mask = 0x04000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[160] Used mask = 0x08000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[161] Used mask = 0x10000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[162] Used mask = 0x20000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[163] Used mask = 0x40000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[164] Used mask = 0x80000001
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[165] Used mask = 0x01000000
+ Output Sample:
+[000] | FF 00 00 00 | FF 00 00 00 |
+[008] | FF 00 00 00 | FF 00 00 00 |
+[010] | FF 00 00 00 | FF 00 00 00 |
+[018] | FF 00 00 00 | FF 00 00 00 |
+[166] Used mask = 0x01000001
+ Output Sample:
+[000] | FF 00 00 FF | FF 00 00 FF |
+[008] | FF 00 00 FF | FF 00 00 FF |
+[010] | FF 00 00 FF | FF 00 00 FF |
+[018] | FF 00 00 FF | FF 00 00 FF |
+[167] Used mask = 0x01000002
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[168] Used mask = 0x01000004
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[169] Used mask = 0x01000008
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[170] Used mask = 0x01000010
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[171] Used mask = 0x01000020
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[172] Used mask = 0x01000040
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[173] Used mask = 0x01000080
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[174] Used mask = 0x01000100
+ Output Sample:
+[000] | FF 00 FF 00 | FF 00 FF 00 |
+[008] | FF 00 FF 00 | FF 00 FF 00 |
+[010] | FF 00 FF 00 | FF 00 FF 00 |
+[018] | FF 00 FF 00 | FF 00 FF 00 |
+[175] Used mask = 0x01000200
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[176] Used mask = 0x01000400
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[177] Used mask = 0x01000800
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[178] Used mask = 0x01001000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[179] Used mask = 0x01002000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[180] Used mask = 0x01004000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[181] Used mask = 0x01008000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[182] Used mask = 0x01010000
+ Output Sample:
+[000] | FF FF 00 00 | FF FF 00 00 |
+[008] | FF FF 00 00 | FF FF 00 00 |
+[010] | FF FF 00 00 | FF FF 00 00 |
+[018] | FF FF 00 00 | FF FF 00 00 |
+[183] Used mask = 0x01020000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[184] Used mask = 0x01040000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[185] Used mask = 0x01080000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[186] Used mask = 0x01100000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[187] Used mask = 0x01200000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[188] Used mask = 0x01400000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[189] Used mask = 0x01800000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[190] Used mask = 0x01000000
+ Output Sample:
+[000] | FF 00 00 00 | FF 00 00 00 |
+[008] | FF 00 00 00 | FF 00 00 00 |
+[010] | FF 00 00 00 | FF 00 00 00 |
+[018] | FF 00 00 00 | FF 00 00 00 |
+[191] Used mask = 0x03000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[192] Used mask = 0x05000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[193] Used mask = 0x09000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[194] Used mask = 0x11000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[195] Used mask = 0x21000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[196] Used mask = 0x41000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+[197] Used mask = 0x81000000
+ Output Sample:
+[000] | FF FF FF FF | FF FF FF FF |
+[008] | FF FF FF FF | FF FF FF FF |
+[010] | FF FF FF FF | FF FF FF FF |
+[018] | FF FF FF FF | FF FF FF FF |
+sample finished.

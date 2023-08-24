@@ -379,6 +379,11 @@ static u32* OffsetToAddr(u32 offset)
 	return ptr_caste(((offsetTable.eaAddress[offset >> 20] << 20) | (offset & 0xFFFFF)), u32);
 }
 
+static u32* OffsetToLocal(u32 offset)
+{
+	return ptr_caste((offset + 0xC0000000), u32);
+}
+
 u32 GcmSetTile(u8 index, u8 location, u32 offset, u32 size, u32 pitch, 
 	u8 comp = CELL_GCM_COMPMODE_DISABLED, u16 base = 0, u32 bank = 0)
 {
@@ -472,6 +477,25 @@ struct rsxCommandCompiler
 	u32 pos()
 	{
 		return AddrToOffset(c.current);
+	}
+
+	u32 set_write_pos(u32 new_pos)
+	{
+		c.current = OffsetToAddr(new_pos);
+		load_vol(c.current[0]); // Assert memory safety
+	}
+
+	u32 align_pad(u32 align = 128, bool always = false)
+	{
+		align *= 4;
+
+		const u32 old_pos = pos();
+		const u32 new_pos = (old_pos + (always ? align : align - 1)) & (0 - align);
+
+		std::memset(c.current, 0, new_pos - old_pos);
+		set_write_pos(new_pos);
+
+		return new_pos - old_pos;
 	}
 
 	// generates a jump label by current position

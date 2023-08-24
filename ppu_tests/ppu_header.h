@@ -17,6 +17,7 @@
 #include <ppu_intrinsics.h>
 #include <ppu_asm_intrinsics.h>
 #include <sysutil/sysutil_gamecontent.h> 
+#include <sys/sys_time.h>
 #include <cstring>
 #include <string>
 
