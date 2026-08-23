@@ -42,13 +42,13 @@ typedef float f32;
 typedef double f64; 
 
 // Some headers in define it this way
-#undef vec_u8;
-#undef vec_s8;
-#undef vec_u16;
-#undef vec_s16;
-#undef vec_u32;
-#undef vec_s32;
-//#undef vec_f32;
+#undef vec_u8
+#undef vec_s8
+#undef vec_u16
+#undef vec_s16
+#undef vec_u32
+#undef vec_s32
+//#undef vec_f32
 
 typedef vector unsigned char vec_u8;
 typedef vector signed char vec_s8;
@@ -814,6 +814,95 @@ template <typename T>
 u32 sys_rsx_context_iomap(u32 context_id, u32 io, T ea, u32 size, u64 flags)
 {
 	system_call_5(SYS_RSX_CONTEXT_IOMAP, context_id, io, int_cast(reinterpret_cast<const void*>(ea)), size, flags);
+	return_to_user_prog(u32);
+}
+
+u32 sys_ss_appliance_info_manager(u32 code, u8* buf)
+{
+	system_call_2(867, code, int_cast(buf));
+	return_to_user_prog(u32);	
+}
+
+#define SYS_HID_MANAGER_MAP_LOGICAL_ID_TO_PORT_ID 0x1F8
+#define SYS_HID_MANAGER_OPEN 0x1F4
+#define SYS_HID_MANAGER_IOCTL 0x1F7
+#define SYS_STORAGE_CONFIGURE_MEDIUM_EVENT 0x264
+#define SYS_STORAGE_SET_MEDIUM_POLLING_INTERVAL 0x265
+#define SYS_STORAGE_REPORT_DEVICES 0x263
+#define SYS_STORAGE_GET_DEVICE_INFO 0x261
+#define SYS_STORAGE_GET_DEVICE_CONFIG 0x262
+#define SYS_STORAGE_OPEN 0x258
+#define SYS_STORAGE_CLOSE 0x259
+
+u32 sys_hid_manager_map_logical_id_to_port_id(u32 device_type, u32 something, u32 port_no)
+{
+	system_call_3(SYS_HID_MANAGER_MAP_LOGICAL_ID_TO_PORT_ID, device_type, something, port_no);
+	return_to_user_prog(u32);
+}
+
+u32 sys_hid_manager_open(u32 device_type, u32 port_no, u32* out_id)
+{
+	system_call_3(SYS_HID_MANAGER_OPEN, device_type, port_no, int_cast(out_id));
+	return_to_user_prog(u32);
+}
+
+u32 sys_hid_manager_ioctl(u32 hid_handle, u32 pkg_id, void* buf, u64 buf_size)
+{
+	system_call_4(SYS_HID_MANAGER_IOCTL, hid_handle, pkg_id, int_cast(buf), buf_size);
+	return_to_user_prog(u32);
+}
+
+u32 sys_storage_configure_medium_event(u32 fd, u32 equeue_id, u32* handle)
+{
+	system_call_3(SYS_STORAGE_CONFIGURE_MEDIUM_EVENT, fd, equeue_id, int_cast(handle));
+	return_to_user_prog(u32);
+}
+
+
+u32 sys_storage_set_medium_polling_interval(u32 fd, u64 less_than_499999)
+{
+	system_call_2(SYS_STORAGE_SET_MEDIUM_POLLING_INTERVAL, fd, less_than_499999);
+	return_to_user_prog(u32);
+}
+
+u32 sys_storage_get_device_config(u32* storages, u32* devices)
+{
+	system_call_2(SYS_STORAGE_GET_DEVICE_CONFIG, int_cast(storages), int_cast(devices));
+	return_to_user_prog(u32);
+}
+
+u32 sys_storage_report_devices(u32 storages, u32 start, u32 devices, u64* device_ids)
+{
+	system_call_4(SYS_STORAGE_REPORT_DEVICES, storages, start, devices, int_cast(device_ids));
+	return_to_user_prog(u32);
+}
+
+struct StorageDeviceInfo
+{
+	u8 name[0x20];          // 0x0
+	u32 zero;         // 0x20
+	u32 zero2;        // 0x24
+	u64 sector_count; // 0x28
+	u32 sector_size;  // 0x30
+	u32 one;          // 0x34
+	u8 flags[8];            // 0x38
+};
+
+u32 sys_storage_get_device_info(u64 device, StorageDeviceInfo* buffer)
+{
+	system_call_2(SYS_STORAGE_GET_DEVICE_INFO, device, int_cast(buffer));
+	return_to_user_prog(u32);
+}
+
+u32 sys_storage_open(u64 device, u32 mode, u32* fd, u32 flags)
+{
+	system_call_4(SYS_STORAGE_OPEN, device, mode, int_cast(fd), flags);
+	return_to_user_prog(u32);
+}
+
+u32 sys_storage_close(u32 fd)
+{
+	system_call_1(SYS_STORAGE_CLOSE, fd);
 	return_to_user_prog(u32);
 }
 

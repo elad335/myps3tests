@@ -39,6 +39,7 @@ typedef vec_double2 vec_f64;
 #define ref_cast(x, T) *reinterpret_cast<T*>(ptr_cast(x))
 #define int_cast(x) reinterpret_cast<uptr>(x)
 
+#define ALIGNAS(x) __attribute__ ((aligned((x))))
 // Lazy memory barrier
 #ifndef fsync
 #define fsync() ({ __asm__ volatile ("syncc" : : : "memory"); })
@@ -149,8 +150,13 @@ struct lock_line_t
 
 	// Access reservation data as array 
 	template<typename Ts>
-	Ts& as(std::size_t index)
+	Ts& as(int index)
 	{
+		if (index < 0)
+		{
+			return ptr_caste(rdata, Ts)[sizeof(rdata) / sizeof(Ts) + index];
+		}
+
 		return ptr_caste(rdata, Ts)[index];
 	}
 
@@ -159,7 +165,12 @@ struct lock_line_t
 		return ptr_caste(rdata, u32)[index];
 	}
 
-	void* data(u32 offset = 0)
+	u8* data(u32 offset = 0)
+	{
+		return rdata + offset;
+	}
+
+	const u8* data(u32 offset = 0) const
 	{
 		return rdata + offset;
 	}
@@ -288,4 +299,109 @@ void write_ch(u32 ch, u32 value)
 	f[0] |= (ch & 0x7F) << 7;
 	fsync();
 	((void(*)(u32))(uptr)f)(value);
+}
+
+bool ensure(bool cond)
+{
+	if (!cond)
+	{
+		spu_hcmpeq(cond ? 1 : 0, 0);
+	}
+}
+
+
+struct relocation_x80
+{
+	u32 origin;
+	u32 target;
+};
+
+template <u64 Binary>
+u16 bin()
+{
+	u16 result = 0;
+	for (u64 i = 0; i < 16; i++)
+	{
+		if (Binary & (1 << (i * 4)))
+		{
+			result |= 1 << i;
+		}
+	}
+
+	return result;
+}
+
+u32 map_to_relocation(u32 origin, relocation_x80* relocs)
+{
+	if (!relocs)
+	{
+		return origin;
+	}
+
+	for (u32 i = 0; relocs[i].target != 0 || relocs[i].origin != 0; i++)
+	{
+		if (relocs[i].origin / 128 == origin / 128)
+		{
+			return relocs[i].target + (origin % 128);
+		}
+	}
+
+	return origin;
+}
+
+const u32* load_code(const u32* code_ptr, u32 code_size, u32 code_origin, u32* destination, relocation_x80* relocs)
+{
+	for (u32 i = 0; i < code_size; i += 4)
+	{
+		const u32 pc = i + code_origin;
+		const u32 dst_pc = i + int_cast(destination);
+		const u32 src_opcode = code_ptr[i / 4];
+
+		const u32 op_part = src_opcode >> (32 - 9);
+		u32 dst_opcode = -1;
+		bool should_insert_op = true;
+
+		// LQR/STQR
+		if (op_part == bin<0x001100111>() || op_part == bin<0x001000111>())
+		{
+			const u32 src_raw = ((src_opcode >> 7) & 0xffff) * 4;
+			const u32 old_target = (src_raw + pc) & -16;
+			const u32 new_target = map_to_relocation(old_target, relocs);
+			const u32 shift_count = 7 - 2;
+			dst_opcode = src_opcode - (src_raw << shift_count) + ((new_target - dst_pc) << shift_count);
+		}
+		// LQA/STQA
+		else if (op_part == bin<0x001100001>() || op_part == bin<0x001000001>())
+		{
+			const u32 src_raw = ((src_opcode >> 7) & 0xffff) * 4;
+			const u32 old_target = src_raw & -16;
+			const u32 new_target = map_to_relocation(old_target, relocs);
+			const u32 shift_count = 7 - 2;
+			dst_opcode = src_opcode - (src_raw << shift_count) + (new_target << shift_count);
+		}
+		// ILA
+		else if (op_part / 4 == bin<0x0100001>())
+		{
+			const u32 src_raw = (src_opcode >> 7) & 0x3ffff;
+			const u32 old_target = src_raw;
+			const u32 new_target = map_to_relocation(old_target, relocs);
+			const u32 shift_count = 7;
+			dst_opcode = src_opcode - (src_raw << shift_count) + (new_target << shift_count);
+		}
+		else
+		{
+			should_insert_op = false;
+			dst_opcode = src_opcode;
+		}
+
+		while (should_insert_op && dst_opcode == -1)
+		{
+			// Bug
+		}
+
+		destination[i / 4] = dst_opcode;
+	}
+
+	fsync();
+	return destination;
 }
