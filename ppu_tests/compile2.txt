@@ -1,0 +1,10 @@
+ppu-lv2-gcc -o ppumain.elf ppumain.cpp %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_np_trophy_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_game_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libio_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libaudio_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcamera_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libvoice_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libspurs_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libgem_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_cmd.a %SCE_PS3_ROOT%/target/ppu/lib/libgcm_sys_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysmodule_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libresc_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libcgb.a %SCE_PS3_ROOT%/target/ppu/lib/libcgc.a %SCE_PS3_ROOT%/target/ppu/lib/libfs_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libgem_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_np_stub.a %SCE_PS3_ROOT%/target/ppu/lib/libsysutil_np2_stub.a
+
+
+set "MY_DIR=%CD%"
+
+cd C:\usr\local\cell\host-win32\bin
+
+scetool.exe --sce-type=SELF --self-type=APP --key-revision=04 --self-auth-id=1010000001000003 --self-vendor-id=01000002 --self-app-version=0 --self-cap-flags 00000000000000000000000000000000000000000000001B0000000100000000 --self-ctrl-flags 4000000000000000000000000000000000000000000000000000000000000000 -e "%MY_DIR%/ppumain.elf" "%MY_DIR%/ppumain.self"
+
+pause
